@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f172a">
+  <title>AWS Cloud Practitioner Study App</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Navigation -->
+    <nav id="bottom-nav">
+      <button class="nav-btn active" data-view="dashboard" aria-label="Dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </button>
+      <button class="nav-btn" data-view="flashcards" aria-label="Flashcards">
+        <span class="nav-icon">🃏</span>
+        <span class="nav-label">Cards</span>
+      </button>
+      <button class="nav-btn" data-view="quiz" aria-label="Quiz">
+        <span class="nav-icon">📝</span>
+        <span class="nav-label">Quiz</span>
+      </button>
+      <button class="nav-btn" data-view="progress" aria-label="Progress">
+        <span class="nav-icon">📈</span>
+        <span class="nav-label">Progress</span>
+      </button>
+    </nav>
+
+    <!-- Dashboard View -->
+    <div id="view-dashboard" class="view active">
+      <header class="view-header">
+        <h1>AWS Cloud Practitioner</h1>
+        <p class="subtitle">CLF-C02 Study App</p>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-quizzes">0</div>
+          <div class="stat-label">Quizzes Taken</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-avg">0%</div>
+          <div class="stat-label">Avg Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-cards">0</div>
+          <div class="stat-label">Cards Studied</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-streak">0</div>
+          <div class="stat-label">Day Streak</div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <h2>Quick Start</h2>
+        <button class="action-btn primary" onclick="startQuickQuiz()">
+          <span>⚡</span> 20 Random Questions
+        </button>
+        <button class="action-btn" onclick="startFullExam()">
+          <span>📋</span> Full 65-Question Exam
+        </button>
+        <button class="action-btn" onclick="startFlashcards('all')">
+          <span>🃏</span> All Flashcards
+        </button>
+        <button class="action-btn" onclick="startMissedQuiz()">
+          <span>🔄</span> Review Missed Questions
+        </button>
+      </div>
+
+      <div class="domain-scores">
+        <h2>Domain Readiness</h2>
+        <div class="domain-bar" id="domain1-bar">
+          <div class="domain-info">
+            <span>D1: Cloud Concepts (24%)</span>
+            <span class="domain-pct" id="domain1-pct">—</span>
+          </div>
+          <div class="bar-bg"><div class="bar-fill" id="domain1-fill"></div></div>
+        </div>
+        <div class="domain-bar" id="domain2-bar">
+          <div class="domain-info">
+            <span>D2: Security (30%)</span>
+            <span class="domain-pct" id="domain2-pct">—</span>
+          </div>
+          <div class="bar-bg"><div class="bar-fill" id="domain2-fill"></div></div>
+        </div>
+        <div class="domain-bar" id="domain3-bar">
+          <div class="domain-info">
+            <span>D3: Technology (34%)</span>
+            <span class="domain-pct" id="domain3-pct">—</span>
+          </div>
+          <div class="bar-bg"><div class="bar-fill" id="domain3-fill"></div></div>
+        </div>
+        <div class="domain-bar" id="domain4-bar">
+          <div class="domain-info">
+            <span>D4: Billing (12%)</span>
+            <span class="domain-pct" id="domain4-pct">—</span>
+          </div>
+          <div class="bar-bg"><div class="bar-fill" id="domain4-fill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcards View -->
+    <div id="view-flashcards" class="view">
+      <header class="view-header">
+        <h1>Flashcards</h1>
+      </header>
+
+      <!-- Category Selection -->
+      <div id="flashcard-categories" class="category-grid">
+        <button class="cat-btn" onclick="startFlashcards('all')">
+          <span class="cat-icon">📚</span>
+          <span class="cat-name">All Cards</span>
+          <span class="cat-count" id="count-all">0</span>
+        </button>
+        <button class="cat-btn" onclick="startFlashcards('compute')">
+          <span class="cat-icon">🖥️</span>
+          <span class="cat-name">Compute</span>
+          <span class="cat-count" id="count-compute">0</span>
+        </button>
+        <button class="cat-btn" onclick="startFlashcards('storage')">
+          <span class="cat-icon">💾</span>
+          <span class="cat-name">Storage</span>
+          <span class="cat-count" id="count-storage">0</span>
+        </button>
+        <button class="cat-btn" onclick="startFlashcards('database')">
+          <span class="cat-icon">🗄️</span>
+          <span class="cat-name">Database</span>
+          <span class="cat-count" id="count-database">0</span>
+        </button>
+        <button class="cat-btn" onclick="startFlashcards('network')">
+          <span class="cat-icon">🌐</span>
+          <span class="cat-name">Network</span>
+          <span class="cat-count" id="count-network">0</span>
+        </button>
+        <button class="cat-btn" onclick="startFlashcards('security')">
+          <span class="cat-icon">🔒</span>
+          <span class="cat-name">Security</span>
+          <span class="cat-count" id="count-security">0</span>
+        </button>
+        <button class="cat-btn" onclick="startFlashcards('billing')">
+          <span class="cat-icon">💰</span>
+          <span class="cat-name">Billing</span>
+          <span class="cat-count" id="count-billing">0</span>
+        </button>
+      </div>
+
+      <!-- Active Flashcard Session -->
+      <div id="flashcard-session" class="hidden">
+        <div class="session-header">
+          <button class="back-btn" onclick="endFlashcardSession()">← Back</button>
+          <span id="fc-progress">1 / 10</span>
+          <span id="fc-score">✓ 0  ✗ 0</span>
+        </div>
+
+        <div class="flashcard-container">
+          <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="flashcard-front">
+              <div class="fc-category" id="fc-category">compute</div>
+              <div class="fc-term" id="fc-term">Loading...</div>
+              <div class="fc-hint">Tap to reveal</div>
+            </div>
+            <div class="flashcard-back">
+              <div class="fc-answer" id="fc-answer">Loading...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-actions hidden" id="fc-actions">
+          <button class="fc-btn know" onclick="markCard(true)">✓ Knew It</button>
+          <button class="fc-btn miss" onclick="markCard(false)">✗ Didn't Know</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz View -->
+    <div id="view-quiz" class="view">
+      <header class="view-header">
+        <h1>Practice Quiz</h1>
+      </header>
+
+      <!-- Quiz Selection -->
+      <div id="quiz-selection" class="quiz-options">
+        <h2>Choose Exam Mode</h2>
+
+        <button class="quiz-mode-btn" onclick="startDomainQuiz('all', 20)">
+          <div class="mode-title">⚡ Quick Quiz</div>
+          <div class="mode-desc">20 random questions, all domains</div>
+        </button>
+
+        <button class="quiz-mode-btn featured" onclick="startDomainQuiz('all', 65)">
+          <div class="mode-title">📋 Full Exam Simulation</div>
+          <div class="mode-desc">65 questions, 90-minute timer, like the real exam</div>
+        </button>
+
+        <h2>By Domain</h2>
+
+        <button class="quiz-mode-btn" onclick="startDomainQuiz('domain1')">
+          <div class="mode-title">D1: Cloud Concepts</div>
+          <div class="mode-desc" id="d1-count">0 questions · 24% of exam</div>
+        </button>
+
+        <button class="quiz-mode-btn" onclick="startDomainQuiz('domain2')">
+          <div class="mode-title">D2: Security & Compliance</div>
+          <div class="mode-desc" id="d2-count">0 questions · 30% of exam</div>
+        </button>
+
+        <button class="quiz-mode-btn" onclick="startDomainQuiz('domain3')">
+          <div class="mode-title">D3: Technology & Services</div>
+          <div class="mode-desc" id="d3-count">0 questions · 34% of exam</div>
+        </button>
+
+        <button class="quiz-mode-btn" onclick="startDomainQuiz('domain4')">
+          <div class="mode-title">D4: Billing & Pricing</div>
+          <div class="mode-desc" id="d4-count">0 questions · 12% of exam</div>
+        </button>
+
+        <button class="quiz-mode-btn" onclick="startMissedQuiz()">
+          <div class="mode-title">🔄 Review Missed Questions</div>
+          <div class="mode-desc" id="missed-count">0 questions you've gotten wrong</div>
+        </button>
+      </div>
+
+      <!-- Active Quiz -->
+      <div id="quiz-session" class="hidden">
+        <div class="session-header">
+          <button class="back-btn" onclick="endQuiz()">← Quit</button>
+          <span id="quiz-progress">1 / 20</span>
+          <span id="quiz-timer" class="hidden">90:00</span>
+          <span id="quiz-score-live">✓ 0  ✗ 0</span>
+        </div>
+
+        <div class="question-container">
+          <div class="question-text" id="q-text">Loading...</div>
+          <div class="options-list" id="q-options"></div>
+          <div class="explanation hidden" id="q-explanation">
+            <div class="explanation-result" id="q-result"></div>
+            <div class="explanation-text" id="q-explain-text"></div>
+            <button class="next-btn" id="q-next-btn" onclick="nextQuestion()">Next Question →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Results -->
+      <div id="quiz-results" class="hidden">
+        <div class="results-card">
+          <h2 id="results-title">Exam Results</h2>
+          <div class="results-score" id="results-score">0%</div>
+          <div class="results-bar-container">
+            <div class="results-bar" id="results-bar"></div>
+            <div class="results-passing-line"></div>
+          </div>
+          <div class="results-passing">Passing: 70%</div>
+          <div class="results-message" id="results-message"></div>
+
+          <div class="results-breakdown">
+            <div class="breakdown-item">
+              <span>Total Questions</span>
+              <span id="results-total">0</span>
+            </div>
+            <div class="breakdown-item correct">
+              <span>✓ Correct</span>
+              <span id="results-correct">0</span>
+            </div>
+            <div class="breakdown-item wrong">
+              <span>✗ Incorrect</span>
+              <span id="results-wrong">0</span>
+            </div>
+          </div>
+
+          <div class="results-domain-breakdown" id="results-domains"></div>
+
+          <div class="results-actions">
+            <button class="action-btn primary" onclick="reviewMissed()">Review Missed Questions</button>
+            <button class="action-btn" onclick="showView('quiz')">Take Another Quiz</button>
+            <button class="action-btn" onclick="showView('dashboard')">Back to Dashboard</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress View -->
+    <div id="view-progress" class="view">
+      <header class="view-header">
+        <h1>Progress</h1>
+      </header>
+
+      <div class="progress-section">
+        <h2>Score History</h2>
+        <div id="score-history" class="score-history">
+          <p class="empty-state">No quizzes taken yet. Start practicing!</p>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <h2>Questions Bank Coverage</h2>
+        <div class="coverage-stats">
+          <div class="coverage-item">
+            <span>Total Questions</span>
+            <span id="total-q-count">0</span>
+          </div>
+          <div class="coverage-item">
+            <span>Questions Seen</span>
+            <span id="seen-q-count">0</span>
+          </div>
+          <div class="coverage-item">
+            <span>Questions Missed (ever)</span>
+            <span id="ever-missed-count">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <h2>Data Management</h2>
+        <button class="action-btn danger" onclick="resetProgress()">Reset All Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

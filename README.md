@@ -1,6 +1,6 @@
-# AWS Cloud Practitioner (CLF-C02) — Study Kit
+# AWS Cloud Practitioner (CLF-C02) — Complete Study Kit
 
-> A visual, hands-on study system built for learners who remember by doing.
+> A comprehensive, zero-guesswork study system with 300+ practice questions, hands-on labs, video guides, and a mobile-friendly web app.
 
 ```
   ╔══════════════════════════════════════════════════════════════╗
@@ -37,6 +37,11 @@
 
 ## What's In This Repo
 
+### 30-Day Study Plan (Start Here!)
+| File | Description |
+|------|-------------|
+| [30-Day Game Plan](study-plan/30-day-gameplan.md) | Day-by-day instructions: what to read, watch, do, and quiz — every single day |
+
 ### Cheat Sheets (Visual diagrams for each domain)
 | File | Domain | Weight |
 |------|--------|--------|
@@ -50,65 +55,36 @@
 |------|-------------|
 | [AWS Terminology Guide](terminology/aws-terminology-guide.md) | Every key term mapped to a real-world analogy |
 
-### Interactive Tools (run in your terminal!)
+### Interactive Terminal Tools
 | Tool | Command | Description |
 |------|---------|-------------|
-| Flashcard Quiz | `bash flashcards/flashcard-quiz.sh` | Term-by-term recall practice with scoring |
-| Practice Exam | `bash quizzes/practice-exam.sh` | Multiple-choice questions with explanations |
+| Flashcard Quiz | `bash flashcards/flashcard-quiz.sh` | 64 term-by-term recall flashcards with scoring |
+| Practice Exam | `bash quizzes/practice-exam.sh` | 120+ multiple-choice questions with explanations |
+
+### Mobile-Friendly Web App
+| Tool | How to Open | Description |
+|------|-------------|-------------|
+| Study Web App | Open `webapp/index.html` in any browser | 300+ questions, flashcards, progress tracking, exam simulation |
+
+> **Phone access:** Open `webapp/index.html` in your phone's browser. On iOS, tap Share → "Add to Home Screen". On Android, tap the menu → "Add to Home Screen". It works offline!
 
 ---
 
-## Suggested Study Plan
+## Key Resources (Free)
 
-### Week 1-2: Build the Foundation
-```
-  Day 1-2:  Read cheat sheet 01 (Cloud Concepts)
-            Run: bash flashcards/flashcard-quiz.sh compute
-
-  Day 3-5:  Read cheat sheet 02 (Security & Compliance)  ← BIGGEST domain
-            Run: bash flashcards/flashcard-quiz.sh security
-
-  Day 6-7:  Review terminology guide for Weeks 1-2 topics
-            Run: bash quizzes/practice-exam.sh domain1
-            Run: bash quizzes/practice-exam.sh domain2
-```
-
-### Week 3-4: Services Deep Dive
-```
-  Day 8-10: Read cheat sheet 03 (Technology & Services)  ← MOST content
-            Run: bash flashcards/flashcard-quiz.sh compute
-            Run: bash flashcards/flashcard-quiz.sh storage
-            Run: bash flashcards/flashcard-quiz.sh database
-            Run: bash flashcards/flashcard-quiz.sh network
-
-  Day 11-12: Read cheat sheet 04 (Billing & Pricing)
-             Run: bash flashcards/flashcard-quiz.sh billing
-
-  Day 13-14: Full review of terminology guide
-             Run: bash quizzes/practice-exam.sh domain3
-             Run: bash quizzes/practice-exam.sh domain4
-```
-
-### Week 5: Practice & Review
-```
-  Day 15-16: Run full practice exams
-             bash quizzes/practice-exam.sh
-             Target: 80%+ before taking the real exam
-
-  Day 17-18: Focus on weak areas (check your review piles)
-             Re-run flashcards for missed categories
-
-  Day 19-20: Final review of all cheat sheets
-             One last full practice exam
-
-  Day 21:    EXAM DAY — you've got this!
-```
+| Resource | Link |
+|----------|------|
+| freeCodeCamp Full Course (14 hrs) | [YouTube — Andrew Brown / ExamPro](https://youtu.be/NhDYbskXRgc) |
+| AWS Cloud Practitioner Essentials | [AWS Skill Builder](https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials) |
+| Official CLF-C02 Exam Guide (PDF) | [AWS Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf) |
+| Official Practice Questions | [AWS Skill Builder](https://explore.skillbuilder.aws/learn/course/external/view/elearning/14050/aws-certified-cloud-practitioner-official-practice-question-set-clf-c02-english) |
+| AWS Free Tier (Hands-On) | [aws.amazon.com/free](https://aws.amazon.com/free/) |
 
 ---
 
 ## How to Use the Interactive Tools
 
-### Flashcard Quiz
+### Flashcard Quiz (Terminal)
 ```bash
 # All categories (shuffled)
 bash flashcards/flashcard-quiz.sh
@@ -122,7 +98,7 @@ bash flashcards/flashcard-quiz.sh security
 bash flashcards/flashcard-quiz.sh billing
 ```
 
-### Practice Exam
+### Practice Exam (Terminal)
 ```bash
 # Full 20-question mini exam (mixed domains)
 bash quizzes/practice-exam.sh
@@ -132,6 +108,14 @@ bash quizzes/practice-exam.sh domain1   # Cloud Concepts
 bash quizzes/practice-exam.sh domain2   # Security & Compliance
 bash quizzes/practice-exam.sh domain3   # Technology & Services
 bash quizzes/practice-exam.sh domain4   # Billing & Pricing
+```
+
+### Web App
+```bash
+# Open in your default browser (or just double-click the file)
+open webapp/index.html         # macOS
+xdg-open webapp/index.html    # Linux
+start webapp/index.html        # Windows
 ```
 
 ---
