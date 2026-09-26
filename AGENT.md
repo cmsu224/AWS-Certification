@@ -5,8 +5,8 @@
 |---|---|
 | **Last working on** | Polish pass done (app, content, audio/CI, icons, study plan, docs) |
 | **Last file edited** | README.md, CLAUDE.md, AGENT.md |
-| **Next step** | User runs `gh auth login` → make repo public → push `main` → enable Pages (Source: GitHub Actions) → verify install on phone (Android + iPhone Safari) |
-| **Pending** | Consider squashing WIP autosave commits before pushing. Real-iPhone check of speech voices/wake lock. |
+| **Next step** | User runs `gh auth login` → push `main` (commit 2f2c742+) → set default branch to main → enable Pages (build_type workflow) → verify install on phone (Android + iPhone Safari). Repo is already public. |
+| **Pending** | Real-iPhone check of speech voices/wake lock. |
 
 ## Goal
 Parent with a young kid studies ~45–60 min/day in 2–20 min phone pockets. Owns Maarek's Udemy CLF-C02 + SAA-C03 courses. Start Mon 2026-09-28 → CLF exam Fri 2026-10-23 → SAA exam Fri 2027-01-08 (50% voucher). The installable PWA at `https://cmsu224.github.io/AWS-Certification/` says exactly what to do next.
