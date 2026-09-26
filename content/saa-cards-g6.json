@@ -1,0 +1,149 @@
+[
+ {
+  "id": "saa-c-128",
+  "term": "SQS Standard vs FIFO",
+  "definition": "Standard: nearly unlimited throughput, at-least-once delivery, best-effort order. FIFO: strict order per message group, exactly-once processing, lower throughput, and the queue name ends in .fifo.",
+  "category": "integration",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-129",
+  "term": "SQS Long Polling",
+  "definition": "A receive call waits up to 20 seconds for a message instead of returning empty. Fewer API calls, lower cost and latency. Remember: many empty receives means enable long polling.",
+  "category": "integration",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-130",
+  "term": "SQS Dead-Letter Queue",
+  "definition": "Receives messages that failed processing more than maxReceiveCount times, isolating poison messages for debugging. Redrive moves them back later. A FIFO queue needs a FIFO dead-letter queue.",
+  "category": "integration",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-131",
+  "term": "SNS Plus SQS Fan-Out",
+  "definition": "Publish once to an SNS topic and every subscribed SQS queue gets its own copy. Each queue access policy must allow the topic. Remember: one S3 event, many consumers.",
+  "category": "integration",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-132",
+  "term": "Kinesis Data Streams",
+  "definition": "Real-time stream made of shards. Order is kept per partition key, retention is 24 hours by default and up to 365 days, and many consumers can replay data.",
+  "category": "analytics",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-133",
+  "term": "Amazon Data Firehose",
+  "definition": "Fully managed, auto-scaling delivery of streaming data to S3, Redshift, OpenSearch, Splunk or HTTP endpoints. Can transform with Lambda and convert to Parquet. Buffers data, no replay.",
+  "category": "analytics",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-134",
+  "term": "Amazon MQ",
+  "definition": "Managed Apache ActiveMQ or RabbitMQ brokers using open protocols like AMQP, MQTT and STOMP. Remember: migrate on-premises messaging without code changes. Scales less than SQS and SNS.",
+  "category": "integration",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-c-135",
+  "term": "ECS Task Role vs Execution Role",
+  "definition": "Task role: permissions your application code uses, set per task definition. Execution role: lets ECS pull images, send logs and read secrets. Remember: app calls S3, use the task role.",
+  "category": "security",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-136",
+  "term": "ECS Capacity Providers",
+  "definition": "Decide where tasks run: Fargate, Fargate Spot or an EC2 Auto Scaling group. Managed scaling adds instances when tasks cannot be placed. Fargate Spot saves up to 70 percent.",
+  "category": "compute",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-137",
+  "term": "Amazon EKS",
+  "definition": "Managed Kubernetes control plane. Pods run on managed node groups, self-managed EC2 nodes, Fargate, or EKS Auto Mode. Remember: already using Kubernetes or need cloud-agnostic tooling, choose EKS.",
+  "category": "compute",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-138",
+  "term": "AWS App Runner Status",
+  "definition": "Deploys web apps from source code or a container with built-in scaling and HTTPS. Closed to new customers since April 30, 2026. AWS now points to Amazon ECS Express Mode.",
+  "category": "compute",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-139",
+  "term": "Lambda Key Limits",
+  "definition": "Up to 15 minutes per invocation, memory 128 MB to 10 GB, temporary storage and container images up to 10 GB, and 1,000 concurrent executions per Region by default.",
+  "category": "compute",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-140",
+  "term": "Reserved vs Provisioned Concurrency",
+  "definition": "Reserved: guarantees and caps concurrency for one function, free. Provisioned: keeps environments initialized to remove cold starts, extra cost. Remember: throttling means reserved; cold starts means provisioned.",
+  "category": "compute",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-141",
+  "term": "Lambda SnapStart",
+  "definition": "Snapshots the initialized function when a version is published, then resumes from that snapshot to cut cold starts. Supports Java, Python and .NET. No extra charge for Java.",
+  "category": "compute",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-142",
+  "term": "CloudFront Functions vs Lambda@Edge",
+  "definition": "CloudFront Functions: JavaScript, viewer events only, sub-millisecond, cheapest, no network calls. Lambda@Edge: Node.js or Python, viewer and origin events, longer runtime, network access allowed.",
+  "category": "network",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-143",
+  "term": "DynamoDB Accelerator (DAX)",
+  "definition": "In-memory cache for DynamoDB giving microsecond reads through a compatible API, so little code change. Remember: DAX caches items and queries; ElastiCache suits computed aggregation results.",
+  "category": "database",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-144",
+  "term": "DynamoDB TTL",
+  "definition": "Deletes items automatically after the expiry timestamp in a chosen attribute passes, using no write capacity. Remember: session data or temporary records that should expire on their own.",
+  "category": "database",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-145",
+  "term": "API Gateway Authorization Options",
+  "definition": "IAM for AWS users and roles. Cognito user pool authorizer for app users. Lambda authorizer for custom or third-party tokens. Remember: API keys identify clients but do not authenticate them.",
+  "category": "security",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-146",
+  "term": "Step Functions Standard vs Express",
+  "definition": "Standard: runs up to one year, exactly-once execution, suits long workflows and human approval. Express: up to five minutes, very high volume, cheaper for short bursts.",
+  "category": "integration",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-147",
+  "term": "Cognito User vs Identity Pools",
+  "definition": "User pools: sign-up and sign-in, returning JWT tokens for API Gateway or ALB. Identity pools: exchange an identity for temporary AWS credentials to call S3 or DynamoDB directly.",
+  "category": "security",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-c-148",
+  "term": "Serverless Welcome Email Pattern",
+  "definition": "A new user item in DynamoDB is captured by DynamoDB Streams, which triggers Lambda to send the email through Amazon SES. Asynchronous, with no change to the write path.",
+  "category": "integration",
+  "section": "saa-20"
+ }
+]

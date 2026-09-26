@@ -1,0 +1,354 @@
+[
+ {
+  "id": "saa-q-073",
+  "question": "A team launched Spot Instances from a persistent Spot request. Every time the team terminates the instances, new Spot Instances launch to replace them. How should the team stop these instances permanently?",
+  "options": [
+   "Terminate the instances first, then cancel the Spot request",
+   "Change the interruption behavior to terminate, then terminate the instances",
+   "Cancel the Spot request first, then terminate the instances",
+   "Stop the instances, then lower the maximum price of the Spot request"
+  ],
+  "answer": 2,
+  "explanation": "A persistent Spot request keeps relaunching capacity while it stays open, and cancelling it does not terminate running instances. So cancel the request first, then terminate the instances. Terminating first only lets the still-open request launch replacements.",
+  "domain": "saa4",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-q-074",
+  "question": "A company runs a steady web tier on Amazon EC2 around the clock and expects this usage for at least 3 years. Over that time it plans to move to newer instance families and shift part of the workload to AWS Fargate. Which purchasing option is the MOST cost-effective while supporting these changes?",
+  "options": [
+   "EC2 Instance Savings Plan with a 3-year term",
+   "Compute Savings Plan with a 3-year term",
+   "Convertible Reserved Instances with a 3-year term",
+   "Standard Reserved Instances with a 3-year term"
+  ],
+  "answer": 1,
+  "explanation": "A Compute Savings Plan applies automatically across instance families, sizes, Regions, and operating systems, and also covers Fargate and Lambda. Convertible Reserved Instances allow family exchanges but never cover Fargate. EC2 Instance Savings Plans and Standard Reserved Instances stay locked to one instance family, so they cannot follow the planned changes.",
+  "domain": "saa4",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-q-075",
+  "question": "A company is migrating a commercial database product to Amazon EC2. The vendor licenses the software per physical CPU socket and core, and the company wants to bring its existing licenses. Which EC2 option should a solutions architect choose?",
+  "options": [
+   "Dedicated Instances in a dedicated-tenancy VPC",
+   "On-Demand Instances with shared tenancy",
+   "Spot Instances with a persistent request",
+   "Dedicated Hosts allocated to the account"
+  ],
+  "answer": 3,
+  "explanation": "Dedicated Hosts give you an entire physical server with visibility into its sockets and cores, which per-socket and per-core bring your own license terms require. Dedicated Instances also run on single-tenant hardware, but you cannot see or control the underlying sockets and cores, so they do not satisfy these licenses.",
+  "domain": "saa4",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-q-076",
+  "question": "A company has two workloads on Amazon EC2. A nightly image-rendering job is fault tolerant, checkpoints its progress, and can restart at any time. A self-managed database runs continuously on the same instance type in one Region and will for the next 3 years. Which TWO purchasing options are the MOST cost-effective? (Choose TWO.)",
+  "options": [
+   "Spot Instances for the rendering job",
+   "On-Demand Capacity Reservations for the rendering job",
+   "Dedicated Hosts for the database",
+   "3-year Standard Reserved Instances for the database",
+   "On-Demand Instances for the database"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "Spot Instances give the deepest discount, up to 90 percent, and suit interruptible, checkpointed jobs. A database running nonstop on a fixed instance type for 3 years fits 3-year Standard Reserved Instances. Capacity Reservations and On-Demand bill at full On-Demand rates, and Dedicated Hosts add cost without any licensing need.",
+  "domain": "saa4",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-q-077",
+  "question": "A research team runs a tightly coupled high performance computing simulation on dozens of EC2 instances. The nodes exchange data constantly and need the lowest possible network latency and the highest throughput between them. Which configuration should a solutions architect use?",
+  "options": [
+   "Launch the instances in a cluster placement group in one Availability Zone",
+   "Launch the instances in a spread placement group across three Availability Zones",
+   "Launch the instances in a partition placement group across two Availability Zones",
+   "Launch the instances in an Auto Scaling group that spans every Availability Zone"
+  ],
+  "answer": 0,
+  "explanation": "A cluster placement group packs instances close together inside one Availability Zone, giving the lowest latency and highest per-flow throughput between nodes. Spread and partition groups separate instances across hardware for resilience, and spanning Availability Zones adds latency, which is the opposite of what tightly coupled computing needs.",
+  "domain": "saa3",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-q-078",
+  "question": "A company is deploying a 90-node Apache Cassandra cluster on Amazon EC2. The architect wants to limit the impact of a rack failure and let the database place replicas based on which hardware group each node runs on. Which placement strategy meets these requirements?",
+  "options": [
+   "A cluster placement group in a single Availability Zone",
+   "A spread placement group across three Availability Zones",
+   "A partition placement group across three Availability Zones",
+   "Instances on Dedicated Hosts with no placement group"
+  ],
+  "answer": 2,
+  "explanation": "Partition placement groups split instances into partitions that never share racks, support hundreds of instances, and expose the partition number through instance metadata, so topology-aware systems like Cassandra, HDFS, and Kafka can place replicas. A spread group allows only seven running instances per Availability Zone, far too few for 90 nodes.",
+  "domain": "saa2",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-q-079",
+  "question": "A legacy application runs on a single EC2 instance, and its software license is tied to a MAC address. The company keeps a standby instance running in the same Availability Zone and wants to fail over quickly without requesting a new license. What should a solutions architect do?",
+  "options": [
+   "Reassociate the Elastic IP address of the failed instance with the standby instance",
+   "Tie the license to a secondary elastic network interface and move it to the standby",
+   "Create an AMI of the failed instance and launch a replacement in another Availability Zone",
+   "Register both instances with a Network Load Balancer that routes around failed health checks"
+  ],
+  "answer": 1,
+  "explanation": "An elastic network interface keeps its MAC address, private IP, and security groups when it moves to another instance in the same Availability Zone, so the license follows it. Moving an Elastic IP changes only the public address, and a new instance or load balancer target has a different MAC address.",
+  "domain": "saa2",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-q-080",
+  "question": "A company runs analytics workers on Linux EC2 instances with 64 GiB of RAM. Each worker spends 20 minutes loading a large in-memory dataset after boot. The company wants to stop the instances overnight and have them resume the next morning with memory intact. Which TWO configurations are required? (Choose TWO.)",
+  "options": [
+   "Use an instance store volume as the root volume",
+   "Use an encrypted Amazon EBS root volume",
+   "Launch the instances in a cluster placement group",
+   "Attach an Elastic IP address to each instance",
+   "Enable hibernation when the instances are launched"
+  ],
+  "answer": [
+   1,
+   4
+  ],
+  "explanation": "Hibernation saves RAM to the root volume, so the root must be an encrypted EBS volume large enough to hold memory, and hibernation can only be enabled at launch. Instance store data is lost when an instance stops, and placement groups or Elastic IP addresses do nothing to preserve memory.",
+  "domain": "saa3",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-q-081",
+  "question": "A company is moving a critical OLTP database to a single Nitro-based EC2 instance. The database volume needs 180,000 sustained IOPS with consistent sub-millisecond latency, and the data must persist when the instance is stopped. Which storage option meets these requirements?",
+  "options": [
+   "An Amazon EBS gp3 General Purpose SSD volume",
+   "An Amazon EBS io1 Provisioned IOPS SSD volume",
+   "Amazon EC2 instance store NVMe volumes",
+   "An Amazon EBS io2 Block Express volume"
+  ],
+  "answer": 3,
+  "explanation": "io2 Block Express supports up to 256,000 IOPS per volume with sub-millisecond latency and 99.999 percent durability. gp3 now tops out at 80,000 IOPS and io1 at 64,000, so neither reaches 180,000. Instance store is very fast but loses its data when the instance stops.",
+  "domain": "saa3",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-082",
+  "question": "A log processing application on Amazon EC2 reads large files sequentially every hour. The workload needs high throughput rather than high IOPS, and the data set is 8 TiB. Which EBS volume type is the MOST cost-effective?",
+  "options": [
+   "st1 Throughput Optimized HDD",
+   "sc1 Cold HDD",
+   "gp3 General Purpose SSD",
+   "io2 Block Express Provisioned IOPS SSD"
+  ],
+  "answer": 0,
+  "explanation": "st1 is built for frequently accessed, throughput-heavy sequential workloads such as big data and log processing, at a far lower cost per gigabyte than SSD volumes. sc1 is cheaper but intended for infrequently accessed data, and this data is read every hour. gp3 and io2 charge for IOPS performance the job does not need.",
+  "domain": "saa4",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-083",
+  "question": "A video processing application on Amazon EC2 writes large temporary scratch files that need the highest possible random read and write performance. If the files are lost, they can be regenerated from source data in Amazon S3. Which storage option provides the BEST performance for the scratch space?",
+  "options": [
+   "An Amazon EFS file system using Elastic throughput",
+   "An Amazon EBS gp3 volume with maximum provisioned IOPS",
+   "Instance store volumes on a storage optimized instance",
+   "An Amazon EBS st1 volume sized for maximum throughput"
+  ],
+  "answer": 2,
+  "explanation": "Instance store disks are physically attached to the host, delivering very high IOPS and low latency at no extra charge. They lose data on stop or termination, which is acceptable here because the files can be rebuilt from S3. EBS and EFS are network-attached storage, so they add latency.",
+  "domain": "saa3",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-084",
+  "question": "An application runs on an EC2 instance in one Availability Zone and stores its data on a 500 GiB EBS volume. The company must move the workload to a new instance in a different Availability Zone in the same Region and keep the data. What should a solutions architect do?",
+  "options": [
+   "Detach the volume and attach it to the new instance in the other zone",
+   "Enable Multi-Attach on the volume and attach it to both instances",
+   "Modify the volume and change its Availability Zone to the new zone",
+   "Create a snapshot and restore it as a new volume in the other zone"
+  ],
+  "answer": 3,
+  "explanation": "EBS volumes are locked to the Availability Zone where they were created. A snapshot is stored at the Regional level, so it can be restored as a new volume in any Availability Zone of that Region. Multi-Attach works only within a single zone, and a volume cannot be moved to another zone.",
+  "domain": "saa2",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-085",
+  "question": "A security audit found an unencrypted Amazon EBS data volume attached to a production EC2 instance. The volume must be encrypted with an AWS KMS key. What should a solutions architect do?",
+  "options": [
+   "Snapshot the volume, create an encrypted volume from the snapshot, and swap it in",
+   "Modify the existing volume in place to turn on encryption with the KMS key",
+   "Turn on EBS encryption by default so the attached volume becomes encrypted",
+   "Create an AMI of the instance, which encrypts the attached data volume by default"
+  ],
+  "answer": 0,
+  "explanation": "An existing unencrypted volume cannot be encrypted in place. Take a snapshot, create a new volume from it with encryption and the KMS key selected, or copy the snapshot with encryption, then attach the new volume. Encryption by default applies only to volumes created afterwards.",
+  "domain": "saa1",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-086",
+  "question": "A company runs a content management system on Linux EC2 instances in an Auto Scaling group across three Availability Zones. All instances must read and write the same uploaded files, and the storage must stay available if one Availability Zone fails. Which storage solution meets these requirements?",
+  "options": [
+   "An Amazon EBS io2 volume with Multi-Attach enabled",
+   "An Amazon EFS file system with mount targets in each zone",
+   "Instance store volumes kept in sync by a cron job",
+   "An Amazon EBS gp3 volume shared by the Auto Scaling group"
+  ],
+  "answer": 1,
+  "explanation": "Amazon EFS is a managed NFS file system that many Linux instances in multiple Availability Zones can mount at once, and a Regional EFS file system stores data redundantly across zones. EBS Multi-Attach works only inside one Availability Zone, and instance store data is lost when instances stop.",
+  "domain": "saa2",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-087",
+  "question": "A development team stores build artifacts on an Amazon EFS file system. Most files are never read again after a few weeks, and the environment does not need to survive the loss of an Availability Zone. Which TWO actions will reduce storage cost the MOST? (Choose TWO.)",
+  "options": [
+   "Switch the file system to Provisioned throughput mode",
+   "Change the performance mode to Max I/O",
+   "Enable lifecycle management to move files to EFS Infrequent Access",
+   "Add a mount target in every Availability Zone",
+   "Recreate the data on an EFS One Zone file system"
+  ],
+  "answer": [
+   2,
+   4
+  ],
+  "explanation": "Lifecycle management automatically moves files that have not been accessed for a set period into the cheaper Infrequent Access class, and One Zone file systems cost less than Regional ones when multi-zone resilience is not required. Provisioned throughput adds charges, and changing performance mode or adding mount targets does not lower storage prices.",
+  "domain": "saa4",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-088",
+  "question": "An administrator accidentally deleted several Amazon EBS snapshots that were needed for recovery. The company wants to be able to recover deleted snapshots for up to 30 days, with the LEAST operational overhead. Which solution meets this requirement?",
+  "options": [
+   "Move all snapshots to the EBS Snapshots Archive tier",
+   "Enable Fast Snapshot Restore on the important snapshots",
+   "Create a Recycle Bin retention rule for EBS snapshots",
+   "Copy every snapshot to a second Region each night"
+  ],
+  "answer": 2,
+  "explanation": "A Recycle Bin retention rule keeps deleted snapshots recoverable for a period you choose, from 1 day to 1 year, with no scripts to maintain. Snapshots Archive lowers storage cost and Fast Snapshot Restore speeds up new volumes, but neither protects against deletion. Nightly cross-Region copies add cost and effort.",
+  "domain": "saa1",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-089",
+  "question": "A company builds a hardened golden AMI in its primary AWS Region. For disaster recovery, it must be able to launch identical instances in a second Region. What should a solutions architect do?",
+  "options": [
+   "Copy the AMI to the second Region and launch instances from the copy",
+   "Launch instances in the second Region using the original AMI ID",
+   "Modify the AMI launch permissions to include the second Region",
+   "Attach the root snapshot of the AMI to an instance in the second Region"
+  ],
+  "answer": 0,
+  "explanation": "AMIs are Regional resources, so the image must be copied to the second Region, which creates a new AMI ID there. An AMI ID from one Region cannot be used in another, launch permissions share an AMI with accounts rather than Regions, and snapshots cannot be attached across Regions.",
+  "domain": "saa2",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-090",
+  "question": "A company stores sensitive files on an Amazon EFS file system that is mounted by application servers in an Auto Scaling group. Only these application servers may connect to the file system over the network. What should a solutions architect do?",
+  "options": [
+   "Allow NFS on port 2049 in the mount target security group from the app servers’ security group",
+   "Allow NFS on port 2049 in the mount target security group from the VPC CIDR range",
+   "Turn on encryption at rest for the file system with an AWS KMS key",
+   "Allow SSH on port 22 in the mount target security group from the app servers’ security group"
+  ],
+  "answer": 0,
+  "explanation": "EFS mount targets are protected by security groups. Allowing NFS on port 2049 only from the application servers’ security group limits access to those instances even as the group scales. The VPC range admits every host in the VPC, encryption at rest does not control who connects, and EFS uses NFS, not SSH.",
+  "domain": "saa1",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-q-091",
+  "question": "A web application runs on EC2 instances behind an internet-facing Application Load Balancer. The security team requires that the instances accept HTTP traffic only from the load balancer. Which configuration meets this requirement?",
+  "options": [
+   "Allow inbound HTTP to the instances from any IPv4 address",
+   "Allow HTTP in a network ACL rule that names the load balancer DNS name",
+   "Allow inbound HTTP from the Elastic IP addresses of the load balancer",
+   "Allow inbound HTTP from the load balancer’s security group"
+  ],
+  "answer": 3,
+  "explanation": "Referencing the load balancer’s security group in the instance security group admits traffic only from load balancer nodes, even as their IP addresses change. Application Load Balancers have no fixed Elastic IP addresses, network ACLs cannot use DNS names, and opening HTTP to any address ignores the requirement.",
+  "domain": "saa1",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-q-092",
+  "question": "A company hosts three websites with different domain names, such as example.com and example.org, on one fleet of EC2 instances. Each site must use its own TLS certificate, and the company wants a single load balancer. Which solution meets these requirements?",
+  "options": [
+   "A Classic Load Balancer with one HTTPS listener holding all three certificates",
+   "An Application Load Balancer with one HTTPS listener and three certificates using SNI",
+   "An Application Load Balancer with one wildcard certificate covering all three domains",
+   "A Gateway Load Balancer that terminates TLS with a certificate for each domain"
+  ],
+  "answer": 1,
+  "explanation": "Server Name Indication lets an Application or Network Load Balancer choose the right certificate for each hostname on one listener. A wildcard certificate covers subdomains of a single domain, not different domains. Classic Load Balancers support only one certificate per listener, and Gateway Load Balancers do not terminate TLS.",
+  "domain": "saa1",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-q-093",
+  "question": "A company must send all inbound traffic for its VPC through a fleet of third-party firewall appliances for deep packet inspection. The appliance fleet must scale out and stay highly available, and the inspection must be transparent to the applications. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Place the appliances behind a Network Load Balancer with TLS listeners",
+   "Place the appliances behind a Gateway Load Balancer with endpoints in the VPC",
+   "Place the appliances behind an Application Load Balancer with path rules",
+   "Run the appliances in an Auto Scaling group with scripted route updates"
+  ],
+  "answer": 1,
+  "explanation": "Gateway Load Balancer works at the network layer, using the GENEVE protocol on port 6081 to pass IP packets transparently through a scalable, health-checked fleet of virtual appliances, with its endpoints as route targets. Application and Network Load Balancers serve applications rather than insert inspection into the traffic path, and scripted routes add operational overhead.",
+  "domain": "saa1",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-q-094",
+  "question": "A partner will only allow connections to a company’s trading API from IP addresses on its firewall allow list. The API uses TCP, must handle millions of requests per second with ultra-low latency, and runs on EC2 instances in two Availability Zones. Which solution meets these requirements?",
+  "options": [
+   "An Application Load Balancer, sharing its DNS name with the partner",
+   "A Gateway Load Balancer with endpoints in each Availability Zone",
+   "A Network Load Balancer with an Elastic IP in each Availability Zone",
+   "An Application Load Balancer with an Elastic IP in each Availability Zone"
+  ],
+  "answer": 2,
+  "explanation": "A Network Load Balancer operates at layer 4, handles millions of requests per second with very low latency, and provides one static IP per Availability Zone, which can be an Elastic IP. Application Load Balancers cannot use Elastic IPs and their addresses change, so a firewall allow list would break.",
+  "domain": "saa3",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-q-095",
+  "question": "A web application runs on EC2 instances in an Auto Scaling group behind an Application Load Balancer. Some instances fail the load balancer health check when the application hangs, but the Auto Scaling group does not replace them. Also, users uploading large files lose their connections when instances are removed during scale-in. Which TWO actions will resolve these issues? (Choose TWO.)",
+  "options": [
+   "Enable cross-zone load balancing on the target group",
+   "Turn on Elastic Load Balancing health checks for the Auto Scaling group",
+   "Enable duration-based sticky sessions on the target group",
+   "Increase the deregistration delay on the target group",
+   "Shorten the scaling cooldown period to 60 seconds"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "By default an Auto Scaling group uses only EC2 status checks, so turning on Elastic Load Balancing health checks makes it replace instances the load balancer reports as unhealthy. Deregistration delay, also called connection draining, lets in-flight requests finish before an instance is removed. Stickiness, cross-zone balancing, and cooldown address neither problem.",
+  "domain": "saa2",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-q-096",
+  "question": "An online learning platform on EC2 has a daily traffic pattern: load climbs sharply every weekday morning and drops at night. The pattern repeats reliably but shifts gradually over the semester. Instances take several minutes to initialize, and the company wants capacity in place before the load arrives without maintaining schedules by hand. Which scaling approach meets these requirements?",
+  "options": [
+   "A target tracking policy on average CPU utilization",
+   "Scheduled actions that an administrator updates weekly",
+   "A step scaling policy triggered by CloudWatch alarms",
+   "A predictive scaling policy based on historical load"
+  ],
+  "answer": 3,
+  "explanation": "Predictive scaling uses machine learning on historical metrics to forecast recurring daily and weekly patterns and launches capacity ahead of demand, adapting as the pattern shifts. Scheduled actions also scale ahead but must be maintained by hand, while target tracking and step scaling only react after load has already increased.",
+  "domain": "saa3",
+  "section": "saa-08"
+ }
+]

@@ -1,0 +1,198 @@
+[
+ {
+  "id": "saa-q-192",
+  "question": "A security team wants to trim an IAM user's permissions down to least privilege. It needs to see which AWS services the user's policies allow and when each service was last used. Which IAM feature provides this information?",
+  "options": [
+   "IAM Access Advisor on the user's permissions",
+   "The IAM credential report for the account",
+   "AWS Trusted Advisor security checks",
+   "The IAM policy simulator for the user"
+  ],
+  "answer": 0,
+  "explanation": "Access Advisor shows the services a user is allowed to reach and when each was last accessed, so unused permissions can be removed. The credential report is account-wide and covers passwords, MFA, and access keys, not service usage.",
+  "domain": "saa1",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-q-193",
+  "question": "An auditor asks for a single downloadable file that lists every IAM user in the account with password status, MFA status, and when each access key was last rotated and last used. Which solution provides this with the LEAST effort?",
+  "options": [
+   "Query AWS CloudTrail events for every IAM user",
+   "Review IAM Access Advisor for each user",
+   "Generate and download the IAM credential report",
+   "Export the AWS Config inventory of IAM users"
+  ],
+  "answer": 2,
+  "explanation": "The credential report is one account-level CSV covering passwords, MFA, and access key age and use. Access Advisor is per user and shows service last-accessed data, not credential status.",
+  "domain": "saa1",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-q-194",
+  "question": "Administrators need to run AWS CLI commands against their account from a browser. Company policy forbids installing the CLI on laptops and storing long-term access keys on any device. Which solution meets these requirements?",
+  "options": [
+   "Launch an EC2 instance with the CLI and a key pair",
+   "Use AWS CloudShell from the AWS Management Console",
+   "Create an IAM user with access keys for a shared laptop",
+   "Store access keys in AWS Secrets Manager for each administrator"
+  ],
+  "answer": 1,
+  "explanation": "CloudShell is a browser-based shell with the CLI preinstalled that uses the signed-in console credentials, so no keys are stored. A self-managed EC2 instance still needs credentials and patching, and storing access keys anywhere breaks the policy.",
+  "domain": "saa1",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-q-195",
+  "question": "An IAM policy allows the action s3 GetObject with the resource set to the ARN of the bucket named reports, with no object path. Users with this policy receive access denied when downloading objects from the bucket. What is the cause?",
+  "options": [
+   "The policy must also allow the s3 ListBucket action",
+   "The bucket must have S3 Versioning enabled",
+   "The policy needs a Principal element that names the user",
+   "The resource must be the bucket ARN followed by slash star"
+  ],
+  "answer": 3,
+  "explanation": "Object actions such as GetObject apply to object ARNs, so the resource must be the bucket ARN followed by slash star. ListBucket applies to the bucket itself and is not needed to download a known key, and identity-based policies never contain a Principal.",
+  "domain": "saa1",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-q-196",
+  "question": "A startup's deployment script uses access keys that belong to the AWS account root user. A security review flags this as a critical risk. Which action should a solutions architect take FIRST to follow IAM best practices?",
+  "options": [
+   "Rotate the root access keys every 90 days",
+   "Enable MFA on the root user and keep the keys",
+   "Give the script an IAM role and delete the root access keys",
+   "Store the root access keys in Systems Manager Parameter Store"
+  ],
+  "answer": 2,
+  "explanation": "The root user should have no access keys and be used only for tasks that require it. Give the script its own least-privilege identity, ideally a role, then delete the root keys. Rotating or hiding root keys still leaves unrestricted credentials in use.",
+  "domain": "saa1",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-q-197",
+  "question": "A web server on an Amazon EC2 instance in a public subnet is running and listening on port 80. Browsers time out when connecting to the instance's public IP address. The subnet uses the default network ACL. What is the MOST likely fix?",
+  "options": [
+   "Add an inbound security group rule allowing HTTP on port 80",
+   "Add an outbound security group rule allowing HTTP on port 80",
+   "Associate an Elastic IP address with the instance",
+   "Change the instance to a larger instance type"
+  ],
+  "answer": 0,
+  "explanation": "A timeout usually means a security group is blocking traffic. Security groups allow no inbound internet traffic by default, so an inbound rule for port 80 is needed. Security groups are stateful, so return traffic needs no extra outbound rule.",
+  "domain": "saa1",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-q-198",
+  "question": "A company runs an analytics engine on Amazon EC2 that holds very large datasets entirely in RAM. It needs a high ratio of RAM to vCPU. Which EC2 instance family is the BEST fit?",
+  "options": [
+   "Compute optimized instances such as the C family",
+   "Storage optimized instances such as the I family",
+   "Memory optimized instances such as the R family",
+   "Burstable general purpose instances such as the T family"
+  ],
+  "answer": 2,
+  "explanation": "Memory optimized instances such as R are built for workloads that process large datasets in memory, like in-memory databases and real-time analytics. Compute optimized instances favor CPU over RAM, and storage optimized instances target high local disk throughput.",
+  "domain": "saa3",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-q-199",
+  "question": "A partner firewall allows traffic only from one fixed IP address. The company's integration server on Amazon EC2 received a new public IP address after it was stopped and started, which broke the integration. Which solution keeps the same public IP address across stops and starts?",
+  "options": [
+   "Enable auto-assign public IPv4 addresses on the subnet",
+   "Allocate an Elastic IP address and associate it with the instance",
+   "Add a secondary private IP address to the network interface",
+   "Launch the instance into a cluster placement group"
+  ],
+  "answer": 1,
+  "explanation": "An Elastic IP address is a static public IPv4 address that stays with the instance through stop and start. An auto-assigned public IP is released when the instance stops, and a private IP is not reachable from the internet.",
+  "domain": "saa3",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-q-200",
+  "question": "A company runs six critical EC2 instances in one Availability Zone. Each instance must run on distinct underlying hardware so that a single hardware failure affects at most one instance. Which placement strategy meets this requirement?",
+  "options": [
+   "A cluster placement group",
+   "A partition placement group with two partitions",
+   "A spread placement group",
+   "Dedicated Instances with default placement"
+  ],
+  "answer": 2,
+  "explanation": "A spread placement group puts each instance on a distinct rack, supporting up to seven running instances per Availability Zone. A partition group with two partitions places several instances on shared hardware, and a cluster group packs instances close together.",
+  "domain": "saa2",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-q-201",
+  "question": "A stateless web application runs on several EC2 instances. Route 53 has an A record listing each instance's Elastic IP address with a one-hour TTL. When instances are replaced, some users keep reaching terminated instances for up to an hour. Which design fixes this with the LEAST ongoing manual work?",
+  "options": [
+   "Lower the A record TTL to 60 seconds and update it on each change",
+   "Add the Elastic IP addresses of standby instances to the A record",
+   "Use multivalue answer routing with the Elastic IP addresses",
+   "Use an Auto Scaling group behind a load balancer with an alias record"
+  ],
+  "answer": 3,
+  "explanation": "An Auto Scaling group behind a load balancer replaces instances transparently, and the alias record points at the load balancer, so DNS never lists instance IPs. A lower TTL shortens the problem but still needs manual record updates whenever instances change.",
+  "domain": "saa2",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-202",
+  "question": "A company runs a web application in an AWS Elastic Beanstalk web server environment. Some requests generate PDF reports that take several minutes, which ties up the web servers and causes other requests to time out. Users can receive the reports by email later. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Queue the report jobs in Amazon SQS for a Beanstalk worker environment",
+   "Raise the load balancer idle timeout so that report requests can finish",
+   "Add more instances to the web server environment's Auto Scaling group",
+   "Call an AWS Lambda function synchronously from the web server per report"
+  ],
+  "answer": 0,
+  "explanation": "A worker environment pulls jobs from an Amazon SQS queue and runs long tasks in the background, so the web tier responds right away. A longer idle timeout or more instances still tie up web servers during long requests, and a synchronous Lambda call keeps each request waiting.",
+  "domain": "saa2",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-203",
+  "question": "A company creates new test environments several times a week. Each needs an Amazon RDS database already loaded with 500 GB of reference data. Loading the data with scripts takes hours. Which approach makes new environments ready fastest?",
+  "options": [
+   "Run the load scripts from EC2 user data at boot",
+   "Restore each database from an RDS snapshot that contains the data",
+   "Create a read replica of production and keep it running",
+   "Export the data to Amazon S3 and import it with AWS Glue"
+  ],
+  "answer": 1,
+  "explanation": "Restoring from an RDS snapshot creates a new database with the schema and data already in place, far faster than loading it with scripts. A read replica is read-only, so testers cannot change it, and it keeps costing money between tests.",
+  "domain": "saa3",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-204",
+  "question": "A company hosts a static website on Amazon S3 using a newly created bucket with static website hosting enabled. Visitors receive a 403 Forbidden error. Which change allows public access to the website?",
+  "options": [
+   "Enable S3 Versioning and set an index document for the bucket",
+   "Add a CORS configuration that allows requests from all origins",
+   "Grant public read access with an object ACL on each file",
+   "Turn off Block Public Access and add a public read bucket policy"
+  ],
+  "answer": 3,
+  "explanation": "New buckets have Block Public Access on and ACLs disabled, so Block Public Access must be turned off for the bucket, and the account if set there, plus a bucket policy granting public GetObject. Object ACLs cannot be used while ACLs are disabled, and CORS only affects cross-origin requests.",
+  "domain": "saa1",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-q-205",
+  "question": "A company uses S3 Cross-Region Replication from bucket A to bucket B, and a second replication rule from bucket B to bucket C. Objects uploaded directly to bucket B appear in bucket C, but objects uploaded to bucket A never reach bucket C. Every new object in bucket A must be copied to both other buckets automatically. What should a solutions architect do?",
+  "options": [
+   "Add a replication rule on bucket A that uses bucket C as a second destination",
+   "Enable delete marker replication on the rule from bucket A to bucket B",
+   "Turn on S3 Replication Time Control for the rule from bucket B to bucket C",
+   "Enable S3 Versioning on bucket C so that it can accept replicated objects"
+  ],
+  "answer": 0,
+  "explanation": "S3 replication does not chain: objects that arrive in bucket B as replicas are not replicated again, so bucket A needs its own rule to bucket C. Replication Time Control only speeds up replication, and bucket C already receives objects, so versioning is on.",
+  "domain": "saa2",
+  "section": "saa-12"
+ }
+]

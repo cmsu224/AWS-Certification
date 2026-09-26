@@ -1,0 +1,702 @@
+[
+ {
+  "id": "clf-c-001",
+  "term": "EC2",
+  "definition": "Elastic Compute Cloud: virtual servers you rent by the second or hour. Remember: you manage the operating system and patches; AWS manages the physical hardware.",
+  "category": "compute",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-002",
+  "term": "Lambda",
+  "definition": "Serverless functions that run code in response to events. You pay only for requests and compute time. Remember: each run can last at most 15 minutes.",
+  "category": "compute",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-003",
+  "term": "Elastic Beanstalk",
+  "definition": "Platform as a service: upload your code and Beanstalk handles capacity, load balancing, scaling and health monitoring. Remember: Beanstalk itself is free; you pay for the underlying resources.",
+  "category": "compute",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-c-004",
+  "term": "ECS",
+  "definition": "Elastic Container Service: AWS's own service to run Docker containers. Run them on EC2 instances you manage, or on Fargate with no servers to manage.",
+  "category": "compute",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-005",
+  "term": "EKS",
+  "definition": "Elastic Kubernetes Service: managed Kubernetes for running containers. Remember: pick it when a scenario mentions Kubernetes or moving existing Kubernetes workloads to AWS.",
+  "category": "compute",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-006",
+  "term": "Fargate",
+  "definition": "Serverless compute engine for containers on ECS or EKS. You set CPU and memory; AWS runs the containers with no servers or clusters to manage.",
+  "category": "compute",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-007",
+  "term": "Lightsail",
+  "definition": "Simple virtual servers, databases and networking at a low, predictable monthly price. Remember: for users with little cloud experience who want a quick website or app.",
+  "category": "compute",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-008",
+  "term": "Auto Scaling Group (ASG)",
+  "definition": "Adds or removes EC2 instances automatically to match demand, keeps a minimum number running, and replaces unhealthy ones. Remember: this is elasticity, paying only for capacity you need.",
+  "category": "compute",
+  "section": "clf-07"
+ },
+ {
+  "id": "clf-c-009",
+  "term": "Elastic Load Balancer (ELB)",
+  "definition": "Spreads incoming traffic across healthy targets in multiple Availability Zones and runs health checks. Types: Application for HTTP, Network for TCP and UDP, Gateway for security appliances.",
+  "category": "compute",
+  "section": "clf-07"
+ },
+ {
+  "id": "clf-c-010",
+  "term": "AMI",
+  "definition": "Amazon Machine Image: a template of the operating system, software and settings used to launch EC2 instances. An AMI belongs to one Region but can be copied to others.",
+  "category": "compute",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-c-011",
+  "term": "EC2 Instance Store",
+  "definition": "High-performance disk physically attached to the host server. Data is lost when the instance stops or terminates. Remember: for caches and scratch data, never for data you must keep.",
+  "category": "storage",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-c-012",
+  "term": "EC2 Instance Types",
+  "definition": "Families tuned to workloads: general purpose, compute optimized for heavy processing, memory optimized for large in-memory datasets, and storage optimized for fast local disk access.",
+  "category": "compute",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-013",
+  "term": "AWS Batch",
+  "definition": "Fully managed batch processing at any scale. Batch queues your jobs and launches the right EC2, Spot or Fargate capacity. Remember: unlike Lambda, jobs have no 15-minute limit.",
+  "category": "compute",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-014",
+  "term": "AWS Outposts",
+  "definition": "Racks of AWS-managed hardware installed in your own data center to run AWS services on premises. Remember: you become responsible for the physical security of the rack.",
+  "category": "compute",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-c-015",
+  "term": "S3",
+  "definition": "Simple Storage Service: object storage in buckets with virtually unlimited capacity and eleven nines of durability. Remember: new objects are encrypted by default with SSE-S3.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-016",
+  "term": "S3 Glacier storage classes",
+  "definition": "Low-cost archive classes. Instant Retrieval returns data in milliseconds, Flexible Retrieval in minutes to 12 hours, and Deep Archive is cheapest but slowest. Each has a minimum storage duration.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-017",
+  "term": "S3 Intelligent-Tiering",
+  "definition": "Automatically moves each object between access tiers based on how often it is used. Small monthly monitoring fee, no retrieval fees. Remember: best when access patterns are unknown.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-018",
+  "term": "EBS",
+  "definition": "Elastic Block Store: a network drive for EC2 that keeps data after the instance stops. Locked to one Availability Zone and usually attached to one instance at a time.",
+  "category": "storage",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-c-019",
+  "term": "EFS",
+  "definition": "Elastic File System: managed shared file system that many Linux instances can mount at once, across Availability Zones. Grows and shrinks automatically; you pay for storage used.",
+  "category": "storage",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-c-020",
+  "term": "Storage Gateway",
+  "definition": "Hybrid service that gives on-premises servers access to cloud storage backed by S3, using file, volume or tape gateways. Remember: hybrid cloud storage means Storage Gateway.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-021",
+  "term": "AWS Backup",
+  "definition": "Fully managed service to centrally schedule and automate backups of EC2, EBS, RDS, DynamoDB, EFS and more, including cross-Region and cross-account copies. Remember: one central backup policy.",
+  "category": "storage",
+  "section": "clf-20"
+ },
+ {
+  "id": "clf-c-022",
+  "term": "EBS Snapshots",
+  "definition": "Point-in-time, incremental backups of an EBS volume. Copy them across Availability Zones or Regions to restore or move volumes. Remember: Recycle Bin can recover snapshots deleted by mistake.",
+  "category": "storage",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-c-023",
+  "term": "S3 Standard-IA",
+  "definition": "Infrequent Access: lower storage price than S3 Standard, but a per gigabyte retrieval fee. Data is kept across multiple AZs. Remember: good for backups and disaster recovery copies.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-024",
+  "term": "S3 One Zone-IA",
+  "definition": "Like Standard-IA but kept in one Availability Zone, so it costs 20 percent less, and data is lost if that zone is destroyed. Remember: for re-creatable data.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-025",
+  "term": "S3 Glacier Deep Archive",
+  "definition": "Cheapest S3 storage class, for data kept for years. Standard retrieval within 12 hours, bulk within 48 hours, minimum storage 180 days. Remember: long-term compliance archives.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-026",
+  "term": "S3 Versioning",
+  "definition": "Keeps every version of an object in a bucket, protecting against accidental deletes and overwrites and allowing easy rollback. Enabled per bucket; once on, it can only be suspended.",
+  "category": "storage",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-c-027",
+  "term": "FSx",
+  "definition": "Fully managed third-party file systems. Remember: FSx for Windows File Server for Windows shares, FSx for Lustre for high-performance computing. NetApp ONTAP and OpenZFS also exist.",
+  "category": "storage",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-c-028",
+  "term": "RDS",
+  "definition": "Relational Database Service: managed SQL databases like MySQL, PostgreSQL, MariaDB, Oracle and SQL Server. AWS handles patching, backups and Multi-AZ failover; you do not manage the server.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-029",
+  "term": "Aurora",
+  "definition": "AWS's cloud-native relational database, compatible with MySQL and PostgreSQL. Storage grows automatically and keeps six copies across three AZs. Remember: faster than standard RDS engines, but costs more.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-030",
+  "term": "DynamoDB",
+  "definition": "Fully managed, serverless NoSQL key-value database with single-digit millisecond latency at any scale. Remember: Global Tables replicate across Regions; DAX adds an in-memory cache.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-031",
+  "term": "ElastiCache",
+  "definition": "Managed in-memory cache using Valkey, Redis OSS or Memcached, with sub-millisecond latency. Remember: reduces load on databases for read-heavy workloads.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-032",
+  "term": "Redshift",
+  "definition": "Data warehouse for analytics and business intelligence on petabytes of data, using columnar storage. Remember: analytics and reporting, known as OLAP, means Redshift, not RDS.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-033",
+  "term": "Neptune",
+  "definition": "Fully managed graph database for highly connected data such as social networks, recommendation engines and fraud detection.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-034",
+  "term": "DMS",
+  "definition": "Database Migration Service: migrates databases to AWS while the source stays fully operational. Handles same-engine and different-engine moves, with schema conversion for different engines.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-035",
+  "term": "DocumentDB",
+  "definition": "Fully managed document database compatible with MongoDB. Remember: think of it as the Aurora of MongoDB, with storage that grows automatically across three AZs.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-036",
+  "term": "Athena",
+  "definition": "Serverless service to query data in S3 with standard SQL, paying per amount of data scanned. Remember: ad hoc SQL queries on S3 with no servers means Athena.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-037",
+  "term": "EMR",
+  "definition": "Elastic MapReduce: managed big data clusters running Hadoop, Spark and similar frameworks on EC2. Remember: when a scenario says Hadoop or Spark, think EMR.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-038",
+  "term": "AWS Glue",
+  "definition": "Serverless extract, transform and load service that prepares data for analytics. Its Data Catalog stores table definitions used by Athena, Redshift and EMR. Remember: ETL means Glue.",
+  "category": "database",
+  "section": "clf-09"
+ },
+ {
+  "id": "clf-c-039",
+  "term": "VPC",
+  "definition": "Virtual Private Cloud: your own logically isolated network in an AWS Region, where you control IP ranges, subnets, route tables and gateways.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-040",
+  "term": "Subnet",
+  "definition": "A range of IP addresses inside a VPC, tied to one Availability Zone. Public subnets route to an internet gateway; private subnets do not.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-041",
+  "term": "Internet Gateway",
+  "definition": "Lets resources in a VPC reach the internet and be reached from it. Remember: a subnet is public when its route table points to an internet gateway.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-042",
+  "term": "NAT Gateway",
+  "definition": "AWS-managed service that lets private subnet instances reach the internet for updates, while blocking connections started from the internet. Classic zonal NAT gateways sit in a public subnet.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-043",
+  "term": "Route 53",
+  "definition": "Managed DNS service that turns domain names into IP addresses, registers domains, and routes users with policies like latency, weighted, geolocation and failover.",
+  "category": "network",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-c-044",
+  "term": "CloudFront",
+  "definition": "Content delivery network that caches content at edge locations worldwide for lower latency. Remember: also adds security, with built-in Shield Standard and optional WAF.",
+  "category": "network",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-c-045",
+  "term": "Direct Connect",
+  "definition": "Dedicated private connection from your data center to AWS that avoids the internet. Consistent performance, but takes weeks or more to set up and is not encrypted by default.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-046",
+  "term": "API Gateway",
+  "definition": "Fully managed service to create, publish and secure REST, HTTP and WebSocket APIs at any scale. Remember: the classic serverless pattern is API Gateway in front of Lambda.",
+  "category": "network",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-c-047",
+  "term": "Global Accelerator",
+  "definition": "Sends users over the AWS global network to your application through two static anycast IP addresses, improving performance and failover. Remember: unlike CloudFront, it does no caching.",
+  "category": "network",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-c-048",
+  "term": "VPC Peering",
+  "definition": "Privately connects two VPCs over the AWS network. Not transitive: peering A with B and B with C does not connect A with C. IP ranges must not overlap.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-049",
+  "term": "Transit Gateway",
+  "definition": "Hub that connects thousands of VPCs and on-premises networks in one hub-and-spoke design. Remember: replaces a complex mesh of VPC peering connections.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-050",
+  "term": "Site-to-Site VPN",
+  "definition": "Encrypted connection between your on-premises network and a VPC over the public internet. Quick to set up, but performance varies with internet conditions.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-051",
+  "term": "PrivateLink",
+  "definition": "Privately connects your VPC to AWS services, other VPCs or partner SaaS services without the internet, NAT or peering. Remember: most secure way to expose a service to many VPCs.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-052",
+  "term": "Elastic IP",
+  "definition": "A fixed public IPv4 address that stays yours until you release it and can be moved between instances. Remember: every public IPv4 address is billed hourly since 2024.",
+  "category": "network",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-053",
+  "term": "IAM",
+  "definition": "Identity and Access Management: a global, free service that controls who can sign in and what they can do, using users, groups, roles and policies.",
+  "category": "security",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-c-054",
+  "term": "IAM Policy",
+  "definition": "A JSON document that allows or denies actions on AWS resources, attached to users, groups or roles. Remember: an explicit deny always overrides an allow.",
+  "category": "security",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-c-055",
+  "term": "IAM Role",
+  "definition": "An identity that AWS services, applications or users assume to get temporary credentials. Remember: give an EC2 instance a role instead of storing access keys on it.",
+  "category": "security",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-c-056",
+  "term": "MFA",
+  "definition": "Multi-factor authentication: your password plus something you have, like an authenticator app, passkey or hardware security key. Remember: always protect the root user with MFA.",
+  "category": "security",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-c-057",
+  "term": "KMS",
+  "definition": "Key Management Service: create and control encryption keys used by most AWS services. AWS manages the hardware, and every key use is logged in CloudTrail.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-058",
+  "term": "CloudTrail",
+  "definition": "Records API calls and account activity: who did what, when and from where. Remember: auditing and governance; 90 days of event history are on by default.",
+  "category": "security",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-c-059",
+  "term": "GuardDuty",
+  "definition": "Intelligent threat detection that uses machine learning on CloudTrail events, VPC Flow Logs, DNS logs and more. Remember: spots threats like compromised credentials and crypto mining.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-060",
+  "term": "Security Group",
+  "definition": "Virtual firewall around an EC2 instance with allow rules only. Stateful: return traffic is automatically allowed. Remember: to block a specific IP address, use a network ACL.",
+  "category": "security",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-061",
+  "term": "NACL",
+  "definition": "Network access control list: a subnet-level firewall with both allow and deny rules. Stateless: return traffic must be allowed explicitly. Rules are evaluated in number order.",
+  "category": "security",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-c-062",
+  "term": "WAF",
+  "definition": "Web Application Firewall: filters layer 7 web requests to block SQL injection, cross-site scripting and bad IPs. Deploy it on CloudFront, Application Load Balancer or API Gateway.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-063",
+  "term": "Shield",
+  "definition": "DDoS protection. Shield Standard is free and automatic for every customer. Shield Advanced is paid, adding a round-the-clock response team and protection from scaling charges during attacks.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-064",
+  "term": "Inspector",
+  "definition": "Automated vulnerability management that continuously scans EC2 instances, container images in ECR and Lambda functions for software vulnerabilities and unintended network exposure.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-065",
+  "term": "AWS Config",
+  "definition": "Records resource configurations and their changes over time, and checks them against compliance rules. Remember: answers what did this resource look like last week, and is it compliant?",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-066",
+  "term": "Artifact",
+  "definition": "Self-service portal for AWS compliance reports like SOC, PCI and ISO, and agreements like the HIPAA BAA. Remember: evidence for your auditors.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-067",
+  "term": "Shared Responsibility Model",
+  "definition": "AWS handles security of the cloud: hardware, facilities and global network. You handle security in the cloud: your data, IAM, configuration and guest operating system patching.",
+  "category": "security",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-c-068",
+  "term": "Principle of Least Privilege",
+  "definition": "Grant only the permissions needed for a task, nothing more. Remember: start small and add permissions when required; IAM Access Advisor shows permissions that go unused.",
+  "category": "security",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-c-069",
+  "term": "IAM Identity Center",
+  "definition": "Formerly AWS Single Sign-On: one login to all accounts in your AWS Organization and to business apps. Remember: the recommended way to give workforce users multi-account access.",
+  "category": "security",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-c-070",
+  "term": "Macie",
+  "definition": "Uses machine learning and pattern matching to discover and protect sensitive data, such as personal information, stored in S3.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-071",
+  "term": "CloudHSM",
+  "definition": "Dedicated, single-tenant hardware security modules in AWS. AWS maintains the hardware, but only you control the keys. Remember: for strict compliance needing customer-managed key hardware.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-072",
+  "term": "ACM",
+  "definition": "AWS Certificate Manager: provisions, manages and auto-renews TLS certificates for HTTPS. Public certificates used with load balancers, CloudFront or API Gateway are free.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-073",
+  "term": "Secrets Manager",
+  "definition": "Stores secrets like database passwords and API keys, with automatic rotation and native RDS integration. Remember: if a question says rotate secrets automatically, choose Secrets Manager.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-074",
+  "term": "Security Hub",
+  "definition": "Central view that collects, correlates and prioritizes security findings from GuardDuty, Inspector, Macie and partner tools across accounts. Remember: automated best-practice checks now run in Security Hub CSPM.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-075",
+  "term": "Service Control Policy (SCP)",
+  "definition": "Guardrails in AWS Organizations that set the maximum permissions for member accounts. Remember: SCPs never grant access, and they do not restrict the management account.",
+  "category": "security",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-076",
+  "term": "Detective",
+  "definition": "Investigates the root cause of security findings by building visual graphs from logs like CloudTrail and VPC Flow Logs. Remember: GuardDuty detects, Detective investigates.",
+  "category": "security",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-c-077",
+  "term": "Free Tier",
+  "definition": "New accounts since July 2025 get a Free plan: up to 200 dollars in credits, lasting up to six months. Always Free offers, like monthly Lambda requests, continue.",
+  "category": "billing",
+  "section": "clf-01"
+ },
+ {
+  "id": "clf-c-078",
+  "term": "On-Demand Pricing",
+  "definition": "Pay by the second or hour with no commitment or upfront payment. Highest hourly price. Remember: best for short, unpredictable workloads that must not be interrupted.",
+  "category": "billing",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-079",
+  "term": "Reserved Instances",
+  "definition": "Commit to a specific instance type and Region for 1 or 3 years to save up to 72 percent. Remember: for steady, predictable workloads like a database.",
+  "category": "billing",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-080",
+  "term": "Savings Plans",
+  "definition": "Commit to a steady dollar-per-hour spend for 1 or 3 years to save up to 72 percent. Remember: Compute Savings Plans also cover Fargate and Lambda.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-081",
+  "term": "Spot Instances",
+  "definition": "Spare EC2 capacity at up to 90 percent off, but AWS can reclaim it with a two-minute warning. Remember: only for fault-tolerant work like batch jobs, never databases.",
+  "category": "billing",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-082",
+  "term": "Dedicated Hosts",
+  "definition": "An entire physical server dedicated to you, with visibility of sockets and cores. Remember: for bring-your-own server-bound software licenses and strict compliance; the most expensive option.",
+  "category": "billing",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-c-083",
+  "term": "Cost Explorer",
+  "definition": "Visualize and analyze your past AWS costs and usage, and forecast future spend. Remember: it also recommends Savings Plans.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-084",
+  "term": "AWS Budgets",
+  "definition": "Set custom cost, usage or reservation budgets and get alerts when actual or forecasted spend crosses a threshold. Remember: Budgets alerts, Cost Explorer analyzes.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-085",
+  "term": "Pricing Calculator",
+  "definition": "Free tool to estimate the monthly cost of an architecture before you build it. Remember: estimating future costs is Pricing Calculator; analyzing past costs is Cost Explorer.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-086",
+  "term": "Trusted Advisor",
+  "definition": "Checks your account for cost, performance, security, fault tolerance, service limits and operations. Remember: Basic gets core checks only; all checks need Business Support Plus, formerly Business, or higher.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-087",
+  "term": "Consolidated Billing",
+  "definition": "One bill for all accounts in AWS Organizations. Usage is combined for volume pricing discounts, and Reserved Instance and Savings Plans discounts can be shared.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-088",
+  "term": "TAM",
+  "definition": "Technical Account Manager: a designated AWS technical expert who proactively guides your architecture and operations. Remember: a designated TAM comes with Enterprise Support.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-089",
+  "term": "AWS Organizations",
+  "definition": "Manage many AWS accounts centrally: group them into organizational units, apply service control policies, and get consolidated billing. Remember: multi-account governance.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-090",
+  "term": "Cost and Usage Report (CUR)",
+  "definition": "The most detailed billing data: line items for every charge, delivered to an S3 bucket for analysis with tools like Athena or Redshift.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-091",
+  "term": "Compute Optimizer",
+  "definition": "Uses machine learning on your usage metrics to recommend right-sized EC2 instances, Auto Scaling groups, EBS volumes, Lambda functions and more. Remember: right-sizing to cut cost.",
+  "category": "billing",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-c-092",
+  "term": "AWS Marketplace",
+  "definition": "Digital catalog to find, buy and deploy third-party software, data and services that run on AWS, charged through your AWS bill.",
+  "category": "billing",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-c-093",
+  "term": "SQS",
+  "definition": "Simple Queue Service: fully managed message queue that decouples application parts; consumers poll for messages. Remember: to decouple or buffer work between components, choose SQS.",
+  "category": "compute",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-c-094",
+  "term": "SNS",
+  "definition": "Simple Notification Service: publish-subscribe messaging where one message fans out to many subscribers such as email, SMS, Lambda and SQS queues.",
+  "category": "compute",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-c-095",
+  "term": "EventBridge",
+  "definition": "Serverless event bus that reacts to events from AWS services, SaaS apps or your own code, and runs scheduled jobs. Remember: formerly CloudWatch Events.",
+  "category": "compute",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-c-096",
+  "term": "Step Functions",
+  "definition": "Orchestrates Lambda functions and other AWS services into serverless visual workflows, with retries, branching, parallel steps and human approval steps.",
+  "category": "compute",
+  "section": "clf-20"
+ },
+ {
+  "id": "clf-c-097",
+  "term": "SES",
+  "definition": "Simple Email Service: send transactional, marketing and bulk email at scale, and receive email. Remember: the answer when an application needs to send email.",
+  "category": "compute",
+  "section": "clf-20"
+ },
+ {
+  "id": "clf-c-098",
+  "term": "CloudFormation",
+  "definition": "Infrastructure as code: describe AWS resources in JSON or YAML templates and CloudFormation creates them in the right order. Remember: repeatable environments across Regions and accounts.",
+  "category": "compute",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-c-099",
+  "term": "Systems Manager",
+  "definition": "Operations hub for EC2 and on-premises servers. Patch Manager automates patching, and Run Command runs scripts across a whole fleet. Servers need the SSM Agent installed.",
+  "category": "compute",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-c-100",
+  "term": "AWS Health Dashboard",
+  "definition": "Shows the health of AWS services, plus a personalized view of events affecting your resources, like scheduled maintenance. Remember: formerly Personal Health Dashboard.",
+  "category": "compute",
+  "section": "clf-14"
+ }
+]

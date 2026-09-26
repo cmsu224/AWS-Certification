@@ -1,0 +1,30 @@
+[
+ {
+  "id": "saa-c-169",
+  "term": "IAM policy structure",
+  "definition": "A JSON document with a Version and one or more Statements. Each statement has Effect, Action and Resource, plus optional Sid and Condition. Resource-based policies also require a Principal.",
+  "category": "security",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-c-170",
+  "term": "AWS CloudShell",
+  "definition": "A browser-based shell in the console with the AWS CLI preinstalled. It uses your signed-in credentials, so no access keys, and keeps a small persistent home folder per Region.",
+  "category": "management",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-c-171",
+  "term": "Beanstalk single-instance vs high availability",
+  "definition": "Single-instance mode runs one EC2 instance with an Elastic IP, good for development. High availability mode adds a load balancer and Auto Scaling across several Availability Zones.",
+  "category": "compute",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-c-172",
+  "term": "Beanstalk application, version, environment",
+  "definition": "An application is the container of components; an application version is one deployable code bundle; an environment runs one version, such as dev or prod.",
+  "category": "compute",
+  "section": "saa-11"
+ }
+]

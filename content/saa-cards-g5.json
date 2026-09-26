@@ -1,0 +1,149 @@
+[
+ {
+  "id": "saa-c-107",
+  "term": "CRR vs SRR",
+  "definition": "Cross-Region Replication copies objects to another Region for compliance, latency, or disaster recovery. Same-Region Replication aggregates logs or syncs accounts. Both need versioning on source and destination.",
+  "category": "storage",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-c-108",
+  "term": "S3 replication gotchas",
+  "definition": "Only new objects replicate; S3 Batch Replication handles existing or failed ones. Version deletes and chained replication never replicate. Need a 15-minute SLA? Use Replication Time Control.",
+  "category": "storage",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-c-109",
+  "term": "S3 One Zone-IA",
+  "definition": "Infrequent-access class kept in a single Availability Zone, cheaper than Standard-IA, with retrieval fees and a 30-day minimum. Remember: only for re-creatable data, like secondary backup copies.",
+  "category": "storage",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-c-110",
+  "term": "S3 Glacier retrieval times",
+  "definition": "Instant Retrieval: milliseconds, 90-day minimum. Flexible Retrieval: 1 minute to 12 hours, 90-day minimum. Deep Archive: 12 to 48 hours, 180-day minimum, lowest cost.",
+  "category": "storage",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-c-111",
+  "term": "S3 Express One Zone",
+  "definition": "High-performance class using directory buckets in one Availability Zone you choose, for consistent single-digit millisecond latency. Remember: put compute in the same zone; data is not multi-AZ resilient.",
+  "category": "storage",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-c-112",
+  "term": "S3 Intelligent-Tiering",
+  "definition": "Automatically moves each object between access tiers based on its usage, for a small per-object monitoring fee and no retrieval fees. Remember: unknown or changing access patterns.",
+  "category": "storage",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-c-113",
+  "term": "S3 event notification targets",
+  "definition": "S3 events go directly to SNS, SQS standard queues, or Lambda. Use EventBridge for advanced filtering, many targets, and archive and replay. Remember: FIFO queues are not direct targets.",
+  "category": "integration",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-c-114",
+  "term": "S3 per-prefix request rates",
+  "definition": "At least 3,500 write and 5,500 read requests per second per partitioned prefix, with unlimited prefixes. Spread keys across prefixes. Remember: SSE-KMS may hit KMS quotas first.",
+  "category": "storage",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-c-115",
+  "term": "Multipart upload vs byte-range fetch",
+  "definition": "Multipart upload splits an upload into parallel parts, recommended over 100 MB and required over 5 GB. Byte-range fetches parallelize downloads or read just part of an object.",
+  "category": "storage",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-c-116",
+  "term": "S3 Requester Pays",
+  "definition": "The requester, not the bucket owner, pays for requests and data downloaded; the owner still pays for storage. Requesters must be authenticated AWS identities, never anonymous.",
+  "category": "storage",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-c-117",
+  "term": "Forcing HTTPS on an S3 bucket",
+  "definition": "Add a bucket policy that denies any request where aws:SecureTransport is false, so every request must use HTTPS. Remember: encryption in transit is enforced with a bucket policy.",
+  "category": "security",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-c-118",
+  "term": "SSE-C",
+  "definition": "You send your own key with every request over HTTPS; S3 encrypts, then discards the key. Since April 2026, new buckets have SSE-C disabled until you turn it on.",
+  "category": "security",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-c-119",
+  "term": "S3 Object Lock modes",
+  "definition": "WORM protection that needs versioning. Compliance mode: nobody, even root, can delete or shorten retention. Governance mode: permitted users can override. Legal hold: no end date until removed.",
+  "category": "security",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-c-120",
+  "term": "Glacier Vault Lock",
+  "definition": "Locks a WORM policy on a legacy Glacier vault so it can never change. The vault service closed to new customers in December 2025, so use S3 Object Lock instead.",
+  "category": "security",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-c-121",
+  "term": "S3 presigned URL",
+  "definition": "Temporary link carrying its creator's permissions to download or upload one object. Console links last up to 12 hours; CLI or SDK links up to 7 days.",
+  "category": "security",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-c-122",
+  "term": "S3 CORS",
+  "definition": "Bucket rule letting a web page from one origin request objects from a bucket on another origin. Remember: configure CORS on the bucket being requested, not the site's bucket.",
+  "category": "security",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-c-123",
+  "term": "AWS Snowball Edge",
+  "definition": "Rugged device for offline transfer when moving data online would take over a week. Imports land in S3, not Glacier. Closed to new customers since November 2025.",
+  "category": "storage",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-c-124",
+  "term": "Amazon FSx for Lustre",
+  "definition": "Parallel file system for HPC and machine learning with sub-millisecond latency. Links to S3 to read objects as files and write results back. Scratch is temporary; Persistent is replicated.",
+  "category": "storage",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-c-125",
+  "term": "FSx ONTAP vs OpenZFS",
+  "definition": "FSx for NetApp ONTAP speaks NFS, SMB, and iSCSI, ideal for NetApp migrations. FSx for OpenZFS speaks NFS only, for ZFS or Linux workloads. Both offer snapshots and instant clones.",
+  "category": "storage",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-c-126",
+  "term": "Storage Gateway types",
+  "definition": "S3 File Gateway: NFS or SMB files saved as S3 objects. Volume Gateway: iSCSI block volumes backed up as EBS snapshots. Tape Gateway: virtual tapes for existing backup software.",
+  "category": "storage",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-c-127",
+  "term": "DataSync vs Transfer Family",
+  "definition": "DataSync: scheduled, agent-based copies from NFS, SMB, or HDFS into S3, EFS, or FSx, keeping metadata. Transfer Family: managed SFTP, FTPS, FTP, or AS2 endpoints into S3 or EFS.",
+  "category": "storage",
+  "section": "saa-16"
+ }
+]

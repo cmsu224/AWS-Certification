@@ -1,0 +1,354 @@
+[
+ {
+  "id": "saa-q-116",
+  "question": "A media company stores raw footage that is accessed about once every quarter. When a producer requests a file, it must be available within milliseconds, and the data must survive the loss of an Availability Zone. Which S3 storage class is MOST cost-effective?",
+  "options": [
+   "S3 Standard-Infrequent Access",
+   "S3 One Zone-Infrequent Access",
+   "S3 Glacier Instant Retrieval",
+   "S3 Glacier Flexible Retrieval"
+  ],
+  "answer": 2,
+  "explanation": "Glacier Instant Retrieval gives millisecond access at a lower storage price than Standard-IA, and is designed for data read about once a quarter. Standard-IA works but costs more to store. One Zone-IA fails the Availability Zone requirement, and Flexible Retrieval takes minutes to hours.",
+  "domain": "saa4",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-q-117",
+  "question": "A company enables S3 Cross-Region Replication on a bucket that already holds 40 million objects. The disaster recovery plan requires that the existing objects also exist in the destination Region. What should a solutions architect do with the LEAST operational overhead?",
+  "options": [
+   "Create an S3 Batch Replication job for the bucket",
+   "Enable S3 Replication Time Control on the replication rule",
+   "Enable delete marker replication on the replication rule",
+   "Run a Lambda function that copies every object to the destination"
+  ],
+  "answer": 0,
+  "explanation": "Replication rules only copy objects written after the rule is enabled. S3 Batch Replication backfills existing objects and retries failed ones with no custom code. Replication Time Control only adds a time guarantee for new objects, and a custom Lambda copier adds code to maintain.",
+  "domain": "saa2",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-q-118",
+  "question": "A machine learning team runs training jobs on EC2 instances in a single Availability Zone. The jobs read millions of small files and need consistent single-digit millisecond latency at very high request rates. The dataset can be regenerated from source. Which storage option meets these requirements?",
+  "options": [
+   "S3 Standard bucket with Transfer Acceleration enabled",
+   "S3 Express One Zone directory bucket in the same AZ",
+   "S3 One Zone-IA storage class for the dataset",
+   "S3 Glacier Instant Retrieval with byte-range fetches"
+  ],
+  "answer": 1,
+  "explanation": "S3 Express One Zone stores re-creatable data in directory buckets in an Availability Zone you choose, giving consistent single-digit millisecond latency at very high request rates. One Zone-IA lowers storage cost, not latency, and adds retrieval fees. Transfer Acceleration only speeds long-distance transfers.",
+  "domain": "saa3",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-q-119",
+  "question": "An application running in AWS Account B must read objects from a private S3 bucket in Account A. The bucket must stay private. Which solution is MOST secure?",
+  "options": [
+   "Create an IAM user in Account A and embed its access keys in the app",
+   "Turn off Block Public Access and allow public reads in the bucket policy",
+   "Enable S3 Requester Pays and share the bucket name with Account B",
+   "Grant the Account B role access in both the bucket and role policies"
+  ],
+  "answer": 3,
+  "explanation": "Cross-account access must be allowed on both sides: the bucket policy in Account A names the Account B role, and the role's IAM policy permits the S3 actions. Embedded access keys are long-lived credentials, public reads break the private requirement, and Requester Pays only changes billing.",
+  "domain": "saa1",
+  "section": "saa-12"
+ },
+ {
+  "id": "saa-q-120",
+  "question": "Application logs are queried often for 30 days, rarely for the next 60 days, and then must be kept for 7 years for audits. Logs must always be stored across multiple Availability Zones, and audit retrievals can take up to 12 hours. Which approach is MOST cost-effective?",
+  "options": [
+   "Lifecycle to Standard-IA at 30 days, Glacier Instant Retrieval at 90 days, expire at 7 years",
+   "Lifecycle to Standard-IA at 30 days, Glacier Flexible Retrieval at 90 days, expire at 7 years",
+   "Store in S3 Intelligent-Tiering from day one and expire objects at 7 years",
+   "Lifecycle to Standard-IA at 30 days, Glacier Deep Archive at 90 days, expire at 7 years"
+  ],
+  "answer": 3,
+  "explanation": "The access pattern is known, so lifecycle transitions fit best. Standard-IA covers the rarely read period, then Glacier Deep Archive, the cheapest class, meets the 12-hour retrieval window. Instant and Flexible Retrieval cost more to store for seven years, and Intelligent-Tiering adds monitoring fees for a predictable pattern.",
+  "domain": "saa4",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-q-121",
+  "question": "A company is launching a new analytics dataset in S3. Access patterns are unknown and will change over time; some objects will be read heavily for months and then not at all. The company wants to minimize storage cost without retrieval fees or manual analysis. Which storage class should be used?",
+  "options": [
+   "S3 Standard-IA with no lifecycle rules",
+   "S3 Intelligent-Tiering",
+   "S3 Glacier Instant Retrieval",
+   "S3 Standard with a lifecycle rule to Standard-IA"
+  ],
+  "answer": 1,
+  "explanation": "Intelligent-Tiering moves each object between access tiers based on its own usage, charges a small monitoring fee, and has no retrieval fees, which suits unknown or changing patterns. Standard-IA and Glacier Instant Retrieval charge retrieval fees, and a fixed lifecycle rule would also move objects that are still hot.",
+  "domain": "saa4",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-q-122",
+  "question": "A versioning-enabled S3 bucket keeps growing in cost. Analysis shows many old noncurrent object versions and a large amount of storage used by multipart uploads that never completed. Which TWO actions will reduce storage costs? (Choose TWO.)",
+  "options": [
+   "Suspend versioning on the bucket to remove the existing old versions",
+   "Add a lifecycle rule that expires noncurrent versions after 30 days",
+   "Enable S3 Transfer Acceleration so uploads finish more reliably",
+   "Add a lifecycle rule that aborts incomplete multipart uploads after 7 days",
+   "Enable S3 Replication Time Control on the bucket"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Lifecycle expiration actions permanently remove noncurrent versions and clean up incomplete multipart uploads, whose parts are billed until aborted. Suspending versioning only stops new versions; existing ones remain and keep costing money. Transfer Acceleration and Replication Time Control add cost rather than remove data.",
+  "domain": "saa4",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-q-123",
+  "question": "Users around the world upload video files of 2 to 20 GB to a single S3 bucket in one Region. Uploads are slow and often fail partway through, forcing a full restart. Which TWO actions will improve upload speed and reliability? (Choose TWO.)",
+  "options": [
+   "Use multipart upload to send parts in parallel",
+   "Use byte-range fetches for each upload",
+   "Enable S3 Transfer Acceleration on the bucket",
+   "Enable S3 Versioning so failed uploads can resume",
+   "Enable S3 Requester Pays on the bucket"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "Multipart upload sends parts in parallel and retries only failed parts, and it is required for objects over 5 GB. Transfer Acceleration routes uploads through the nearest edge location and the AWS backbone. Byte-range fetches speed up downloads, not uploads, and versioning cannot resume a failed upload.",
+  "domain": "saa3",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-q-124",
+  "question": "When images are uploaded to an S3 bucket, a company must trigger three separate workflows. The workflows need to filter events by object size, and the team wants to archive and replay events for troubleshooting. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Turn on Amazon EventBridge for the bucket with one rule per workflow",
+   "Send S3 Event Notifications to one SQS FIFO queue shared by all workflows",
+   "Send S3 Event Notifications with suffix filters to three Lambda functions",
+   "Enable server access logging and have each workflow parse the log files"
+  ],
+  "answer": 0,
+  "explanation": "Sending S3 events to EventBridge enables rules with advanced filtering such as object size, multiple targets, and event archive and replay. Native S3 Event Notifications only filter on prefix and suffix, cannot replay events, and cannot target SQS FIFO queues directly. Parsing access logs is slow and needs custom code.",
+  "domain": "saa2",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-q-125",
+  "question": "A bucket created in 2019 holds 50 million objects that were uploaded without encryption. A new policy requires every object, including existing ones, to be encrypted with an AWS KMS key. What is the MOST operationally efficient solution?",
+  "options": [
+   "Enable default bucket encryption with SSE-KMS using a customer managed key",
+   "Enable S3 Bucket Keys on the bucket so existing objects use the KMS key",
+   "Use S3 Inventory and S3 Batch Operations to copy the objects with SSE-KMS",
+   "Run a script on EC2 that downloads and re-uploads every object"
+  ],
+  "answer": 2,
+  "explanation": "S3 Inventory lists the unencrypted objects, and S3 Batch Operations copies them in place with SSE-KMS at scale, with tracking and a completion report. Default encryption only applies to new uploads, so existing objects stay unencrypted. Bucket Keys only reduce KMS calls, and a custom EC2 script adds operational overhead.",
+  "domain": "saa1",
+  "section": "saa-13"
+ },
+ {
+  "id": "saa-q-126",
+  "question": "A company stores critical legal documents in S3. It must be able to recover any document that is accidentally overwritten or deleted, and permanently deleting a version must require an extra authentication factor. Which TWO actions meet these requirements? (Choose TWO.)",
+  "options": [
+   "Enable S3 server access logging",
+   "Enable S3 Intelligent-Tiering",
+   "Enable S3 Versioning on the bucket",
+   "Enable default encryption with SSE-KMS",
+   "Enable MFA Delete on the bucket"
+  ],
+  "answer": [
+   2,
+   4
+  ],
+  "explanation": "Versioning keeps prior versions, so overwritten or deleted objects can be restored. MFA Delete, which needs versioning and is enabled by the root user, requires an MFA code to permanently delete a version or suspend versioning. Access logs only record requests, and encryption does not prevent deletion.",
+  "domain": "saa1",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-q-127",
+  "question": "A government contractor must meet a compliance rule that requires two independent layers of server-side encryption for data at rest in Amazon S3. The company wants S3 to apply both layers with the LEAST operational overhead. Which option meets the requirement?",
+  "options": [
+   "SSE-KMS with S3 Bucket Keys enabled",
+   "DSSE-KMS with an AWS KMS key",
+   "SSE-S3 with default bucket encryption",
+   "SSE-KMS with a multi-Region KMS key"
+  ],
+  "answer": 1,
+  "explanation": "DSSE-KMS, dual-layer server-side encryption, applies two independent layers of encryption to each object using AWS KMS keys, built for standards that demand multilayer encryption. SSE-KMS with Bucket Keys or a multi-Region key is still a single layer, and SSE-S3 is the single-layer default.",
+  "domain": "saa1",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-q-128",
+  "question": "A company's security policy states that encryption keys must be generated and stored only in its on-premises key management system and must never be stored by AWS. Amazon S3 should still perform the encryption and decryption. Which option should be used?",
+  "options": [
+   "SSE-KMS with imported key material",
+   "SSE-KMS with a CloudHSM custom key store",
+   "SSE-C with the key supplied in each request",
+   "Client-side encryption with the AWS Encryption SDK"
+  ],
+  "answer": 2,
+  "explanation": "With SSE-C the company sends its key over HTTPS in every request; S3 encrypts or decrypts, then discards the key. Imported key material and CloudHSM key stores keep keys inside AWS, and with client-side encryption S3 never encrypts anything. Remember that new buckets now have SSE-C disabled until you enable it.",
+  "domain": "saa1",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-q-129",
+  "question": "A financial firm must store trade records in Amazon S3 in a write-once-read-many format for 7 years. No user, including the AWS account root user, may delete the records or shorten the retention period. Which solution meets these requirements?",
+  "options": [
+   "S3 Object Lock in governance mode with a 7-year retention period",
+   "S3 Object Lock legal holds placed on every object",
+   "S3 Versioning with MFA Delete enabled on the bucket",
+   "S3 Object Lock in compliance mode with a 7-year retention period"
+  ],
+  "answer": 3,
+  "explanation": "Compliance mode stops anyone, including the root user, from deleting a locked version or shortening its retention. Governance mode lets users with a special permission bypass the lock, legal holds can be removed by authorized users, and MFA Delete still lets the root user delete versions.",
+  "domain": "saa1",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-q-130",
+  "question": "A shared data lake bucket is used by dozens of teams, and its single bucket policy has become too large and error-prone. Each team needs access only to its own prefix, and some teams must reach the data only from their VPC. Which solution is the MOST manageable?",
+  "options": [
+   "Create one S3 access point per team with its own policy",
+   "Split the data into one bucket per team and use S3 Replication",
+   "Enable object ACLs and grant each team access to its objects",
+   "Generate presigned URLs for every object in each team's prefix"
+  ],
+  "answer": 0,
+  "explanation": "Access points give each team its own endpoint and policy scoped to its prefix, which keeps the bucket policy simple, and an access point can be limited to a VPC network origin. Separate buckets add replication overhead, ACLs are disabled by default and hard to manage, and presigned URLs work per object.",
+  "domain": "saa1",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-q-131",
+  "question": "A company sells e-books stored in a private Amazon S3 bucket. After a customer pays, the web application must let that customer download only the purchased file for the next 15 minutes. Customers have no AWS credentials. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Have the application generate an S3 presigned URL for the object that expires in 15 minutes",
+   "Make the object public, then remove public access 15 minutes later with a scheduled function",
+   "Create a temporary IAM user for each customer and delete the user after 15 minutes",
+   "Add a bucket policy that allows the customer's IP address, then remove it after 15 minutes"
+  ],
+  "answer": 0,
+  "explanation": "A presigned URL uses the application's own permissions for one object and expires at the time you choose, so customers need no AWS credentials. Temporarily making objects public or editing policies and IAM users exposes data and adds fragile cleanup work.",
+  "domain": "saa1",
+  "section": "saa-14"
+ },
+ {
+  "id": "saa-q-132",
+  "question": "A genomics company runs HPC jobs on thousands of EC2 instances. Input data is stored in Amazon S3. The jobs need a shared POSIX file system with sub-millisecond latency and hundreds of gigabytes per second of throughput, and results must be written back to S3. Which service should be used?",
+  "options": [
+   "Amazon EFS with Elastic throughput and a Regional file system",
+   "Amazon FSx for Lustre with a data repository association",
+   "Amazon FSx for Windows File Server with SSD storage",
+   "Amazon S3 File Gateway running on an EC2 instance"
+  ],
+  "answer": 1,
+  "explanation": "FSx for Lustre is a parallel file system built for HPC and machine learning, and it links to S3 so objects appear as files and results can be exported back. EFS is general-purpose NFS storage with no S3 link and lower peak throughput, and FSx for Windows serves SMB workloads.",
+  "domain": "saa3",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-133",
+  "question": "A company is migrating an on-premises multiprotocol storage array to AWS. The array serves the same data to Linux clients over NFS and Windows clients over SMB, and some servers mount iSCSI block volumes from it. Which AWS service requires the FEWEST changes?",
+  "options": [
+   "Amazon FSx for NetApp ONTAP",
+   "Amazon FSx for OpenZFS",
+   "Amazon FSx for Windows File Server",
+   "Amazon EFS with one access point per client"
+  ],
+  "answer": 0,
+  "explanation": "FSx for NetApp ONTAP supports NFS, SMB, and iSCSI from one file system, with snapshots and SnapMirror replication, so a multiprotocol array moves with few changes. FSx for OpenZFS serves NFS only, FSx for Windows File Server serves SMB only, and EFS supports NFS only.",
+  "domain": "saa3",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-134",
+  "question": "A company runs Windows applications on EC2 that need a shared file system with SMB access, NTFS permissions, Microsoft Active Directory integration, and DFS Namespaces. The file system must stay available if an Availability Zone fails. Which solution meets these requirements?",
+  "options": [
+   "Amazon FSx for Windows File Server with a Single-AZ deployment",
+   "Amazon EFS with a Regional file system and mount targets",
+   "Amazon FSx for Lustre with a persistent deployment type",
+   "Amazon FSx for Windows File Server with a Multi-AZ deployment"
+  ],
+  "answer": 3,
+  "explanation": "FSx for Windows File Server provides native SMB, NTFS permissions, Active Directory integration, and DFS Namespaces, and a Multi-AZ deployment fails over to a standby file server in another Availability Zone. Single-AZ cannot survive an AZ failure, EFS is NFS storage for Linux, and Lustre targets HPC.",
+  "domain": "saa2",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-135",
+  "question": "An on-premises application needs iSCSI block storage with low-latency local access to its entire dataset. The data must be backed up asynchronously to AWS as point-in-time snapshots for disaster recovery. Which AWS Storage Gateway configuration should be used?",
+  "options": [
+   "Volume Gateway with cached volumes",
+   "S3 File Gateway with an NFS share",
+   "Volume Gateway with stored volumes",
+   "Tape Gateway with virtual tapes"
+  ],
+  "answer": 2,
+  "explanation": "Stored volumes keep the full dataset on premises for low latency and back it up asynchronously to AWS as EBS snapshots. Cached volumes keep primary data in S3 and cache only frequently used data locally. File Gateway presents file shares and Tape Gateway presents a virtual tape library, not general block volumes.",
+  "domain": "saa2",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-136",
+  "question": "A company must migrate 60 TB of files from an on-premises NFS server to Amazon EFS over an existing 10 Gbps AWS Direct Connect link. File permissions and metadata must be preserved, and changes must be synced on a schedule until cutover. Which solution meets these requirements?",
+  "options": [
+   "AWS Transfer Family with an SFTP endpoint",
+   "AWS DataSync task with an agent and an EFS location",
+   "AWS Snowball Edge Storage Optimized devices",
+   "S3 File Gateway with an NFS file share"
+  ],
+  "answer": 1,
+  "explanation": "DataSync uses an on-premises agent to copy NFS data directly into EFS, preserving permissions and metadata, and scheduled tasks move only changes until cutover. Transfer Family serves SFTP users, Snowball is for offline transfer when bandwidth is too limited, and S3 File Gateway writes to S3, not EFS.",
+  "domain": "saa3",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-137",
+  "question": "A company's backup software writes to an on-premises physical tape library. The company wants to stop handling physical tapes, keep its existing backup software and processes, and move older backups to durable archive storage in AWS. What should a solutions architect recommend?",
+  "options": [
+   "Storage Gateway Volume Gateway with cached volumes for the backups",
+   "AWS DataSync tasks that copy backup files into S3 Glacier Deep Archive",
+   "Storage Gateway Tape Gateway that archives tapes to S3 Glacier Deep Archive",
+   "Storage Gateway S3 File Gateway with an SMB share for the backups"
+  ],
+  "answer": 2,
+  "explanation": "Tape Gateway presents a virtual tape library over iSCSI, so existing backup software keeps working unchanged, and archived tapes move to Glacier Flexible Retrieval or Deep Archive. Volume Gateway, File Gateway, and DataSync would all force the company to replace its tape-based backup workflow.",
+  "domain": "saa2",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-138",
+  "question": "Hundreds of external partners upload files to a company using SFTP clients and cannot change their tools. The company wants to store the files in Amazon S3, authenticate partners with its existing identity provider, and avoid managing servers. Which solution meets these requirements?",
+  "options": [
+   "EC2 instances running an SFTP server in an Auto Scaling group",
+   "AWS DataSync agents installed at each partner location",
+   "S3 presigned upload URLs emailed to each partner",
+   "AWS Transfer Family server with Amazon S3 as its storage"
+  ],
+  "answer": 3,
+  "explanation": "Transfer Family is a fully managed SFTP, FTPS, FTP, and AS2 service that stores files in S3 or EFS and can authenticate through existing or custom identity providers. Self-managed EC2 SFTP servers add operational work, DataSync needs agents partners will not run, and presigned URLs require new partner tools.",
+  "domain": "saa2",
+  "section": "saa-16"
+ },
+ {
+  "id": "saa-q-139",
+  "question": "A research lab must move 400 TB of archival data to AWS within 4 weeks. Its 100 Mbps internet connection is shared with daily operations. The data will rarely be read and must be stored at the lowest possible cost. Which TWO steps should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Import the data into an S3 bucket using AWS Snowball Edge devices",
+   "Enable S3 Transfer Acceleration and upload over the internet",
+   "Use AWS DataSync over the existing internet connection",
+   "Add an S3 Lifecycle rule to transition objects to S3 Glacier Deep Archive",
+   "Configure Snowball Edge to write directly into an S3 Glacier vault"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "At 100 megabits per second, 400 terabytes would take about a year online, so ship it on Snowball Edge devices into S3, then use a lifecycle rule to move it to Deep Archive. Snowball cannot import straight into Glacier, and Transfer Acceleration or DataSync still depend on the slow link.",
+  "domain": "saa4",
+  "section": "saa-16"
+ }
+]

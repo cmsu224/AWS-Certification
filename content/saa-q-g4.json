@@ -1,0 +1,280 @@
+[
+ {
+  "id": "saa-q-097",
+  "question": "A company hosts its website on an Application Load Balancer and uses Amazon Route 53 for DNS. Users must be able to reach the site at the root domain, example.com, and not only at www.example.com. Which Route 53 record meets this requirement?",
+  "options": [
+   "A CNAME record for example.com that points to the load balancer DNS name",
+   "An A record for example.com that lists the load balancer's current IP addresses",
+   "An alias A record for example.com that targets the load balancer",
+   "An NS record for example.com that delegates to the load balancer"
+  ],
+  "answer": 2,
+  "explanation": "An alias record can be created at the zone apex and automatically follows the load balancer's changing IP addresses. A CNAME record is not allowed at the zone apex, and hardcoded load balancer IP addresses break when they change.",
+  "domain": "saa3",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-098",
+  "question": "A company has dozens of subdomains in Route 53, each a CNAME record that points to the same Amazon CloudFront distribution. The records already use a 24-hour TTL, but DNS query charges keep growing with traffic. Which change will MOST reduce the Route 53 query cost?",
+  "options": [
+   "Replace each CNAME record with an alias record for the distribution",
+   "Lower the TTL on every CNAME record from 24 hours to 60 seconds",
+   "Convert the records to multivalue answer routing with health checks",
+   "Move the CNAME records into a private hosted zone in the same account"
+  ],
+  "answer": 0,
+  "explanation": "Route 53 does not charge for alias queries that resolve to AWS resources such as a CloudFront distribution, so switching to alias records removes those query charges. Lowering the TTL does the opposite, because resolvers would query Route 53 more often.",
+  "domain": "saa4",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-099",
+  "question": "A company runs its web application behind an Application Load Balancer in us-east-1. If the application becomes unhealthy, users must automatically be sent to a static maintenance page hosted as an Amazon S3 static website. Which Route 53 configuration meets this requirement?",
+  "options": [
+   "Latency routing, with one record for the load balancer and one for the S3 website endpoint",
+   "Multivalue answer routing, with health checks on the load balancer and S3 website records",
+   "Simple routing, with a single record that contains both the load balancer and the S3 website",
+   "Failover routing, with a health check on the load balancer and the S3 website as secondary"
+  ],
+  "answer": 3,
+  "explanation": "Failover routing is active-passive. Route 53 answers with the primary record while its health check passes and switches to the secondary when it fails. Multivalue routing would hand out the maintenance page even while the application is healthy, and simple routing cannot use health checks.",
+  "domain": "saa2",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-100",
+  "question": "A company uses Route 53 failover routing for an internal application. The application endpoints run in private subnets and are not reachable from the internet. How should the company monitor the health of the primary endpoint so that failover works?",
+  "options": [
+   "Create an HTTP health check that targets the private IP address of the primary endpoint",
+   "Allow the Route 53 health checker IP ranges in the security group of the endpoint",
+   "Create a CloudWatch alarm on an application metric and a health check that monitors it",
+   "Create a calculated health check that combines TCP checks of each private endpoint"
+  ],
+  "answer": 2,
+  "explanation": "Route 53 health checkers run on the public internet and cannot reach private endpoints. Instead, publish a CloudWatch metric, create an alarm, and base the health check on that alarm. Opening the security group to health checker IP ranges does not help when there is no public path.",
+  "domain": "saa2",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-101",
+  "question": "A company deploys identical application stacks in us-east-1, eu-west-1, and ap-southeast-1. Users around the world should be directed to whichever stack gives them the fastest response time. Which Route 53 routing policy should a solutions architect use?",
+  "options": [
+   "Latency-based routing",
+   "Geolocation routing",
+   "Geoproximity routing",
+   "Weighted routing"
+  ],
+  "answer": 0,
+  "explanation": "Latency-based routing answers with the Region that has the lowest measured network latency for each user. Geolocation and geoproximity route by where users are, which suits compliance rules or shifting traffic, but the closest Region is not always the fastest one.",
+  "domain": "saa3",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-102",
+  "question": "To meet data residency rules, a company must ensure that users in Germany are always served by its application stack in eu-central-1, while all other users are served by a stack in us-east-1. Which Route 53 configuration meets this requirement?",
+  "options": [
+   "Latency-based routing with one record for eu-central-1 and one for us-east-1",
+   "Geoproximity routing with a large positive bias on the eu-central-1 record",
+   "Weighted routing that sends 90 percent of traffic to the eu-central-1 record",
+   "Geolocation routing with a Germany record and a default record for us-east-1"
+  ],
+  "answer": 3,
+  "explanation": "Geolocation routing answers based on the user's country, so German users always receive the eu-central-1 record and the default record serves everyone else. Latency routing can send users to either Region as conditions change, and a geoproximity bias would also pull in users from neighboring countries.",
+  "domain": "saa1",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-103",
+  "question": "A company connects its data center to a VPC with AWS Direct Connect. On-premises servers must resolve DNS names that are defined in a Route 53 private hosted zone associated with that VPC. Which solution meets this requirement?",
+  "options": [
+   "Create a Route 53 Resolver outbound endpoint with a forwarding rule for the on-premises domain",
+   "Create a Route 53 Resolver inbound endpoint and forward on-premises DNS queries to it",
+   "Associate the private hosted zone with the on-premises network through Direct Connect",
+   "Convert the private hosted zone into a public hosted zone that allows only company IP ranges"
+  ],
+  "answer": 1,
+  "explanation": "An inbound endpoint gives on-premises DNS servers IP addresses inside the VPC to which they forward queries for private hosted zone names. An outbound endpoint works in the opposite direction, letting resources in the VPC resolve on-premises domain names.",
+  "domain": "saa3",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-104",
+  "question": "A company uses a Route 53 health check for a public web server, but the check reports the server as unhealthy even though the application is running. The check uses HTTPS with string matching, and the server sits behind an on-premises firewall with an IP allowlist. Which TWO issues could cause the failed health check? (Choose TWO.)",
+  "options": [
+   "The endpoint presents a self-signed TLS certificate to the health checkers",
+   "The firewall does not allow the Route 53 health checker IP ranges",
+   "The DNS record for the site uses a TTL of 300 seconds instead of 60",
+   "The search string appears only after the first 5,120 bytes of the body",
+   "The health check uses the standard 30-second interval instead of fast checks"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Health checkers probe from AWS locations, so the firewall must allow their published IP ranges, and string matching searches only the first 5,120 bytes of the response body. HTTPS health checks do not validate certificates, and the record TTL and check interval do not cause failures.",
+  "domain": "saa2",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-q-105",
+  "question": "An e-commerce application runs on EC2 instances in an Auto Scaling group behind an Application Load Balancer. Customers lose their shopping carts when instances are terminated during scale-in. Which TWO solutions keep cart data while allowing the web tier to scale freely? (Choose TWO.)",
+  "options": [
+   "Store session data in Amazon ElastiCache",
+   "Enable sticky sessions on the load balancer",
+   "Store session data in Amazon DynamoDB",
+   "Store session data on each instance's EBS volume",
+   "Increase the target group deregistration delay"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "A shared session store such as ElastiCache or DynamoDB makes the web instances stateless, so any instance can serve any user and scale-in loses nothing. Sticky sessions still tie each user to one instance, so the cart disappears when that instance terminates.",
+  "domain": "saa2",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-106",
+  "question": "EC2 instances in an Auto Scaling group take about 15 minutes to become ready because their user data script installs operating system updates, the application, and its dependencies at boot. The company needs new instances to start serving traffic much sooner during scale-out. What should a solutions architect do?",
+  "options": [
+   "Launch from a golden AMI that already has the updates and application installed",
+   "Increase the Auto Scaling group health check grace period to cover the full boot time",
+   "Change the launch template to a larger instance type with more vCPUs and memory",
+   "Enable detailed monitoring so that scaling alarms react to demand more quickly"
+  ],
+  "answer": 0,
+  "explanation": "A golden AMI already contains the updates and the application, so new instances boot ready to serve and user data handles only quick, instance-specific settings. A longer grace period hides slow boots instead of fixing them, and faster alarms or bigger instances do not remove the long installation.",
+  "domain": "saa3",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-107",
+  "question": "A small team wants to deploy a Java web application by uploading only its code. AWS should handle the load balancer, Auto Scaling, and health monitoring, but the team must keep full access to the underlying EC2 instances and their configuration, without containerizing the application. Which solution meets these requirements?",
+  "options": [
+   "AWS CloudFormation templates that define the load balancer and Auto Scaling group",
+   "An AWS Elastic Beanstalk environment with a load balancer and Auto Scaling",
+   "An Auto Scaling group built from a launch template that the team maintains",
+   "Amazon ECS on AWS Fargate behind an Application Load Balancer"
+  ],
+  "answer": 1,
+  "explanation": "Elastic Beanstalk takes uploaded code and provisions the load balancer, Auto Scaling group, and health monitoring, while the EC2 instances stay visible and configurable. CloudFormation or a hand-built Auto Scaling group means maintaining infrastructure yourself, and Fargate needs containers and hides the instances.",
+  "domain": "saa2",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-108",
+  "question": "A development team deploys a web application with AWS Elastic Beanstalk. The development environment should cost as little as possible, while production must be highly available across multiple Availability Zones. Which configuration meets these requirements?",
+  "options": [
+   "Load-balanced, multi-AZ environments for development and production",
+   "Single-instance environments for development and production",
+   "Single-instance for development, load-balanced multi-AZ for production",
+   "Worker environment for development, single-instance for production"
+  ],
+  "answer": 2,
+  "explanation": "Elastic Beanstalk itself is free; you pay for the resources it creates. A single-instance environment avoids load balancer and extra instance costs in development, while a load-balanced environment with Auto Scaling across multiple Availability Zones gives production high availability.",
+  "domain": "saa4",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-q-109",
+  "question": "A streaming company distributes licensed videos through Amazon CloudFront. Its licensing agreements forbid viewers in three specific countries from accessing the content. Which solution meets this requirement with the LEAST operational overhead?",
+  "options": [
+   "Use Route 53 geolocation routing to return no answer for those countries",
+   "Add an S3 bucket policy that denies the IP address ranges of those countries",
+   "Set an AWS Global Accelerator traffic dial of zero for those countries",
+   "Enable CloudFront geographic restrictions with a blocklist of those countries"
+  ],
+  "answer": 3,
+  "explanation": "CloudFront geographic restrictions block requests by viewer country at the edge with a simple blocklist or allowlist. Route 53 geolocation only changes DNS answers, so viewers could still reach the distribution another way, and maintaining country IP ranges yourself is error-prone.",
+  "domain": "saa1",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-q-110",
+  "question": "A company wants Amazon CloudFront to be the only entry point to a web application that runs behind an Application Load Balancer. The load balancer must not be reachable from the internet at all. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Keep the load balancer internet-facing and allow only the CloudFront managed prefix list",
+   "Place the load balancer in private subnets and add it to CloudFront as a VPC origin",
+   "Attach an origin access control to the load balancer origin in the distribution",
+   "Keep the load balancer internet-facing and enable geo restriction on the distribution"
+  ],
+  "answer": 1,
+  "explanation": "CloudFront VPC origins reach a load balancer or EC2 instance in private subnets over a private connection, so the origin has no public exposure. A prefix list in the security group narrows access, but the load balancer stays internet-facing. Origin access control applies to origins such as S3, not load balancers.",
+  "domain": "saa1",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-q-111",
+  "question": "A company uses Amazon CloudFront to deliver its website. Almost all of its users are in North America and Europe. The company wants to lower its CloudFront costs and accepts slightly higher latency for the few users elsewhere. What should a solutions architect do?",
+  "options": [
+   "Change the distribution to Price Class All",
+   "Change the distribution to Price Class 100",
+   "Enable Origin Shield in the Region closest to the origin",
+   "Replace CloudFront with S3 Cross-Region Replication"
+  ],
+  "answer": 1,
+  "explanation": "Price Class 100 serves viewers only from the least expensive edge locations, covering North America, Europe, and Israel, while users elsewhere are still served with somewhat higher latency. Price Class All uses every edge location, including the most expensive ones, and Origin Shield adds cost rather than removing it.",
+  "domain": "saa4",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-q-112",
+  "question": "A company deploys updated CSS and JavaScript files several times a day to an S3 origin behind Amazon CloudFront. It currently submits an invalidation for every changed file after each deployment, which adds cost. Users must get new files right away, and the cache hit ratio must stay high. Which approach is MOST cost-effective?",
+  "options": [
+   "Invalidate every file in the distribution after each deployment",
+   "Enable S3 Versioning on the origin bucket to track the changes",
+   "Set the default, minimum, and maximum TTL values to zero",
+   "Use versioned file names and update the references to them"
+  ],
+  "answer": 3,
+  "explanation": "Versioned file names, such as a new name for each build, are fetched as new objects immediately and need no invalidation, so other files keep caching well. Invalidating everything empties the cache, a zero TTL sends every request to the origin, and S3 Versioning does not change what CloudFront has cached.",
+  "domain": "saa4",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-q-113",
+  "question": "A gaming company runs UDP-based multiplayer game servers behind Network Load Balancers in three AWS Regions. Players worldwide report high latency and jitter. The company also needs a small, fixed set of IP addresses that partners can allowlist. Which solution meets these requirements?",
+  "options": [
+   "Deploy AWS Global Accelerator with an endpoint group for each Region",
+   "Deploy an Amazon CloudFront distribution with the load balancers as origins",
+   "Use Route 53 latency-based routing to the three load balancers",
+   "Assign Elastic IP addresses to the load balancers in each Region"
+  ],
+  "answer": 0,
+  "explanation": "Global Accelerator provides two static anycast IP addresses and carries TCP and UDP traffic over the AWS global network from the nearest edge location, cutting latency and jitter. CloudFront does not proxy UDP game traffic, and Route 53 latency routing gives neither fixed IP addresses nor an optimized network path.",
+  "domain": "saa3",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-q-114",
+  "question": "A company serves a static website through Amazon CloudFront from an S3 bucket in us-east-1. S3 Cross-Region Replication keeps a copy of the bucket in us-west-2. If the primary bucket returns server errors, CloudFront must automatically serve content from the replica. Which solution meets this requirement with the LEAST operational overhead?",
+  "options": [
+   "Route 53 failover routing between the two S3 website endpoints",
+   "AWS Global Accelerator with an endpoint group for each S3 bucket",
+   "A CloudFront origin group with the replica bucket as the secondary origin",
+   "A Lambda@Edge function that rewrites the origin whenever errors occur"
+  ],
+  "answer": 2,
+  "explanation": "An origin group makes CloudFront retry a failed GET or HEAD request against the secondary origin when the primary returns chosen error codes, with no custom code. Global Accelerator does not support S3 buckets as endpoints, and a Lambda@Edge rewrite adds code to build and maintain.",
+  "domain": "saa2",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-q-115",
+  "question": "A company serves files from a private Amazon S3 bucket through an Amazon CloudFront distribution. Users must be able to download the files only through CloudFront, never directly from S3. Which TWO steps should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Enable S3 Transfer Acceleration and use its endpoint as the origin",
+   "Create an origin access control and attach it to the S3 origin",
+   "Use the bucket's S3 static website endpoint as the origin",
+   "Turn on CloudFront geo restriction with a country allowlist",
+   "Update the bucket policy to allow only the CloudFront distribution"
+  ],
+  "answer": [
+   1,
+   4
+  ],
+  "explanation": "Origin access control signs CloudFront's requests to S3, and the bucket policy lets only the CloudFront service principal for that distribution read objects, so Block Public Access can stay on. A static website endpoint is a custom origin that cannot use origin access control and needs public objects.",
+  "domain": "saa1",
+  "section": "saa-15"
+ }
+]

@@ -1,0 +1,506 @@
+[
+ {
+  "id": "clf-q-176",
+  "question": "A company is designing a new three-tier application and wants to estimate its monthly AWS bill BEFORE deploying any resources. Which AWS tool should it use?",
+  "options": [
+   "AWS Cost Explorer",
+   "AWS Trusted Advisor",
+   "AWS Budgets",
+   "AWS Pricing Calculator"
+  ],
+  "answer": 3,
+  "explanation": "AWS Pricing Calculator lets you model services you have not built yet and produces a cost estimate you can share. Cost Explorer is tempting, but it only analyzes and forecasts spending from resources that already exist in your account.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-177",
+  "question": "A startup wants an email alert when its actual or forecasted monthly AWS costs go above a limit it sets. Which service should it use?",
+  "options": [
+   "AWS Cost Explorer",
+   "AWS Pricing Calculator",
+   "AWS Budgets",
+   "AWS Trusted Advisor"
+  ],
+  "answer": 2,
+  "explanation": "AWS Budgets tracks actual and forecasted costs or usage against a threshold you set and sends alerts by email or Amazon SNS. Cost Explorer shows spending trends and forecasts, but it does not send threshold alerts on its own.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-178",
+  "question": "A large enterprise wants a designated Technical Account Manager (TAM) who knows its workloads and provides proactive guidance. Which AWS Support plan should it choose?",
+  "options": [
+   "Basic Support",
+   "Enterprise Support",
+   "Business Support+",
+   "Developer Support"
+  ],
+  "answer": 1,
+  "explanation": "Enterprise Support includes a designated Technical Account Manager for proactive architecture and operations guidance. Business Support+ gives around-the-clock access to AWS experts but no TAM. Basic and Developer Support never include a TAM.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-179",
+  "question": "A company has 12 AWS accounts in AWS Organizations with consolidated billing. How does consolidated billing help the company lower its costs?",
+  "options": [
+   "Combined usage reaches volume pricing tiers sooner",
+   "Data transfer between member accounts becomes free",
+   "Every member account gets Business Support+ free",
+   "Idle On-Demand instances switch to Spot pricing"
+  ],
+  "answer": 0,
+  "explanation": "Consolidated billing treats all accounts as one for pricing, so combined usage reaches volume discount tiers faster, and Reserved Instance and Savings Plans discounts can be shared across accounts. It does not make cross-account data transfer free, and it includes no support plan upgrade.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-180",
+  "question": "A company will run a steady web server workload 24 hours a day for the next 3 years and cannot tolerate interruptions. Which EC2 pricing option is MOST cost-effective?",
+  "options": [
+   "On-Demand Instances",
+   "Spot Instances",
+   "3-year Reserved Instances",
+   "On-Demand Capacity Reservations"
+  ],
+  "answer": 2,
+  "explanation": "For a steady, always-on workload, 3-year Reserved Instances, like Savings Plans, save up to 72 percent compared with On-Demand. Spot is cheaper but can be interrupted with a two-minute warning. On-Demand Capacity Reservations guarantee capacity but are billed at full On-Demand rates.",
+  "domain": "domain4",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-q-181",
+  "question": "A company wants automated checks of its AWS account that flag idle resources, security groups open to the world, and services close to their quotas. Which service should it use?",
+  "options": [
+   "Amazon CloudWatch",
+   "AWS Config",
+   "AWS Well-Architected Tool",
+   "AWS Trusted Advisor"
+  ],
+  "answer": 3,
+  "explanation": "Trusted Advisor inspects your account against best practices in six categories: cost optimization, performance, security, fault tolerance, service limits, and operational excellence. AWS Config evaluates resource configurations against rules, but it does not find idle resources or track service quotas.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-182",
+  "question": "A student creates a new AWS account in 2026 to learn AWS. Which statement about the AWS Free Tier for this new account is correct?",
+  "options": [
+   "It offers sign-up credits plus always-free monthly allowances",
+   "It gives 12 months of free usage for EC2, S3, and RDS",
+   "It provides unlimited free usage of every service for a year",
+   "It includes free Business Support+ for the first six months"
+  ],
+  "answer": 0,
+  "explanation": "Since July 2025, new accounts get 100 US dollars in credits, can earn 100 more by completing activities, and keep over 30 always-free monthly allowances. The old 12-month free offers for services like EC2 and S3 no longer apply to new accounts.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-183",
+  "question": "A company copies 50 TB of files from its data center into Amazon S3 over the internet. How is the inbound data transfer charged?",
+  "options": [
+   "Per GB transferred into AWS",
+   "It is free of charge",
+   "A flat monthly transfer fee",
+   "Per hour of network connection"
+  ],
+  "answer": 1,
+  "explanation": "Data transferred into AWS from the internet is free. You pay for data transferred out to the internet, and S3 still charges for storage and for requests such as uploads. Remember: data in is free, data out costs money.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-184",
+  "question": "Which of these AWS Free Tier offers is an Always Free monthly allowance that never expires?",
+  "options": [
+   "Amazon RDS, 750 instance hours per month",
+   "Amazon EC2, 750 instance hours per month",
+   "AWS Lambda, 1 million requests per month",
+   "Amazon S3, 5 GB of Standard storage"
+  ],
+  "answer": 2,
+  "explanation": "AWS Lambda includes 1 million free requests and 400,000 GB-seconds of compute every month, with no end date. The EC2, RDS, and S3 allowances were 12-month offers under the old Free Tier. New accounts now cover those services with Free Tier credits instead.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-185",
+  "question": "A developer signs up for AWS on the free account plan to build a proof of concept. What happens when six months pass or the credits run out, whichever comes first?",
+  "options": [
+   "The account automatically moves to the paid plan",
+   "Credits reset and a new six-month period begins",
+   "Usage continues at standard pay-as-you-go rates",
+   "The account closes unless it is upgraded to paid"
+  ],
+  "answer": 3,
+  "explanation": "The free account plan never charges you. When it ends, AWS closes the account and keeps your data for 90 days, during which you can upgrade to the paid plan to reopen it. There is no automatic upgrade and no surprise billing.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-186",
+  "question": "A company on the paid account plan has used up its Free Tier credits. Its AWS Lambda usage then goes beyond the always-free monthly allowance. What happens?",
+  "options": [
+   "The extra usage is billed at standard pay-as-you-go rates",
+   "The functions are throttled until the next month begins",
+   "The account is suspended until the next billing cycle",
+   "AWS sends a warning email but never charges for it"
+  ],
+  "answer": 0,
+  "explanation": "On the paid plan, usage beyond the always-free allowances and any remaining credits is billed at normal pay-as-you-go rates. AWS does not throttle or suspend your resources to keep you free, so set up AWS Budgets alerts to avoid surprise bills.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-187",
+  "question": "A finance manager wants to see how the company's AWS spending changed over the last six months and forecast next month's costs. Which tool should they use?",
+  "options": [
+   "AWS Pricing Calculator",
+   "AWS Cost Explorer",
+   "AWS Budgets",
+   "AWS Trusted Advisor"
+  ],
+  "answer": 1,
+  "explanation": "Cost Explorer visualizes historical costs and usage with filters and grouping, and forecasts future spending. AWS Budgets also uses forecasts, but its job is alerting when you cross a threshold, not exploring past trends. Pricing Calculator only estimates workloads you have not deployed yet.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-188",
+  "question": "A finance team needs the MOST detailed, line-item data about the company's AWS costs and usage, delivered to Amazon S3 for analysis with Amazon Athena. What should it use?",
+  "options": [
+   "AWS Cost Explorer",
+   "AWS Budgets reports",
+   "AWS Cost and Usage Report",
+   "AWS Billing Dashboard"
+  ],
+  "answer": 2,
+  "explanation": "The Cost and Usage Report is the most granular billing data AWS provides, with hourly or daily line items delivered to an S3 bucket, where Amazon Athena can query it. Cost Explorer and the Billing Dashboard show summarized views, not every individual line item.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-189",
+  "question": "A small company needs around-the-clock phone, chat, and email access to AWS experts for production issues, at the LOWEST cost. Which support plan should it choose?",
+  "options": [
+   "Basic Support",
+   "Developer Support",
+   "Enterprise Support",
+   "Business Support+"
+  ],
+  "answer": 3,
+  "explanation": "Business Support+ is the lowest-cost plan with around-the-clock phone, chat, and email access to AWS experts, and it replaces the classic Business plan. Developer Support offers only business-hours web and email access and ends on January 1, 2027. Enterprise also qualifies but costs far more.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-190",
+  "question": "A company on AWS Enterprise Support has a business-critical system down. What is the target initial response time for this support case?",
+  "options": [
+   "Within 1 hour",
+   "Within 15 minutes",
+   "Within 5 minutes",
+   "Within 30 minutes"
+  ],
+  "answer": 1,
+  "explanation": "Enterprise Support targets a response within 15 minutes for business-critical system-down cases. Thirty minutes is the critical-case target for Business Support+, one hour is the target for production systems down, and five minutes is reserved for the Unified Operations plan.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-191",
+  "question": "A company on Basic Support can see only a few AWS Trusted Advisor checks. It wants the full set, including cost optimization checks, at the LOWEST cost. What should it do?",
+  "options": [
+   "Upgrade to Business Support+",
+   "Upgrade to Developer Support",
+   "Upgrade to Enterprise Support",
+   "Buy a separate Trusted Advisor subscription"
+  ],
+  "answer": 0,
+  "explanation": "Basic and Developer Support include only core Trusted Advisor checks: all service limits checks plus a few security and fault tolerance checks. Business Support+ is the lowest-cost plan that unlocks every check. Enterprise also does but costs more, and Trusted Advisor is never sold separately.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-192",
+  "question": "An enterprise wants a dedicated team of AWS billing and account experts to help resolve invoice and account questions quickly. Which AWS offering provides this?",
+  "options": [
+   "AWS Professional Services",
+   "A Technical Account Manager",
+   "AWS Partner Network consultants",
+   "The AWS Concierge Support team"
+  ],
+  "answer": 3,
+  "explanation": "The Concierge Support team is a group of billing and account specialists included with Enterprise Support. A Technical Account Manager is tempting, but a TAM focuses on technical and architectural guidance, not invoices and account administration.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-193",
+  "question": "A company has 30 AWS accounts. It wants to manage them centrally, apply guardrail policies to groups of accounts, and pay a single bill. Which service should it use?",
+  "options": [
+   "AWS IAM Identity Center",
+   "AWS Resource Access Manager",
+   "AWS Organizations",
+   "AWS Service Catalog"
+  ],
+  "answer": 2,
+  "explanation": "AWS Organizations groups accounts into organizational units, applies service control policies, and provides consolidated billing with one bill. IAM Identity Center is tempting because it spans accounts, but it only manages workforce sign-in and permissions, not guardrail policies or billing.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-194",
+  "question": "A company wants to apply the same service control policy to all of its development accounts at once. What should it create in AWS Organizations?",
+  "options": [
+   "An IAM group",
+   "An organizational unit",
+   "A cost allocation tag",
+   "A resource group"
+  ],
+  "answer": 1,
+  "explanation": "An organizational unit, or OU, groups accounts inside an organization. A service control policy attached to an OU applies to every account in it, such as all development accounts. An IAM group is tempting, but it groups users inside one account, not accounts.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-195",
+  "question": "Amazon S3 charges less per GB as a company stores more data each month. Which AWS pricing principle does this illustrate?",
+  "options": [
+   "Pay less by using more",
+   "Pay as you go",
+   "Save when you commit",
+   "Pay less as AWS grows"
+  ],
+  "answer": 0,
+  "explanation": "Pay less by using more means tiered, volume-based pricing: the per-unit price drops as your usage grows, as with S3 storage and data transfer out. Pay less as AWS grows is different; it describes AWS cutting prices over time thanks to economies of scale.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-196",
+  "question": "A company is reviewing its AWS data transfer bill. Which traffic pattern incurs a data transfer charge?",
+  "options": [
+   "Data coming in from the internet to an EC2 instance",
+   "Data between EC2 and Amazon S3 in the same Region",
+   "Data between instances in one AZ using private IPs",
+   "Data between instances in different AZs in one Region"
+  ],
+  "answer": 3,
+  "explanation": "Traffic between Availability Zones in the same Region is charged per GB in each direction. Inbound internet traffic is free, as is traffic between EC2 and S3 in the same Region and private IP traffic within one Availability Zone. Remember: cross-AZ traffic costs money.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-197",
+  "question": "A company runs large batch processing jobs at unpredictable times. The jobs can be stopped and restarted without problems. Which EC2 purchasing option is MOST cost-effective?",
+  "options": [
+   "On-Demand Instances",
+   "Reserved Instances",
+   "Spot Instances",
+   "Dedicated Hosts"
+  ],
+  "answer": 2,
+  "explanation": "Spot Instances use spare EC2 capacity at up to 90 percent off On-Demand prices, ideal for fault-tolerant, interruptible work like batch jobs. Reserved Instances need a steady, predictable workload and a one or three-year commitment, which does not fit unpredictable jobs.",
+  "domain": "domain4",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-q-198",
+  "question": "A company wants discounted compute pricing for the next 3 years but expects to change instance families, move between Regions, and adopt AWS Fargate. Which option offers the MOST flexibility?",
+  "options": [
+   "Standard Reserved Instances",
+   "Convertible Reserved Instances",
+   "EC2 Instance Savings Plans",
+   "Compute Savings Plans"
+  ],
+  "answer": 3,
+  "explanation": "Compute Savings Plans commit to a steady amount of compute spend per hour and apply automatically across instance families, sizes, Regions, and even Fargate and Lambda. Convertible Reserved Instances allow some exchanges but cover only EC2, and EC2 Instance Savings Plans lock you to one family in one Region.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-199",
+  "question": "A company is moving a database to AWS and wants to bring its existing license, which is priced per physical CPU socket and core. Which EC2 option should it use?",
+  "options": [
+   "Dedicated Instances",
+   "Spot Instances",
+   "Dedicated Hosts",
+   "On-Demand Instances"
+  ],
+  "answer": 2,
+  "explanation": "Dedicated Hosts give you a whole physical server with visibility into its sockets and cores, which bring-your-own-license software often requires. Dedicated Instances also run on single-tenant hardware, but you cannot see or control the physical host, so they do not meet per-socket licensing rules.",
+  "domain": "domain4",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-q-200",
+  "question": "A company wants machine learning based recommendations for the best EC2 instance types and sizes, based on each workload's actual CPU and memory use. Which service should it use?",
+  "options": [
+   "AWS Trusted Advisor",
+   "AWS Pricing Calculator",
+   "AWS Budgets",
+   "AWS Compute Optimizer"
+  ],
+  "answer": 3,
+  "explanation": "Compute Optimizer uses machine learning on utilization metrics to recommend optimal EC2 instance types, and also covers Auto Scaling groups, EBS volumes, and Lambda functions. Trusted Advisor is tempting, but it runs broad best-practice checks, while Compute Optimizer is built for detailed right-sizing recommendations.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-201",
+  "question": "An independent software vendor wants AWS customers to find, buy, and launch its product, with the charges appearing on the customers' AWS bills. Where should the vendor list it?",
+  "options": [
+   "AWS Service Catalog",
+   "AWS Professional Services",
+   "AWS Marketplace",
+   "AWS Artifact"
+  ],
+  "answer": 2,
+  "explanation": "AWS Marketplace is a curated digital catalog where vendors sell software, data, and services that customers deploy on AWS and pay for through their AWS bill. Service Catalog is tempting, but it is an internal catalog an organization uses to offer its own approved products to its users.",
+  "domain": "domain4",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-q-202",
+  "question": "A company is estimating its Amazon S3 bill. Which set of factors does Amazon S3 charge for?",
+  "options": [
+   "A monthly fee per bucket plus GB stored",
+   "GB stored, requests, and data transferred out",
+   "Provisioned capacity per hour and data in",
+   "Number of users and number of buckets"
+  ],
+  "answer": 1,
+  "explanation": "S3 bills for the GB stored each month, which varies by storage class, for requests and retrievals, and for data transferred out. There is no charge per bucket or per user, and data transferred in from the internet is free.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-203",
+  "question": "A company is moving a small API to AWS Lambda and wants to understand the bill. How is Lambda priced?",
+  "options": [
+   "By number of requests and compute duration",
+   "By instance hours, even when the function is idle",
+   "By a flat monthly fee for each function",
+   "By the number of users who call the function"
+  ],
+  "answer": 0,
+  "explanation": "Lambda charges per request and for compute duration, measured in GB-seconds based on the memory you allocate. You pay nothing while functions sit idle, and the always-free allowance covers 1 million requests and 400,000 GB-seconds each month. Instance-hour billing applies to EC2, not Lambda.",
+  "domain": "domain4",
+  "section": "clf-10"
+ },
+ {
+  "id": "clf-q-204",
+  "question": "Several projects share one AWS account. The finance team wants each month's costs broken down by project and department. What should the company use?",
+  "options": [
+   "AWS Budgets",
+   "Consolidated billing",
+   "AWS Pricing Calculator",
+   "Cost allocation tags"
+  ],
+  "answer": 3,
+  "explanation": "Cost allocation tags are key-value labels on resources, such as Project or Department. Once activated in the Billing console, costs can be grouped by tag in Cost Explorer and the Cost and Usage Report. Consolidated billing splits costs by account, which does not help when projects share one account.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-205",
+  "question": "A company's development EC2 instances run 24 hours a day but are used only about 40 hours per week. It wants to cut costs without any long-term commitment. Which action is MOST cost-effective?",
+  "options": [
+   "Buy Reserved Instances covering all of them",
+   "Move them to a cheaper AWS Region instead",
+   "Schedule them to stop outside work hours",
+   "Run them on Dedicated Hosts instead of shared"
+  ],
+  "answer": 2,
+  "explanation": "You pay nothing for compute while an EC2 instance is stopped, so scheduling dev instances to stop outside work hours removes most of their cost, though attached EBS storage is still billed. Reserved Instances also lower rates, but they need a one or three-year commitment and assume constant use.",
+  "domain": "domain4",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-q-206",
+  "question": "A company wants a data-driven business case that compares the cost of its current on-premises servers with running them on AWS. Which AWS service should it use?",
+  "options": [
+   "AWS Cost Explorer",
+   "AWS Migration Evaluator",
+   "AWS Application Discovery Service",
+   "AWS Application Migration Service"
+  ],
+  "answer": 1,
+  "explanation": "Migration Evaluator, formerly TSO Logic, analyzes your on-premises inventory and utilization and builds a business case projecting AWS costs. It replaces the retired TCO Calculator. Application Discovery Service also collects server data, but it is for migration planning, not cost comparison.",
+  "domain": "domain4",
+  "section": "clf-20"
+ },
+ {
+  "id": "clf-q-207",
+  "question": "A new startup wants AWS support that costs nothing extra. Which support plan is included with every AWS account at no charge?",
+  "options": [
+   "Basic Support",
+   "Enterprise Support",
+   "Business Support+",
+   "Developer Support"
+  ],
+  "answer": 0,
+  "explanation": "Basic Support is free for every account. It includes customer service for account and billing questions, documentation, AWS re:Post, the AWS Health Dashboard, and core Trusted Advisor checks. It does not include technical support cases; for those you need a paid plan such as Business Support+.",
+  "domain": "domain4",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-208",
+  "question": "A company's application logs in Amazon S3 are read often for 30 days, then only a few times a month. Older logs must still open in milliseconds, and the data must survive the loss of an Availability Zone. What is the MOST cost-effective approach?",
+  "options": [
+   "A Lifecycle rule moving logs to S3 One Zone-IA after 30 days",
+   "A Lifecycle rule moving logs to S3 Standard-IA after 30 days",
+   "A Lifecycle rule moving logs to Glacier Deep Archive after 30 days",
+   "Keeping every log in S3 Standard with versioning enabled"
+  ],
+  "answer": 1,
+  "explanation": "S3 Standard-IA costs less to store than Standard, keeps millisecond access, and stores data across multiple Availability Zones. One Zone-IA is tempting because it is cheaper, but it keeps data in a single zone, failing the resilience need. Glacier Deep Archive needs hours to restore.",
+  "domain": "domain4",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-q-209",
+  "question": "A developer on the Basic Support plan has a technical question about configuring Amazon S3. Where can the developer get answers from the AWS community and AWS experts at no extra cost?",
+  "options": [
+   "AWS re:Post",
+   "A technical support case",
+   "AWS Trusted Advisor",
+   "AWS Health Dashboard"
+  ],
+  "answer": 0,
+  "explanation": "AWS re:Post is a free, community-driven question and answer service where AWS experts and community members answer technical questions. Opening a technical support case is tempting, but Basic Support covers only account and billing cases, so technical cases need a paid plan. Trusted Advisor runs automated account checks instead.",
+  "domain": "domain4",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-q-210",
+  "question": "An EC2 instance averages 5 percent CPU utilization. The company wants to lower its cost without hurting performance. What should it do FIRST?",
+  "options": [
+   "Right-size it to a smaller instance type",
+   "Buy a Reserved Instance for its current size",
+   "Move it to a Dedicated Host",
+   "Place it behind an Application Load Balancer"
+  ],
+  "answer": 0,
+  "explanation": "Right-sizing means matching instance type and size to actual workload needs, so you stop paying for idle capacity. Always right-size before buying Reserved Instances or Savings Plans; otherwise you lock in a discount on an oversized instance for years.",
+  "domain": "domain4",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-q-211",
+  "question": "An operations team wants alerts about AWS service issues and scheduled maintenance that affect its own resources, such as an EC2 instance scheduled for retirement. Which service should it use?",
+  "options": [
+   "AWS Trusted Advisor",
+   "AWS Health Dashboard",
+   "Amazon CloudWatch",
+   "AWS CloudTrail"
+  ],
+  "answer": 1,
+  "explanation": "The AWS Health Dashboard, formerly the Personal Health Dashboard, gives a personalized view of AWS events affecting your account, including scheduled maintenance and instance retirements. CloudWatch is tempting, but it monitors your own metrics and logs, not AWS-side service events.",
+  "domain": "domain4",
+  "section": "clf-14"
+ }
+]

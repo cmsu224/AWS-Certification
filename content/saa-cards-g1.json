@@ -1,0 +1,184 @@
+[
+ {
+  "id": "saa-c-042",
+  "term": "IAM role for EC2",
+  "definition": "An instance profile delivers temporary, auto-rotated role credentials to an EC2 instance. Remember: never store access keys on instances; attach a role instead.",
+  "category": "security",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-c-043",
+  "term": "Credentials report vs Access Advisor",
+  "definition": "Credentials report lists every user and their password, key and MFA status account-wide. Access Advisor shows which services one identity actually used, to trim permissions.",
+  "category": "security",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-c-044",
+  "term": "Access keys, CLI and SDK",
+  "definition": "Access keys let the CLI and SDKs call AWS as an IAM user. Treat them like passwords. Remember: prefer roles and CloudShell over long-term keys.",
+  "category": "security",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-c-045",
+  "term": "Permissions boundary",
+  "definition": "A managed policy that sets the maximum permissions a user or role can get. It grants nothing by itself. Remember: stops developers creating over-privileged roles.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-046",
+  "term": "Service control policy",
+  "definition": "Organizations guardrail that limits what member accounts can do, even their root users. It grants nothing and never affects the management account.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-047",
+  "term": "IAM policy evaluation logic",
+  "definition": "An explicit deny anywhere wins. Otherwise the action must pass organization policies, permissions boundaries and session policies, and be allowed by an identity or resource-based policy.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-048",
+  "term": "aws:PrincipalOrgID condition",
+  "definition": "Condition key that allows access only to principals from accounts in your organization. Remember: one bucket policy line covers all current and future accounts.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-049",
+  "term": "Resource-based policy vs role",
+  "definition": "Assuming a role replaces your original permissions for that session. A resource-based policy lets you keep them. Remember: needed to read in one account and write in another.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-050",
+  "term": "Tag policies",
+  "definition": "Organizations policies that standardize tag keys, capitalization and allowed values across accounts and report noncompliant resources. Remember: fixes messy cost allocation tags.",
+  "category": "management",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-051",
+  "term": "IAM Identity Center",
+  "definition": "Formerly AWS SSO. One sign-in for all accounts in an organization and business apps, using permission sets. Identity source: built-in, Active Directory, or an external provider like Entra ID.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-052",
+  "term": "AWS Managed Microsoft AD",
+  "definition": "Real Microsoft Active Directory run by AWS across two Availability Zones. Supports trusts with on-premises AD. Users stored in it can still sign in if the on-premises link fails.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-053",
+  "term": "AD Connector vs Simple AD",
+  "definition": "AD Connector is a proxy to on-premises AD and stores nothing in AWS. Simple AD is a cheap standalone directory that cannot trust on-premises AD.",
+  "category": "security",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-054",
+  "term": "AWS Control Tower",
+  "definition": "Sets up a governed multi-account landing zone on Organizations. Preventive controls use service control policies, detective controls use AWS Config, with a compliance dashboard.",
+  "category": "management",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-c-055",
+  "term": "KMS key types",
+  "definition": "AWS owned keys are invisible and free. AWS managed keys rotate yearly automatically. Customer managed keys give you key policies, optional rotation and cross-account sharing.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-056",
+  "term": "Envelope encryption",
+  "definition": "KMS Encrypt handles only about 4 kilobytes. For bigger data, GenerateDataKey returns a data key that encrypts locally. Remember: large files mean envelope encryption.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-057",
+  "term": "KMS multi-Region keys",
+  "definition": "Related keys in several Regions sharing one key ID and key material, so data encrypted in one Region decrypts in another. Each replica is managed independently, not global.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-058",
+  "term": "Sharing encrypted AMIs and snapshots",
+  "definition": "Share the AMI or snapshot and grant the other account use of the customer managed key in its key policy. AWS managed keys cannot be shared across accounts.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-059",
+  "term": "S3 Bucket Keys",
+  "definition": "A bucket-level key that generates data keys locally for SSE-KMS. Remember: cuts KMS request costs and throttling for high-volume S3 buckets.",
+  "category": "storage",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-060",
+  "term": "Parameter Store tiers",
+  "definition": "Standard parameters are free, up to 4 kilobytes. Advanced cost extra, allow 8 kilobytes and parameter policies like expiration. SecureString encrypts with KMS. No built-in rotation.",
+  "category": "management",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-061",
+  "term": "AWS Secrets Manager",
+  "definition": "Stores secrets with a per-secret monthly charge and rotates them automatically, natively for RDS, Aurora, Redshift and DocumentDB. Remember: rotation requirement means Secrets Manager.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-062",
+  "term": "ACM certificates",
+  "definition": "Free public TLS certificates that auto-renew on load balancers, CloudFront and API Gateway. Imported certificates do not auto-renew. Remember: CloudFront certificates must be in us-east-1.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-063",
+  "term": "AWS CloudHSM",
+  "definition": "Single-tenant hardware security modules in your VPC. You alone manage the keys; AWS cannot see them. Remember: exclusive control or dedicated HSM means CloudHSM.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-064",
+  "term": "AWS WAF",
+  "definition": "Layer 7 firewall with web ACLs on CloudFront, Application Load Balancer, API Gateway, AppSync and Cognito. Blocks SQL injection, cross-site scripting, geographies and floods with rate-based rules.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-065",
+  "term": "Shield Standard vs Advanced",
+  "definition": "Standard is free, automatic layer 3 and 4 protection. Advanced is paid, adds the Shield Response Team, application layer mitigation and DDoS cost protection.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-066",
+  "term": "AWS Firewall Manager",
+  "definition": "Centrally applies WAF rules, Shield Advanced, security groups and Network Firewall policies across all accounts in an organization, including new ones automatically.",
+  "category": "security",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-c-067",
+  "term": "GuardDuty vs Inspector vs Macie",
+  "definition": "GuardDuty detects threats from logs like crypto mining. Inspector scans EC2, container images and Lambda for vulnerabilities. Macie finds personal data in S3.",
+  "category": "security",
+  "section": "saa-26"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "id": "saa-q-001",
+  "question": "A company needs to decouple an order service from an inventory service so that orders are not lost if the inventory service is down. Which solution meets this requirement with the LEAST operational overhead?",
+  "options": [
+   "Amazon SQS standard queue between the services",
+   "An Application Load Balancer in front of the inventory service",
+   "Amazon EC2 instances running RabbitMQ",
+   "AWS Direct Connect between the services"
+  ],
+  "answer": 0,
+  "explanation": "SQS is fully managed and buffers messages durably until the consumer is available — the classic decoupling answer. RabbitMQ on EC2 adds operational overhead; ALB and Direct Connect do not buffer messages.",
+  "domain": "saa2",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-002",
+  "question": "Which TWO actions improve the security of data stored in an Amazon S3 bucket? (Choose TWO.)",
+  "options": [
+   "Enable S3 Block Public Access",
+   "Enable S3 Transfer Acceleration",
+   "Enable default encryption with SSE-KMS",
+   "Enable S3 Requester Pays",
+   "Use S3 Intelligent-Tiering"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "Block Public Access prevents accidental public exposure and SSE-KMS encrypts objects at rest with auditable key usage. Transfer Acceleration, Requester Pays and Intelligent-Tiering are performance/cost features.",
+  "domain": "saa1",
+  "section": "saa-14"
+ }
+]

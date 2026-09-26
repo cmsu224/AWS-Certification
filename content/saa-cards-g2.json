@@ -1,0 +1,163 @@
+[
+ {
+  "id": "saa-c-068",
+  "term": "Spot Instances",
+  "definition": "Spare EC2 capacity at up to 90 percent off On-Demand. AWS can reclaim it with a two-minute warning. Remember: use it only for fault-tolerant, interruptible work like batch jobs.",
+  "category": "compute",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-c-069",
+  "term": "Compute vs EC2 Instance Savings Plans",
+  "definition": "Compute Savings Plans work across any family, Region, Fargate, and Lambda, up to 66 percent off. EC2 Instance Savings Plans lock one family in one Region, up to 72 percent.",
+  "category": "compute",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-c-070",
+  "term": "On-Demand Capacity Reservation",
+  "definition": "Reserves EC2 capacity in one Availability Zone for any length of time, with no term commitment. You pay On-Demand rates whether used or not. Remember: guarantees capacity, not a discount.",
+  "category": "compute",
+  "section": "saa-05"
+ },
+ {
+  "id": "saa-c-071",
+  "term": "Cluster placement group",
+  "definition": "Packs instances close together in one Availability Zone for the lowest latency and highest throughput between them. Remember: ideal for HPC, but one hardware or zone failure hits everything.",
+  "category": "compute",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-c-072",
+  "term": "Spread vs partition placement group",
+  "definition": "Spread: each instance on distinct hardware, max seven running per Availability Zone, for small critical sets. Partition: up to seven rack-separated partitions per zone, for Hadoop, Cassandra, Kafka.",
+  "category": "compute",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-c-073",
+  "term": "Elastic Network Interface (ENI)",
+  "definition": "A virtual network card with its own private IP, MAC address, and security groups, bound to one Availability Zone. Remember: move a secondary ENI to a standby instance for failover.",
+  "category": "network",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-c-074",
+  "term": "EC2 Hibernate",
+  "definition": "Saves RAM to an encrypted EBS root volume, so the instance resumes with memory intact. Must be enabled at launch. Remember: instance store roots cannot hibernate.",
+  "category": "compute",
+  "section": "saa-06"
+ },
+ {
+  "id": "saa-c-075",
+  "term": "EBS volume types at a glance",
+  "definition": "gp3 and gp2 are general purpose SSD. io1 and io2 give sustained high IOPS. st1 suits throughput-heavy big data. sc1 is cheapest for cold data. Only SSD types can boot.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-076",
+  "term": "gp3 vs io2 Block Express",
+  "definition": "gp3 sets IOPS and throughput independently of size, now up to 80,000 IOPS. io2 Block Express reaches 256,000 IOPS with sub-millisecond latency and 99.999 percent durability.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-077",
+  "term": "EBS Multi-Attach",
+  "definition": "Attach one io1 or io2 volume to up to 16 Nitro instances in the same Availability Zone. Needs a cluster-aware file system. Remember: not gp3, and never across zones.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-078",
+  "term": "EC2 instance store",
+  "definition": "Physical disks on the EC2 host with very high IOPS. Data survives a reboot but is lost on stop, hibernate, or termination. Remember: buffers, caches, and scratch data only.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-079",
+  "term": "EBS Snapshots Archive",
+  "definition": "Moves rarely needed snapshots to a tier about 75 percent cheaper. Restoring takes 24 to 72 hours, with a 90-day minimum. Remember: long-term compliance retention.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-080",
+  "term": "EBS Recycle Bin",
+  "definition": "Retention rules keep deleted EBS snapshots and AMIs recoverable for 1 day to 1 year. Remember: the answer for protection against accidental deletion.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-081",
+  "term": "Encrypt an existing EBS volume",
+  "definition": "You cannot encrypt a volume in place. Snapshot it, copy or restore with encryption using a KMS key, then attach the new volume. Encryption by default only covers new volumes.",
+  "category": "security",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-082",
+  "term": "EFS vs EBS",
+  "definition": "EBS is block storage for one instance in one Availability Zone. EFS is a shared NFS file system for many Linux instances across zones. Remember: EFS does not support Windows.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-083",
+  "term": "EFS storage classes",
+  "definition": "Standard for active files, Infrequent Access for files read a few times a quarter, Archive for a few times a year. Lifecycle management moves files between them automatically.",
+  "category": "storage",
+  "section": "saa-07"
+ },
+ {
+  "id": "saa-c-084",
+  "term": "ALB vs NLB vs GWLB",
+  "definition": "ALB is layer 7 HTTP with path and host routing. NLB is layer 4 TCP and UDP with static IPs per zone. GWLB is layer 3, for third-party appliances.",
+  "category": "network",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-c-085",
+  "term": "Cross-zone load balancing",
+  "definition": "Spreads traffic evenly across all registered targets in every zone. ALB: on by default, no inter-zone charge. NLB and GWLB: off by default, inter-zone data is billed.",
+  "category": "network",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-c-086",
+  "term": "ELB sticky sessions",
+  "definition": "Sends a client to the same target each time, using a cookie on ALB or source IP on NLB. Remember: helps with local session state but can unbalance load.",
+  "category": "network",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-c-087",
+  "term": "SNI on load balancers",
+  "definition": "Server Name Indication lets one listener serve many TLS certificates, chosen by hostname. Supported by ALB, NLB, and CloudFront. Remember: Classic Load Balancer allows only one certificate.",
+  "category": "security",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-c-088",
+  "term": "Deregistration delay",
+  "definition": "Also called connection draining. Lets in-flight requests finish before a deregistering target is removed. Default 300 seconds, range 0 to 3600. Set it low for short requests.",
+  "category": "network",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-c-089",
+  "term": "ASG scaling policy types",
+  "definition": "Target tracking holds a metric at a target value. Step and simple scaling react to CloudWatch alarms. Scheduled handles known times. Predictive forecasts recurring patterns from history.",
+  "category": "compute",
+  "section": "saa-08"
+ },
+ {
+  "id": "saa-c-090",
+  "term": "ASG scaling cooldown",
+  "definition": "After a simple scaling activity, the group waits, 300 seconds by default, before scaling again. Target tracking and step policies use instance warmup instead. A golden AMI shortens startup.",
+  "category": "compute",
+  "section": "saa-08"
+ }
+]

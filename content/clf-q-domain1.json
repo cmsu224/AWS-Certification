@@ -1,0 +1,590 @@
+[
+  {
+    "id": "clf-q-001",
+    "question": "A startup does not want to buy servers before it knows whether its product will succeed. It prefers to pay each month only for the computing resources it actually uses. Which benefit of the AWS Cloud does this describe?",
+    "options": [
+      "Benefit from massive economies of scale",
+      "Trade fixed expense for variable expense",
+      "Go global in minutes",
+      "Increase speed and agility"
+    ],
+    "answer": 1,
+    "explanation": "Paying only for what you consume, instead of investing in data centers and servers upfront, is trading fixed expense, also called capital expense, for variable expense. Economies of scale is tempting, but that benefit is about AWS lowering its prices because it operates at huge volume.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-002",
+    "question": "Which statement BEST describes elasticity in the AWS Cloud?",
+    "options": [
+      "Data is encrypted automatically when it is stored",
+      "Workloads keep running when an Availability Zone fails",
+      "Data is copied to multiple Regions for disaster recovery",
+      "Resources scale out and in automatically to match demand"
+    ],
+    "answer": 3,
+    "explanation": "Elasticity means capacity grows when demand rises and shrinks when it falls, usually automatically with Auto Scaling, so you pay only for what you need. Staying up during an Availability Zone failure is high availability, not elasticity.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-003",
+    "question": "Because AWS combines the usage of hundreds of thousands of customers, it runs its infrastructure more cheaply and has lowered its pay-as-you-go prices many times. Which benefit of cloud computing is this?",
+    "options": [
+      "Trade fixed expense for variable expense",
+      "Increase speed and agility",
+      "Benefit from massive economies of scale",
+      "Stop guessing capacity"
+    ],
+    "answer": 2,
+    "explanation": "Economies of scale: AWS buys and operates at enormous volume and passes the savings on as lower prices. Trading fixed for variable expense is related but different. It describes how you pay, only for what you use, rather than why the unit price is low.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-004",
+    "question": "Which statement BEST describes the AWS Well-Architected Framework?",
+    "options": [
+      "A service that automatically fixes misconfigured resources",
+      "A set of best practices organized into six pillars",
+      "A tool that estimates the monthly cost of a workload",
+      "A set of compliance reports that AWS gives to auditors"
+    ],
+    "answer": 1,
+    "explanation": "The Well-Architected Framework is guidance, not a service: best practices and design principles across six pillars. They are Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability. Cost estimates come from the Pricing Calculator, and compliance reports come from AWS Artifact.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-005",
+    "question": "A US gaming company wants to launch game servers in Asia and Europe next week so that players there get lower latency. It does not want to build any data centers. Which benefit of the AWS Cloud does this describe?",
+    "options": [
+      "Go global in minutes",
+      "Increase speed and agility",
+      "Benefit from massive economies of scale",
+      "Stop guessing capacity"
+    ],
+    "answer": 0,
+    "explanation": "Go global in minutes means using existing AWS Regions around the world to deploy close to your users with a few clicks. Speed and agility is tempting, but it is about making resources available to developers quickly, not about worldwide reach and lower latency.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-006",
+    "question": "A startup runs all of its applications on AWS and owns no servers or data centers of its own. Which cloud deployment model is this?",
+    "options": [
+      "Hybrid cloud",
+      "Private cloud",
+      "Multi-cloud",
+      "Public cloud"
+    ],
+    "answer": 3,
+    "explanation": "Public cloud means the infrastructure is owned and operated by a cloud provider such as AWS and delivered over the internet. Hybrid would require keeping some servers on premises, and multi-cloud would mean using more than one cloud provider.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-007",
+    "question": "A company needs to choose its own operating system, install custom software, and control network settings on its servers. Which cloud service model gives the customer the MOST control over these resources?",
+    "options": [
+      "Software as a Service (SaaS)",
+      "Platform as a Service (PaaS)",
+      "Infrastructure as a Service (IaaS)",
+      "Function as a Service (FaaS)"
+    ],
+    "answer": 2,
+    "explanation": "Infrastructure as a Service, such as Amazon EC2, provides the building blocks: servers, networking, and storage. You manage the operating system and everything above it. Platform as a Service hides the operating system, so you only manage your application and data.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-008",
+    "question": "A company wants its workload to recover automatically from infrastructure failures, and it plans to test its recovery procedures regularly. Which pillar of the AWS Well-Architected Framework covers these practices?",
+    "options": [
+      "Security",
+      "Reliability",
+      "Performance Efficiency",
+      "Operational Excellence"
+    ],
+    "answer": 1,
+    "explanation": "Reliability is about a workload performing its intended function correctly and consistently. Its design principles include automatically recovering from failure and testing recovery procedures. Operational Excellence is tempting because it covers running operations, but recovering from failure is a Reliability principle.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-009",
+    "question": "Before moving to AWS, a company bought servers for its highest expected peak, so most sat idle, yet it still ran out of capacity when demand surprised it. Which benefit of cloud computing solves this problem?",
+    "options": [
+      "Stop guessing capacity",
+      "Go global in minutes",
+      "Trade fixed expense for variable expense",
+      "Increase speed and agility"
+    ],
+    "answer": 0,
+    "explanation": "Stop guessing capacity: in the cloud you use as much or as little as you need and scale within minutes, so you avoid both idle servers and shortages. Trading fixed for variable expense is related, but it describes the payment model rather than matching capacity to demand.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-010",
+    "question": "A hospital runs its patient-facing website on AWS but keeps sensitive patient records in its own data center, with the two environments connected. Which cloud deployment model is this?",
+    "options": [
+      "Public cloud",
+      "Private cloud",
+      "Hybrid cloud",
+      "Community cloud"
+    ],
+    "answer": 2,
+    "explanation": "Hybrid cloud connects on-premises infrastructure with public cloud resources, so each workload can run where it fits best. Private cloud is tempting because of the hospital's own data center, but the hospital also runs workloads on AWS.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-011",
+    "question": "A company wants to attribute cloud spending to each team, pay only for the resources it uses, and stop running idle development servers. Which pillar of the AWS Well-Architected Framework provides this guidance?",
+    "options": [
+      "Performance Efficiency",
+      "Operational Excellence",
+      "Cost Optimization",
+      "Sustainability"
+    ],
+    "answer": 2,
+    "explanation": "Cost Optimization is about delivering business value at the lowest price. Its design principles include adopting a consumption model and analyzing and attributing expenditure. Sustainability also reduces idle resources, but its goal is lowering environmental impact, not tracking and cutting spend.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-012",
+    "question": "Gmail, Dropbox, and Zoom are complete applications that the provider runs and manages, and users simply sign in and use them. Which cloud service model is this?",
+    "options": [
+      "Infrastructure as a Service (IaaS)",
+      "Platform as a Service (PaaS)",
+      "Function as a Service (FaaS)",
+      "Software as a Service (SaaS)"
+    ],
+    "answer": 3,
+    "explanation": "Software as a Service delivers a finished product that the provider runs and manages; you just use it. Platform as a Service is tempting, but there you still build and deploy your own application code on the provider's platform.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-013",
+    "question": "With AWS Elastic Beanstalk, developers upload their application code and AWS handles capacity provisioning, load balancing, and scaling. Which cloud service model is this?",
+    "options": [
+      "Infrastructure as a Service (IaaS)",
+      "Platform as a Service (PaaS)",
+      "Software as a Service (SaaS)",
+      "Desktop as a Service (DaaS)"
+    ],
+    "answer": 1,
+    "explanation": "Platform as a Service lets you focus on your application and data while the provider manages the servers, operating system, and scaling underneath. Infrastructure as a Service, such as Amazon EC2 on its own, would leave you managing the operating system and capacity yourself.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-014",
+    "question": "Which statement BEST describes an AWS Region?",
+    "options": [
+      "A single data center that hosts EC2 instances",
+      "A logically isolated virtual network for your resources",
+      "A geographic area containing several Availability Zones",
+      "A site that caches content close to end users"
+    ],
+    "answer": 2,
+    "explanation": "A Region is a separate geographic area, such as Frankfurt or Northern Virginia, made up of multiple isolated Availability Zones. A single data center is smaller than a Region, an isolated virtual network is a VPC, and caching close to users happens at edge locations.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-015",
+    "question": "Which statement BEST describes an Availability Zone?",
+    "options": [
+      "One or more isolated data centers within a Region",
+      "A range of IP addresses inside a virtual private cloud",
+      "A site that caches CloudFront content near viewers",
+      "A separate geographic area, such as Frankfurt"
+    ],
+    "answer": 0,
+    "explanation": "An Availability Zone is one or more discrete data centers with redundant power, networking, and connectivity, physically separated from the other zones in its Region. A geographic area like Frankfurt is a Region, which contains several Availability Zones.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-016",
+    "question": "A media company wants its videos and images to load quickly for viewers around the world by caching copies close to them. Which part of the AWS global infrastructure does this use?",
+    "options": [
+      "Availability Zones",
+      "Edge locations",
+      "AWS Local Zones",
+      "AWS Regions"
+    ],
+    "answer": 1,
+    "explanation": "Edge locations, also called points of presence, are used by Amazon CloudFront to cache content close to viewers for lower latency. Local Zones are tempting, but they run compute and storage near large cities rather than acting as a content cache.",
+    "domain": "domain1",
+    "section": "clf-12"
+  },
+  {
+    "id": "clf-q-017",
+    "question": "A company must keep all customer data inside Germany to meet local data residency laws. Which factor should drive its choice of AWS Region FIRST?",
+    "options": [
+      "Compliance with legal and data governance rules",
+      "Availability of the services and features it needs",
+      "Proximity to customers to reduce latency",
+      "Pricing, which varies from Region to Region"
+    ],
+    "answer": 0,
+    "explanation": "Legal and compliance requirements come first. AWS does not move your content out of the Region you choose, so pick one in the required country. Latency, service availability, and pricing matter too, but only among Regions that already meet the legal requirement.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-018",
+    "question": "A company wants to grant least-privilege access, record who changed what and when, and protect data in transit and at rest. Which pillar of the AWS Well-Architected Framework covers these practices?",
+    "options": [
+      "Operational Excellence",
+      "Cost Optimization",
+      "Reliability",
+      "Security"
+    ],
+    "answer": 3,
+    "explanation": "The Security pillar covers protecting data, systems, and assets. Its design principles include a strong identity foundation with least privilege, traceability, and protecting data in transit and at rest. Operational Excellence also uses logs, but to run and improve operations rather than to protect the workload.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-019",
+    "question": "A team wants to use serverless architectures, deploy to other Regions in minutes, and experiment often with new instance types so the workload keeps meeting demand as technology evolves. Which Well-Architected pillar is this?",
+    "options": [
+      "Security",
+      "Reliability",
+      "Performance Efficiency",
+      "Cost Optimization"
+    ],
+    "answer": 2,
+    "explanation": "Performance Efficiency is about using computing resources efficiently to meet requirements as demand and technology change. Its design principles include using serverless architectures, going global in minutes, and experimenting more often. Cost Optimization is tempting, but its focus is spend, not performance.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-020",
+    "question": "A company wants to reduce the environmental impact of its workloads by maximizing server utilization and choosing Regions with lower carbon intensity. Which pillar of the AWS Well-Architected Framework covers this?",
+    "options": [
+      "Sustainability",
+      "Cost Optimization",
+      "Operational Excellence",
+      "Reliability"
+    ],
+    "answer": 0,
+    "explanation": "The Sustainability pillar, the sixth pillar added in 2021, focuses on minimizing the environmental impact of cloud workloads, for example by maximizing utilization. Cost Optimization often removes waste too, but its goal is lower cost, not lower energy use and emissions.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-021",
+    "question": "What is the difference between scalability and elasticity?",
+    "options": [
+      "Scalability works across Regions, while elasticity works only inside one Availability Zone",
+      "Scalability means handling more load; elasticity adds automatic scaling up and down with demand",
+      "Scalability always happens automatically, while elasticity always requires manual resizing",
+      "Scalability applies only to compute, while elasticity applies only to storage such as S3"
+    ],
+    "answer": 1,
+    "explanation": "A scalable system can grow to handle more load, by scaling up or out. Elasticity builds on that with automatic scaling, so capacity follows demand up and down and you pay only for what you use. Both apply to many services, not just compute or storage.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-022",
+    "question": "A company runs its web application on EC2 instances in two Availability Zones behind a load balancer, so users can still reach it if one zone has an outage. Which cloud concept does this design provide?",
+    "options": [
+      "Elasticity",
+      "Agility",
+      "High availability",
+      "Economies of scale"
+    ],
+    "answer": 2,
+    "explanation": "High availability means running in at least two Availability Zones so the application survives the loss of a data center. Elasticity is tempting because load balancers often pair with Auto Scaling, but elasticity is about matching capacity to demand, not surviving failures.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-023",
+    "question": "A payment system uses fully redundant components so it keeps processing transactions without interruption, even when a server or disk fails. Which design characteristic does this describe?",
+    "options": [
+      "Fault tolerance",
+      "Elasticity",
+      "Agility",
+      "Vertical scaling"
+    ],
+    "answer": 0,
+    "explanation": "Fault tolerance is the ability to keep operating without interruption when some components fail, usually through built-in redundancy. Elasticity is about adjusting capacity to demand, and vertical scaling just makes a single server bigger, which adds no redundancy.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-024",
+    "question": "During its migration to AWS, a company stops running its self-hosted customer relationship management (CRM) software and moves to a SaaS CRM product instead. Which migration strategy is this?",
+    "options": [
+      "Rehost",
+      "Refactor",
+      "Repurchase",
+      "Retain"
+    ],
+    "answer": 2,
+    "explanation": "Repurchase, sometimes called drop and shop, means replacing an application with a different product, often SaaS. Rehost would move the existing CRM unchanged onto EC2, and refactor would re-architect it with cloud-native services. Retain means leaving it where it is for now.",
+    "domain": "domain1",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-025",
+    "question": "A company's application must keep running if a data center fails, but all of its data must stay within a single AWS Region for compliance. What is the MOST appropriate design?",
+    "options": [
+      "Deploy in one Availability Zone using larger EC2 instances",
+      "Deploy across two Regions located in different countries",
+      "Deploy in one Availability Zone with nightly EBS snapshots",
+      "Deploy across multiple Availability Zones in the same Region"
+    ],
+    "answer": 3,
+    "explanation": "Availability Zones are physically separate data centers within one Region, so spreading across them survives a data center failure while the data stays in the Region. Two Regions would break the compliance rule, and snapshots help recovery but do not keep the application running.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-026",
+    "question": "A company's IT staff used to spend most of their time racking servers, replacing failed disks, and managing cooling. After moving to AWS, they focus on customer features instead. Which benefit of cloud computing is this?",
+    "options": [
+      "Go global in minutes",
+      "Stop spending money maintaining data centers",
+      "Benefit from massive economies of scale",
+      "Trade fixed expense for variable expense"
+    ],
+    "answer": 1,
+    "explanation": "AWS handles the undifferentiated heavy lifting of racking, stacking, and powering servers, so your team can focus on work that sets your business apart. Economies of scale is tempting, but that benefit is about lower prices, not about freeing your staff from data center work.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-027",
+    "question": "A development team can now launch test environments in minutes instead of waiting weeks for new hardware, so it experiments more and releases features faster. Which benefit of cloud computing is this?",
+    "options": [
+      "Benefit from massive economies of scale",
+      "Go global in minutes",
+      "Stop guessing capacity",
+      "Increase speed and agility"
+    ],
+    "answer": 3,
+    "explanation": "Speed and agility: new resources are a click away, so the time to make them available to developers drops from weeks to minutes, which makes experimenting cheap and fast. Stop guessing capacity is tempting, but it is about matching capacity to demand.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-028",
+    "question": "A solutions architect wants to review a workload against AWS best practices for all six pillars, record the answers, and get a prioritized improvement plan. Which AWS service should the architect use?",
+    "options": [
+      "AWS Config",
+      "AWS Trusted Advisor",
+      "AWS CloudFormation",
+      "AWS Well-Architected Tool"
+    ],
+    "answer": 3,
+    "explanation": "The AWS Well-Architected Tool is a free console service that walks you through questions for each pillar and produces an improvement plan. Trusted Advisor is tempting, but it runs automated checks on your account's resources rather than a guided review of a workload.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-029",
+    "question": "A company already owns Microsoft SQL Server licenses and wants to reuse them on AWS rather than pay for new licenses. Which licensing strategy does this describe?",
+    "options": [
+      "License-included instances",
+      "AWS Marketplace subscriptions",
+      "Bring your own license (BYOL)",
+      "Compute Savings Plans"
+    ],
+    "answer": 2,
+    "explanation": "Bring your own license reuses software licenses you already own, subject to the vendor's terms, and some licenses require EC2 Dedicated Hosts. License-included instances are tempting, but they bundle the cost of a new license into the hourly price, so the existing licenses would go unused.",
+    "domain": "domain1",
+    "section": "clf-05"
+  },
+  {
+    "id": "clf-q-030",
+    "question": "A developer creates a new database and several servers from the AWS Management Console in minutes, without contacting anyone at AWS. Which characteristic of cloud computing does this show?",
+    "options": [
+      "On-demand self-service",
+      "Resource pooling",
+      "Measured service",
+      "Broad network access"
+    ],
+    "answer": 0,
+    "explanation": "On-demand self-service means you provision resources yourself, whenever you need them, with no human interaction with the provider. Measured service is about paying for exactly what you use, and resource pooling is about many customers securely sharing the same infrastructure.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-031",
+    "question": "A company wants to create identical test and production environments repeatedly, with every infrastructure change reviewed and version controlled like application code. What should it use?",
+    "options": [
+      "Console wizards that launch each resource by hand",
+      "Infrastructure as code with AWS CloudFormation",
+      "Recommendations from AWS Trusted Advisor",
+      "Server clones built from Amazon Machine Images"
+    ],
+    "answer": 1,
+    "explanation": "Infrastructure as code, such as CloudFormation templates, defines resources in files that can be versioned, reviewed, and deployed again and again with the same result. Machine images are tempting, but they only copy individual servers, not the networking, databases, and other resources around them.",
+    "domain": "domain1",
+    "section": "clf-11"
+  },
+  {
+    "id": "clf-q-032",
+    "question": "An application's traffic keeps growing, so the team adds more EC2 instances behind a load balancer to share the work. What type of scaling is this?",
+    "options": [
+      "Scaling up",
+      "Scaling in",
+      "Scaling out",
+      "Scaling down"
+    ],
+    "answer": 2,
+    "explanation": "Adding more instances is horizontal scaling, also called scaling out, and removing them is scaling in. Scaling up and down is vertical scaling, which changes the size of a single instance. Horizontal scaling is common for web tiers and distributed systems.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-033",
+    "question": "A database runs on a single EC2 instance that needs more memory. The team stops it and changes the instance type from m5.large to m5.2xlarge. Which term describes this change?",
+    "options": [
+      "Horizontal scaling",
+      "Scaling in",
+      "Elasticity",
+      "Vertical scaling"
+    ],
+    "answer": 3,
+    "explanation": "Making a single instance larger, with more CPU or memory, is vertical scaling, also called scaling up. It is common for databases but has a hardware limit. Horizontal scaling adds instances instead, and elasticity means scaling automatically with demand, which this manual change is not.",
+    "domain": "domain1",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-034",
+    "question": "Which statement BEST describes a private cloud?",
+    "options": [
+      "Cloud services delivered to anyone over the public internet",
+      "Cloud infrastructure operated for a single organization",
+      "A mix of on-premises and public cloud resources",
+      "Cloud infrastructure shared by several related organizations"
+    ],
+    "answer": 1,
+    "explanation": "A private cloud is used by a single organization and is not exposed to the public, giving more control over security and sensitive data. A mix of on-premises and public cloud is hybrid cloud, and infrastructure shared by several organizations is a community cloud.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-035",
+    "question": "A company must exit its data center within three months. It plans to move its virtual machines to Amazon EC2 as quickly as possible without changing the applications. Which migration strategy is this?",
+    "options": [
+      "Rehost",
+      "Replatform",
+      "Refactor",
+      "Retire"
+    ],
+    "answer": 0,
+    "explanation": "Rehost, or lift and shift, moves applications to AWS as they are, often with AWS Application Migration Service, and is usually the fastest option. Replatform is tempting, but it adds some optimization, such as moving a database to Amazon RDS. Refactor re-architects the application with cloud-native services.",
+    "domain": "domain1",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-036",
+    "question": "Which of the following is a design principle of the Operational Excellence pillar of the AWS Well-Architected Framework?",
+    "options": [
+      "Protect data in transit and at rest",
+      "Adopt a consumption model",
+      "Automatically recover from failure",
+      "Make frequent, small, reversible changes"
+    ],
+    "answer": 3,
+    "explanation": "Operational Excellence favors frequent, small, reversible changes, safely automating where possible, and learning from operational events. Protecting data belongs to Security, a consumption model belongs to Cost Optimization, and automatic recovery from failure belongs to Reliability.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-037",
+    "question": "An online store's website sends each order directly to a processing server. When the processing server slows down, the website fails too. Which change BEST applies the principle of loose coupling?",
+    "options": [
+      "Run both components on one larger EC2 instance",
+      "Deploy both components in a single Availability Zone",
+      "Place an Amazon SQS queue between the two components",
+      "Increase the timeout on calls from the website to the server"
+    ],
+    "answer": 2,
+    "explanation": "Loose coupling means components interact through a buffer or well-defined interface, so one can slow down or fail without breaking the other. An SQS queue holds orders until the processor is ready. Putting both on one instance does the opposite and tightens the coupling.",
+    "domain": "domain1",
+    "section": "clf-13"
+  },
+  {
+    "id": "clf-q-038",
+    "question": "A company is comparing its current costs with AWS before migrating. Which of these is a capital expenditure (CapEx)?",
+    "options": [
+      "Buying physical servers for its own data center",
+      "Paying a monthly bill for EC2 On-Demand usage",
+      "Paying per gigabyte-month for Amazon S3 storage",
+      "Paying per request for AWS Lambda invocations"
+    ],
+    "answer": 0,
+    "explanation": "Capital expenditure is money spent upfront on physical assets, such as servers and data center equipment, before you know how much you will use them. The AWS charges listed are operational expenditure: variable, pay-as-you-go costs based on actual usage.",
+    "domain": "domain1",
+    "section": "clf-03"
+  },
+  {
+    "id": "clf-q-039",
+    "question": "A company's cloud migration is slowed because staff lack cloud skills and teams resist new ways of working. Which AWS Cloud Adoption Framework (AWS CAF) perspective focuses on training, culture, and organizational change?",
+    "options": [
+      "Business",
+      "People",
+      "Governance",
+      "Operations"
+    ],
+    "answer": 1,
+    "explanation": "The People perspective bridges technology and business, covering culture, organizational structure, leadership, and workforce skills. Governance is tempting, but it covers program management, benefits, risk, and cloud financial management. The six perspectives are Business, People, Governance, Platform, Security, and Operations.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-040",
+    "question": "A company's traffic triples every weekday at 8 AM and drops at 6 PM, following the same pattern each week. It wants EC2 capacity added just before the morning rush, not after it starts. Which Auto Scaling approach fits BEST?",
+    "options": [
+      "Scheduled scaling",
+      "Target tracking scaling",
+      "Manual scaling",
+      "Vertical scaling"
+    ],
+    "answer": 0,
+    "explanation": "Scheduled scaling changes an Auto Scaling group's capacity at set times, so instances are ready before a known, recurring peak. Target tracking is tempting, but it reacts to a metric such as CPU after load has already risen, so users would feel the first minutes of the rush.",
+    "domain": "domain3",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-041",
+    "question": "A company's cloud program must track the business benefits of its migration, manage transformation risk, and practice cloud financial management. Which AWS Cloud Adoption Framework (AWS CAF) perspective provides these capabilities?",
+    "options": [
+      "Business",
+      "Governance",
+      "Platform",
+      "Operations"
+    ],
+    "answer": 1,
+    "explanation": "The Governance perspective orchestrates cloud initiatives while maximizing benefits and minimizing risk. Its capabilities include benefits management, risk management, and cloud financial management. The Business perspective is tempting, but it focuses on strategy, products, and making sure cloud investments drive business outcomes.",
+    "domain": "domain1",
+    "section": "clf-21"
+  },
+  {
+    "id": "clf-q-042",
+    "question": "A company runs MySQL on EC2 and spends hours each week on patching, backups, and setting up failover. Which option reduces this work with the LEAST operational overhead?",
+    "options": [
+      "Move the database to a larger EC2 instance type",
+      "Purchase Reserved Instances for the database servers",
+      "Run the database in a single Availability Zone",
+      "Migrate the database to Amazon RDS for MySQL"
+    ],
+    "answer": 3,
+    "explanation": "Amazon RDS is a managed database service: AWS automates patching, backups, and Multi-AZ failover, so the team can focus on the application. A larger instance may improve performance and Reserved Instances lower cost, but both leave all the administration work with the team.",
+    "domain": "domain1",
+    "section": "clf-09"
+  }
+]

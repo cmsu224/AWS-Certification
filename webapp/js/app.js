@@ -1,589 +1,270 @@
 // ============================================================
-//  AWS Cloud Practitioner Study App — Main Application Logic
+//  AWS Cert Study — App shell: state, router, event wiring, PWA
 // ============================================================
 
-// ---- State ----
-let progress = loadProgress();
-let currentView = 'dashboard';
+const UI_KEY = 'aws-study-ui';
+const UI = {
+  view: 'today', more: 'menu', result: null, openSec: {}, lastDay: null,
+  sessMenu: false, pendingStart: null, openedBlock: null, confirmFinish: false, confirmPassed: false, confirmReset: false, pendingImport: null,
+};
+const VIEWS = ['today', 'course', 'review', 'quiz', 'more', 'session', 'result', 'handsfree'];
 
-// Flashcard state
-let fcCards = [];
-let fcIndex = 0;
-let fcCorrect = 0;
-let fcWrong = 0;
-let fcFlipped = false;
+function navFor(view) {
+  if (view === 'session') { const s = curSess(); return s && s.kind === 'quiz' ? 'quiz' : 'review'; }
+  if (view === 'result') return 'today';
+  if (view === 'handsfree') return 'more';
+  return view;
+}
 
-// Quiz state
-let quizQuestions = [];
-let quizIndex = 0;
-let quizCorrect = 0;
-let quizWrong = 0;
-let quizAnswered = false;
-let quizTimer = null;
-let quizTimeLeft = 0;
-let quizMissedThisSession = [];
+const FOCUS_KEYS = ['act', 'i', 'sec', 'view', 'page', 'd', 'ok', 'pos', 'set'];
+function focusKey(el) {
+  if (!el || !el.dataset || !el.closest || !el.closest('#main')) return null;
+  const parts = FOCUS_KEYS.filter((k) => el.dataset[k] != null)
+    .map((k) => '[data-' + k + '="' + String(el.dataset[k]).replace(/["\\]/g, '\\$&') + '"]');
+  return parts.length ? parts.join('') : null;
+}
 
-// ---- Progress Persistence ----
-function loadProgress() {
+function render() {
+  const main = $('#main');
+  if (!main) return;
+  const keep = focusKey(document.activeElement);
+  UI.lastDay = today();
+  let html = '';
   try {
-    const saved = localStorage.getItem('aws-study-progress');
-    if (saved) return JSON.parse(saved);
-  } catch (e) {}
-  return {
-    quizHistory: [],        // [{date, mode, score, total, correct, domainScores}]
-    missedQuestions: [],     // indices of ever-missed questions
-    seenQuestions: [],       // indices of seen questions
-    cardsStudied: 0,
-    lastActiveDate: null,
-    streak: 0,
-    domainScores: {}        // {domain1: {correct, total}, ...}
-  };
+    switch (UI.view) {
+      case 'course': html = renderCourse(); break;
+      case 'review': html = renderReview(); break;
+      case 'quiz': html = renderQuiz(); break;
+      case 'more': html = renderMore(); break;
+      case 'session': html = renderSession(); break;
+      case 'result': html = renderResult(); break;
+      case 'handsfree': html = renderHandsFree(); break;
+      default: html = renderToday();
+    }
+  } catch (e) {
+    console.error(e);
+    html = '<div class="panel"><p>Something went wrong drawing this screen.</p><p class="muted small">' + esc(e && e.message) +
+      '</p><button class="btn primary" data-act="nav" data-view="today">Go to Today</button></div>';
+  }
+  if (UI.pendingStart && UI.view !== 'session') html = pendingStartPanel() + html;
+  if (SW.waiting && !SW.dismissed && UI.view === 'today') html = updateCard() + html;
+  main.innerHTML = html;
+  main.className = 'view-' + UI.view;
+  // Sticky bottom controls on screen → toasts move to the top so Undo never sits where Next is.
+  document.body.classList.toggle('has-thumbbar', !!main.querySelector('.thumb-bar, .hf-controls'));
+  const nav = navFor(UI.view);
+  $$('#bottom-nav .nav-btn').forEach((b) => b.classList.toggle('active', b.dataset.view === nav));
+  storeSetJSON(UI_KEY, { view: UI.view, more: UI.more });
+  if (keep) {
+    let el = null;
+    try { el = main.querySelector(keep); } catch (e) { el = null; }
+    if (el && !el.disabled) el.focus({ preventScroll: true });
+  }
 }
 
-function saveProgress() {
+/** After a view change: move focus to the new view's heading (screen readers / keyboards). */
+function focusView() {
+  const main = $('#main');
+  if (!main) return;
+  const h = main.querySelector('h1') || main;
+  if (h !== main) h.setAttribute('tabindex', '-1');
+  try { h.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+}
+
+// ---------------- History (Android back button / gesture) ----------------
+function histState() { return { view: UI.view, more: UI.more }; }
+function pushHist(replace) {
   try {
-    localStorage.setItem('aws-study-progress', JSON.stringify(progress));
-  } catch (e) {}
+    const cur = history.state;
+    if (!replace && isObj(cur) && cur.view === UI.view && cur.more === UI.more) return;
+    if (replace) history.replaceState(histState(), ''); else history.pushState(histState(), '');
+  } catch (e) { /* history unavailable */ }
 }
-
-function resetProgress() {
-  if (confirm('Reset ALL progress? This cannot be undone.')) {
-    progress = loadProgress.call(null) || {
-      quizHistory: [], missedQuestions: [], seenQuestions: [],
-      cardsStudied: 0, lastActiveDate: null, streak: 0, domainScores: {}
-    };
-    // Actually clear it
-    progress = {
-      quizHistory: [], missedQuestions: [], seenQuestions: [],
-      cardsStudied: 0, lastActiveDate: null, streak: 0, domainScores: {}
-    };
-    saveProgress();
-    updateDashboard();
-    updateProgressView();
-    alert('Progress reset!');
-  }
-}
-
-// ---- Streak tracking ----
-function updateStreak() {
-  const today = new Date().toDateString();
-  if (progress.lastActiveDate === today) return;
-
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  if (progress.lastActiveDate === yesterday.toDateString()) {
-    progress.streak++;
-  } else if (progress.lastActiveDate !== today) {
-    progress.streak = 1;
-  }
-  progress.lastActiveDate = today;
-  saveProgress();
-}
-
-// ---- Navigation ----
-function showView(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-
-  const view = document.getElementById('view-' + viewId);
-  if (view) view.classList.add('active');
-
-  const btn = document.querySelector(`[data-view="${viewId}"]`);
-  if (btn) btn.classList.add('active');
-
-  currentView = viewId;
-
-  // Reset sub-views
-  if (viewId === 'flashcards') {
-    document.getElementById('flashcard-categories').classList.remove('hidden');
-    document.getElementById('flashcard-session').classList.add('hidden');
-  }
-  if (viewId === 'quiz') {
-    document.getElementById('quiz-selection').classList.remove('hidden');
-    document.getElementById('quiz-session').classList.add('hidden');
-    document.getElementById('quiz-results').classList.add('hidden');
-    if (quizTimer) { clearInterval(quizTimer); quizTimer = null; }
-  }
-  if (viewId === 'dashboard') updateDashboard();
-  if (viewId === 'progress') updateProgressView();
-  if (viewId === 'quiz') updateQuizCounts();
-  if (viewId === 'flashcards') updateFlashcardCounts();
-}
-
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => showView(btn.dataset.view));
+window.addEventListener('popstate', (e) => {
+  const st = e.state;
+  if (!isObj(st) || !P) return;
+  let v = VIEWS.includes(st.view) ? st.view : 'today';
+  if (v === 'session' && !curSess()) v = 'today';
+  if (v === 'result' && !resultForTrack()) v = 'today';
+  if (UI.view === 'handsfree' && v !== 'handsfree') hfStop();
+  if (UI.view !== v) { hideToast(); UI.pendingStart = null; }
+  UI.view = v;
+  UI.more = typeof st.more === 'string' ? st.more : 'menu';
+  UI.confirmFinish = false; UI.confirmPassed = false; UI.confirmReset = false; UI.pendingImport = null;
+  if (v !== 'session') UI.sessMenu = false;
+  render();
+  focusView();
+  window.scrollTo(0, 0);
 });
 
-// ---- Shuffle ----
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+function go(view) {
+  if (!VIEWS.includes(view)) view = 'today';
+  if (UI.view === 'handsfree' && view !== 'handsfree') hfStop();
+  const changed = UI.view !== view;
+  if (changed) { hideToast(); UI.pendingStart = null; }
+  UI.view = view;
+  UI.confirmFinish = false; UI.confirmPassed = false;
+  if (view !== 'session') UI.sessMenu = false;
+  render();
+  // Finishing a session replaces its history entry so Back doesn't land on a dead session.
+  pushHist(!changed || view === 'result');
+  if (changed) focusView();
+  window.scrollTo(0, 0);
 }
 
-// ---- Dashboard ----
-function updateDashboard() {
-  const history = progress.quizHistory;
-  document.getElementById('stat-quizzes').textContent = history.length;
+ACTIONS['nav'] = (el) => {
+  const v = el.dataset.view;
+  if (v === 'more' && UI.view === 'more') UI.more = 'menu';
+  go(v);
+};
 
-  if (history.length > 0) {
-    const avg = Math.round(history.reduce((s, h) => s + h.score, 0) / history.length);
-    document.getElementById('stat-avg').textContent = avg + '%';
-  } else {
-    document.getElementById('stat-avg').textContent = '—';
-  }
-
-  document.getElementById('stat-cards').textContent = progress.cardsStudied;
-  document.getElementById('stat-streak').textContent = progress.streak;
-
-  // Domain bars
-  ['domain1', 'domain2', 'domain3', 'domain4'].forEach(d => {
-    const data = progress.domainScores[d];
-    const fill = document.getElementById(d + '-fill');
-    const pct = document.getElementById(d + '-pct');
-    if (data && data.total > 0) {
-      const score = Math.round(data.correct / data.total * 100);
-      fill.style.width = score + '%';
-      fill.style.background = score >= 70 ? 'var(--success)' : score >= 50 ? 'var(--warning)' : 'var(--danger)';
-      pct.textContent = score + '%';
-    } else {
-      fill.style.width = '0%';
-      pct.textContent = '—';
-    }
-  });
-}
-
-// ---- Flashcards ----
-function updateFlashcardCounts() {
-  document.getElementById('count-all').textContent = FLASHCARDS.length + ' cards';
-  FLASHCARD_CATEGORIES.forEach(cat => {
-    const el = document.getElementById('count-' + cat);
-    if (el) {
-      el.textContent = FLASHCARDS.filter(c => c.category === cat).length + ' cards';
-    }
-  });
-}
-
-function startFlashcards(category) {
-  let cards = category === 'all' ? FLASHCARDS : FLASHCARDS.filter(c => c.category === category);
-  fcCards = shuffle(cards);
-  fcIndex = 0;
-  fcCorrect = 0;
-  fcWrong = 0;
-  fcFlipped = false;
-
-  if (currentView !== 'flashcards') showView('flashcards');
-
-  document.getElementById('flashcard-categories').classList.add('hidden');
-  document.getElementById('flashcard-session').classList.remove('hidden');
-
-  renderFlashcard();
-}
-
-function renderFlashcard() {
-  if (fcIndex >= fcCards.length) {
-    endFlashcardSession();
+// ---------------- Event wiring ----------------
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-act]');
+  if (!el || el.disabled) return;
+  const fn = ACTIONS[el.dataset.act];
+  if (!fn) return;
+  if (el.tagName === 'A' && el.getAttribute('href') && el.getAttribute('href') !== '#') { // real links: let them open
+    try { fn(el, e); } catch (err) { console.error(err); }
     return;
   }
+  e.preventDefault();
+  try { fn(el, e); } catch (err) { console.error(err); toast('Oops — that didn\'t work'); }
+});
 
-  const card = fcCards[fcIndex];
-  document.getElementById('fc-category').textContent = card.category;
-  document.getElementById('fc-term').textContent = card.term;
-  document.getElementById('fc-answer').textContent = card.definition;
-  document.getElementById('fc-progress').textContent = `${fcIndex + 1} / ${fcCards.length}`;
-  document.getElementById('fc-score').textContent = `✓ ${fcCorrect}  ✗ ${fcWrong}`;
-
-  // Reset card
-  const flashcard = document.getElementById('flashcard');
-  flashcard.classList.remove('flipped');
-  fcFlipped = false;
-  document.getElementById('fc-actions').classList.add('hidden');
-}
-
-function flipCard() {
-  if (fcFlipped) return;
-  fcFlipped = true;
-  document.getElementById('flashcard').classList.add('flipped');
-  document.getElementById('fc-actions').classList.remove('hidden');
-}
-
-function markCard(knew) {
-  if (knew) {
-    fcCorrect++;
-  } else {
-    fcWrong++;
+document.addEventListener('change', (e) => {
+  const el = e.target;
+  if (el.dataset && el.dataset.set) { setSettingPath(el.dataset.set, el.value); return; }
+  if (el.hasAttribute && el.hasAttribute('data-import-file') && el.files && el.files[0]) {
+    const r = new FileReader();
+    r.onload = () => beginImport(String(r.result || ''));
+    r.onerror = () => toast('Could not read that file');
+    r.readAsText(el.files[0]);
+    el.value = '';
   }
-  progress.cardsStudied++;
-  updateStreak();
-  saveProgress();
+});
 
-  fcIndex++;
-  renderFlashcard();
+// Course sections: remember open/closed; render lecture rows lazily on open.
+document.addEventListener('toggle', (e) => {
+  const d = e.target;
+  if (!d.matches || !d.matches('details.sec')) return;
+  const sid = d.dataset.sec;
+  const wasOpen = !!UI.openSec[sid];
+  UI.openSec[sid] = d.open;
+  if (d.open && !wasOpen && !d.querySelector('.lec-list')) render();
+}, true);
+
+// Swipe on a flipped flashcard: right = knew it, left = didn't.
+let swipe = null;
+document.addEventListener('touchstart', (e) => {
+  const c = e.target.closest('.fcard');
+  swipe = c && c.dataset.swipe === '1' ? { x: e.touches[0].clientX, y: e.touches[0].clientY, el: c } : null;
+}, { passive: true });
+document.addEventListener('touchmove', (e) => {
+  if (!swipe) return;
+  const dx = e.touches[0].clientX - swipe.x, dy = e.touches[0].clientY - swipe.y;
+  swipe.el.style.transform = Math.abs(dx) > Math.abs(dy) ? 'translateX(' + dx + 'px) rotate(' + dx / 30 + 'deg)' : '';
+}, { passive: true });
+document.addEventListener('touchcancel', () => {
+  if (swipe && swipe.el) swipe.el.style.transform = '';
+  swipe = null;
+}, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (!swipe) return;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - swipe.x, dy = t.clientY - swipe.y;
+  const el = swipe.el;
+  swipe = null;
+  if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) gradeCard(dx > 0);
+  else el.style.transform = '';
+});
+
+// Keyboard shortcuts for laptop use in sessions.
+document.addEventListener('keydown', (e) => {
+  if (UI.view !== 'session' || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (/INPUT|TEXTAREA|SELECT/.test((e.target.tagName || ''))) return;
+  const k = e.key.toLowerCase();
+  const idx = '12345'.indexOf(k) >= 0 ? '12345'.indexOf(k) : 'abcde'.indexOf(k);
+  const click = (sel) => { const b = $(sel); if (b && !b.disabled) { b.click(); return true; } return false; };
+  if (idx >= 0 && click('.opt[data-i="' + idx + '"]')) { e.preventDefault(); return; }
+  if (k === ' ' || k === 'enter') {
+    if (click('[data-act="next"]') || click('[data-act="submit-multi"]') || click('.thumb-bar [data-act="flip"]')) e.preventDefault();
+  } else if (k === 'arrowright') { if (click('[data-act="card-grade"][data-ok="1"]') || click('[data-act="exam-nav"][data-d="1"]')) e.preventDefault(); }
+  else if (k === 'arrowleft') { if (click('[data-act="card-grade"][data-ok="0"]') || click('[data-act="exam-nav"][data-d="-1"]')) e.preventDefault(); }
+});
+
+// Exam timer: only runs while the exam is on screen and the app is visible.
+setInterval(() => {
+  if (UI.view !== 'session' || document.visibilityState !== 'visible' || !P) return;
+  const s = curSess();
+  if (!s || !s.timeLimitSec) return;
+  s.elapsedSec++;
+  const el = $('#sess-timer');
+  const left = s.timeLimitSec - s.elapsedSec;
+  if (el) { el.textContent = fmtClock(left); el.classList.toggle('low', left < 300); }
+  if (s.elapsedSec % 10 === 0) saveProgress();
+  if (left <= 0) { finishSession(); toast('⏰ Time\'s up'); }
+}, 1000);
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') { if (P) saveProgress(); return; }
+  if (UI.lastDay && UI.lastDay !== today() && UI.view !== 'session') render(); // new day while app was open
+  if (SW.reg) SW.reg.update().catch(() => {});
+});
+
+// ---------------- Service worker + update toast ----------------
+const SW = { reg: null, waiting: null, reloading: false, accepted: false, dismissed: false };
+
+/** New version waiting: shown as an inline card at the top of Today (never over the header or thumb bar). */
+function showUpdateToast(worker) {
+  SW.waiting = worker;
+  if (UI.view === 'today') render();
 }
-
-function endFlashcardSession() {
-  if (fcCards.length > 0 && (fcCorrect + fcWrong) > 0) {
-    const pct = Math.round(fcCorrect / (fcCorrect + fcWrong) * 100);
-    alert(`Session complete!\n\n✓ ${fcCorrect} correct\n✗ ${fcWrong} missed\nScore: ${pct}%`);
-  }
-  document.getElementById('flashcard-categories').classList.remove('hidden');
-  document.getElementById('flashcard-session').classList.add('hidden');
-  updateFlashcardCounts();
+function updateCard() {
+  return '<div class="card update-card"><button type="button" class="update-main" data-act="sw-update">✨ Update available — tap to refresh</button>' +
+    '<button type="button" class="icon-btn" data-act="sw-dismiss" aria-label="Later">✕</button></div>';
 }
+ACTIONS['sw-update'] = () => {
+  SW.accepted = true;
+  if (SW.waiting) SW.waiting.postMessage({ type: 'SKIP_WAITING' });
+  else location.reload();
+};
+ACTIONS['sw-dismiss'] = () => { SW.dismissed = true; render(); };
 
-// ---- Quiz ----
-function updateQuizCounts() {
-  ['domain1', 'domain2', 'domain3', 'domain4'].forEach((d, i) => {
-    const count = QUESTIONS.filter(q => q.domain === d).length;
-    const el = document.getElementById(`d${i + 1}-count`);
-    if (el) el.textContent = `${count} questions · ${QUIZ_DOMAINS[i].weight} of exam`;
-  });
-
-  const missedEl = document.getElementById('missed-count');
-  if (missedEl) {
-    missedEl.textContent = `${progress.missedQuestions.length} questions you've gotten wrong`;
-  }
-}
-
-function startDomainQuiz(domain, limit) {
-  let questions;
-  if (domain === 'all') {
-    questions = shuffle(QUESTIONS);
-  } else {
-    questions = shuffle(QUESTIONS.filter(q => q.domain === domain));
-  }
-
-  if (limit && questions.length > limit) {
-    questions = questions.slice(0, limit);
-  }
-
-  startQuiz(questions, limit === 65 ? 90 * 60 : 0, domain === 'all' ? (limit === 65 ? 'Full Exam' : 'Quick Quiz') : domain);
-}
-
-function startQuickQuiz() {
-  startDomainQuiz('all', 20);
-}
-
-function startFullExam() {
-  startDomainQuiz('all', 65);
-}
-
-function startMissedQuiz() {
-  if (progress.missedQuestions.length === 0) {
-    alert('No missed questions yet! Take some quizzes first.');
-    return;
-  }
-
-  const questions = shuffle(progress.missedQuestions.map(i => QUESTIONS[i]).filter(Boolean));
-  if (questions.length === 0) {
-    alert('No missed questions found.');
-    return;
-  }
-
-  startQuiz(questions, 0, 'Review Missed');
-}
-
-function startQuiz(questions, timerSeconds, mode) {
-  quizQuestions = questions;
-  quizIndex = 0;
-  quizCorrect = 0;
-  quizWrong = 0;
-  quizAnswered = false;
-  quizMissedThisSession = [];
-
-  if (currentView !== 'quiz') showView('quiz');
-
-  document.getElementById('quiz-selection').classList.add('hidden');
-  document.getElementById('quiz-results').classList.add('hidden');
-  document.getElementById('quiz-session').classList.remove('hidden');
-
-  // Timer
-  const timerEl = document.getElementById('quiz-timer');
-  if (timerSeconds > 0) {
-    quizTimeLeft = timerSeconds;
-    timerEl.classList.remove('hidden');
-    updateTimer();
-    quizTimer = setInterval(() => {
-      quizTimeLeft--;
-      updateTimer();
-      if (quizTimeLeft <= 0) {
-        clearInterval(quizTimer);
-        quizTimer = null;
-        showResults(mode);
-      }
-    }, 1000);
-  } else {
-    timerEl.classList.add('hidden');
-    if (quizTimer) { clearInterval(quizTimer); quizTimer = null; }
-  }
-
-  renderQuestion();
-}
-
-function updateTimer() {
-  const min = Math.floor(quizTimeLeft / 60);
-  const sec = quizTimeLeft % 60;
-  document.getElementById('quiz-timer').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
-}
-
-function renderQuestion() {
-  if (quizIndex >= quizQuestions.length) {
-    showResults();
-    return;
-  }
-
-  quizAnswered = false;
-  const q = quizQuestions[quizIndex];
-  document.getElementById('quiz-progress').textContent = `${quizIndex + 1} / ${quizQuestions.length}`;
-  document.getElementById('quiz-score-live').textContent = `✓ ${quizCorrect}  ✗ ${quizWrong}`;
-  document.getElementById('q-text').textContent = q.question;
-  document.getElementById('q-explanation').classList.add('hidden');
-
-  const optionsEl = document.getElementById('q-options');
-  optionsEl.innerHTML = '';
-
-  const letters = ['A', 'B', 'C', 'D'];
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
-    btn.addEventListener('click', () => selectAnswer(i));
-    optionsEl.appendChild(btn);
-  });
-}
-
-function selectAnswer(selected) {
-  if (quizAnswered) return;
-  quizAnswered = true;
-
-  const q = quizQuestions[quizIndex];
-  const correct = q.answer;
-  const qGlobalIndex = QUESTIONS.indexOf(q);
-
-  // Track seen
-  if (qGlobalIndex >= 0 && !progress.seenQuestions.includes(qGlobalIndex)) {
-    progress.seenQuestions.push(qGlobalIndex);
-  }
-
-  // Update domain scores
-  if (!progress.domainScores[q.domain]) {
-    progress.domainScores[q.domain] = { correct: 0, total: 0 };
-  }
-  progress.domainScores[q.domain].total++;
-
-  const buttons = document.querySelectorAll('.option-btn');
-  buttons.forEach((btn, i) => {
-    btn.classList.add('disabled');
-    if (i === correct) btn.classList.add('correct');
-    if (i === selected && selected !== correct) btn.classList.add('wrong');
-  });
-
-  const resultEl = document.getElementById('q-result');
-  if (selected === correct) {
-    quizCorrect++;
-    resultEl.textContent = '✓ Correct!';
-    resultEl.className = 'explanation-result correct';
-    progress.domainScores[q.domain].correct++;
-  } else {
-    quizWrong++;
-    resultEl.textContent = '✗ Incorrect';
-    resultEl.className = 'explanation-result wrong';
-    quizMissedThisSession.push(quizIndex);
-
-    // Track missed globally
-    if (qGlobalIndex >= 0 && !progress.missedQuestions.includes(qGlobalIndex)) {
-      progress.missedQuestions.push(qGlobalIndex);
-    }
-  }
-
-  document.getElementById('quiz-score-live').textContent = `✓ ${quizCorrect}  ✗ ${quizWrong}`;
-  document.getElementById('q-explain-text').textContent = q.explanation;
-  document.getElementById('q-explanation').classList.remove('hidden');
-
-  // Change button text on last question
-  const nextBtn = document.getElementById('q-next-btn');
-  nextBtn.textContent = quizIndex === quizQuestions.length - 1 ? 'See Results' : 'Next Question →';
-
-  updateStreak();
-  saveProgress();
-}
-
-function nextQuestion() {
-  quizIndex++;
-  if (quizIndex >= quizQuestions.length) {
-    showResults();
-  } else {
-    renderQuestion();
-    // Scroll to top of question
-    document.getElementById('quiz-session').scrollTop = 0;
-    window.scrollTo(0, 0);
-  }
-}
-
-function showResults(mode) {
-  if (quizTimer) { clearInterval(quizTimer); quizTimer = null; }
-
-  const total = quizCorrect + quizWrong;
-  const pct = total > 0 ? Math.round(quizCorrect / total * 100) : 0;
-
-  // Save to history
-  progress.quizHistory.push({
-    date: new Date().toISOString(),
-    mode: mode || 'Quiz',
-    score: pct,
-    total: total,
-    correct: quizCorrect,
-  });
-  saveProgress();
-
-  // Render results
-  document.getElementById('quiz-session').classList.add('hidden');
-  document.getElementById('quiz-results').classList.remove('hidden');
-
-  const scoreEl = document.getElementById('results-score');
-  scoreEl.textContent = pct + '%';
-  scoreEl.className = 'results-score ' + (pct >= 70 ? 'pass' : 'fail');
-
-  const barEl = document.getElementById('results-bar');
-  barEl.style.width = '0%';
-  barEl.className = 'results-bar ' + (pct >= 70 ? 'pass' : 'fail');
-  setTimeout(() => { barEl.style.width = pct + '%'; }, 100);
-
-  document.getElementById('results-total').textContent = total;
-  document.getElementById('results-correct').textContent = quizCorrect;
-  document.getElementById('results-wrong').textContent = quizWrong;
-
-  const msgEl = document.getElementById('results-message');
-  if (pct >= 90) {
-    msgEl.textContent = 'Outstanding! You are exam ready!';
-    msgEl.className = 'results-message pass';
-  } else if (pct >= 70) {
-    msgEl.textContent = 'PASS! Keep studying to strengthen weak areas.';
-    msgEl.className = 'results-message pass';
-  } else if (pct >= 50) {
-    msgEl.textContent = 'Almost there! Focus on the questions you missed.';
-    msgEl.className = 'results-message close';
-  } else {
-    msgEl.textContent = 'Keep studying! Review the cheat sheets and try again.';
-    msgEl.className = 'results-message fail';
-  }
-
-  // Domain breakdown
-  const domainsEl = document.getElementById('results-domains');
-  domainsEl.innerHTML = '<h3>Score by Domain</h3>';
-
-  const domainResults = {};
-  quizQuestions.forEach((q, i) => {
-    if (!domainResults[q.domain]) domainResults[q.domain] = { correct: 0, total: 0 };
-    domainResults[q.domain].total++;
-    if (i < quizCorrect + quizWrong) {
-      // Check if this question was answered correctly
-      // We need to track per-question results differently
-    }
-  });
-
-  // Simplified domain breakdown using global scores for this session
-  const sessionDomains = {};
-  quizQuestions.forEach((q, idx) => {
-    if (!sessionDomains[q.domain]) sessionDomains[q.domain] = { correct: 0, total: 0 };
-    if (idx < total) {
-      sessionDomains[q.domain].total++;
-      if (!quizMissedThisSession.includes(idx)) {
-        sessionDomains[q.domain].correct++;
-      }
-    }
-  });
-
-  const domainNames = {
-    domain1: 'Cloud Concepts',
-    domain2: 'Security',
-    domain3: 'Technology',
-    domain4: 'Billing'
-  };
-
-  Object.keys(sessionDomains).sort().forEach(d => {
-    const data = sessionDomains[d];
-    const dPct = data.total > 0 ? Math.round(data.correct / data.total * 100) : 0;
-    const color = dPct >= 70 ? 'var(--success)' : dPct >= 50 ? 'var(--warning)' : 'var(--danger)';
-
-    const div = document.createElement('div');
-    div.className = 'domain-result';
-    div.innerHTML = `
-      <span>${domainNames[d] || d}</span>
-      <div class="domain-result-bar"><div class="domain-result-fill" style="width:${dPct}%; background:${color}"></div></div>
-      <span>${dPct}% (${data.correct}/${data.total})</span>
-    `;
-    domainsEl.appendChild(div);
-  });
-}
-
-function reviewMissed() {
-  if (quizMissedThisSession.length === 0) {
-    alert('No missed questions to review!');
-    return;
-  }
-
-  const missed = quizMissedThisSession.map(i => quizQuestions[i]).filter(Boolean);
-  startQuiz(missed, 0, 'Review');
-}
-
-function endQuiz() {
-  if (quizCorrect + quizWrong > 0) {
-    if (!confirm('Quit this quiz? Your progress will be lost.')) return;
-  }
-  if (quizTimer) { clearInterval(quizTimer); quizTimer = null; }
-  document.getElementById('quiz-session').classList.add('hidden');
-  document.getElementById('quiz-results').classList.add('hidden');
-  document.getElementById('quiz-selection').classList.remove('hidden');
-}
-
-// ---- Progress View ----
-function updateProgressView() {
-  // Score history
-  const historyEl = document.getElementById('score-history');
-  if (progress.quizHistory.length === 0) {
-    historyEl.innerHTML = '<p class="empty-state">No quizzes taken yet. Start practicing!</p>';
-  } else {
-    historyEl.innerHTML = '';
-    // Show most recent first
-    [...progress.quizHistory].reverse().slice(0, 20).forEach(h => {
-      const date = new Date(h.date);
-      const dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const div = document.createElement('div');
-      div.className = 'history-item';
-      div.innerHTML = `
-        <div>
-          <div class="history-mode">${h.mode || 'Quiz'}</div>
-          <div class="history-date">${dateStr}</div>
-        </div>
-        <div>
-          <span class="history-score ${h.score >= 70 ? 'pass' : 'fail'}">${h.score}%</span>
-          <span class="history-date"> (${h.correct}/${h.total})</span>
-        </div>
-      `;
-      historyEl.appendChild(div);
+function registerSW() {
+  if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    SW.reg = reg;
+    if (reg.waiting && navigator.serviceWorker.controller) showUpdateToast(reg.waiting);
+    reg.addEventListener('updatefound', () => {
+      const w = reg.installing;
+      if (!w) return;
+      w.addEventListener('statechange', () => {
+        if (w.state === 'installed' && navigator.serviceWorker.controller) showUpdateToast(w);
+      });
     });
-  }
-
-  // Coverage
-  document.getElementById('total-q-count').textContent = QUESTIONS.length;
-  document.getElementById('seen-q-count').textContent = progress.seenQuestions.length;
-  document.getElementById('ever-missed-count').textContent = progress.missedQuestions.length;
+  }).catch(() => { /* offline support unavailable */ });
+  const hadController = !!navigator.serviceWorker.controller; // first install claims silently, no reload
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    // First install claims silently; reload only if a controller existed or the user tapped Update.
+    if (SW.reloading || !(hadController || SW.accepted)) return;
+    SW.reloading = true;
+    if (P) saveProgress();
+    location.reload();
+  });
 }
 
-// ---- Init ----
-function init() {
-  updateDashboard();
-  updateFlashcardCounts();
-  updateQuizCounts();
-
-  // Register service worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+// ---------------- Boot ----------------
+function boot() {
+  loadProgress();
+  const last = storeGetJSON(UI_KEY, null);
+  if (isObj(last)) {
+    if (last.view === 'session' && curSess()) UI.view = 'session';
   }
+  render();
+  pushHist(true);
+  registerSW();
 }
 
-init();
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();

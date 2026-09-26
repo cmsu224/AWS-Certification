@@ -1,0 +1,382 @@
+[
+ {
+  "id": "saa-q-166",
+  "question": "A company must give administrators shell access to Amazon EC2 instances in private subnets. Security policy forbids opening inbound port 22, running bastion hosts, or sharing SSH keys, and every session must be logged. Which solution meets these requirements?",
+  "options": [
+   "Deploy a bastion host in a public subnet and record sessions in CloudWatch Logs",
+   "Use EC2 Instance Connect to push temporary SSH keys and log calls in CloudTrail",
+   "Use AWS Systems Manager Session Manager and send session logs to Amazon S3",
+   "Connect over an AWS Site-to-Site VPN and capture sessions with VPC Flow Logs"
+  ],
+  "answer": 2,
+  "explanation": "Session Manager connects through the SSM Agent over outbound HTTPS, so no inbound ports, bastion hosts, or SSH keys are needed, and full session logs can go to S3 or CloudWatch Logs. EC2 Instance Connect still needs inbound port 22, a bastion is forbidden, and a VPN still relies on SSH.",
+  "domain": "saa1",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-q-167",
+  "question": "Developers must deploy AWS CloudFormation stacks that create IAM roles and Lambda functions. Following least privilege, the developers themselves must not have permission to create IAM roles. What should a solutions architect do?",
+  "options": [
+   "Give CloudFormation a service role with those permissions and let developers pass that role",
+   "Attach the AdministratorAccess policy to developers and remove it after each deployment",
+   "Enable termination protection and drift detection on every stack the developers deploy",
+   "Deploy the stacks through StackSets from the organization management account instead"
+  ],
+  "answer": 0,
+  "explanation": "A CloudFormation service role holds the permissions to create the resources, and developers only need CloudFormation access plus the iam:PassRole permission for that role. AdministratorAccess breaks least privilege. Termination protection and drift detection do not delegate permissions, and StackSets are for deploying across accounts and Regions.",
+  "domain": "saa1",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-q-168",
+  "question": "A web application runs on Amazon EC2 instances behind an Application Load Balancer, with Amazon CloudFront in front of the load balancer. The security team must block requests from a list of specific malicious IP addresses. Which solution meets this requirement?",
+  "options": [
+   "Add deny rules for the IP addresses to the network ACL of the load balancer subnets",
+   "Add deny rules for the IP addresses to the security group of the load balancer",
+   "Enable CloudFront geographic restrictions for the listed IP address ranges",
+   "Associate an AWS WAF web ACL with an IP set rule to the CloudFront distribution"
+  ],
+  "answer": 3,
+  "explanation": "Behind CloudFront, the load balancer and its subnets only see CloudFront IP addresses, so network ACL rules on client addresses never match. AWS WAF on the distribution inspects the original client IP and can block an IP set. Security groups cannot contain deny rules, and geographic restrictions block countries, not individual addresses.",
+  "domain": "saa1",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-q-169",
+  "question": "A company must detect any security group that allows inbound SSH from any IP address and automatically remove the offending rule, using the least custom code. Which solution meets these requirements?",
+  "options": [
+   "Enable Amazon GuardDuty and send its findings to an Amazon SNS topic for the team",
+   "Use an AWS Config managed rule that triggers an SSM Automation runbook",
+   "Enable CloudTrail Insights and have an administrator review unusual events each week",
+   "Run AWS Trusted Advisor security checks and delete the rules that the report lists"
+  ],
+  "answer": 1,
+  "explanation": "AWS Config continuously evaluates resource configurations, and its restricted SSH managed rule flags open security groups. Automatic remediation runs a Systems Manager Automation runbook that removes the rule. GuardDuty detects threats rather than configuration problems, and Trusted Advisor and CloudTrail Insights only report, so a person must still fix the rule.",
+  "domain": "saa1",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-170",
+  "question": "The security team wants an email notification within minutes whenever anyone calls the DeleteBucket or PutBucketPolicy API on any Amazon S3 bucket in the account. Which solution meets this requirement with the LEAST operational effort?",
+  "options": [
+   "Enable S3 server access logging and query the logs with Amazon Athena every hour",
+   "Create a CloudWatch alarm on the S3 BucketSizeBytes metric for every bucket",
+   "Create an EventBridge rule that matches those CloudTrail API calls and targets an SNS topic",
+   "Enable AWS Config and review each bucket configuration timeline in the console"
+  ],
+  "answer": 2,
+  "explanation": "CloudTrail records these management API calls and delivers them to EventBridge, where a rule can match the event names and notify an SNS email subscription in near real time. Hourly Athena queries add delay and effort, storage metrics do not show API calls, and the Config timeline needs manual review.",
+  "domain": "saa1",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-171",
+  "question": "A financial company uses AWS Backup to protect Amazon RDS databases and Amazon EFS file systems. Regulators require that no one, including the root user, can delete the backups or shorten their retention during the seven-year retention period. What should a solutions architect configure?",
+  "options": [
+   "An IAM policy that denies backup:DeleteRecoveryPoint to every user in the account",
+   "A backup plan rule that copies every recovery point to a second AWS Region",
+   "Cross-account copies of the backups to a vault owned by a separate security account",
+   "AWS Backup Vault Lock in compliance mode on the vault that stores the backups"
+  ],
+  "answer": 3,
+  "explanation": "Vault Lock in compliance mode makes the vault write once, read many. After its grace period ends, nobody, including the root user, can delete recovery points early or change the retention settings. IAM policies do not restrict the root user, and copies in other Regions or accounts can still be deleted there.",
+  "domain": "saa1",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-172",
+  "question": "An auditor requires proof that AWS CloudTrail log files were not modified after delivery, and the log files must be protected from deletion for one year. Which TWO actions meet these requirements? (Choose TWO.)",
+  "options": [
+   "Enable log file integrity validation on the trail",
+   "Enable CloudTrail Insights events on the trail",
+   "Encrypt the log files with a customer managed AWS KMS key",
+   "Enable S3 Object Lock in compliance mode on the log bucket",
+   "Send the trail to CloudWatch Logs with a metric filter"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "Integrity validation writes signed digest files, so you can prove whether any log file was changed or deleted after delivery. S3 Object Lock blocks deletion or overwrite during the retention period. KMS encryption controls who can read the files but proves nothing about changes, and Insights and metric filters only detect activity.",
+  "domain": "saa1",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-173",
+  "question": "A company needs a disaster recovery plan in a second AWS Region. If the primary Region fails, the application must keep serving users within minutes, even at reduced capacity while it scales up. The company wants to spend less than an active-active design would cost. Which strategy fits BEST?",
+  "options": [
+   "Pilot light",
+   "Warm standby",
+   "Backup and restore",
+   "Multi-site active-active"
+  ],
+  "answer": 1,
+  "explanation": "Warm standby keeps a scaled-down but fully working copy of the whole stack running, so it can take traffic immediately and then scale out. Pilot light keeps only core pieces such as a replicated database, so servers must be launched first, which takes longer. Multi-site also works but costs the most.",
+  "domain": "saa2",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-174",
+  "question": "An application database must be continuously replicated to a second AWS Region so that only a few minutes of data could be lost. A recovery time of a few hours is acceptable, and to keep costs low no application servers should run in the second Region until a disaster occurs. Which disaster recovery strategy should be used?",
+  "options": [
+   "Pilot light",
+   "Warm standby",
+   "Multi-site active-active",
+   "Backup and restore"
+  ],
+  "answer": 0,
+  "explanation": "Pilot light keeps only the core, such as a continuously replicated database, running in the recovery Region and launches application servers from AMIs or templates during a disaster. Backup and restore relies on periodic backups instead of continuous replication, and warm standby keeps servers running, which costs more than required.",
+  "domain": "saa2",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-175",
+  "question": "A company runs 50 on-premises physical and virtual servers. It wants disaster recovery on AWS with continuous block-level replication, a recovery point objective of seconds, and a recovery time objective of minutes, while paying only for low-cost staging resources until a failover. Which service should it use?",
+  "options": [
+   "AWS Application Migration Service",
+   "AWS Backup with an hourly backup plan",
+   "AWS DataSync with scheduled tasks",
+   "AWS Elastic Disaster Recovery"
+  ],
+  "answer": 3,
+  "explanation": "Elastic Disaster Recovery continuously replicates servers into a low-cost staging area and launches recovery instances within minutes, with an RPO of seconds. Application Migration Service uses similar replication but is built for one-time migrations. Hourly backups cannot reach seconds of data loss, and DataSync copies files, not whole servers.",
+  "domain": "saa2",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-176",
+  "question": "An online store runs its production database on an Amazon RDS for MySQL DB instance. The company wants to move to an Amazon Aurora MySQL DB cluster for better read scaling, and the store must stay available with minimal downtime during the move. Which approach should a solutions architect recommend?",
+  "options": [
+   "Export with mysqldump and import into a new Aurora cluster",
+   "Replicate the instance with AWS Application Migration Service",
+   "Create an Aurora read replica of the instance, then promote it",
+   "Restore the latest RDS snapshot into a new Aurora cluster"
+  ],
+  "answer": 2,
+  "explanation": "An Aurora read replica stays in sync with the RDS for MySQL source, so writes pause only briefly while it catches up and is promoted. Snapshot restores and mysqldump capture a single point in time, so later writes are lost unless writes stop for the whole copy. Application Migration Service replicates servers, not RDS instances.",
+  "domain": "saa2",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-177",
+  "question": "A company is migrating an on-premises Oracle database to Amazon Aurora PostgreSQL. The source database must stay online during the migration, and downtime at cutover must be minimal. Which TWO actions should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Rehost the database server with AWS Application Migration Service",
+   "Convert the schema and code objects with DMS Schema Conversion",
+   "Copy the Oracle data files to Amazon S3 with AWS DataSync",
+   "Restore an Oracle RMAN backup directly into Aurora PostgreSQL",
+   "Run an AWS DMS task with full load and change data capture"
+  ],
+  "answer": [
+   1,
+   4
+  ],
+  "explanation": "A migration between different engines needs schema conversion first, which DMS Schema Conversion or the Schema Conversion Tool handles. DMS then copies the data with a full load and keeps it in sync with change data capture until cutover. Application Migration Service rehosts servers and cannot change the database engine.",
+  "domain": "saa2",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-178",
+  "question": "A legacy application runs on a single Amazon EC2 instance that uses an Elastic IP address and only EBS volumes. If the underlying AWS hardware fails, the instance must come back automatically with the same instance ID, private IP address, and Elastic IP address. What should a solutions architect do?",
+  "options": [
+   "Create a CloudWatch alarm on StatusCheckFailed_System with the EC2 recover action",
+   "Place the instance in an Auto Scaling group with a minimum and maximum of one",
+   "Create a CloudWatch alarm on StatusCheckFailed_Instance with the EC2 reboot action",
+   "Create a daily AMI with Data Lifecycle Manager and relaunch it using AWS Lambda"
+  ],
+  "answer": 0,
+  "explanation": "The recover action moves the instance to healthy hardware and keeps its instance ID, private IP addresses, Elastic IP address, and metadata. An Auto Scaling group launches a new instance with a new ID and private IP. Rebooting does not fix a host failure, and relaunching from an AMI creates a new instance.",
+  "domain": "saa2",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-179",
+  "question": "A company plans to move 200 on-premises VMware virtual machines to Amazon EC2 without changing the applications. Cutover downtime must be minimal, and the team wants the LEAST manual effort. Which service should it use?",
+  "options": [
+   "VM Import and Export with manually exported disk images for each VM",
+   "AWS Application Migration Service with continuous replication",
+   "AWS Database Migration Service with change data capture",
+   "AWS DataSync agents that copy each VM file system to Amazon EFS"
+  ],
+  "answer": 1,
+  "explanation": "Application Migration Service is the recommended lift-and-shift tool. It continuously replicates source servers at the block level, lets you launch test instances, and cuts over with minutes of downtime. VM Import and Export is a manual one-time image import with more downtime, DMS moves only databases, and DataSync copies files, not bootable servers.",
+  "domain": "saa2",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-180",
+  "question": "An operations team needs CloudWatch alarms on memory utilization and free disk space for a fleet of Amazon EC2 Linux instances, but these metrics do not appear in CloudWatch. What should the team do?",
+  "options": [
+   "Enable detailed monitoring on the instances to publish one-minute metrics",
+   "Create CloudWatch Logs metric filters on the system log groups of the instances",
+   "Enable AWS Config to record the memory and disk configuration of the instances",
+   "Install and configure the unified CloudWatch agent on the instances"
+  ],
+  "answer": 3,
+  "explanation": "Memory and disk space usage are only visible inside the operating system, so the default EC2 metrics do not include them. The unified CloudWatch agent collects them as custom metrics and can also send log files. Detailed monitoring only makes the default metrics more frequent, every minute instead of every five minutes.",
+  "domain": "saa3",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-181",
+  "question": "Application logs are sent to Amazon CloudWatch Logs. The security team needs the log events delivered in near real time to an Amazon Kinesis data stream for analysis by a partner tool. Which solution meets this requirement?",
+  "options": [
+   "Schedule a CloudWatch Logs export task to Amazon S3 every hour",
+   "Create a CloudWatch Logs subscription filter with the stream as its destination",
+   "Run a CloudWatch Logs Insights query every minute and save the results",
+   "Create a metric filter and a CloudWatch alarm that writes to the stream"
+  ],
+  "answer": 1,
+  "explanation": "A subscription filter streams matching log events in near real time to Kinesis Data Streams, Amazon Data Firehose, or Lambda. Export tasks are batch jobs for archiving to S3 and can take hours. Logs Insights is for interactive queries, and a metric filter turns log lines into numbers, not a stream of events.",
+  "domain": "saa3",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-182",
+  "question": "A tightly coupled simulation using MPI runs on Amazon EC2 instances that are already in a cluster placement group. Each run reads a 200 TB input dataset stored in Amazon S3, and both messaging between nodes and file reads are bottlenecks. Which TWO actions will MOST improve performance? (Choose TWO.)",
+  "options": [
+   "Attach an Elastic Fabric Adapter to each instance",
+   "Move the instances into a spread placement group",
+   "Mount an Amazon FSx for Lustre file system linked to the S3 bucket",
+   "Copy the dataset to one gp3 EBS volume attached to every instance",
+   "Route traffic between the nodes through AWS Global Accelerator"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "Elastic Fabric Adapter adds operating-system-bypass networking that cuts MPI latency, and FSx for Lustre linked to S3 gives parallel, very high-throughput file access. A gp3 volume cannot attach to many instances, spread groups add latency, and Global Accelerator serves internet users.",
+  "domain": "saa3",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-q-183",
+  "question": "A company records thousands of customer support calls each day. It wants to convert the recordings to text and then determine whether each customer was positive or negative, without building machine learning models. Which TWO services should it use? (Choose TWO.)",
+  "options": [
+   "Amazon Polly",
+   "Amazon Transcribe",
+   "Amazon Translate",
+   "Amazon Comprehend",
+   "Amazon Textract"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Transcribe converts speech to text, and Comprehend performs natural language processing such as sentiment analysis on that text. Polly does the opposite of Transcribe by turning text into speech, Translate changes the language of text, and Textract extracts text from scanned documents and images.",
+  "domain": "saa3",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-q-184",
+  "question": "A social media app lets users upload photos. The company must automatically flag images that contain explicit or violent content before they are published, with the LEAST development effort. Which solution meets this requirement?",
+  "options": [
+   "Train a custom image classifier with Amazon SageMaker AI",
+   "Analyze each image with Amazon Comprehend for unsafe content",
+   "Call Amazon Rekognition content moderation for each upload",
+   "Extract image details with Amazon Textract and apply rules"
+  ],
+  "answer": 2,
+  "explanation": "Rekognition content moderation detects explicit, suggestive, and violent content in images through a pre-trained API, so no ML expertise is needed. SageMaker AI would work but requires building and training a model. Comprehend analyzes text, not images, and Textract extracts text, forms, and tables from documents.",
+  "domain": "saa3",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-q-185",
+  "question": "An online retailer wants to show each shopper real-time product recommendations based on that user's browsing and purchase history. The team has no machine learning experience. Which AWS service should it use?",
+  "options": [
+   "Amazon Personalize",
+   "Amazon SageMaker AI",
+   "Amazon Comprehend",
+   "Amazon Kendra"
+  ],
+  "answer": 0,
+  "explanation": "Personalize is a fully managed service that trains real-time recommendation models on your user interaction data, with no ML expertise required. SageMaker AI could build a recommender but needs data science skills. Comprehend analyzes text, and Kendra is a document search service.",
+  "domain": "saa3",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-q-186",
+  "question": "A company runs an internal reporting application that can tolerate up to 24 hours of data loss and 24 hours of downtime. It needs a disaster recovery plan in another AWS Region at the LOWEST cost. Which strategy should it use?",
+  "options": [
+   "Pilot light with a continuously replicated database",
+   "Warm standby with a scaled-down copy of the stack",
+   "Multi-site active-active across both Regions",
+   "Backup and restore with cross-Region backup copies"
+  ],
+  "answer": 3,
+  "explanation": "With an RPO and RTO of a full day, backup and restore is enough and is the cheapest strategy, because you only pay to store backups until a disaster happens. Pilot light, warm standby, and multi-site keep resources running in the second Region, which shortens recovery but costs more than this workload needs.",
+  "domain": "saa4",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-q-187",
+  "question": "A company's development and test EC2 instances and RDS databases are used only from 8 AM to 6 PM on weekdays, but they run all the time. Which solution will reduce cost with the LEAST operational overhead?",
+  "options": [
+   "Purchase a Compute Savings Plan that covers the development and test instances",
+   "Deploy Instance Scheduler on AWS to stop and start them on a tag-based schedule",
+   "Use AWS Compute Optimizer to right-size the instances and databases every month",
+   "Buy Reserved Instances for the development EC2 instances and RDS databases"
+  ],
+  "answer": 1,
+  "explanation": "Instance Scheduler on AWS is a ready-made solution that stops and starts tagged EC2 and RDS instances on a schedule, so you stop paying for compute outside working hours. Savings Plans and Reserved Instances discount always-on usage but still charge for idle hours, and right-sizing does not stop instances at night.",
+  "domain": "saa4",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-q-188",
+  "question": "A company wants to be alerted automatically when its AWS spending shows unusual spikes, such as a runaway workload, without defining fixed budget thresholds for every service. Which solution meets this requirement?",
+  "options": [
+   "Create an AWS Budget for each service with an 80 percent alert threshold",
+   "Review the AWS Cost Explorer daily cost graph every morning",
+   "Set up AWS Cost Anomaly Detection monitors with SNS alert subscriptions",
+   "Export cost data with AWS Data Exports and query it with Amazon Athena"
+  ],
+  "answer": 2,
+  "explanation": "Cost Anomaly Detection uses machine learning to learn your normal spending pattern, flags unusual spikes with likely root causes, and alerts through email or SNS. AWS Budgets needs fixed thresholds that you set yourself, while Cost Explorer and Data Exports are analysis tools that someone must review manually.",
+  "domain": "saa4",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-q-189",
+  "question": "A research team runs thousands of containerized jobs each night. Each job takes about 2 hours and can be retried if interrupted. The team wants AWS to manage job queuing and compute provisioning at the LOWEST cost. Which solution fits BEST?",
+  "options": [
+   "AWS Batch with a managed compute environment that uses Spot Instances",
+   "AWS Lambda functions invoked by Amazon SQS messages for each job",
+   "An Amazon EC2 On-Demand fleet running a self-managed job scheduler",
+   "AWS Step Functions Express Workflows that run each job as a state"
+  ],
+  "answer": 0,
+  "explanation": "AWS Batch queues jobs and provisions compute automatically, and Spot Instances cut costs for interruptible, retryable work. Lambda functions stop after 15 minutes and Express Workflows after 5 minutes, so neither can run two-hour jobs. A self-managed scheduler on On-Demand instances costs more and adds operational work.",
+  "domain": "saa4",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-q-190",
+  "question": "Compliance rules require a company to keep records of all AWS API activity for 5 years. Auditors query the records only a few times each year. Which solution is the MOST cost-effective?",
+  "options": [
+   "Rely on the CloudTrail Event history in the console for all audit queries",
+   "Send the trail to CloudWatch Logs with 5-year retention and use Logs Insights",
+   "Load the CloudTrail log files into an Amazon Redshift cluster for the auditors",
+   "Create a trail that writes to Amazon S3 and query the logs with Amazon Athena"
+  ],
+  "answer": 3,
+  "explanation": "A trail stores log files cheaply in S3, where lifecycle rules can move older files to lower-cost storage classes, and Athena charges only for the data each query scans. Event history keeps just 90 days of management events. CloudWatch Logs ingestion and storage cost more, and a running Redshift cluster is expensive for rare queries.",
+  "domain": "saa4",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-q-191",
+  "question": "A company wants to review its main workload against AWS best practices, starting with the Cost Optimization pillar. It wants to answer structured questions about the architecture, record the risks found, and track an improvement plan with milestones. Which AWS service should it use?",
+  "options": [
+   "AWS Trusted Advisor",
+   "AWS Compute Optimizer",
+   "AWS Well-Architected Tool",
+   "AWS Cost Explorer"
+  ],
+  "answer": 2,
+  "explanation": "The Well-Architected Tool walks you through the framework questions for each pillar, records high and medium risks, and tracks improvement plans and milestones over time. Trusted Advisor runs automated checks on account resources, Compute Optimizer recommends resource sizes, and Cost Explorer visualizes spend, but none of them review a workload design.",
+  "domain": "saa4",
+  "section": "saa-31"
+ }
+]

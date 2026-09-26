@@ -1,0 +1,142 @@
+[
+ {
+  "id": "saa-c-149",
+  "term": "EC2 Metrics and CloudWatch Agent",
+  "definition": "Default EC2 metrics arrive every 5 minutes, or every minute with detailed monitoring. Remember: memory and disk space need the unified CloudWatch agent, which also ships log files.",
+  "category": "management",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-c-150",
+  "term": "CloudWatch Logs Subscription Filter",
+  "definition": "Streams matching log events in near real time to Kinesis Data Streams, Data Firehose, or Lambda, even across accounts. Remember: export to S3 is a slow batch job.",
+  "category": "management",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-c-151",
+  "term": "CloudWatch Contributor Insights",
+  "definition": "Analyzes log data to show the top contributors, such as the IP addresses sending the most traffic in VPC Flow Logs. Remember: think \"top N talkers\".",
+  "category": "management",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-c-152",
+  "term": "CloudTrail Event History vs Trail",
+  "definition": "Event history keeps 90 days of management events for free. For longer retention, create a trail to S3 and query it with Athena. Remember: data events are off by default.",
+  "category": "management",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-c-153",
+  "term": "CloudTrail vs Config vs CloudWatch",
+  "definition": "CloudTrail answers who made which API call. Config answers how a resource was configured over time and whether it complies. CloudWatch covers performance metrics, logs, and alarms.",
+  "category": "management",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-c-154",
+  "term": "AWS Config Rules and Remediation",
+  "definition": "Config rules check resource settings against managed or custom rules, and can auto-remediate with Systems Manager Automation. Remember: Config detects and fixes afterwards; it never blocks API calls.",
+  "category": "management",
+  "section": "saa-24"
+ },
+ {
+  "id": "saa-c-155",
+  "term": "DR Strategies, RPO and RTO",
+  "definition": "Cheapest to fastest: backup and restore, pilot light, warm standby, multi-site. RPO is how much data you can lose. RTO is how long you can be down.",
+  "category": "management",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-c-156",
+  "term": "Pilot Light vs Warm Standby",
+  "definition": "Pilot light runs only the core, like a replicated database, and launches servers during failover. Warm standby runs a scaled-down full copy that can serve traffic immediately.",
+  "category": "management",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-c-157",
+  "term": "Elastic Disaster Recovery vs MGN",
+  "definition": "Both use continuous block-level replication into a low-cost staging area. Elastic Disaster Recovery keeps servers ready for failover. Application Migration Service moves them to AWS once, for lift and shift.",
+  "category": "compute",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-c-158",
+  "term": "AWS DMS Full Load and CDC",
+  "definition": "Database Migration Service copies existing data, then change data capture keeps the target in sync while the source stays online. Remember: different engines need schema conversion first.",
+  "category": "database",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-c-159",
+  "term": "AWS Backup Vault Lock",
+  "definition": "Write once, read many protection for a backup vault. Remember: in compliance mode, once the grace period ends, nobody, including the root user, can delete backups or shorten retention.",
+  "category": "storage",
+  "section": "saa-28"
+ },
+ {
+  "id": "saa-c-160",
+  "term": "Transcribe vs Polly",
+  "definition": "Transcribe turns speech into text and can automatically redact personal data. Polly turns text into lifelike speech, tuned with SSML and pronunciation lexicons.",
+  "category": "analytics",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-c-161",
+  "term": "Comprehend vs Comprehend Medical",
+  "definition": "Comprehend finds sentiment, entities, key phrases, and language in text. Comprehend Medical extracts medical terms and protected health information from clinical notes.",
+  "category": "analytics",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-c-162",
+  "term": "Amazon Textract",
+  "definition": "Extracts printed and handwritten text, forms, and tables from scanned documents such as invoices, IDs, and tax forms. Remember: documents in, structured data out.",
+  "category": "analytics",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-c-163",
+  "term": "Amazon Kendra",
+  "definition": "Machine learning document search that answers natural language questions. Closed to new customers since July 2026; AWS suggests Amazon Bedrock Knowledge Bases instead. It may still appear on the exam.",
+  "category": "analytics",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-c-164",
+  "term": "CloudFormation Service Role",
+  "definition": "An IAM role that CloudFormation assumes to create stack resources. Users only need the iam:PassRole permission for it, so they can deploy stacks without holding those permissions directly.",
+  "category": "management",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-c-165",
+  "term": "AWS Outposts",
+  "definition": "AWS-managed racks or servers in your own data center that run services like EC2 and EBS, for low latency or data residency. Remember: you handle physical security.",
+  "category": "compute",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-c-166",
+  "term": "Amazon Pinpoint Retirement",
+  "definition": "Email, SMS, and push campaigns. Closed to new customers in May 2025, ending October 30, 2026. SMS and push move to AWS End User Messaging, email to SES.",
+  "category": "integration",
+  "section": "saa-30"
+ },
+ {
+  "id": "saa-c-167",
+  "term": "Blocking an IP Behind CloudFront",
+  "definition": "With CloudFront in front, use an AWS WAF IP set, because network ACLs only see CloudFront addresses. Without CloudFront, a network ACL deny works. Security groups cannot deny.",
+  "category": "security",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-c-168",
+  "term": "Well-Architected Framework Pillars",
+  "definition": "Six pillars: operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability. Remember: the free Well-Architected Tool reviews workloads against them.",
+  "category": "management",
+  "section": "saa-31"
+ }
+]

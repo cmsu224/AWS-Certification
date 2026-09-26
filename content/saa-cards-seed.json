@@ -1,0 +1,9 @@
+[
+ {
+  "id": "saa-c-001",
+  "term": "SQS Visibility Timeout",
+  "definition": "Time a received message stays hidden from other consumers (default 30s). If not deleted before it expires, the message becomes visible again and may be processed twice.",
+  "category": "integration",
+  "section": "saa-17"
+ }
+]

@@ -1,0 +1,156 @@
+[
+ {
+  "id": "saa-c-002",
+  "term": "RDS Multi-AZ vs Read Replicas",
+  "definition": "A Multi-AZ DB instance keeps a synchronous standby for automatic failover that serves no reads. Read replicas replicate asynchronously to scale reads. Remember: Multi-AZ for availability, replicas for reads.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-003",
+  "term": "RDS Automated Backups",
+  "definition": "Daily snapshots plus transaction logs, kept 1 to 35 days, enabling point-in-time restore into a new instance. Manual snapshots last until you delete them.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-004",
+  "term": "RDS Proxy",
+  "definition": "Fully managed connection pooler for RDS and Aurora. Cuts failover time, enforces IAM authentication, uses Secrets Manager credentials, never public. Remember: Lambda functions exhausting database connections.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-005",
+  "term": "RDS Custom",
+  "definition": "Managed RDS for Oracle and SQL Server that also lets you access the underlying OS and database for custom patches and settings. Remember: RDS plus OS access.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-006",
+  "term": "Aurora Storage and Replicas",
+  "definition": "Six copies of data across three Availability Zones, storage that grows automatically, up to 15 low-lag read replicas, and automatic failover to a replica, typically in under 30 seconds.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-007",
+  "term": "Aurora Endpoints",
+  "definition": "The writer endpoint always points to the primary. The reader endpoint load balances connections across replicas. Custom endpoints target a chosen subset, such as larger replicas for analytics.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-008",
+  "term": "Aurora Global Database",
+  "definition": "One primary Region plus read-only secondary Regions, replicated with typically under one second of lag. Promote a secondary in under a minute. Remember: cross-Region disaster recovery and low-latency global reads.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-009",
+  "term": "Aurora Serverless v2",
+  "definition": "Aurora capacity that scales automatically in fine-grained steps and can pause at zero when idle. Remember: unpredictable, intermittent, or new workloads with no capacity planning.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-010",
+  "term": "Aurora Backtrack and Cloning",
+  "definition": "Backtrack rewinds an Aurora MySQL cluster in place to an earlier time without a restore. Cloning makes a fast copy-on-write copy, ideal for a staging database from production.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-011",
+  "term": "ElastiCache Redis vs Memcached",
+  "definition": "Redis OSS or Valkey: replication, Multi-AZ failover, persistence, backups, sorted sets for leaderboards. Node-based Memcached: multi-threaded, sharded, no replication or persistence. Remember: Redis for availability.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-012",
+  "term": "Lazy Loading vs Write-Through",
+  "definition": "Lazy loading fills the cache only on a miss, risking stale data. Write-through updates the cache on every database write, keeping it fresh. TTLs expire old entries.",
+  "category": "database",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-c-013",
+  "term": "Purpose-Built Database Quick Picks",
+  "definition": "Relational: RDS or Aurora. Key-value at any scale: DynamoDB. MongoDB: DocumentDB. Graph: Neptune. Cassandra: Keyspaces. Time series: Timestream. Analytics warehouse: Redshift.",
+  "category": "database",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-c-014",
+  "term": "Amazon Timestream",
+  "definition": "Managed time-series database for IoT and operational metrics. New customers now use Timestream for InfluxDB, since Timestream for LiveAnalytics closed to new customers in 2025.",
+  "category": "database",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-c-015",
+  "term": "Amazon Athena",
+  "definition": "Serverless SQL queries directly on data in S3, priced per terabyte scanned. Cut cost with Parquet or ORC, compression, and partitions. Federated queries reach other sources through Lambda connectors.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-016",
+  "term": "Amazon Redshift",
+  "definition": "Columnar, massively parallel data warehouse for OLAP and BI, provisioned or serverless. Redshift Spectrum queries S3 data without loading it. Remember: complex analytics and joins, not OLTP.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-017",
+  "term": "Amazon OpenSearch Service",
+  "definition": "Managed search and analytics engine for full-text and partial-match search on any field, plus log analytics and dashboards. Often paired with DynamoDB to add search. Provisioned or serverless.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-018",
+  "term": "Amazon EMR",
+  "definition": "Managed Hadoop and Spark clusters on EC2 for big data processing. Keep primary and core nodes stable; task nodes are ideal for Spot. EMR Serverless also exists.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-019",
+  "term": "Amazon QuickSight",
+  "definition": "Serverless BI dashboards powered by the SPICE in-memory engine, with row-level and column-level security. Now named Quick Sight, part of Amazon Quick.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-020",
+  "term": "AWS Glue",
+  "definition": "Serverless ETL, such as converting CSV to Parquet. The Glue Data Catalog holds table metadata for Athena, Redshift Spectrum, and EMR; crawlers fill it. Job bookmarks skip processed data.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-021",
+  "term": "AWS Lake Formation",
+  "definition": "Builds a secure S3 data lake in days on top of Glue, with central fine-grained permissions, including row-level and column-level filters, enforced across Athena, Redshift Spectrum, and EMR.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-022",
+  "term": "Managed Service for Apache Flink",
+  "definition": "Serverless real-time stream processing with Apache Flink, formerly Kinesis Data Analytics. Reads from Kinesis Data Streams or Amazon MSK, not directly from Firehose.",
+  "category": "analytics",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-c-023",
+  "term": "Amazon MSK",
+  "definition": "Fully managed Apache Kafka, provisioned or serverless, running in your VPC across multiple Availability Zones. Remember: existing Kafka workloads move to MSK without code changes, unlike Kinesis.",
+  "category": "analytics",
+  "section": "saa-22"
+ }
+]

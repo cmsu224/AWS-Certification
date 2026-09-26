@@ -1,0 +1,308 @@
+[
+ {
+  "id": "saa-q-027",
+  "question": "A security team detects malicious traffic from a specific IP address range reaching web servers in a public subnet. The servers are not behind a load balancer. The team must block that range for every instance in the subnet immediately. What should a solutions architect do?",
+  "options": [
+   "Add a deny rule for the range to the inbound rules of the web servers' security group",
+   "Add a deny rule for the range to the subnet's network ACL, numbered before the allow rules",
+   "Change the route table so that traffic from the range bypasses the internet gateway",
+   "Enable VPC Flow Logs on the subnet with a filter that rejects traffic from the range"
+  ],
+  "answer": 1,
+  "explanation": "Network ACLs support explicit deny rules, evaluated in number order, and apply to every instance in the subnet. Security groups only support allow rules, so they cannot block one range. Route tables cannot filter by source address, and flow logs only record traffic.",
+  "domain": "saa1",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-028",
+  "question": "Application servers in private subnets must read objects from an Amazon S3 bucket in the same Region. The traffic must not traverse the internet, and the bucket must reject requests that do not come through the VPC. Which combination of steps meets these requirements? (Choose TWO.)",
+  "options": [
+   "Create a NAT gateway in a public subnet and route the S3 traffic through it",
+   "Create a gateway VPC endpoint for S3 and add it to the private subnets' route tables",
+   "Enable S3 Transfer Acceleration on the bucket and use the accelerate endpoint",
+   "Add a bucket policy that denies requests unless aws:SourceVpce matches the endpoint",
+   "Add a security group outbound rule on the servers that allows HTTPS to S3"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "A gateway endpoint keeps S3 traffic on the AWS network through a route table entry, and an aws:SourceVpce condition in the bucket policy rejects requests from anywhere else. A NAT gateway sends traffic to the public S3 endpoint, Transfer Acceleration uses edge locations over the internet, and a security group rule restricts nothing at the bucket.",
+  "domain": "saa1",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-029",
+  "question": "A company uses a bastion host in a public subnet so that administrators can SSH into Amazon EC2 instances in private subnets. Administrators connect only from the corporate network. Which TWO security group rules follow the principle of least privilege? (Choose TWO.)",
+  "options": [
+   "On the bastion's security group, allow inbound port 22 from the corporate public IP range",
+   "On the bastion's security group, allow inbound port 22 from any address on the internet",
+   "On the private instances' security group, allow inbound port 22 from the corporate public IP range",
+   "On the bastion's security group, allow outbound port 22 only to the corporate public IP range",
+   "On the private instances' security group, allow inbound port 22 from the bastion's security group"
+  ],
+  "answer": [
+   0,
+   4
+  ],
+  "explanation": "The bastion should accept SSH only from the corporate range, and private instances should accept SSH only from the bastion's security group, which survives bastion IP changes. Opening port 22 to the internet breaks least privilege, corporate addresses cannot reach private subnets directly, and the bastion needs outbound SSH to the private instances, not the corporate network.",
+  "domain": "saa1",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-030",
+  "question": "A company must inspect all traffic leaving its VPCs, block outbound requests to disallowed domain names, and apply intrusion prevention rules. The solution must be managed by AWS and protect entire VPCs rather than individual applications. Which service should the company use?",
+  "options": [
+   "AWS WAF",
+   "AWS Shield Advanced",
+   "Amazon GuardDuty",
+   "AWS Network Firewall"
+  ],
+  "answer": 3,
+  "explanation": "AWS Network Firewall protects whole VPCs at layers 3 to 7 with stateful rules, domain name filtering and Suricata-compatible intrusion prevention. AWS WAF only filters web requests to resources such as CloudFront, Application Load Balancers and API Gateway. Shield Advanced targets DDoS, and GuardDuty detects threats without blocking them.",
+  "domain": "saa1",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-031",
+  "question": "A web server in a public subnet has a security group that allows inbound HTTPS from anywhere. The subnet uses a new custom network ACL that contains only the default deny rules. Users cannot connect to the website. Which TWO changes will allow HTTPS traffic to work? (Choose TWO.)",
+  "options": [
+   "Add a security group outbound rule that allows TCP ports 1024 to 65535 to anywhere",
+   "Add a network ACL outbound rule that allows TCP port 443 to anywhere",
+   "Add a network ACL inbound rule that allows TCP port 443 from anywhere",
+   "Add a network ACL outbound rule that allows TCP ports 1024 to 65535 to anywhere",
+   "Add a security group inbound rule that allows TCP ports 1024 to 65535 from anywhere"
+  ],
+  "answer": [
+   2,
+   3
+  ],
+  "explanation": "Network ACLs are stateless, so the subnet needs an inbound rule for port 443 and an outbound rule for the client's ephemeral ports. Security groups are stateful, so return traffic is allowed automatically. An outbound port 443 rule does not match responses, which go to the client's ephemeral port.",
+  "domain": "saa1",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-032",
+  "question": "A company connects its data center to a VPC through an AWS Direct Connect hosted connection from a partner. A new compliance rule requires all traffic between the data center and the VPC to be encrypted in transit. What should a solutions architect do?",
+  "options": [
+   "Set up an IPsec Site-to-Site VPN connection that runs over the Direct Connect link",
+   "Attach a Direct Connect gateway in front of the existing virtual private gateway",
+   "Order a second hosted connection from a different Direct Connect partner",
+   "Enable Direct Connect SiteLink on the existing private virtual interface"
+  ],
+  "answer": 0,
+  "explanation": "Direct Connect traffic is private but not encrypted by default. An IPsec VPN running over the Direct Connect link adds encryption in transit while keeping the dedicated path. MACsec is not offered on hosted connections, and a Direct Connect gateway, SiteLink or a second connection changes routing or resilience, not encryption.",
+  "domain": "saa1",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-033",
+  "question": "Instances in private subnets across two Availability Zones reach the internet through a single NAT instance. The operations team wants to remove this single point of failure and stop patching the NAT instance. Which solution meets these requirements?",
+  "options": [
+   "Create a single NAT gateway in one Availability Zone and route every private subnet to it",
+   "Run NAT instances in an Auto Scaling group in both zones with scripts that update routes",
+   "Create a NAT gateway in each Availability Zone and route each private subnet to its local one",
+   "Attach a second internet gateway and add a route to it from each private subnet"
+  ],
+  "answer": 2,
+  "explanation": "NAT gateways are managed and redundant within their zone, so one per zone removes both the patching work and the single point of failure. A single NAT gateway still fails with its zone, scripted NAT instances keep the operational burden, and a VPC can have only one internet gateway.",
+  "domain": "saa2",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-034",
+  "question": "A company is redesigning a VPC. Workloads in private subnets need outbound IPv4 internet access. The security team wants no public subnets in the VPC, and the network team wants NAT to follow workloads into new Availability Zones without route table changes. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Create a zonal NAT gateway in each Availability Zone and add per-zone routes as zones are added",
+   "Launch NAT instances from a hardened AMI in each Availability Zone with Elastic IP addresses",
+   "Create a regional NAT gateway in automatic mode and point all private route tables at its ID",
+   "Create an egress-only internet gateway and point all private route tables at its ID"
+  ],
+  "answer": 2,
+  "explanation": "A regional NAT gateway expands across Availability Zones automatically, needs no public subnet, and uses one ID in every route table. Zonal NAT gateways and NAT instances sit in public subnets and need per-zone work, while an egress-only internet gateway only handles IPv6 traffic.",
+  "domain": "saa2",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-035",
+  "question": "A bank runs critical workloads that depend on AWS Direct Connect. It needs maximum resiliency so that the failure of a device, a connection, or an entire Direct Connect location does not interrupt connectivity. Which design meets this requirement?",
+  "options": [
+   "Separate connections terminating on separate devices in at least two Direct Connect locations",
+   "Two connections terminating on separate devices in a single Direct Connect location",
+   "A link aggregation group of four dedicated connections at a single Direct Connect location",
+   "Two hosted connections from the same partner at a single Direct Connect location"
+  ],
+  "answer": 0,
+  "explanation": "The AWS maximum resiliency model uses separate connections on separate devices in more than one Direct Connect location, so no single device, connection or location failure breaks connectivity. Any design that uses only one location, including a link aggregation group, still fails if that location goes down.",
+  "domain": "saa2",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-036",
+  "question": "A company has one AWS Direct Connect connection between its data center and a VPC. It wants a backup path in case the connection fails, and it accepts lower throughput on the backup path. Which solution is the MOST cost-effective?",
+  "options": [
+   "Order a second Direct Connect connection at another location",
+   "Configure VPC peering between the VPC and a backup VPC",
+   "Deploy AWS Global Accelerator in front of the VPC resources",
+   "Set up an AWS Site-to-Site VPN connection as the backup path"
+  ],
+  "answer": 3,
+  "explanation": "A Site-to-Site VPN over the internet is quick and inexpensive to set up and can take over if the Direct Connect link fails. A second Direct Connect connection performs better but costs much more. VPC peering and Global Accelerator do not connect an on-premises data center to the VPC.",
+  "domain": "saa2",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-037",
+  "question": "A company has 40 VPCs across several accounts in one Region and a Site-to-Site VPN to its data center. Every VPC must reach the other VPCs and the data center. The current full mesh of VPC peering connections is hard to manage. Which solution is the MOST scalable?",
+  "options": [
+   "Keep VPC peering and enable transitive routing through a central shared VPC",
+   "Attach the VPCs and the VPN to an AWS Transit Gateway shared through AWS RAM",
+   "Create a Direct Connect gateway and associate every VPC with it",
+   "Expose each VPC's services through AWS PrivateLink endpoint services"
+  ],
+  "answer": 1,
+  "explanation": "Transit Gateway is a regional hub with transitive routing between thousands of VPCs and on-premises VPN or Direct Connect links, and it can be shared across accounts with AWS Resource Access Manager. VPC peering is never transitive, a Direct Connect gateway does not route between VPCs, and PrivateLink exposes single services one way.",
+  "domain": "saa2",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-038",
+  "question": "A company connects its data center to AWS with a Site-to-Site VPN on a virtual private gateway. The VPN tunnels are saturated during nightly transfers, and AWS Direct Connect is not an option. How can the company increase VPN throughput to AWS?",
+  "options": [
+   "Move the VPN to a transit gateway and use ECMP across multiple VPN tunnels",
+   "Add more VPN connections to the virtual private gateway to spread the load",
+   "Enable jumbo frames on the VPN tunnels so that each packet carries more data",
+   "Switch the customer gateway from BGP dynamic routing to static routing"
+  ],
+  "answer": 0,
+  "explanation": "A transit gateway supports equal-cost multipath routing across VPN tunnels, adding their bandwidth together, and also offers larger tunnels of up to five gigabits per second. A virtual private gateway does not use ECMP, VPN tunnels do not support jumbo frames, and ECMP requires BGP rather than static routing.",
+  "domain": "saa3",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-039",
+  "question": "A company has an AWS Direct Connect connection in us-east-1. It now also needs private connectivity from its data center to VPCs in us-west-2 and eu-west-1, without ordering new connections. What should a solutions architect use?",
+  "options": [
+   "Inter-Region VPC peering from the us-east-1 VPC to the VPCs in the other Regions",
+   "A Direct Connect gateway associated with the virtual private gateway of each VPC",
+   "A Site-to-Site VPN from the us-east-1 virtual private gateway to the other Regions",
+   "A public virtual interface on the existing Direct Connect connection"
+  ],
+  "answer": 1,
+  "explanation": "A Direct Connect gateway is a global resource that lets one Direct Connect connection reach VPCs in many Regions through their virtual private gateways or transit gateways. Peering is not transitive, so on-premises traffic cannot pass through the us-east-1 VPC, and a public virtual interface reaches public AWS endpoints, not private VPC addresses.",
+  "domain": "saa3",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-040",
+  "question": "A SaaS provider must expose an API running in its VPC to hundreds of customer VPCs. Many customer VPCs use CIDR ranges that overlap with the provider's. Traffic must stay on the AWS network, and customers must not reach any other provider resources. Which solution meets these requirements?",
+  "options": [
+   "Create a VPC peering connection from the provider VPC to each customer VPC",
+   "Attach the provider VPC and every customer VPC to a shared AWS Transit Gateway",
+   "Put the API behind a Network Load Balancer and publish it as a PrivateLink endpoint service",
+   "Put the API behind a public Application Load Balancer that allows only customer IP ranges"
+  ],
+  "answer": 2,
+  "explanation": "PrivateLink exposes one service through an interface endpoint in each consumer VPC, so overlapping CIDR ranges do not matter and consumers reach only that service. VPC peering and Transit Gateway need non-overlapping ranges and open broader network access, and a public load balancer sends traffic over the internet.",
+  "domain": "saa3",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-041",
+  "question": "An on-premises application connects to a VPC through AWS Direct Connect with a private virtual interface. The application must upload data to Amazon S3 using private IP addresses only, with no public internet path. Which solution meets this requirement?",
+  "options": [
+   "Create a gateway VPC endpoint for S3 and route the on-premises traffic to it",
+   "Create a NAT gateway in the VPC and route on-premises S3 traffic through it",
+   "Enable S3 Transfer Acceleration and send requests to the accelerate endpoint",
+   "Create an interface VPC endpoint for S3 and send requests to its endpoint DNS name"
+  ],
+  "answer": 3,
+  "explanation": "Interface endpoints place private IP addresses in the VPC, so on-premises clients can reach S3 over Direct Connect or VPN. Gateway endpoints only work through VPC route tables and cannot be used from on-premises networks. NAT gateways and Transfer Acceleration use public S3 endpoints.",
+  "domain": "saa3",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-042",
+  "question": "A company runs dual-stack Amazon EC2 instances in a private subnet. The instances must download updates from IPv6 addresses on the internet, but nothing on the internet may start a connection to them over IPv6. What should be added to the route table for this IPv6 traffic?",
+  "options": [
+   "A NAT gateway",
+   "An internet gateway",
+   "A virtual private gateway",
+   "An egress-only internet gateway"
+  ],
+  "answer": 3,
+  "explanation": "An egress-only internet gateway allows outbound IPv6 connections and blocks connections started from the internet, much like NAT does for IPv4. Amazon IPv6 addresses are public, so a regular internet gateway would allow inbound connections, and a NAT gateway is meant for IPv4 destinations.",
+  "domain": "saa3",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-043",
+  "question": "A network team wants to run ad hoc SQL queries on several months of VPC Flow Logs to find rejected connections. The solution must have the LEAST operational overhead and require no servers to manage. What should the team do?",
+  "options": [
+   "Publish the flow logs to CloudWatch Logs and export them into Amazon RDS",
+   "Publish the flow logs to Amazon S3 and query them with Amazon Athena",
+   "Enable VPC Traffic Mirroring and analyze the packets on an EC2 fleet",
+   "Stream the flow logs through Amazon Data Firehose into a provisioned Amazon Redshift cluster"
+  ],
+  "answer": 1,
+  "explanation": "Flow logs delivered to S3 can be queried in place with Athena, which is serverless and charges per query. Redshift and RDS require provisioning and loading data, and Traffic Mirroring copies full packets for deep inspection instead of analyzing connection records.",
+  "domain": "saa3",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-044",
+  "question": "Amazon EC2 instances in private subnets send several terabytes per day to Amazon S3 in the same Region through a NAT gateway. The NAT gateway data processing charges are high. What is the MOST cost-effective way to reduce these charges?",
+  "options": [
+   "Add an S3 gateway VPC endpoint to the private subnets' route tables",
+   "Replace the NAT gateway with a larger NAT instance in a public subnet",
+   "Create an S3 interface VPC endpoint in each of the private subnets",
+   "Enable S3 Transfer Acceleration on the destination S3 bucket"
+  ],
+  "answer": 0,
+  "explanation": "An S3 gateway endpoint has no hourly or data processing charge, and it takes S3 traffic off the NAT gateway. An interface endpoint also bypasses the NAT gateway but adds hourly and per-gigabyte charges. A NAT instance adds management work, and Transfer Acceleration adds cost.",
+  "domain": "saa4",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-045",
+  "question": "Two Amazon EC2 instances in the same Availability Zone exchange large amounts of data using each other's public IPv4 addresses. The finance team sees data transfer charges for this traffic. What should a solutions architect do to reduce the cost?",
+  "options": [
+   "Assign Elastic IP addresses to both instances and use those addresses",
+   "Move one of the instances to another Availability Zone in the Region",
+   "Configure the instances to communicate using their private IP addresses",
+   "Route the traffic between the instances through a NAT gateway"
+  ],
+  "answer": 2,
+  "explanation": "Traffic between instances in the same Availability Zone is free when it uses private IP addresses, while traffic sent to public or Elastic IP addresses is charged as regional data transfer. Moving to another zone adds cross-zone charges, and a NAT gateway adds processing fees.",
+  "domain": "saa4",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-046",
+  "question": "A company has two VPCs in the same Region that exchange large volumes of data. No more VPCs will be added. The company needs private connectivity between the two VPCs at the LOWEST cost. Which solution should a solutions architect choose?",
+  "options": [
+   "An AWS Transit Gateway with both VPCs attached",
+   "A VPC peering connection between the two VPCs",
+   "A Site-to-Site VPN between two virtual private gateways",
+   "AWS PrivateLink endpoint services in both of the VPCs"
+  ],
+  "answer": 1,
+  "explanation": "VPC peering has no hourly or data processing charge, and traffic that stays in one Availability Zone is free. Transit Gateway charges per attachment hour and per gigabyte processed, which pays off only when connecting many VPCs. PrivateLink adds endpoint charges and exposes single services only.",
+  "domain": "saa4",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-q-047",
+  "question": "A company needs encrypted connectivity between its office network and a VPC within one week. Bandwidth needs are modest and the budget is small. Which solution meets these requirements MOST cost-effectively?",
+  "options": [
+   "An AWS Site-to-Site VPN connection over the internet",
+   "An AWS Direct Connect dedicated connection",
+   "An AWS Direct Connect hosted connection from a partner",
+   "An AWS Client VPN endpoint for every office user"
+  ],
+  "answer": 0,
+  "explanation": "Site-to-Site VPN can be set up in minutes over the existing internet link, is encrypted with IPsec, and costs little. Direct Connect often takes weeks to provision, costs more and is not encrypted by default. Client VPN connects individual users rather than a whole office network.",
+  "domain": "saa4",
+  "section": "saa-27"
+ }
+]

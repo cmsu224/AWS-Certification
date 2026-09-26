@@ -1,0 +1,368 @@
+[
+ {
+  "id": "saa-q-048",
+  "question": "An application running on Amazon EC2 instances must read objects from an Amazon S3 bucket in the same account. Which solution is the MOST secure way to give the application access?",
+  "options": [
+   "Attach an IAM role with the required S3 permissions to the instances through an instance profile.",
+   "Create an IAM user, generate access keys, and store the keys in environment variables on each instance.",
+   "Create an IAM user, generate access keys, and run aws configure on each instance to save the keys.",
+   "Add a bucket policy that allows access from the public IP addresses of the EC2 instances."
+  ],
+  "answer": 0,
+  "explanation": "An instance profile delivers temporary, automatically rotated role credentials to the instance, so no long-term secrets exist. Storing IAM user access keys on instances, even in environment variables, creates long-lived credentials that can leak.",
+  "domain": "saa1",
+  "section": "saa-04"
+ },
+ {
+  "id": "saa-q-049",
+  "question": "A company lets developers create IAM roles for their AWS Lambda functions. The security team must guarantee that no role a developer creates can ever exceed a defined set of permissions, while other teams in the same account are unaffected. What should the security team use?",
+  "options": [
+   "A service control policy attached to the account that contains the developers",
+   "IAM permissions boundaries that developers must attach to every role they create",
+   "An IAM Access Analyzer policy validation check run on each new role",
+   "An AWS Config rule that deletes roles with administrator permissions"
+  ],
+  "answer": 1,
+  "explanation": "A permissions boundary caps the maximum permissions an identity can have, so developer-created roles cannot escalate privileges. A service control policy applies to every principal in the account, which would also restrict the other teams.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-050",
+  "question": "A company uses AWS Organizations. The security team must prevent every member account, including the root user of each member account, from stopping AWS CloudTrail logging or leaving the organization. Which solution meets these requirements?",
+  "options": [
+   "Attach an IAM policy that denies these actions to the administrator groups in every account.",
+   "Attach a permissions boundary that denies these actions to every IAM role in every account.",
+   "Attach a service control policy that denies these actions to the root of the organization.",
+   "Deploy AWS Config rules with automatic remediation that re-enable CloudTrail logging."
+  ],
+  "answer": 2,
+  "explanation": "Service control policies limit every principal in member accounts, including their root users, and cannot be bypassed by account administrators. IAM policies and permissions boundaries cannot be applied to a root user and can be removed by local administrators.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-051",
+  "question": "An Amazon S3 bucket must allow read access only to principals from accounts in the company’s AWS organization. New accounts are added to the organization every week. Which solution requires the LEAST ongoing maintenance?",
+  "options": [
+   "Add a bucket policy that lists the account ID of every account in the organization as a principal.",
+   "Create an IAM role in each account and add each role ARN to the bucket policy as it is created.",
+   "Enable S3 Access Grants and create a grant for each new account when it joins the organization.",
+   "Add a bucket policy with an aws:PrincipalOrgID condition that matches the organization ID."
+  ],
+  "answer": 3,
+  "explanation": "The aws:PrincipalOrgID condition automatically covers every current and future account in the organization. Listing account IDs or role ARNs in the bucket policy needs an update every time an account is added.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-052",
+  "question": "An IAM user in a member account of an AWS organization has the AdministratorAccess managed policy attached. No permissions boundary is set. The user receives an access denied error when creating an Amazon DynamoDB table. What is the MOST likely cause?",
+  "options": [
+   "A service control policy on the account or its OU does not allow DynamoDB actions.",
+   "The user has not configured multi-factor authentication for console sign-in.",
+   "DynamoDB table creation requires a resource-based policy that names the user.",
+   "The AdministratorAccess policy excludes DynamoDB unless an inline policy is added."
+  ],
+  "answer": 0,
+  "explanation": "An action must be allowed by every applicable service control policy before identity policies matter, so an SCP can block even an administrator. AdministratorAccess grants all actions, and DynamoDB table creation needs no resource-based policy.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-053",
+  "question": "A company’s public web application runs on EC2 instances in an Auto Scaling group behind an Application Load Balancer. The company wants to make the application more resilient to layer 7 DDoS attacks. Which combination of actions should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Serve the application through an Amazon CloudFront distribution in front of the load balancer.",
+   "Enable Amazon GuardDuty to automatically block malicious traffic to the load balancer.",
+   "Add deny rules for attacking IP addresses to the security groups of the instances.",
+   "Associate an AWS WAF web ACL that has rate-based rules with the CloudFront distribution.",
+   "Enable Amazon Macie to monitor the load balancer access logs for attacks."
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "CloudFront absorbs and spreads traffic across edge locations, and AWS WAF rate-based rules block floods of HTTP requests. GuardDuty only detects threats and does not block traffic, and security groups cannot contain deny rules.",
+  "domain": "saa2",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-054",
+  "question": "A process in Account A reads data from an Amazon DynamoDB table in Account A and must write the results to an Amazon S3 bucket in Account B. The process must keep its Account A permissions while it writes. Which solution meets these requirements?",
+  "options": [
+   "Have the process assume an IAM role in Account B that has write access to the bucket.",
+   "Add a bucket policy in Account B that grants write access to the Account A role.",
+   "Enable S3 Cross-Region Replication from a bucket in Account A to the bucket in Account B.",
+   "Share the Account B bucket with Account A by using AWS Resource Access Manager."
+  ],
+  "answer": 1,
+  "explanation": "With a resource-based policy the principal keeps its own permissions while accessing the other account’s bucket. Assuming a role in Account B would give up the Account A permissions needed to read DynamoDB for the duration of the session.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-055",
+  "question": "A company has 40 AWS accounts in AWS Organizations and uses Microsoft Entra ID for workforce identities. Employees need single sign-on to the AWS accounts with centrally managed permission levels per account. Which solution requires the LEAST operational overhead?",
+  "options": [
+   "Create IAM users in each account and synchronize their passwords with Entra ID.",
+   "Configure a SAML identity provider and IAM roles separately in each of the 40 accounts.",
+   "Use IAM Identity Center with Entra ID as the identity source and assign permission sets.",
+   "Deploy AWS Managed Microsoft AD and create a forest trust with Entra ID."
+  ],
+  "answer": 2,
+  "explanation": "IAM Identity Center federates with an external identity provider once and pushes permission sets to any account in the organization. Configuring SAML federation in each account separately works but multiplies setup and maintenance.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-056",
+  "question": "A company runs Windows applications on Amazon EC2 that must authenticate users with their existing on-premises Active Directory credentials. Authentication in AWS must keep working if the connection to the on-premises data center is lost. Which solution meets these requirements?",
+  "options": [
+   "Deploy AD Connector in the VPC and point it to the on-premises domain controllers.",
+   "Deploy Simple AD in the VPC and import the on-premises user accounts.",
+   "Deploy AWS Managed Microsoft AD and create a trust with the on-premises domain.",
+   "Extend the on-premises domain with domain controllers on EC2 in two Availability Zones."
+  ],
+  "answer": 3,
+  "explanation": "Domain controllers for the same domain running in AWS hold replicated copies of the user accounts, so sign-ins continue during an outage. AD Connector is only a proxy, and a trust with a separate directory still sends on-premises users back to on-premises controllers.",
+  "domain": "saa2",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-057",
+  "question": "A company is starting a multi-account environment. It wants a preconfigured landing zone with account vending, centralized logging, preventive and detective guardrails, and a dashboard showing compliance. Which solution requires the LEAST operational overhead?",
+  "options": [
+   "Set up AWS Control Tower and enable the required controls.",
+   "Create accounts with AWS Organizations and write custom service control policies.",
+   "Deploy AWS Config conformance packs in each account with AWS CloudFormation StackSets.",
+   "Use AWS Firewall Manager to apply security policies to every new account."
+  ],
+  "answer": 0,
+  "explanation": "Control Tower builds a well-architected landing zone automatically and applies controls that use service control policies and AWS Config, with a compliance dashboard. Building the same thing from Organizations and custom policies is far more work.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-058",
+  "question": "A finance team cannot allocate AWS costs because teams tag resources inconsistently, for example CostCenter, costcenter, and cost-center. The company uses AWS Organizations. How can the company standardize tag keys and values across all accounts?",
+  "options": [
+   "Activate AWS generated cost allocation tags in the Billing console.",
+   "Create tag policies in AWS Organizations and attach them to the relevant OUs.",
+   "Use AWS Resource Groups to regroup resources with inconsistent tags.",
+   "Create a budget in AWS Budgets that filters on each tag variation."
+  ],
+  "answer": 1,
+  "explanation": "Tag policies define the allowed tag keys, capitalization and values across the organization and report noncompliant resources, fixing cost allocation at the source. AWS generated tags only add creator tags and do not standardize the ones teams apply.",
+  "domain": "saa4",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-059",
+  "question": "A security team must automatically find software vulnerabilities in EC2 instances and container images in Amazon ECR. The team must also discover personally identifiable information stored in Amazon S3 buckets. Which services should the team use? (Choose TWO.)",
+  "options": [
+   "Amazon GuardDuty",
+   "Amazon Inspector",
+   "Amazon Detective",
+   "AWS Trusted Advisor",
+   "Amazon Macie"
+  ],
+  "answer": [
+   1,
+   4
+  ],
+  "explanation": "Inspector continuously scans EC2 instances, ECR images and Lambda functions for known vulnerabilities, and Macie uses machine learning to discover sensitive data in S3. GuardDuty detects threats from logs rather than scanning for vulnerabilities or personal data.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-060",
+  "question": "An application must encrypt 200 MB files with a customer managed AWS KMS key before storing them on premises. Calls to the KMS Encrypt API fail for these files. What should a solutions architect recommend?",
+  "options": [
+   "Request a service quota increase for the maximum payload size of the Encrypt API.",
+   "Split each file into small chunks and call the Encrypt API once for every chunk.",
+   "Use envelope encryption with a data key from GenerateDataKey to encrypt locally.",
+   "Replace the customer managed key with an AWS managed key that supports larger payloads."
+  ],
+  "answer": 2,
+  "explanation": "The KMS Encrypt API only accepts a few kilobytes of data. Envelope encryption uses a KMS-protected data key to encrypt the file locally. Chunking would be slow, costly and throttled, and no key type raises the payload limit.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-061",
+  "question": "A company uses Amazon DynamoDB global tables in two Regions and encrypts sensitive attributes on the client side. Applications in each Region must decrypt data locally with the lowest latency, without calling KMS in another Region. Which solution meets these requirements?",
+  "options": [
+   "Create a separate single-Region KMS key in each Region and share them by key policy.",
+   "Use the AWS owned key that DynamoDB uses for default encryption at rest.",
+   "Store a copy of the key material in AWS Secrets Manager in each Region.",
+   "Use an AWS KMS multi-Region key with a replica key in each Region."
+  ],
+  "answer": 3,
+  "explanation": "Multi-Region keys share the same key ID and key material, so data encrypted in one Region can be decrypted locally in another. Separate single-Region keys have different material and cannot decrypt each other’s data.",
+  "domain": "saa3",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-062",
+  "question": "A company must share an AMI with a partner account. The AMI’s snapshots are encrypted with a customer managed AWS KMS key. What must the company do so the partner can launch instances from the AMI?",
+  "options": [
+   "Grant the partner account AMI launch permission and use of the KMS key in its key policy.",
+   "Add the partner account to the AMI launch permissions and make the snapshots public.",
+   "Copy the AMI with the AWS managed key for Amazon EBS and share the new copy.",
+   "Export the KMS key material and import it into a new key in the partner account."
+  ],
+  "answer": 0,
+  "explanation": "The partner needs both launch permission on the AMI and permission to use the customer managed key that encrypted it. AWS managed keys cannot be shared across accounts, and encrypted snapshots cannot be made public.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-063",
+  "question": "An application needs to store about 300 configuration values, including some encrypted API endpoints. Values are under 4 KB, change rarely, and do not need automatic rotation. Which solution is the MOST cost-effective?",
+  "options": [
+   "AWS Secrets Manager, with one secret for each configuration value",
+   "Parameter Store standard parameters, with SecureString for encrypted values",
+   "Parameter Store advanced parameters, with parameter policies for expiration",
+   "An Amazon DynamoDB table encrypted with a customer managed KMS key"
+  ],
+  "answer": 1,
+  "explanation": "Standard parameters have no storage charge, hold values up to 4 KB, and SecureString encrypts values with KMS. Secrets Manager charges per secret per month and is only worth it when you need its built-in rotation. Advanced parameters add a charge.",
+  "domain": "saa4",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-064",
+  "question": "A company stores the master credentials for an Amazon RDS for MySQL database in application configuration. A new policy requires the password to be rotated automatically every 30 days. Which solution requires the LEAST operational overhead?",
+  "options": [
+   "Store the credentials in Parameter Store and schedule a Lambda function to change them.",
+   "Store the credentials in an encrypted S3 object and rotate them with an EventBridge rule.",
+   "Store the credentials in AWS Secrets Manager and enable automatic rotation.",
+   "Use AWS KMS automatic key rotation for the key that encrypts the credentials."
+  ],
+  "answer": 2,
+  "explanation": "Secrets Manager has built-in rotation for Amazon RDS that updates both the secret and the database password on a schedule. Parameter Store has no built-in rotation, and KMS key rotation changes the encryption key, not the database password.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-065",
+  "question": "A third-party monitoring vendor needs read-only access to resources in a company’s AWS account. The vendor serves many customers from its own AWS account. Which combination of steps provides access MOST securely? (Choose TWO.)",
+  "options": [
+   "Create an IAM role in the company account with a trust policy that allows the vendor’s account.",
+   "Create an IAM user for the vendor and provide long-term access keys.",
+   "Require a unique external ID in the role trust policy condition.",
+   "Invite the vendor’s account to join the company’s AWS organization.",
+   "Attach a permissions boundary to the vendor’s account root user."
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "A cross-account role gives the vendor temporary credentials, and a unique external ID prevents the confused deputy problem where another vendor customer tricks the vendor into using your role. Long-term access keys for an IAM user are harder to secure and rotate.",
+  "domain": "saa1",
+  "section": "saa-25"
+ },
+ {
+  "id": "saa-q-066",
+  "question": "A company serves a website through an Amazon CloudFront distribution with a custom domain name, and its origin is an Application Load Balancer in eu-west-1. Where must the company request the AWS Certificate Manager certificate that is attached to the distribution?",
+  "options": [
+   "In eu-west-1, the Region where the origin runs",
+   "In any Region, because ACM certificates are global",
+   "In each edge location that serves the distribution",
+   "In the US East (N. Virginia) Region, us-east-1"
+  ],
+  "answer": 3,
+  "explanation": "CloudFront only accepts ACM certificates from us-east-1, regardless of where the origin runs. The load balancer itself would need its own certificate in eu-west-1, which is the tempting but wrong choice for the distribution.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-067",
+  "question": "A regulated company must store its encryption keys in dedicated, single-tenant hardware security modules. The company must have exclusive control of the keys, and AWS must have no access to them. Which service meets these requirements?",
+  "options": [
+   "AWS CloudHSM",
+   "AWS KMS with customer managed keys",
+   "AWS KMS with imported key material",
+   "AWS Secrets Manager with a customer managed key"
+  ],
+  "answer": 0,
+  "explanation": "CloudHSM gives you single-tenant hardware security modules in your VPC where only your users manage the keys. KMS, even with imported key material, is a multi-tenant managed service where AWS operates the hardware and key usage is controlled through KMS.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-068",
+  "question": "A public web application behind an Application Load Balancer is receiving SQL injection attempts and bursts of requests from a small number of IP addresses. Which solution addresses both issues with the LEAST operational overhead?",
+  "options": [
+   "Update the load balancer security group to deny the offending IP addresses and SQL keywords.",
+   "Associate an AWS WAF web ACL with a SQL injection rule group and a rate-based rule.",
+   "Enable Amazon GuardDuty and create an EventBridge rule that blocks the offending IP addresses.",
+   "Add network ACL deny rules for the offending IP addresses and enable AWS Shield Standard."
+  ],
+  "answer": 1,
+  "explanation": "AWS WAF inspects HTTP requests, so managed rules block SQL injection and a rate-based rule throttles noisy IP addresses automatically. Security groups cannot deny traffic or inspect request content, and network ACLs cannot see SQL payloads.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-069",
+  "question": "A company’s revenue-critical application runs on CloudFront, Application Load Balancers, and Amazon EC2 Auto Scaling. The company wants help from AWS DDoS experts during attacks and protection from scaling charges caused by DDoS traffic. What should the company use?",
+  "options": [
+   "AWS Shield Standard",
+   "AWS WAF with managed rule groups",
+   "AWS Shield Advanced",
+   "Amazon GuardDuty with Extended Threat Detection"
+  ],
+  "answer": 2,
+  "explanation": "Shield Advanced adds access to the Shield Response Team and cost protection that credits scaling charges caused by DDoS attacks. Shield Standard is free and automatic but provides neither expert response nor cost protection.",
+  "domain": "saa2",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-070",
+  "question": "A security team wants continuous detection of compromised EC2 instances, such as instances communicating with known malicious IP addresses or mining cryptocurrency. The solution must not require installing agents. Which service should the team enable?",
+  "options": [
+   "Amazon Inspector",
+   "Amazon Macie",
+   "Amazon Detective",
+   "Amazon GuardDuty"
+  ],
+  "answer": 3,
+  "explanation": "GuardDuty uses machine learning and threat intelligence on CloudTrail events, VPC Flow Logs and DNS logs to flag threats such as crypto mining. Inspector finds software vulnerabilities and exposure, not active threats, and Detective investigates findings after the fact.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-071",
+  "question": "A company runs a web application on EC2 instances behind an Application Load Balancer. A new policy requires client traffic to be encrypted in transit with a certificate that renews automatically, and every new EBS volume to be encrypted at rest. Which combination of steps meets these requirements with the LEAST operational overhead? (Choose TWO.)",
+  "options": [
+   "Store a purchased certificate in AWS Secrets Manager and install it on each instance.",
+   "Request a public certificate in AWS Certificate Manager and add an HTTPS listener to the load balancer.",
+   "Store the certificate private key in AWS CloudHSM and load it into the load balancer.",
+   "Turn on Amazon EBS encryption by default in each Region that the account uses.",
+   "Create an AWS Config rule that reports unencrypted EBS volumes after they are created."
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Public ACM certificates on a load balancer renew automatically, and EBS encryption by default encrypts every new volume in that Region. Certificates installed on instances must be renewed by hand, and a Config rule only reports unencrypted volumes after they already exist.",
+  "domain": "saa1",
+  "section": "saa-26"
+ },
+ {
+  "id": "saa-q-072",
+  "question": "An application uploads millions of small objects per hour to an Amazon S3 bucket that uses SSE-KMS with a customer managed key. Uploads intermittently fail with KMS throttling errors. Which change reduces the number of requests to AWS KMS?",
+  "options": [
+   "Enable S3 Bucket Keys for the bucket.",
+   "Enable automatic rotation for the customer managed key.",
+   "Replace the key with a KMS multi-Region key.",
+   "Switch the bucket default encryption to DSSE-KMS."
+  ],
+  "answer": 0,
+  "explanation": "An S3 Bucket Key generates a bucket-level key that creates data keys locally, cutting KMS requests and cost dramatically. Key rotation and multi-Region keys do not reduce request volume, and dual-layer encryption with KMS still calls KMS for every object.",
+  "domain": "saa3",
+  "section": "saa-26"
+ }
+]

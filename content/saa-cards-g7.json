@@ -1,0 +1,128 @@
+[
+ {
+  "id": "saa-c-024",
+  "term": "VPC CIDR size range",
+  "definition": "An IPv4 VPC block can range from slash 16, about 65,000 addresses, down to slash 28, 16 addresses. Remember: plan non-overlapping ranges if you will peer or connect on-premises.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-025",
+  "term": "Subnet reserved IP addresses",
+  "definition": "AWS reserves 5 addresses in every subnet: the first four and the last one. Remember: a slash 27 subnet gives only 27 usable addresses, not 32.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-026",
+  "term": "NAT gateway vs NAT instance",
+  "definition": "NAT gateway: managed, scales to 100 Gbps, redundant within one zone, no security groups. NAT instance: self-managed EC2, disable source destination check, supports security groups.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-027",
+  "term": "Regional NAT gateway",
+  "definition": "A single NAT gateway that automatically expands across Availability Zones where you have workloads. Needs no public subnet and one route table target. Remember: public connectivity only, not private NAT.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-028",
+  "term": "Security group vs network ACL",
+  "definition": "Security groups: instance level, stateful, allow rules only, all rules evaluated. Network ACLs: subnet level, stateless, allow and deny rules, evaluated in number order, first match wins.",
+  "category": "security",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-029",
+  "term": "Ephemeral ports and NACLs",
+  "definition": "Clients receive responses on temporary high ports, typically 1024 to 65535. Remember: because network ACLs are stateless, you must allow these ports for return traffic.",
+  "category": "security",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-030",
+  "term": "VPC peering rules",
+  "definition": "Private connection between two VPCs, even across accounts or Regions. No overlapping CIDRs, and update both route tables. Remember: not transitive, so each pair needs its own peering.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-031",
+  "term": "Gateway vs interface endpoint",
+  "definition": "Gateway endpoint: route table target, S3 and DynamoDB only, free, not reachable from on-premises. Interface endpoint: ENI with private IP, most services, paid, reachable over VPN and Direct Connect.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-032",
+  "term": "AWS PrivateLink",
+  "definition": "Exposes one VPC's service to many consumer VPCs through interface endpoints, fronted by a Network Load Balancer. Remember: no peering, overlapping CIDRs are fine, consumers reach only that service.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-033",
+  "term": "AWS Transit Gateway",
+  "definition": "Regional hub that connects thousands of VPCs, VPNs and Direct Connect with transitive routing. Share across accounts with AWS RAM. Remember: choose it for IP multicast and ECMP VPN bandwidth.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-034",
+  "term": "Site-to-Site VPN components",
+  "definition": "Encrypted IPsec tunnels over the internet. AWS side: virtual private gateway or transit gateway. Your side: customer gateway device. Remember: enable route propagation; CloudHub links multiple branch sites.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-035",
+  "term": "AWS Direct Connect",
+  "definition": "Private dedicated network link to AWS, often weeks to provision. Not encrypted by default: add an IPsec VPN over it, or MACsec on 10 Gbps and faster dedicated ports.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-036",
+  "term": "Direct Connect gateway",
+  "definition": "Global resource that lets one Direct Connect connection reach VPCs in many Regions and accounts. Remember: it does not route traffic between the VPCs attached to it.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-037",
+  "term": "Direct Connect resiliency patterns",
+  "definition": "High resiliency: one connection at each of two locations. Maximum resiliency: two connections on separate devices at each of two locations. Cheapest backup: a Site-to-Site VPN.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-038",
+  "term": "VPC Flow Logs",
+  "definition": "Logs IP traffic metadata, not packets, for a VPC, subnet or network interface. Sends to CloudWatch Logs, S3 or Data Firehose. Remember: inbound accepted, outbound rejected means a network ACL.",
+  "category": "management",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-039",
+  "term": "Egress-only internet gateway",
+  "definition": "IPv6-only gateway that allows outbound connections and blocks connections started from the internet. Remember: it is the IPv6 counterpart of a NAT gateway.",
+  "category": "network",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-040",
+  "term": "AWS Network Firewall",
+  "definition": "Managed firewall for whole VPCs at layers 3 to 7: stateful rules, domain filtering, intrusion prevention. Remember: WAF protects web apps; Network Firewall protects the VPC.",
+  "category": "security",
+  "section": "saa-27"
+ },
+ {
+  "id": "saa-c-041",
+  "term": "Networking cost rules of thumb",
+  "definition": "Inbound data is free. Same-zone traffic over private IPs is free; cross-zone and public IP traffic is charged. Remember: use an S3 gateway endpoint instead of NAT.",
+  "category": "network",
+  "section": "saa-27"
+ }
+]

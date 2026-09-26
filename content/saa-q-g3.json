@@ -1,0 +1,354 @@
+[
+ {
+  "id": "saa-q-003",
+  "question": "A company runs an Amazon RDS for MySQL DB instance that was created without encryption. A new compliance rule requires the data to be encrypted at rest with an AWS KMS key. What should a solutions architect do?",
+  "options": [
+   "Modify the DB instance and enable encryption at rest from the RDS console",
+   "Create an encrypted read replica of the instance and promote it to primary",
+   "Restore a new DB instance from an encrypted copy of a DB snapshot",
+   "Enable default encryption on the S3 bucket that stores the automated backups"
+  ],
+  "answer": 2,
+  "explanation": "RDS encryption can only be chosen when an instance is created, so you copy a snapshot with encryption turned on and restore from that copy. You cannot simply modify the instance, and a read replica of an unencrypted instance cannot be encrypted. RDS backups are not kept in a bucket you manage.",
+  "domain": "saa1",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-004",
+  "question": "A serverless application uses AWS Lambda functions that connect to an Amazon RDS for PostgreSQL database. During traffic spikes the database runs out of connections. The security team also requires IAM authentication for database connections and no passwords in function code. Which solution meets these requirements?",
+  "options": [
+   "Place Amazon RDS Proxy in front of the database and enable IAM authentication",
+   "Add two read replicas and store the database password in Lambda environment variables",
+   "Put Amazon ElastiCache in front of the database and enable Redis AUTH for the functions",
+   "Convert the instance to a Multi-AZ deployment and enable IAM database authentication"
+  ],
+  "answer": 0,
+  "explanation": "RDS Proxy pools and shares connections, so Lambda bursts no longer exhaust the database, and it can enforce IAM authentication while reading database credentials from Secrets Manager. Multi-AZ with IAM database authentication removes passwords but does nothing about connection exhaustion.",
+  "domain": "saa1",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-005",
+  "question": "A company has built a data lake in Amazon S3 that analysts query with Amazon Athena. The HR team must see all columns, but other analysts must not see the salary column and may only see rows for their own country. Which solution provides this with the LEAST operational overhead?",
+  "options": [
+   "Write S3 bucket policies that restrict each analyst group to specific object prefixes",
+   "Create separate copies of the dataset for each country with AWS Glue ETL jobs",
+   "Enable Amazon Macie to detect the salary column and block access to it",
+   "Use AWS Lake Formation data filters for column-level and row-level access"
+  ],
+  "answer": 3,
+  "explanation": "Lake Formation centrally grants fine-grained permissions, including column-level and row-level data filters, and Athena enforces them. Bucket policies work on objects and prefixes, not columns or rows. Copying data per country with Glue adds pipelines and storage to maintain. Macie discovers sensitive data but does not control query access.",
+  "domain": "saa1",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-006",
+  "question": "An application runs on Amazon EC2 instances in an Auto Scaling group and connects to an Amazon RDS for PostgreSQL DB instance in a private subnet. Which configuration is the MOST secure way to allow only the application to reach the database?",
+  "options": [
+   "Allow inbound TCP 5432 on the database security group from the VPC CIDR range",
+   "Allow inbound TCP 5432 on the database security group from the application security group",
+   "Make the DB instance publicly accessible and require SSL for every connection",
+   "Allow inbound TCP 3306 on the database security group from the application security group"
+  ],
+  "answer": 1,
+  "explanation": "Referencing the application's security group admits only instances that carry that group, even as Auto Scaling replaces them, and PostgreSQL listens on port 5432. The VPC CIDR rule is broader than needed, port 3306 is the MySQL port, and public accessibility needlessly exposes the database.",
+  "domain": "saa1",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-007",
+  "question": "A healthcare company is launching an Amazon RDS for PostgreSQL DB instance to store patient records. Data must be encrypted at rest, and all client connections must be encrypted in transit. Which TWO actions should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Enable encryption with an AWS KMS key when creating the DB instance",
+   "Enable a Multi-AZ deployment with a standby in a second Availability Zone",
+   "Enable Enhanced Monitoring and publish database logs to CloudWatch Logs",
+   "Set the DB parameter group to require SSL for all client connections",
+   "Create a read replica of the DB instance in a second AWS Region"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "Encryption at rest is chosen at creation with a KMS key and then covers storage, snapshots and replicas. Requiring SSL in the parameter group rejects unencrypted client connections. Multi-AZ, Enhanced Monitoring and cross-Region replicas improve availability or visibility, not encryption.",
+  "domain": "saa1",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-008",
+  "question": "A company loads data into an Amazon Redshift cluster from Amazon S3 with the COPY command. A security policy requires this traffic to avoid the public internet and to be subject to the company's network ACLs and endpoint policies. What should a solutions architect do?",
+  "options": [
+   "Enable Enhanced VPC Routing and add an S3 gateway endpoint to the VPC",
+   "Enable Redshift Spectrum and query the data in place in Amazon S3",
+   "Turn on cross-Region snapshot copy for the Redshift cluster",
+   "Route the COPY traffic through a NAT gateway in a public subnet"
+  ],
+  "answer": 0,
+  "explanation": "Enhanced VPC Routing forces COPY and UNLOAD traffic through the VPC, where security groups, network ACLs and endpoint policies apply, and an S3 gateway endpoint keeps it off the internet. A NAT gateway still sends traffic to public S3 endpoints over the internet, Spectrum does not change routing, and snapshot copy is for disaster recovery.",
+  "domain": "saa1",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-009",
+  "question": "A company publishes one Amazon QuickSight sales dashboard to all of its regional managers. Each manager must see only the sales figures for their own region. Which solution meets this requirement with the LEAST operational overhead?",
+  "options": [
+   "Configure column-level security on the QuickSight dataset for each region",
+   "Build and share a separate dashboard and dataset for each regional manager",
+   "Apply row-level security rules to the shared QuickSight dataset",
+   "Create an Amazon Athena workgroup for each region with its own query limits"
+  ],
+  "answer": 2,
+  "explanation": "QuickSight row-level security filters dataset rows per user or group, so one dashboard shows each manager only their region. Column-level security hides columns, not rows. Separate dashboards per manager work but multiply maintenance, and Athena workgroups control query settings and cost, not which rows a viewer sees.",
+  "domain": "saa1",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-010",
+  "question": "A company runs a production Amazon RDS for MySQL DB instance in a single Availability Zone. The database must fail over automatically, without losing committed transactions, if that Availability Zone becomes unavailable. What should a solutions architect do?",
+  "options": [
+   "Create a read replica in another Availability Zone and promote it during an outage",
+   "Convert the DB instance to a Multi-AZ deployment with a synchronous standby",
+   "Enable automated backups and restore to another Availability Zone during an outage",
+   "Create a cross-Region read replica and update the DNS record during an outage"
+  ],
+  "answer": 1,
+  "explanation": "A Multi-AZ deployment keeps a synchronously replicated standby in another Availability Zone and fails over automatically behind the same DNS endpoint. A read replica uses asynchronous replication, so recent writes can be lost, and promoting it is a manual step. Restoring from backups is slow and loses recent data.",
+  "domain": "saa2",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-011",
+  "question": "A global company runs an Amazon Aurora MySQL database in one AWS Region. It needs a disaster recovery plan for a Regional outage with an RPO of about 1 second and an RTO of under 1 minute. Users in other Regions also need low-latency reads. Which solution meets these requirements?",
+  "options": [
+   "Add Aurora Replicas in every Availability Zone of the primary Region",
+   "Copy automated cluster snapshots to a second Region every hour",
+   "Configure an Amazon Aurora Global Database with secondary Regions",
+   "Place Amazon ElastiCache clusters in each Region in front of Aurora"
+  ],
+  "answer": 2,
+  "explanation": "Aurora Global Database replicates storage to secondary Regions with typically under 1 second of lag, serves local reads there, and a secondary can be promoted in under a minute. Replicas in one Region do not survive a Regional outage, hourly snapshots miss the RPO, and caches do not provide recovery.",
+  "domain": "saa2",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-012",
+  "question": "A developer accidentally dropped a table in an Amazon RDS for PostgreSQL DB instance at 14:05. Automated backups are enabled with a 7-day retention period. The company wants to recover the table with the least data loss. What should a solutions architect do?",
+  "options": [
+   "Fail over the Multi-AZ deployment to the standby instance",
+   "Promote the existing read replica to a standalone instance",
+   "Restore the most recent manual snapshot, taken last week",
+   "Perform a point-in-time restore to 14:04 into a new DB instance"
+  ],
+  "answer": 3,
+  "explanation": "Automated backups plus transaction logs allow a point-in-time restore to any second in the retention window, up to about five minutes ago, always into a new instance. The standby and the read replica already applied the drop, and last week's snapshot would lose a week of changes.",
+  "domain": "saa2",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-013",
+  "question": "A gaming company stores player profiles in Amazon DynamoDB. Players in North America, Europe, and Asia must read and write their profiles with low latency, and the data must stay available if an entire AWS Region fails. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "Enable DynamoDB global tables with replicas in the three Regions",
+   "Enable DynamoDB Streams and use AWS Lambda to copy items between Regions",
+   "Use DynamoDB Accelerator clusters in each Region in front of one table",
+   "Schedule on-demand backups and restore them into the other Regions"
+  ],
+  "answer": 0,
+  "explanation": "Global tables are fully managed, multi-active replicas, so every Region accepts local reads and writes and keeps working if another Region fails. Custom replication with Streams and Lambda is extra code to build and run, DAX only caches reads, and restoring backups is slow and loses recent changes.",
+  "domain": "saa2",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-q-014",
+  "question": "A company runs a provisioned Amazon Redshift cluster encrypted with an AWS KMS key. The company must be able to restore the data warehouse in a different AWS Region if the primary Region becomes unavailable. What should a solutions architect do?",
+  "options": [
+   "Configure a Multi-AZ deployment for the Redshift cluster",
+   "Enable cross-Region snapshot copy with a snapshot copy grant for KMS",
+   "Use Redshift Spectrum to query the data from S3 in the other Region",
+   "Increase the automated snapshot retention period to 35 days"
+  ],
+  "answer": 1,
+  "explanation": "Redshift can automatically copy snapshots to another Region, and for KMS-encrypted clusters a snapshot copy grant lets it encrypt the copies with a key in the destination Region. Multi-AZ protects only against an Availability Zone failure, and longer retention still keeps the snapshots in the same Region.",
+  "domain": "saa2",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-015",
+  "question": "A web application behind an Application Load Balancer keeps user session data in memory on each EC2 instance, and users are logged out when Auto Scaling replaces instances. The company wants a highly available, low-latency session store that survives a node failure. Which solution meets these requirements?",
+  "options": [
+   "An ElastiCache for Memcached cluster with nodes spread across Availability Zones",
+   "Sticky sessions enabled on the Application Load Balancer target group",
+   "An ElastiCache for Redis OSS cluster with replicas and Multi-AZ automatic failover",
+   "Session files stored on EC2 instance store volumes attached to each instance"
+  ],
+  "answer": 2,
+  "explanation": "Redis OSS replicates data to replicas and fails over automatically across Availability Zones, so sessions survive a node failure. A node-based Memcached cluster shards data without replication, so a failed node loses its sessions. Sticky sessions and instance store still lose data when an instance is replaced.",
+  "domain": "saa2",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-016",
+  "question": "An Amazon Aurora PostgreSQL cluster has a writer and four Aurora Replicas. Two replicas use large instance classes for nightly analytics, and two use smaller classes for application reads. Analytics queries must run only on the large replicas. What should a solutions architect configure?",
+  "options": [
+   "Point the analytics tool at the Aurora cluster reader endpoint",
+   "Create a custom endpoint that includes only the two large replicas",
+   "Point the analytics tool at the cluster writer endpoint",
+   "Enable Aurora Auto Scaling for the reader replicas in the cluster"
+  ],
+  "answer": 1,
+  "explanation": "A custom endpoint load balances connections across a chosen subset of instances, such as the large analytics replicas. The reader endpoint spreads connections over all replicas, including the small ones, and the writer endpoint would put analytics load on the primary. Auto Scaling adds replicas but does not route queries.",
+  "domain": "saa3",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-017",
+  "question": "An e-commerce site uses an Amazon RDS for MySQL Multi-AZ DB instance. Product catalog pages issue many repeated read queries, and database CPU is high during peaks while writes stay light. Which TWO actions will improve read performance? (Choose TWO.)",
+  "options": [
+   "Send the read queries to the Multi-AZ standby instance",
+   "Increase the automated backup retention period",
+   "Add read replicas and send catalog read queries to them",
+   "Enable RDS storage autoscaling on the DB instance",
+   "Cache frequent query results in Amazon ElastiCache"
+  ],
+  "answer": [
+   2,
+   4
+  ],
+  "explanation": "Read replicas take read traffic off the primary, and ElastiCache serves repeated query results from memory, cutting database load. In a Multi-AZ DB instance deployment the standby cannot serve reads, and backup retention and storage autoscaling do nothing for CPU spent on reads.",
+  "domain": "saa3",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-018",
+  "question": "An online store keeps its product catalog in Amazon DynamoDB. Customers need to search products by partial words across any attribute, such as name, description, or brand. Which solution provides this capability?",
+  "options": [
+   "Add global secondary indexes for the name, description, and brand attributes",
+   "Use DynamoDB Accelerator to cache the results of Scan operations",
+   "Query the DynamoDB table with Amazon Athena using SQL LIKE filters",
+   "Stream table changes to Amazon OpenSearch Service and search there"
+  ],
+  "answer": 3,
+  "explanation": "OpenSearch indexes every field and supports full-text and partial-match search, and DynamoDB Streams or the zero-ETL integration keeps the index in sync. Global secondary indexes need exact key lookups, DAX caches but adds no search, and Athena federated queries are too slow for customer-facing search.",
+  "domain": "saa3",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-019",
+  "question": "A company ingests clickstream events into Amazon Kinesis Data Streams. It needs to compute rolling five-minute metrics and detect anomalies in real time with a fully managed service, without managing servers or clusters. Which service should a solutions architect use?",
+  "options": [
+   "Amazon Managed Service for Apache Flink",
+   "Amazon Athena with scheduled queries",
+   "Amazon EMR with a long-running cluster",
+   "AWS Glue with nightly batch ETL jobs"
+  ],
+  "answer": 0,
+  "explanation": "Managed Service for Apache Flink, formerly Kinesis Data Analytics, runs Flink applications serverlessly on Kinesis or MSK streams, which suits windowed metrics and real-time anomaly detection. EMR means managing a cluster, and Athena queries and nightly Glue jobs work on data at rest, not in real time.",
+  "domain": "saa3",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-020",
+  "question": "A company runs a self-managed Apache Kafka cluster on Amazon EC2 instances. The team wants to reduce operational overhead by moving to a managed service while keeping its existing Kafka producers and consumers unchanged. Which service should a solutions architect recommend?",
+  "options": [
+   "Amazon Kinesis Data Streams in on-demand mode",
+   "Amazon MQ with RabbitMQ brokers",
+   "Amazon Managed Streaming for Apache Kafka",
+   "Amazon Data Firehose delivery streams"
+  ],
+  "answer": 2,
+  "explanation": "Amazon MSK runs Apache Kafka for you, provisioned or serverless, and exposes the native Kafka APIs, so producers and consumers keep working. Kinesis Data Streams and Firehose use different APIs and would need code changes, and Amazon MQ supports ActiveMQ and RabbitMQ, not Kafka.",
+  "domain": "saa3",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-021",
+  "question": "A social media startup needs a database that stores users and their relationships. It must answer queries such as finding friends of friends who like the same band with low latency. Which AWS database is the BEST fit?",
+  "options": [
+   "Amazon DocumentDB",
+   "Amazon Keyspaces",
+   "Amazon Redshift",
+   "Amazon Neptune"
+  ],
+  "answer": 3,
+  "explanation": "Neptune is a managed graph database built for highly connected data and fast relationship queries like friends of friends. DocumentDB stores JSON documents with MongoDB compatibility, Keyspaces is managed Apache Cassandra, and Redshift is a data warehouse for analytics, not low-latency relationship lookups.",
+  "domain": "saa3",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-q-022",
+  "question": "A company stores several terabytes of uncompressed CSV log files in Amazon S3 and runs Amazon Athena queries that usually filter on a date range. Query costs keep rising. Which TWO actions will MOST reduce Athena costs? (Choose TWO.)",
+  "options": [
+   "Enable S3 Transfer Acceleration on the bucket that stores the logs",
+   "Convert the files to a compressed columnar format such as Apache Parquet",
+   "Move the log files to the S3 Glacier Flexible Retrieval storage class",
+   "Partition the data in S3 by date and filter on the partition column",
+   "Create an Athena workgroup for each analyst team with its own output location"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Athena charges for data scanned. Compressed columnar formats like Parquet read only the needed columns and fewer bytes, and date partitions let queries skip irrelevant data. Transfer Acceleration only speeds uploads, Glacier objects must be restored before Athena can read them, and separate workgroups do not reduce scanning.",
+  "domain": "saa4",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-023",
+  "question": "A company is launching an internal application with an unpredictable workload. Its relational database is busy for short periods during the day and idle most nights and weekends. The company wants a MySQL-compatible database that minimizes cost and needs no capacity planning. Which solution meets these requirements?",
+  "options": [
+   "Amazon RDS for MySQL on a 3-year Reserved Instance",
+   "Amazon Aurora Serverless v2 with MySQL compatibility",
+   "An Amazon Aurora provisioned cluster sized for peak load",
+   "Amazon RDS for MySQL as a Multi-AZ DB cluster deployment"
+  ],
+  "answer": 1,
+  "explanation": "Aurora Serverless v2 scales capacity up and down automatically in small steps and can pause at zero capacity when idle, so you pay mostly for what you use. Reserved Instances and peak-sized clusters pay for idle capacity, and a Multi-AZ DB cluster adds cost without handling variable load.",
+  "domain": "saa4",
+  "section": "saa-09"
+ },
+ {
+  "id": "saa-q-024",
+  "question": "A company runs a nightly Apache Spark job on Amazon EMR that takes about three hours. The job can be retried if some capacity is lost, and the cluster sits idle for the rest of the day. Which TWO actions will MOST reduce cost? (Choose TWO.)",
+  "options": [
+   "Purchase Reserved Instances for every node in the cluster",
+   "Use Spot Instances for the task nodes of the cluster",
+   "Enable termination protection so the cluster is never lost",
+   "Use Provisioned IOPS EBS volumes for the core nodes",
+   "Run a transient cluster that terminates when the job finishes"
+  ],
+  "answer": [
+   1,
+   4
+  ],
+  "explanation": "Task nodes only run compute and hold no HDFS data, so Spot interruptions are cheap to absorb. A transient cluster stops charges once the job ends instead of idling all day. Reserved Instances pay around the clock for mostly idle capacity, termination protection keeps the cluster running, and Provisioned IOPS adds cost.",
+  "domain": "saa4",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-025",
+  "question": "An AWS Glue ETL job runs every hour to convert new CSV files in an Amazon S3 bucket to Parquet. Each run reprocesses every file in the bucket, which increases cost and run time. What should a solutions architect do so that only new files are processed?",
+  "options": [
+   "Enable job bookmarks for the AWS Glue job",
+   "Run an AWS Glue crawler before each job run",
+   "Increase the number of DPUs allocated to the job",
+   "Replace the job with a long-running Amazon EMR cluster"
+  ],
+  "answer": 0,
+  "explanation": "Glue job bookmarks track data already processed, so each run picks up only new files, cutting cost and run time. A crawler updates the Data Catalog but does not track processed files, more DPUs make the same full reprocessing faster but not cheaper, and EMR adds a cluster to manage.",
+  "domain": "saa4",
+  "section": "saa-22"
+ },
+ {
+  "id": "saa-q-026",
+  "question": "A startup is launching a mobile app backed by Amazon DynamoDB. Traffic is unpredictable, with sudden spikes after marketing campaigns and almost no usage overnight. The company wants to pay only for the requests it actually makes. Which configuration is the MOST cost-effective?",
+  "options": [
+   "Provisioned capacity mode sized for the expected peak",
+   "Reserved capacity purchased for a one-year term",
+   "A DynamoDB Accelerator cluster in front of the table",
+   "On-demand capacity mode for the table"
+  ],
+  "answer": 3,
+  "explanation": "On-demand mode charges per read and write request and absorbs sudden spikes without capacity planning, which suits new or unpredictable workloads. Provisioning for peak pays for idle capacity overnight, reserved capacity needs steady predictable use, and DAX adds cost for caching rather than lowering request charges.",
+  "domain": "saa4",
+  "section": "saa-21"
+ }
+]

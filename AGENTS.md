@@ -1,4 +1,4 @@
-# CLAUDE.md — AI Assistant Guide for AWS-Certification
+# AGENTS.md — AI Assistant Guide for AWS-Certification (mirror of CLAUDE.md for Codex)
 
 ## Project Overview
 

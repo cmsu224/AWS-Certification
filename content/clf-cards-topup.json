@@ -1,0 +1,247 @@
+[
+ {
+  "id": "clf-c-101",
+  "term": "Amazon Rekognition",
+  "definition": "Finds objects, people, text, scenes, and unsafe content in images and videos, and performs face analysis and face search. Think: computer vision as a service.",
+  "category": "compute",
+  "section": "clf-17"
+ },
+ {
+  "id": "clf-c-102",
+  "term": "Amazon Transcribe",
+  "definition": "Converts speech to text automatically, for example subtitles or call transcripts. It can also redact personal information and handle multiple languages.",
+  "category": "compute",
+  "section": "clf-17"
+ },
+ {
+  "id": "clf-c-103",
+  "term": "Amazon Polly",
+  "definition": "The opposite of Transcribe: turns text into lifelike speech, so applications can talk. Great for audio versions of articles and voice prompts.",
+  "category": "compute",
+  "section": "clf-17"
+ },
+ {
+  "id": "clf-c-104",
+  "term": "Amazon Comprehend",
+  "definition": "Natural language processing service. Reads text to find sentiment, key phrases, entities, language, and topics, for example analyzing customer reviews or emails.",
+  "category": "compute",
+  "section": "clf-17"
+ },
+ {
+  "id": "clf-c-105",
+  "term": "Amazon SageMaker AI",
+  "definition": "Fully managed service for data scientists and developers to build, train, and deploy their own custom machine learning models.",
+  "category": "compute",
+  "section": "clf-17"
+ },
+ {
+  "id": "clf-c-106",
+  "term": "Amazon Personalize",
+  "definition": "Builds real-time personalized product recommendations using the same technology as Amazon.com, with no machine learning expertise needed.",
+  "category": "compute",
+  "section": "clf-17"
+ },
+ {
+  "id": "clf-c-107",
+  "term": "Infrastructure as a Service (IaaS)",
+  "definition": "You rent the building blocks: servers, networking, and storage, and you manage the operating system and software. Example: Amazon EC2.",
+  "category": "compute",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-c-108",
+  "term": "Platform as a Service (PaaS)",
+  "definition": "The provider manages servers and operating systems; you just deploy your application code and data. Example: AWS Elastic Beanstalk.",
+  "category": "compute",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-c-109",
+  "term": "Software as a Service (SaaS)",
+  "definition": "A complete application that the provider runs and manages; you simply sign in and use it. Examples: Gmail, Dropbox, and Zoom.",
+  "category": "compute",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-c-110",
+  "term": "AWS Region",
+  "definition": "A separate geographic area, such as Frankfurt or Tokyo, made of multiple Availability Zones. Choose one by compliance, latency, service availability, and price.",
+  "category": "network",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-c-111",
+  "term": "Availability Zone (AZ)",
+  "definition": "One or more discrete data centers with redundant power and networking, isolated from other zones in the same Region but linked by low-latency connections.",
+  "category": "network",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-c-112",
+  "term": "Vertical Scaling",
+  "definition": "Scale up: make one instance bigger, for example from a large to an extra large instance type. Common for databases, but it has a hardware limit.",
+  "category": "compute",
+  "section": "clf-07"
+ },
+ {
+  "id": "clf-c-113",
+  "term": "Horizontal Scaling",
+  "definition": "Scale out: add more instances to share the load, and scale in by removing them. This is what Auto Scaling Groups do for distributed systems.",
+  "category": "compute",
+  "section": "clf-07"
+ },
+ {
+  "id": "clf-c-114",
+  "term": "Application Load Balancer (ALB)",
+  "definition": "Layer 7 load balancer for HTTP and HTTPS traffic. Can route requests by URL path or host name to different target groups.",
+  "category": "network",
+  "section": "clf-07"
+ },
+ {
+  "id": "clf-c-115",
+  "term": "Network Load Balancer (NLB)",
+  "definition": "Layer 4 load balancer for TCP and UDP traffic. Handles millions of requests per second with ultra-low latency and supports static IP addresses.",
+  "category": "network",
+  "section": "clf-07"
+ },
+ {
+  "id": "clf-c-116",
+  "term": "Well-Architected Framework",
+  "definition": "AWS best-practice guide built on six pillars: operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability.",
+  "category": "compute",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-c-117",
+  "term": "Cloud Adoption Framework (CAF)",
+  "definition": "AWS guidance for digital transformation, organized into six perspectives: business, people, governance, platform, security, and operations.",
+  "category": "billing",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-c-118",
+  "term": "AWS re:Post",
+  "definition": "Free community question and answer site for AWS that replaced the old AWS Forums. Community experts and AWS staff answer technical questions.",
+  "category": "billing",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-c-119",
+  "term": "Customer Carbon Footprint Tool",
+  "definition": "Shows the estimated carbon emissions from your AWS usage and how they change over time. Supports the sustainability pillar.",
+  "category": "billing",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-c-120",
+  "term": "Amazon Kinesis",
+  "definition": "Collects, processes, and analyzes streaming data in real time, such as clickstreams, application logs, and IoT sensor readings.",
+  "category": "compute",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-c-121",
+  "term": "Amazon MQ",
+  "definition": "Managed message broker for RabbitMQ and ActiveMQ. Use it when migrating on-premises apps that rely on open protocols like AMQP or MQTT.",
+  "category": "compute",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-c-122",
+  "term": "Application Decoupling",
+  "definition": "Placing a queue, topic, or stream between application parts so each can scale or fail independently. Examples: SQS queues, SNS topics, and Kinesis streams.",
+  "category": "compute",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-c-123",
+  "term": "AWS CDK",
+  "definition": "Cloud Development Kit: define infrastructure in familiar programming languages like Python or TypeScript. The code is converted into a CloudFormation template.",
+  "category": "compute",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-c-124",
+  "term": "SSM Session Manager",
+  "definition": "Opens a secure shell on EC2 and on-premises servers without SSH keys, a bastion host, or an open port 22. Sessions can be logged.",
+  "category": "security",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-c-125",
+  "term": "SSM Parameter Store",
+  "definition": "Secure, serverless storage for configuration values and secrets, such as database connection strings, optionally encrypted with KMS and versioned.",
+  "category": "security",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-c-126",
+  "term": "AWS STS",
+  "definition": "Security Token Service: issues temporary, limited-privilege credentials, for example when a user or service assumes an IAM role.",
+  "category": "security",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-c-127",
+  "term": "Amazon Cognito",
+  "definition": "Identity for your web and mobile app users. Handles sign-up and sign-in for millions of users, including login with Google or Facebook.",
+  "category": "security",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-c-128",
+  "term": "AWS Directory Service",
+  "definition": "Runs Microsoft Active Directory on AWS. Options: AWS Managed Microsoft AD, AD Connector to proxy to on-premises AD, and Simple AD.",
+  "category": "security",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-c-129",
+  "term": "AWS Local Zones",
+  "definition": "Extensions of a Region placed in large metro areas, bringing compute, storage, and databases closer to users for single-digit millisecond latency.",
+  "category": "network",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-c-130",
+  "term": "AWS Wavelength",
+  "definition": "AWS infrastructure embedded inside telecom 5G networks, giving mobile devices ultra-low latency. Think: connected cars, live video, and augmented reality.",
+  "category": "network",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-c-131",
+  "term": "CloudWatch Metrics and Alarms",
+  "definition": "CloudWatch Metrics track numbers over time, like CPU utilization. Alarms watch a metric and notify through SNS or trigger actions like Auto Scaling.",
+  "category": "compute",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-c-132",
+  "term": "CloudWatch Logs",
+  "definition": "Collects, stores, and searches log files from applications, Lambda, EC2 with the CloudWatch agent, and on-premises servers. Retention is configurable.",
+  "category": "compute",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-c-133",
+  "term": "AWS X-Ray",
+  "definition": "Traces requests as they travel through distributed applications, showing a service map, so you can find bottlenecks and errors.",
+  "category": "compute",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-c-134",
+  "term": "AWS Elastic Disaster Recovery",
+  "definition": "Continuously replicates physical, virtual, and cloud servers into AWS, so you can recover them quickly, within minutes, after a disaster.",
+  "category": "compute",
+  "section": "clf-20"
+ },
+ {
+  "id": "clf-c-135",
+  "term": "AWS Fault Injection Service (FIS)",
+  "definition": "Runs controlled chaos engineering experiments, like stopping instances or adding CPU stress, to test how resilient a workload really is.",
+  "category": "compute",
+  "section": "clf-20"
+ }
+]

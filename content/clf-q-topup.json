@@ -1,0 +1,170 @@
+[
+ {
+  "id": "clf-q-212",
+  "question": "A company is migrating an on-premises application that uses Apache ActiveMQ and the AMQP and MQTT protocols. It wants a managed message broker on AWS without rewriting its messaging code. Which service should it use?",
+  "options": [
+   "Amazon MQ",
+   "Amazon SQS",
+   "Amazon SNS",
+   "Amazon Kinesis Data Streams"
+  ],
+  "answer": 0,
+  "explanation": "Amazon MQ is a managed broker for ActiveMQ and RabbitMQ that supports open protocols such as AMQP and MQTT, so existing code keeps working. SQS is tempting, but it uses its own AWS API, so the application would need to be rewritten.",
+  "domain": "domain3",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-q-213",
+  "question": "A delivery company wants to send SMS text messages and mobile push notifications to customers whenever a package changes status. Which service should it use?",
+  "options": [
+   "Amazon SQS",
+   "Amazon SNS",
+   "Amazon SES",
+   "Amazon MQ"
+  ],
+  "answer": 1,
+  "explanation": "Amazon SNS is a publish and subscribe service that can push notifications to SMS, mobile push, email, Lambda, and SQS subscribers. Amazon SES is tempting, but it handles email only, not text messages or mobile push notifications.",
+  "domain": "domain3",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-q-214",
+  "question": "Worker EC2 instances read orders from an Amazon SQS queue. During busy periods the queue grows long and orders are delayed. The company wants more workers added automatically when the backlog grows. What should it do?",
+  "options": [
+   "Increase the message retention period of the queue",
+   "Replace the queue with an Amazon SNS topic",
+   "Scale an Auto Scaling group on the queue length",
+   "Move the workers to a larger instance type"
+  ],
+  "answer": 2,
+  "explanation": "An Auto Scaling group can scale out based on the CloudWatch metric for the number of messages waiting in the queue, adding workers as the backlog grows. A larger instance type is vertical scaling, which is manual and limited, and does not react to the queue automatically.",
+  "domain": "domain3",
+  "section": "clf-13"
+ },
+ {
+  "id": "clf-q-215",
+  "question": "A development team wants to define its AWS infrastructure using Python and TypeScript, the languages it already uses, and have the result deployed as a CloudFormation stack. Which service should it use?",
+  "options": [
+   "AWS Elastic Beanstalk",
+   "AWS CodeDeploy",
+   "AWS Serverless Application Model",
+   "AWS Cloud Development Kit"
+  ],
+  "answer": 3,
+  "explanation": "The AWS CDK lets developers write infrastructure in familiar programming languages and synthesizes it into a CloudFormation template. The Serverless Application Model is tempting because it also deploys through CloudFormation, but it uses YAML or JSON templates, not Python or TypeScript code.",
+  "domain": "domain3",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-q-216",
+  "question": "A company wants to automatically roll out new versions of its application to 50 EC2 instances and 30 on-premises servers from one service. Which service should it use?",
+  "options": [
+   "AWS CodeDeploy",
+   "AWS Elastic Beanstalk",
+   "AWS CodeBuild",
+   "AWS CodeArtifact"
+  ],
+  "answer": 0,
+  "explanation": "AWS CodeDeploy automates application deployments to EC2 instances and to on-premises servers running the CodeDeploy agent, so it covers the hybrid fleet. Elastic Beanstalk is tempting, but it deploys only into environments it creates in AWS, not onto existing on-premises servers.",
+  "domain": "domain3",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-q-217",
+  "question": "Developers download npm, Maven, and pip dependencies directly from the public internet. The company wants a managed, central place to store and share approved software packages with its build tools. Which service should it use?",
+  "options": [
+   "AWS CodeBuild",
+   "AWS CodeArtifact",
+   "Amazon Elastic Container Registry",
+   "AWS CodePipeline"
+  ],
+  "answer": 1,
+  "explanation": "AWS CodeArtifact is a managed artifact repository that stores and shares software packages and works with npm, Maven, pip, and other package managers. Elastic Container Registry is tempting, but it stores container images, not language packages and libraries.",
+  "domain": "domain3",
+  "section": "clf-11"
+ },
+ {
+  "id": "clf-q-218",
+  "question": "A company is launching a mobile app for millions of consumers. Users must be able to sign up and sign in with an email address or with their existing Google or Facebook accounts. Which service should the company use?",
+  "options": [
+   "An IAM user for each customer",
+   "AWS IAM Identity Center",
+   "Amazon Cognito",
+   "AWS Directory Service"
+  ],
+  "answer": 2,
+  "explanation": "Amazon Cognito provides sign-up, sign-in, and social identity login for web and mobile app users and scales to millions of users. IAM Identity Center is tempting, but it is for workforce single sign-on to AWS accounts and business applications, not for public app customers.",
+  "domain": "domain2",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-q-219",
+  "question": "A company runs Windows applications on EC2 that must join a Microsoft Active Directory domain. It wants AWS to manage the domain controllers and to set up a trust with its on-premises Active Directory. Which service should it use?",
+  "options": [
+   "Amazon Cognito",
+   "AWS Security Token Service",
+   "AWS IAM Identity Center",
+   "AWS Directory Service"
+  ],
+  "answer": 3,
+  "explanation": "AWS Managed Microsoft AD, part of AWS Directory Service, runs real Active Directory domain controllers in AWS and supports trusts with on-premises Active Directory. IAM Identity Center is tempting, but it provides single sign-on and cannot act as a domain that Windows servers join.",
+  "domain": "domain2",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-q-220",
+  "question": "Users in Asia and Australia upload large video files to a single S3 bucket in a United States Region, and uploads are slow. The company wants faster uploads to the same bucket by routing them through nearby edge locations. What should it use?",
+  "options": [
+   "S3 Transfer Acceleration",
+   "AWS Global Accelerator",
+   "S3 Cross-Region Replication",
+   "AWS Direct Connect"
+  ],
+  "answer": 0,
+  "explanation": "S3 Transfer Acceleration sends uploads to the nearest edge location, then carries them over the fast AWS network to the bucket. Global Accelerator is tempting, but it fronts load balancers, EC2 instances, and IP addresses, not S3 buckets. Cross-Region Replication copies objects after they arrive, so it cannot speed up uploads.",
+  "domain": "domain3",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-q-221",
+  "question": "A film studio in a large city needs single-digit millisecond latency to EC2 instances for video rendering, but the nearest AWS Region is far away. It does not want to install any AWS hardware in its own building. What should it use?",
+  "options": [
+   "AWS Outposts",
+   "AWS Local Zones",
+   "AWS Wavelength",
+   "Amazon CloudFront"
+  ],
+  "answer": 1,
+  "explanation": "Local Zones place AWS compute and storage in large metro areas, close to users, and are run by AWS in its own facilities. Outposts is tempting, but it puts AWS racks inside the customer building, which the studio wants to avoid. Wavelength targets 5G mobile devices.",
+  "domain": "domain3",
+  "section": "clf-12"
+ },
+ {
+  "id": "clf-q-222",
+  "question": "A company wants to automatically build a golden Amazon Machine Image every week with the latest operating system patches, run tests against it, and share it to other Regions. Which service should it use?",
+  "options": [
+   "AWS Backup",
+   "AWS Systems Manager Patch Manager",
+   "EC2 Image Builder",
+   "AWS Elastic Beanstalk"
+  ],
+  "answer": 2,
+  "explanation": "EC2 Image Builder automates creating, patching, testing, and distributing AMIs on a schedule, and it is free apart from the underlying resources. Patch Manager is tempting, but it patches instances that are already running; it does not build, test, and distribute new images.",
+  "domain": "domain3",
+  "section": "clf-06"
+ },
+ {
+  "id": "clf-q-223",
+  "question": "Under the AWS Shared Responsibility Model, which task is the customer's responsibility for its Amazon EBS volumes?",
+  "options": [
+   "Replicating volume data within the Availability Zone",
+   "Replacing failed storage hardware in the data center",
+   "Securing physical access to the storage servers",
+   "Scheduling snapshot backups and turning on encryption"
+  ],
+  "answer": 3,
+  "explanation": "Customers own their data, so they must set up snapshot backups and choose to encrypt their volumes. AWS handles the infrastructure: replicating EBS data within the Availability Zone, replacing failed hardware, and protecting the physical data centers.",
+  "domain": "domain2",
+  "section": "clf-06"
+ }
+]

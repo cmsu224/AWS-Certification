@@ -1,0 +1,100 @@
+[
+ {
+  "id": "saa-c-173",
+  "term": "ECS Launch Types: EC2 vs Fargate",
+  "definition": "EC2 launch type: you provision and manage the container instances. Fargate: serverless, you only define task CPU and memory. Remember: no servers to manage means Fargate.",
+  "category": "compute",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-174",
+  "term": "ECS Service Auto Scaling",
+  "definition": "Scales the number of ECS tasks with target tracking, step, scheduled, or predictive policies, using CPU, memory, or load balancer requests per target. It scales tasks, not EC2 instances.",
+  "category": "compute",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-175",
+  "term": "Amazon ECR",
+  "definition": "Private and public container image registry, backed by S3 and secured with IAM. Supports vulnerability scanning, lifecycle policies to expire images, and cross-Region or cross-account replication.",
+  "category": "compute",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-176",
+  "term": "Amazon EFS for ECS Tasks",
+  "definition": "Mount an EFS file system into ECS tasks, including Fargate, for persistent storage shared across tasks and Availability Zones. Data survives task restarts. Classic exam answer for shared container storage.",
+  "category": "storage",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-c-177",
+  "term": "CloudFront Signed URLs vs Cookies",
+  "definition": "Both restrict private CloudFront content to authorized users. Signed URL: access to one file. Signed cookies: access to many files without changing URLs. Not the same as S3 presigned URLs.",
+  "category": "security",
+  "section": "saa-20"
+ },
+ {
+  "id": "saa-c-178",
+  "term": "Synchronous vs Asynchronous Microservices",
+  "definition": "Synchronous: API Gateway or load balancers, and the caller waits. Asynchronous: SQS, SNS, Kinesis, or EventBridge, and the caller moves on. Asynchronous decouples services and absorbs spikes.",
+  "category": "integration",
+  "section": "saa-20"
+ },
+ {
+  "id": "saa-c-179",
+  "term": "Amazon DocumentDB",
+  "definition": "Managed document database compatible with MongoDB. Built like Aurora: storage grows automatically and is replicated across three Availability Zones. Remember: MongoDB on AWS means DocumentDB.",
+  "category": "database",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-c-180",
+  "term": "Amazon Keyspaces",
+  "definition": "Serverless, managed database compatible with Apache Cassandra, using Cassandra Query Language. Data is replicated across three Availability Zones, with on-demand or provisioned capacity.",
+  "category": "database",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-c-181",
+  "term": "Amazon QLDB Retirement",
+  "definition": "Amazon QLDB, the ledger database, reached end of support on July 31, 2025. AWS points ledger workloads to Aurora PostgreSQL. Older practice questions may still show QLDB.",
+  "category": "database",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-c-182",
+  "term": "EC2 High Availability with Elastic IP",
+  "definition": "Auto Scaling group with minimum, maximum and desired of one across two Availability Zones. User data plus an instance role reattaches the Elastic IP address to the replacement instance.",
+  "category": "compute",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-c-183",
+  "term": "Caching Layers in AWS",
+  "definition": "Cache at the CloudFront edge, in API Gateway, then ElastiCache or DAX near the database. Caching closer to users is faster but risks staler data; tune time to live values.",
+  "category": "network",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-c-184",
+  "term": "AWS Trusted Advisor",
+  "definition": "Automated account checks for cost optimization, performance, security, fault tolerance, service limits and operational excellence. The full set of checks needs Business Support Plus or higher.",
+  "category": "management",
+  "section": "saa-31"
+ },
+ {
+  "id": "saa-c-185",
+  "term": "AWS Well-Architected Tool",
+  "definition": "Free console tool: answer questions about a workload for each pillar, get high and medium risks flagged, and track an improvement plan with milestones. Supports extra lenses such as serverless.",
+  "category": "management",
+  "section": "saa-31"
+ },
+ {
+  "id": "saa-c-186",
+  "term": "Well-Architected Design Principles",
+  "definition": "Stop guessing capacity, test systems at production scale, automate experiments, allow evolutionary architectures, drive decisions with data, and improve through game days.",
+  "category": "management",
+  "section": "saa-31"
+ }
+]

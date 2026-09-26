@@ -1,0 +1,382 @@
+[
+ {
+  "id": "saa-q-140",
+  "question": "An application uses an Amazon SQS standard queue. Consumers on Amazon EC2 take about 4 minutes to process each message and delete it when finished. The team notices that some orders are processed twice. What should a solutions architect do to reduce the duplicate processing?",
+  "options": [
+   "Enable long polling by setting the receive wait time to 20 seconds",
+   "Increase the visibility timeout to longer than the processing time",
+   "Configure a delay queue so new messages stay hidden for 5 minutes",
+   "Increase the message retention period of the queue to 14 days"
+  ],
+  "answer": 1,
+  "explanation": "A received message becomes visible again when the visibility timeout, 30 seconds by default, expires before the consumer deletes it, so another consumer processes it too. Raising the timeout above the processing time, or calling ChangeMessageVisibility, fixes this. A delay queue only postpones the first delivery, and long polling only reduces empty receives.",
+  "domain": "saa2",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-141",
+  "question": "Worker instances poll an Amazon SQS queue in a tight loop. Most ReceiveMessage calls return no messages, and SQS request charges are higher than expected. Which change will MOST cost-effectively reduce the number of API calls?",
+  "options": [
+   "Add more consumer instances so that messages are received sooner",
+   "Enable long polling by setting ReceiveMessageWaitTimeSeconds to 20",
+   "Increase the visibility timeout of the queue to 12 hours",
+   "Convert the queue to an SQS FIFO queue and receive in batches"
+  ],
+  "answer": 1,
+  "explanation": "With long polling, a receive request waits up to 20 seconds for a message instead of returning empty immediately, which cuts empty responses and request charges. Adding consumers creates even more empty polls, the visibility timeout only controls how long a received message stays hidden, and batching does not help when the queue is empty.",
+  "domain": "saa4",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-142",
+  "question": "An e-commerce platform sends order events to Amazon SQS. Events for the same customer must be processed in the exact order they were sent, while events for different customers should be processed in parallel to maximize throughput. Which solution meets these requirements?",
+  "options": [
+   "An SQS standard queue with a sequence number in each message attribute",
+   "An SQS FIFO queue that uses one fixed message group ID for all messages",
+   "An SQS FIFO queue that uses the customer ID as the message group ID",
+   "An Amazon SNS standard topic with one SQS standard queue per consumer"
+  ],
+  "answer": 2,
+  "explanation": "FIFO queues keep strict order within each message group, and different groups can be consumed in parallel, so grouping by customer ID gives per-customer ordering with high throughput. A single fixed group ID forces every message through one ordered lane, and standard queues and topics offer only best-effort ordering.",
+  "domain": "saa3",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-143",
+  "question": "A payment application reads messages from an Amazon SQS queue. A few malformed messages fail every time and keep returning to the queue, wasting consumer capacity. The team wants these messages set aside automatically for later investigation. What should a solutions architect do?",
+  "options": [
+   "Reduce the message retention period so failed messages expire sooner",
+   "Enable long polling so consumers skip messages that failed before",
+   "Set the visibility timeout to zero so failed messages return at once",
+   "Configure a dead-letter queue and set a maximum receive count"
+  ],
+  "answer": 3,
+  "explanation": "A redrive policy moves a message to the dead-letter queue after it has been received maxReceiveCount times without being deleted, isolating poison messages for debugging and later redrive. Shortening retention silently loses data, long polling does not track failures, and a zero visibility timeout makes the problem worse.",
+  "domain": "saa2",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-144",
+  "question": "A company uploads images to an Amazon S3 bucket. Every upload event must be processed independently by a thumbnail service and an analytics service, and each service reads from its own Amazon SQS queue. Which TWO actions should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Configure the S3 event notification to publish to an Amazon SNS topic",
+   "Create two S3 event notifications with the same event type and prefix",
+   "Subscribe both queues to the topic and allow it in each queue access policy",
+   "Configure the thumbnail service to forward each message to the other queue",
+   "Enable S3 Cross-Region Replication so each service has its own bucket"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "S3 rejects two notification rules with the same event type and overlapping prefixes, so publish once to SNS and fan out. Each subscribed queue receives its own copy, but its access policy must allow the SNS topic to send messages. Forwarding messages between services recreates the tight coupling you wanted to avoid.",
+  "domain": "saa2",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-145",
+  "question": "A gaming company collects player events in real time. Three separate applications must read the same events, events for each player must stay in order, and the data must be replayable for up to 7 days. Which service should a solutions architect choose?",
+  "options": [
+   "Amazon SQS FIFO queue",
+   "Amazon Data Firehose",
+   "Amazon Kinesis Data Streams",
+   "Amazon SNS standard topic"
+  ],
+  "answer": 2,
+  "explanation": "Kinesis Data Streams keeps records for up to 365 days, orders them per partition key such as the player ID, and lets several consumers read and replay the same data. SQS deletes a message once it is consumed, and Firehose delivers data to destinations without storing it for replay.",
+  "domain": "saa3",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-146",
+  "question": "A company wants to capture clickstream data from its website and store it in Amazon S3 in Apache Parquet format for Amazon Athena queries. The solution must scale automatically with the LEAST operational overhead. Which solution meets these requirements?",
+  "options": [
+   "Amazon Data Firehose with record format conversion delivering to Amazon S3",
+   "Amazon Kinesis Data Streams with a custom consumer on EC2 that writes Parquet",
+   "An Amazon SQS queue with an Auto Scaling group of EC2 workers writing Parquet",
+   "An Amazon MQ broker with a Lambda function that batches records into Parquet"
+  ],
+  "answer": 0,
+  "explanation": "Firehose is fully managed, scales automatically, and can convert JSON records to Parquet before delivering them to S3, with no consumer code to write. Kinesis Data Streams or SQS with EC2 consumers would work, but you would have to build, scale, and patch the processing fleet yourself.",
+  "domain": "saa3",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-147",
+  "question": "A company is migrating an on-premises application to AWS. The application uses Apache ActiveMQ with the AMQP and MQTT protocols. The company wants a managed broker, does not want to change its messaging code, and needs the broker to stay available if an Availability Zone fails. Which solution meets these requirements?",
+  "options": [
+   "Amazon MQ for ActiveMQ with a single-instance broker and daily backups",
+   "Amazon SQS FIFO queues accessed through the SQS Extended Client Library",
+   "Amazon SNS FIFO topics with Amazon SQS FIFO queues as the subscribers",
+   "Amazon MQ for ActiveMQ using the active and standby deployment mode"
+  ],
+  "answer": 3,
+  "explanation": "Amazon MQ runs managed ActiveMQ and RabbitMQ brokers that speak open protocols such as AMQP and MQTT, so existing code keeps working, and the active and standby deployment fails over across Availability Zones. A single-instance broker has no failover, and SQS or SNS would require rewriting the messaging code.",
+  "domain": "saa2",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-148",
+  "question": "A healthcare company sends patient records through an Amazon SQS queue. Compliance rules require encryption at rest with a key that the company controls, can disable at any time, and whose every use is logged in AWS CloudTrail. What should a solutions architect configure?",
+  "options": [
+   "Server-side encryption with SQS managed keys, known as SSE-SQS",
+   "A queue policy that denies requests where aws:SecureTransport is false",
+   "Server-side encryption with an AWS KMS customer managed key",
+   "An interface VPC endpoint for SQS with a restrictive endpoint policy"
+  ],
+  "answer": 2,
+  "explanation": "A customer managed KMS key lets the company own the key policy, disable or rotate the key, and audit each use in CloudTrail. SSE-SQS also encrypts at rest, but with keys SQS manages that the company cannot control. The SecureTransport condition and VPC endpoints protect data in transit and network paths, not data at rest.",
+  "domain": "saa1",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-149",
+  "question": "An image processing application runs on an Auto Scaling group of EC2 instances that pull jobs from an Amazon SQS queue. During peak hours, jobs wait in the queue for a long time even though average CPU utilization stays moderate. How should a solutions architect scale the workers?",
+  "options": [
+   "Use target tracking on average CPU utilization with a lower target value",
+   "Use target tracking on the SQS queue backlog per instance in CloudWatch",
+   "Increase the visibility timeout so each instance holds messages longer",
+   "Add a scheduled scaling action that doubles capacity every morning"
+  ],
+  "answer": 1,
+  "explanation": "Backlog per instance, the ApproximateNumberOfMessagesVisible metric divided by the number of running instances, measures pending work directly, so scaling on it adds workers as jobs pile up. CPU can stay moderate while the queue keeps growing, and a fixed schedule cannot react to unpredictable peaks.",
+  "domain": "saa3",
+  "section": "saa-17"
+ },
+ {
+  "id": "saa-q-150",
+  "question": "A company runs two services on the same Amazon ECS cluster using the EC2 launch type. The orders service needs write access to an Amazon DynamoDB table, and the reports service needs read access to an Amazon S3 bucket. How should permissions be granted following the principle of least privilege?",
+  "options": [
+   "Attach both permissions to the instance profile of the container instances",
+   "Create an IAM task role for each task definition with only its access",
+   "Add both permissions to the task execution role shared by the two services",
+   "Store IAM user access keys for each service as environment variables"
+  ],
+  "answer": 1,
+  "explanation": "Task roles give each task definition its own temporary credentials, so each service gets only the access it needs. The instance profile would give every container on the host both permissions, and the task execution role is used by ECS itself to pull images, send logs, and fetch secrets, not by application code.",
+  "domain": "saa1",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-151",
+  "question": "An application running on Amazon ECS with AWS Fargate needs a database password at startup. Security policy forbids storing the password in the container image or in plaintext in the task definition. Which solution meets these requirements?",
+  "options": [
+   "Reference an AWS Secrets Manager secret in the task definition",
+   "Store the password as a plaintext environment variable in the task definition",
+   "Bake the password into the image and restrict pulls with a repository policy",
+   "Pass the password as a command-line argument in the container definition"
+  ],
+  "answer": 0,
+  "explanation": "When the task definition references a Secrets Manager secret by its ARN, ECS injects the value into the container at startup, and only the task execution role needs permission to read it. Environment variables and command arguments written in the task definition are stored and displayed in plaintext, and baking it into the image breaks the policy.",
+  "domain": "saa1",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-152",
+  "question": "A company runs nightly data processing jobs as containers on Amazon ECS. The jobs are stateless and can simply be restarted if interrupted. The company does not want to manage servers. Which compute option is the MOST cost-effective?",
+  "options": [
+   "Fargate Spot through an ECS capacity provider",
+   "Fargate with a one-year Compute Savings Plan",
+   "The EC2 launch type with On-Demand Instances",
+   "The EC2 launch type with Dedicated Instances"
+  ],
+  "answer": 0,
+  "explanation": "Fargate Spot runs interruption-tolerant tasks on spare capacity at up to a 70 percent discount, with no servers to manage. A Savings Plan gives a smaller discount and needs a commitment, and both EC2 launch type options require managing the container instances.",
+  "domain": "saa4",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-153",
+  "question": "A company stores container images in a private Amazon ECR repository. The security team requires that images are automatically checked for operating system and programming language package vulnerabilities, and that only the build pipeline's IAM role can push images. Which TWO actions meet these requirements? (Choose TWO.)",
+  "options": [
+   "Add a lifecycle policy that expires untagged images after 7 days",
+   "Enable ECR enhanced scanning with Amazon Inspector for the repository",
+   "Enable cross-Region replication for the repository to a second Region",
+   "Enable basic scanning on push for the repository",
+   "Add a repository policy that denies push to all but the pipeline role"
+  ],
+  "answer": [
+   1,
+   4
+  ],
+  "explanation": "Enhanced scanning uses Amazon Inspector to scan images continuously for operating system and language package vulnerabilities, while basic scanning checks operating system packages only. A repository policy that denies push to every principal except the pipeline role controls who can publish. Lifecycle policies and replication manage cost and availability, not security.",
+  "domain": "saa1",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-154",
+  "question": "A Java 21 AWS Lambda function behind Amazon API Gateway has slow cold starts because its framework takes several seconds to initialize. Traffic is unpredictable. The company wants to reduce startup latency with the LEAST additional cost. What should a solutions architect do?",
+  "options": [
+   "Configure provisioned concurrency on the function alias for peak traffic",
+   "Configure reserved concurrency equal to the expected peak request rate",
+   "Increase the function memory to the maximum of 10,240 MB",
+   "Enable Lambda SnapStart and invoke a published function version"
+  ],
+  "answer": 3,
+  "explanation": "SnapStart snapshots the initialized execution environment when a version is published and resumes from that snapshot, cutting cold start time, with no extra charge for Java runtimes. Provisioned concurrency also removes cold starts, but you pay to keep environments warm all the time. Reserved concurrency does not initialize anything.",
+  "domain": "saa3",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-155",
+  "question": "A company runs many AWS Lambda functions in one account and Region. During a campaign, a batch processing function scaled up and used most of the account concurrency, and the critical checkout function was throttled. How can a solutions architect ensure the checkout function can always scale to 200 concurrent executions?",
+  "options": [
+   "Enable Lambda SnapStart on the checkout function",
+   "Increase the memory allocated to the checkout function",
+   "Configure reserved concurrency of 200 on the checkout function",
+   "Configure a dead-letter queue for the checkout function"
+  ],
+  "answer": 2,
+  "explanation": "Reserved concurrency sets aside 200 executions from the account pool that no other function can use, at no extra charge, so checkout is never starved. SnapStart and more memory only speed up execution, and a dead-letter queue only captures failed asynchronous events after the fact.",
+  "domain": "saa2",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-156",
+  "question": "A global website served through Amazon CloudFront must add security headers to every response and rewrite some URLs before the cache lookup. The logic is simple JavaScript with no network calls, and it must handle millions of requests per second. Which solution is the MOST cost-effective?",
+  "options": [
+   "CloudFront Functions on the viewer request and viewer response events",
+   "Lambda@Edge functions on the origin request and origin response events",
+   "An Application Load Balancer with listener rules in front of the origin",
+   "AWS WAF rules with custom request handling on the CloudFront distribution"
+  ],
+  "answer": 0,
+  "explanation": "CloudFront Functions run lightweight JavaScript on viewer events with sub-millisecond startup and scale to millions of requests per second at a fraction of the Lambda@Edge price. Lambda@Edge suits heavier logic that needs network access or origin events, and an origin load balancer acts only after the cache lookup.",
+  "domain": "saa4",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-157",
+  "question": "An AWS Lambda function must query an Amazon RDS database in private subnets and also call a partner's public HTTPS API. The database must not be exposed to the internet. Which TWO actions should a solutions architect take? (Choose TWO.)",
+  "options": [
+   "Connect the function to the private subnets used by the database",
+   "Attach the function to a public subnet so that it receives a public IP address",
+   "Make the database publicly accessible and allow only the Lambda IP ranges",
+   "Route the private subnets' internet traffic through a NAT gateway in a public subnet",
+   "Create a gateway VPC endpoint so that the function can reach the partner API"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "Attaching Lambda to the VPC places its network interfaces in your subnets so it can reach the private database. Those interfaces never get public IP addresses, even in a public subnet, so internet calls need a NAT gateway. Gateway endpoints only reach Amazon S3 and DynamoDB, not third-party APIs.",
+  "domain": "saa1",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-158",
+  "question": "A mobile app lets users sign in with their social media accounts and then upload photos directly to Amazon S3. Each user must only be able to write to their own prefix in the bucket, and no long-term credentials may be stored in the app. What should a solutions architect use?",
+  "options": [
+   "An Amazon Cognito user pool whose JWT tokens are used to sign S3 requests",
+   "An IAM user for each app user, with access keys stored in the app",
+   "An S3 bucket policy that allows uploads from the app's public IP range",
+   "An Amazon Cognito identity pool whose role uses an identity policy variable"
+  ],
+  "answer": 3,
+  "explanation": "Identity pools exchange a signed-in identity for temporary AWS credentials, and the IAM role can use the Cognito identity ID policy variable to limit each user to their own prefix. User pool tokens authenticate users to your app or API but cannot sign S3 requests, and IAM users mean long-term keys in the app.",
+  "domain": "saa1",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-159",
+  "question": "A company exposes a REST API through Amazon API Gateway backed by AWS Lambda. Only customers who sign in through the company's existing Amazon Cognito user pool may call the API. Which solution requires the LEAST custom code?",
+  "options": [
+   "Configure a Lambda authorizer that validates each user's token",
+   "Require an API key and associate it with a usage plan",
+   "Configure an Amazon Cognito user pool authorizer on the API",
+   "Use IAM authorization with Signature Version 4 signed requests"
+  ],
+  "answer": 2,
+  "explanation": "API Gateway validates Cognito user pool tokens natively through a Cognito authorizer, so no code is needed. A Lambda authorizer also works, but you must write and maintain the validation logic. API keys identify clients for usage plans without authenticating users, and IAM authorization suits AWS principals rather than app customers.",
+  "domain": "saa1",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-160",
+  "question": "An application stores orders in an Amazon Aurora MySQL DB cluster. Each time a new order row is inserted, an AWS Lambda function must process it within seconds, and the team wants to avoid polling the database. What should a solutions architect do?",
+  "options": [
+   "Subscribe the function to RDS event notifications for the DB cluster",
+   "Invoke the function from an Aurora trigger that runs on each insert",
+   "Run the function every minute with EventBridge Scheduler to find new rows",
+   "Create an EventBridge rule that matches CloudTrail events for the cluster"
+  ],
+  "answer": 1,
+  "explanation": "Aurora MySQL can invoke Lambda directly from a trigger or stored procedure, given an IAM role and outbound network access to Lambda. RDS event notifications only report instance-level events such as failovers or backups, never data changes. A scheduled function is polling, and CloudTrail records API calls rather than inserted rows.",
+  "domain": "saa2",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-161",
+  "question": "A company's order workflow calls several AWS Lambda functions in sequence, needs automatic retries with backoff on failures, and must pause for a manager's approval that can take up to 3 days. Which solution meets these requirements with the LEAST operational overhead?",
+  "options": [
+   "An AWS Step Functions Express workflow",
+   "Lambda functions that invoke each other directly",
+   "An Amazon SQS delay queue between each function",
+   "An AWS Step Functions Standard workflow"
+  ],
+  "answer": 3,
+  "explanation": "Standard workflows can run for up to one year, provide built-in retries and error handling, and can wait on a task token until a person approves. Express workflows stop after five minutes, and chaining functions or delay queues means hand-building retries and state tracking yourself.",
+  "domain": "saa2",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-162",
+  "question": "A company is building an internal REST API with Amazon API Gateway. The API must be reachable only from applications inside the company's VPC and never from the public internet. What should a solutions architect do?",
+  "options": [
+   "Create a private API with a resource policy and an interface VPC endpoint",
+   "Create an edge-optimized API and allow only the VPC through an AWS WAF IP rule",
+   "Create a Regional API and attach a security group that allows only the VPC CIDR",
+   "Create a Regional API that requires an API key from each internal application"
+  ],
+  "answer": 0,
+  "explanation": "A private API is reachable only through an interface VPC endpoint for API Gateway, and its resource policy can restrict access to specific VPCs or endpoints. Edge-optimized and Regional endpoints remain public, API keys are not an authorization control, and API Gateway APIs do not support security groups.",
+  "domain": "saa1",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-163",
+  "question": "An application stores user session data in an Amazon DynamoDB table. Sessions are useless after 24 hours. The company wants expired items removed automatically at the LOWEST cost. What should a solutions architect do?",
+  "options": [
+   "Enable DynamoDB TTL on an attribute that stores each session's expiry time",
+   "Run a scheduled Lambda function that scans the table and deletes old items",
+   "Export the table to Amazon S3 daily and apply an S3 Lifecycle expiration rule",
+   "Create a new table each day and delete the table from the previous day"
+  ],
+  "answer": 0,
+  "explanation": "TTL deletes items in the background after the timestamp in the chosen attribute passes, without consuming write capacity, so the cleanup is free. A scheduled scan and delete function pays for every read and write, and an S3 Lifecycle rule only affects the exported copy, not the table.",
+  "domain": "saa4",
+  "section": "saa-19"
+ },
+ {
+  "id": "saa-q-164",
+  "question": "A company distributes large software update files from EC2 instances in an Auto Scaling group behind an Application Load Balancer, with the files stored on Amazon EFS. On release days, worldwide demand spikes and costs rise sharply. The files change only when a new version ships. What is the MOST cost-effective change that requires minimal changes to the architecture?",
+  "options": [
+   "Add AWS Global Accelerator in front of the Application Load Balancer",
+   "Move the instances to larger types with more network bandwidth",
+   "Add an Amazon ElastiCache cluster to hold the files in memory",
+   "Put an Amazon CloudFront distribution in front of the load balancer"
+  ],
+  "answer": 3,
+  "explanation": "The update files are static, so CloudFront caches them at edge locations and serves most downloads without reaching EC2 or EFS, letting the fleet scale far less. Global Accelerator improves routing but caches nothing, and larger instances or ElastiCache still push every download through the application tier.",
+  "domain": "saa4",
+  "section": "saa-20"
+ },
+ {
+  "id": "saa-q-165",
+  "question": "A serverless mobile app uses Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. Read traffic has grown tenfold, and most requests fetch the same popular items. Which TWO changes will improve read performance and reduce backend load with the fewest code changes? (Choose TWO.)",
+  "options": [
+   "Enable DynamoDB Streams on the table",
+   "Increase the Lambda timeout to 15 minutes",
+   "Enable response caching on the API stage",
+   "Convert the table to a DynamoDB global table",
+   "Place a DAX cluster in front of the table"
+  ],
+  "answer": [
+   2,
+   4
+  ],
+  "explanation": "API Gateway caching answers repeated requests without invoking Lambda at all, and DAX serves repeated DynamoDB reads from memory in microseconds through a compatible API. Streams capture writes, a longer timeout speeds up nothing, and global tables help users in other Regions rather than hot reads in one Region.",
+  "domain": "saa3",
+  "section": "saa-20"
+ }
+]

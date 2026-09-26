@@ -1,0 +1,4153 @@
+{
+ "clf": {
+  "total": "14:26:35",
+  "lectures": 277,
+  "sections": [
+   {
+    "i": 1,
+    "title": "Introduction",
+    "len": "14:12",
+    "lectures": 5,
+    "items": [
+     {
+      "t": "Course Introduction",
+      "d": "04:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Creating an AWS Account",
+      "d": "03:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Account Activation Troubleshooting",
+      "d": "02:05",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "Important Message",
+      "d": "00:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "About your instructor",
+      "d": "02:39",
+      "type": "udi udi-video"
+     }
+    ]
+   },
+   {
+    "i": 2,
+    "title": "Code & Slides Download",
+    "len": "00:07",
+    "lectures": 1,
+    "items": [
+     {
+      "t": "Code & Slides Download",
+      "d": "00:07",
+      "type": "udi udi-article"
+     }
+    ]
+   },
+   {
+    "i": 3,
+    "title": "What is Cloud Computing?",
+    "len": "32:23",
+    "lectures": 7,
+    "items": [
+     {
+      "t": "Traditional IT Overview",
+      "d": "06:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "What is Cloud Computing?",
+      "d": "07:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "The Different Types of Cloud Computing",
+      "d": "03:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Cloud Overview",
+      "d": "08:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "[Important] AWS Console UI Update",
+      "d": "01:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Tour of the Console & Services in AWS",
+      "d": "03:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Shared Responsibility Model & AWS Acceptable Policy",
+      "d": "01:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "What is Cloud Computing Quiz",
+      "d": "13 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Cloud Concepts to Non-Technical Stakeholders",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 4,
+    "title": "IAM - Identity and Access Management",
+    "len": "58:10",
+    "lectures": 20,
+    "items": [
+     {
+      "t": "IAM Introduction: Users, Groups, Policies",
+      "d": "03:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Users & Groups Hands On",
+      "d": "06:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Console Simultaneous Sign-in",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Policies",
+      "d": "02:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Policies Hands On",
+      "d": "08:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM MFA Overview",
+      "d": "04:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM MFA Hands On",
+      "d": "04:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Access Keys, CLI and SDK",
+      "d": "04:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Setup on Windows",
+      "d": "01:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Setup on Mac",
+      "d": "01:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Setup on Linux",
+      "d": "01:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Hands On",
+      "d": "03:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CloudShell",
+      "d": "03:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Roles for AWS Services",
+      "d": "01:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Roles Hands On",
+      "d": "02:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Security Tools",
+      "d": "00:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Security Tools Hands On",
+      "d": "02:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Best Practices",
+      "d": "01:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Shared Responsibility Model for IAM",
+      "d": "01:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Summary",
+      "d": "01:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Identity and Access Management Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Communicating IAM and Security Best Practices to Non-Technical Stakeholders",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 5,
+    "title": "EC2 - Elastic Compute Cloud",
+    "len": "01:22:00",
+    "lectures": 16,
+    "items": [
+     {
+      "t": "AWS Budget Setup",
+      "d": "05:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Basics",
+      "d": "03:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Create an EC2 Instance with EC2 User Data to have a Website Hands On",
+      "d": "13:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Types Basics",
+      "d": "04:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security Groups & Classic Ports Overview",
+      "d": "07:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security Groups Hands On",
+      "d": "04:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSH Overview",
+      "d": "02:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How to SSH using Linux or Mac",
+      "d": "07:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How to SSH using Windows",
+      "d": "06:08",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How to SSH using Windows 10",
+      "d": "05:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSH Troubleshooting",
+      "d": "01:23",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "EC2 Instance Connect",
+      "d": "03:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Roles Demo",
+      "d": "04:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Purchasing Options",
+      "d": "09:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Shared Responsibility Model for EC2",
+      "d": "01:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Summary",
+      "d": "01:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Quiz",
+      "d": "7 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining Amazon EC2 to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 6,
+    "title": "EC2 Instance Storage",
+    "len": "42:23",
+    "lectures": 14,
+    "items": [
+     {
+      "t": "EBS Overview",
+      "d": "04:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "About EBS Multi-Attach",
+      "d": "00:24",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "EBS Hands On",
+      "d": "05:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Snapshots Overview",
+      "d": "02:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Snapshots Hands On",
+      "d": "03:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AMI Overview",
+      "d": "02:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AMI Hands On",
+      "d": "04:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Image Builder Overview",
+      "d": "02:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Store",
+      "d": "02:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EFS Overview",
+      "d": "04:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Shared Responsibility Model for EC2 Storage",
+      "d": "01:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon FSx Overview",
+      "d": "03:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Storage Summary",
+      "d": "01:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Section Cleanup",
+      "d": "01:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Storage Quiz",
+      "d": "10 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining EC2 Storage Concepts to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 7,
+    "title": "ELB & ASG - Elastic Load Balancing & Auto Scaling Groups",
+    "len": "39:11",
+    "lectures": 8,
+    "items": [
+     {
+      "t": "High Availability, Scalability, Elasticity",
+      "d": "06:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancing (ELB) Overview",
+      "d": "06:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Application Load Balancer (ALB) Hands On",
+      "d": "08:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups (ASG) Overview",
+      "d": "03:02",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups (ASG) Hands On",
+      "d": "08:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups (ASG) Strategies",
+      "d": "02:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Section Cleanup",
+      "d": "01:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ELB & ASG Summary",
+      "d": "01:57",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ELB & ASG Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining High Availability and Scalability with AWS Services",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 8,
+    "title": "Amazon S3",
+    "len": "55:04",
+    "lectures": 18,
+    "items": [
+     {
+      "t": "S3 Overview",
+      "d": "05:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Hands On",
+      "d": "07:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Security: Bucket Policy",
+      "d": "05:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Security: Bucket Policy Hands On",
+      "d": "03:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Website Overview",
+      "d": "01:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Website Hands On",
+      "d": "01:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Versioning Overview",
+      "d": "01:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Versioning Hands On",
+      "d": "04:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Replication Overview",
+      "d": "01:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Replication Hands On",
+      "d": "04:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Storage Classes Overview",
+      "d": "06:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Storage Classes Hands On",
+      "d": "03:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Express One Zone",
+      "d": "01:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Encryption",
+      "d": "01:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Access Analyzer for S3",
+      "d": "01:02",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Shared Responsibility Model for S3",
+      "d": "01:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Storage Gateway Overview",
+      "d": "02:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Summary",
+      "d": "01:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Quiz",
+      "d": "7 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining Amazon S3 Features to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 9,
+    "title": "Databases & Analytics",
+    "len": "47:16",
+    "lectures": 19,
+    "items": [
+     {
+      "t": "Databases Introduction",
+      "d": "05:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS & Aurora Overview",
+      "d": "04:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS Hands On",
+      "d": "06:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS Deployments Options",
+      "d": "03:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ElastiCache Overview",
+      "d": "02:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DynamoDB Overview",
+      "d": "03:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DynamoDB Hands On",
+      "d": "03:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DynamoDB Global Tables",
+      "d": "01:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Redshift Overview",
+      "d": "02:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EMR Overview",
+      "d": "01:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Athena Overview",
+      "d": "01:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "QuickSight Overview",
+      "d": "00:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DocumentDB Overview",
+      "d": "01:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Neptune Overview",
+      "d": "01:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Timestream Overview",
+      "d": "01:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Managed Blockchain Overview",
+      "d": "00:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Glue Overview",
+      "d": "02:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DMS Overview",
+      "d": "01:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Databases & Analytics Summary",
+      "d": "02:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Databases & Analytics Quiz",
+      "d": "16 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Database Options to Business Stakeholders",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 10,
+    "title": "Other Compute Services: ECS, Lambda, Batch, Lightsail",
+    "len": "36:45",
+    "lectures": 11,
+    "items": [
+     {
+      "t": "What is Docker?",
+      "d": "03:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ECS, Fargate & ECR Overview",
+      "d": "03:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon EKS",
+      "d": "01:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Serverless Introduction",
+      "d": "02:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Overview",
+      "d": "06:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Hands On",
+      "d": "06:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "API Gateway Overview",
+      "d": "01:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Batch Overview",
+      "d": "03:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lightsail Overview",
+      "d": "01:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lightsail Hands On",
+      "d": "04:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Other Compute - Summary",
+      "d": "02:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Other Compute Services Quiz",
+      "d": "11 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Compute Options to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 11,
+    "title": "Deployments & Managing Infrastructure at Scale",
+    "len": "46:04",
+    "lectures": 14,
+    "items": [
+     {
+      "t": "CloudFormation Overview",
+      "d": "03:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFormation Hands On",
+      "d": "08:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CDK Overview",
+      "d": "01:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Beanstalk Overview",
+      "d": "04:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Beanstalk Hands On",
+      "d": "08:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CodeDeploy Overview",
+      "d": "01:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CodeCommit Overview",
+      "d": "01:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CodeBuild Overview",
+      "d": "01:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CodePipeline Overview",
+      "d": "01:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CodeArtifact Overview",
+      "d": "01:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Systems Manager (SSM) Overview",
+      "d": "02:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSM Session Manager",
+      "d": "05:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSM Parameter Store",
+      "d": "02:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Deployment Summary",
+      "d": "02:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Deployments & Managing Infrastructure at Scale in AWS Quiz",
+      "d": "10 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Automation Benefits to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 12,
+    "title": "Leveraging the AWS Global Infrastructure",
+    "len": "48:34",
+    "lectures": 12,
+    "items": [
+     {
+      "t": "Why Global Applications?",
+      "d": "05:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 Overview",
+      "d": "04:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 Hands On",
+      "d": "07:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront Overview",
+      "d": "05:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront Hands On",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Transfer Acceleration",
+      "d": "02:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Global Accelerator",
+      "d": "04:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Outposts",
+      "d": "02:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS WaveLength",
+      "d": "01:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Local Zones",
+      "d": "03:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Global Applications Architecture",
+      "d": "02:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Leveraging the AWS Global Infrastructure Summary",
+      "d": "01:57",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Leveraging the AWS Global Infrastructure Quiz",
+      "d": "8 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Global Services for Enhanced Application Performance",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 13,
+    "title": "Cloud Integrations",
+    "len": "17:43",
+    "lectures": 8,
+    "items": [
+     {
+      "t": "Cloud Integrations Overview",
+      "d": "01:57",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS Overview",
+      "d": "03:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS Hands On",
+      "d": "02:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Kinesis Overview",
+      "d": "01:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SNS Overview",
+      "d": "01:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SNS Hands On",
+      "d": "02:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon MQ Overview",
+      "d": "02:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Cloud Integrations Summary",
+      "d": "01:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Cloud Integrations Quiz",
+      "d": "5 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Messaging and Streaming Services to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 14,
+    "title": "Cloud Monitoring",
+    "len": "38:38",
+    "lectures": 12,
+    "items": [
+     {
+      "t": "CloudWatch Metrics & CloudWatch Alarms Overview",
+      "d": "03:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Metrics & CloudWatch Alarms Hands On",
+      "d": "07:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Logs Overview",
+      "d": "02:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Logs Hands On",
+      "d": "02:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EventBridge Overview (formerly CloudWatch Events)",
+      "d": "03:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EventBridge Hands On",
+      "d": "07:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudTrail Overview",
+      "d": "02:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudTrail Hands On",
+      "d": "01:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "X-Ray Overview",
+      "d": "02:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Health Dashboard",
+      "d": "01:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Health Dashboard - Hands On",
+      "d": "02:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Cloud Monitoring Summary",
+      "d": "01:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Cloud Monitoring Quiz",
+      "d": "7 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Monitoring and Auditing AWS Activity",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 15,
+    "title": "VPC & Networking",
+    "len": "34:53",
+    "lectures": 12,
+    "items": [
+     {
+      "t": "VPC Overview",
+      "d": "01:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IP Addresses in AWS",
+      "d": "02:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC, Subnet, Internet Gateway & NAT Gateways",
+      "d": "03:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC, Subnet, Internet Gateway & NAT Gateways - Hands On",
+      "d": "06:26",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security Groups & Network Access Control List (NACL)",
+      "d": "04:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Flow Logs & VPC Peering",
+      "d": "03:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Endpoints - Interface & Gateway (S3 & DynamoDB)",
+      "d": "02:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "PrivateLink",
+      "d": "02:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Direct Connect & Site-to-Site VPN",
+      "d": "02:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Client VPN",
+      "d": "01:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Transit Gateway Overview",
+      "d": "01:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC & Networking Summary",
+      "d": "02:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC & Networking Quiz",
+      "d": "8 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Networking Concepts to Business Stakeholders",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 16,
+    "title": "Security & Compliance",
+    "len": "55:44",
+    "lectures": 20,
+    "items": [
+     {
+      "t": "Shared Responsibility Model: Reminders & Examples",
+      "d": "04:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DDoS Protection: WAF & Shield",
+      "d": "04:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Network Firewall",
+      "d": "00:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Firewall Manager",
+      "d": "01:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Penetration Testing",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Encryption with KMS & CloudHSM",
+      "d": "05:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Encryption with KMS & CloudHSM Hands On",
+      "d": "04:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Certificate Manager (ACM) Overview",
+      "d": "01:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Secrets Manager Overview",
+      "d": "02:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Artifact Overview",
+      "d": "01:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "GuardDuty Overview",
+      "d": "02:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Inspector Overview",
+      "d": "02:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Config Overview",
+      "d": "06:46",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Macie Overview",
+      "d": "01:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security Hub Overview",
+      "d": "02:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Detective Overview",
+      "d": "01:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Abuse",
+      "d": "01:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Root User Privileges",
+      "d": "02:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Access Analyzer",
+      "d": "03:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security & Compliance Summary",
+      "d": "02:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security & Compliance Quiz",
+      "d": "18 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Security Services to a Concerned Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 17,
+    "title": "Machine Learning",
+    "len": "18:47",
+    "lectures": 11,
+    "items": [
+     {
+      "t": "Rekognition Overview",
+      "d": "01:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Transcribe Overview",
+      "d": "02:57",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Polly Overview",
+      "d": "01:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Translate Overview",
+      "d": "00:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lex + Connect Overview",
+      "d": "01:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Comprehend Overview",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SageMaker AI Overview",
+      "d": "03:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Kendra Overview",
+      "d": "01:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Personalize Overview",
+      "d": "01:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Textract Overview",
+      "d": "00:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Machine Learning Summary",
+      "d": "01:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Machine Learning Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS AI Services to a Non-Technical Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 18,
+    "title": "Account Management, Billing & Support",
+    "len": "01:12:46",
+    "lectures": 20,
+    "items": [
+     {
+      "t": "Organizations Overview",
+      "d": "05:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Organizations Hands On",
+      "d": "09:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Organizations Consolidated Billing",
+      "d": "02:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Control Tower Overview",
+      "d": "00:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Control Tower Hands On",
+      "d": "07:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Resource Access Manager (AWS RAM)",
+      "d": "01:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Service Catalog - Overview",
+      "d": "01:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pricing Models of the Cloud",
+      "d": "10:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Savings Plan Overview",
+      "d": "04:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Compute Optimizer Overview",
+      "d": "00:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Billing & Costing Tools Overview",
+      "d": "00:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Estimating Costs in the Cloud - Pricing Calculator",
+      "d": "02:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Tracking Costs in the Cloud - Billing Dashboard, Cost Allocation Tags, Reports",
+      "d": "08:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Monitoring Costs in the Cloud - Billing Alarms & AWS Budgets",
+      "d": "04:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Cost Anomaly Detection",
+      "d": "01:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Service Quotas",
+      "d": "01:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Trusted Advisor",
+      "d": "03:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Support Plans for AWS",
+      "d": "03:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Account Best Practices Summary",
+      "d": "01:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Billing Summary",
+      "d": "01:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Account Management, Billing & Support Quiz",
+      "d": "12 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Pricing Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Governance and Cost Optimization to Non-Technical Stakeholders",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 19,
+    "title": "Advanced Identity",
+    "len": "08:34",
+    "lectures": 5,
+    "items": [
+     {
+      "t": "Security Token Service (STS) Overview",
+      "d": "01:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Cognito Overview",
+      "d": "01:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Directory Services Overview",
+      "d": "02:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS IAM Identity Center",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Advanced Identity - Summary",
+      "d": "01:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Advanced Identity Quiz",
+      "d": "4 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Access Management Solutions to Business Stakeholders",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 20,
+    "title": "Other Services",
+    "len": "34:47",
+    "lectures": 19,
+    "items": [
+     {
+      "t": "Other Services - Section Intro",
+      "d": "00:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "WorkSpaces Overview",
+      "d": "01:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AppStream 2.0 Overview",
+      "d": "01:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IoT Core Overview",
+      "d": "01:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AppSync",
+      "d": "01:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amplify",
+      "d": "01:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Infrastructure Composer",
+      "d": "03:02",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Device Farm Overview",
+      "d": "01:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Backup Overview",
+      "d": "01:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Disaster Recovery Strategies",
+      "d": "02:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Elastic Disaster Recovery (DRS)",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Cloud Migration Strategies - The 7Rs",
+      "d": "04:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Application Discovery Service & Application Migration Service",
+      "d": "03:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Migration Evaluator",
+      "d": "01:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Migration Hub",
+      "d": "01:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Fault Injection Simulator (FIS)",
+      "d": "01:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Step Functions",
+      "d": "01:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Ground Station",
+      "d": "01:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Pinpoint",
+      "d": "01:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Other Services Quiz",
+      "d": "5 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Cloud Migration and Disaster Recovery to a Business Stakeholder",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 21,
+    "title": "AWS Architecting & Ecosystem",
+    "len": "50:19",
+    "lectures": 15,
+    "items": [
+     {
+      "t": "AWS WhitePapers Well-Architected Framework",
+      "d": "04:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pillar 1: Operational Excellence",
+      "d": "03:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pillar 2: Security",
+      "d": "04:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pillar 3: Reliability",
+      "d": "03:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pillar 4: Performance Efficiency",
+      "d": "03:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pillar 5: Cost Optimization",
+      "d": "03:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Pillar 6: Sustainability",
+      "d": "02:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Well-Architected Tool",
+      "d": "03:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Customer Carbon Footprint Tool",
+      "d": "01:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Cloud Adoption Framework (CAF)",
+      "d": "08:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Right Sizing",
+      "d": "01:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Ecosystem",
+      "d": "05:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS re:Post",
+      "d": "01:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Knowledge Center",
+      "d": "01:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Managed Services",
+      "d": "01:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Architecting & Ecosystem Quiz",
+      "d": "8 questions",
+      "type": "udi udi-quiz"
+     },
+     {
+      "t": "Explaining AWS Frameworks for Cloud Transformation",
+      "type": "udi udi-role-play"
+     }
+    ]
+   },
+   {
+    "i": 22,
+    "title": "Preparing for the Exam + Practice Exam - AWS Certified Cloud Practitioner",
+    "len": "23:19",
+    "lectures": 7,
+    "items": [
+     {
+      "t": "Words on Other Services",
+      "d": "01:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "State of Learning Checkpoint - AWS Certified Cloud Practitioner",
+      "d": "03:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Exam Sample Question Walkthrough",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Exam Tips - AWS Certified Cloud Practitioner",
+      "d": "05:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Exam Walkthrough and Signup",
+      "d": "04:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Save 50% on your AWS Exam Cost!",
+      "d": "01:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Get an Extra 30 Minutes on your AWS Exam - Non Native English Speakers only",
+      "d": "01:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Practice Exam - AWS Certified Cloud Practitioner",
+      "d": "65 questions",
+      "type": "udi udi-practice-test"
+     }
+    ]
+   },
+   {
+    "i": 23,
+    "title": "Congratulations - AWS Certified Cloud Practitioner",
+    "len": "08:54",
+    "lectures": 3,
+    "items": [
+     {
+      "t": "AWS Certification Paths",
+      "d": "06:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Congratulations",
+      "d": "01:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Bonus Lecture",
+      "d": "01:13",
+      "type": "udi udi-article"
+     }
+    ]
+   }
+  ]
+ },
+ "saa": {
+  "total": "27:15:28",
+  "lectures": 396,
+  "sections": [
+   {
+    "i": 1,
+    "title": "Introduction - AWS Certified Solutions Architect Associate",
+    "len": "14:43",
+    "lectures": 6,
+    "items": [
+     {
+      "t": "Course Introduction - AWS Certified Solutions Architect Associate",
+      "d": "03:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "PLEASE READ: Lectures you can skip if you took a course from me before",
+      "d": "01:34",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "Creating an AWS Account",
+      "d": "03:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Account Activation Troubleshooting",
+      "d": "02:05",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "Important Message",
+      "d": "00:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "About your instructor",
+      "d": "02:39",
+      "type": "udi udi-video"
+     }
+    ]
+   },
+   {
+    "i": 2,
+    "title": "Code & Slides Download",
+    "len": "00:15",
+    "lectures": 1,
+    "items": [
+     {
+      "t": "Slides and Code Download",
+      "d": "00:15",
+      "type": "udi udi-article"
+     }
+    ]
+   },
+   {
+    "i": 3,
+    "title": "Getting started with AWS",
+    "len": "13:07",
+    "lectures": 3,
+    "items": [
+     {
+      "t": "AWS Cloud Overview - Regions & AZ",
+      "d": "08:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "[Important] AWS Console UI Update",
+      "d": "01:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Tour of the AWS Console & Services in AWS",
+      "d": "03:52",
+      "type": "udi udi-video"
+     }
+    ]
+   },
+   {
+    "i": 4,
+    "title": "IAM & AWS CLI",
+    "len": "56:51",
+    "lectures": 20,
+    "items": [
+     {
+      "t": "IAM Introduction: Users, Groups, Policies",
+      "d": "03:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Users & Groups Hands On",
+      "d": "06:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Console Simultaneous Sign-in",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Policies",
+      "d": "02:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Policies Hands On",
+      "d": "08:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM MFA Overview",
+      "d": "04:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM MFA Hands On",
+      "d": "04:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Access Keys, CLI and SDK",
+      "d": "04:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Setup on Windows",
+      "d": "01:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Setup on Mac OS X",
+      "d": "01:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Setup on Linux",
+      "d": "01:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CLI Hands On",
+      "d": "03:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CloudShell: Region Availability",
+      "d": "00:12",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "AWS CloudShell",
+      "d": "03:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Roles for AWS Services",
+      "d": "01:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Roles Hands On",
+      "d": "02:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Security Tools",
+      "d": "00:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Security Tools Hands On",
+      "d": "02:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Best Practices",
+      "d": "01:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Summary",
+      "d": "01:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM & AWS CLI Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 5,
+    "title": "EC2 Fundamentals",
+    "len": "01:36:49",
+    "lectures": 16,
+    "items": [
+     {
+      "t": "AWS Budget Setup",
+      "d": "05:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Basics",
+      "d": "03:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Create an EC2 Instance with EC2 User Data to have a Website Hands On",
+      "d": "13:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Types Basics",
+      "d": "04:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security Groups & Classic Ports Overview",
+      "d": "07:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Security Groups Hands On",
+      "d": "04:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSH Overview",
+      "d": "02:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How to SSH using Linux or Mac",
+      "d": "07:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How to SSH using Windows",
+      "d": "06:08",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How to SSH using Windows 10",
+      "d": "05:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSH Troubleshooting",
+      "d": "01:23",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "EC2 Instance Connect",
+      "d": "03:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Roles Demo",
+      "d": "04:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Purchasing Options",
+      "d": "09:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Spot Instances & Spot Fleet",
+      "d": "08:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instances Launch Types Hands On",
+      "d": "08:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Fundamentals Quiz",
+      "d": "12 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 6,
+    "title": "EC2 - Solutions Architect Associate Level",
+    "len": "34:44",
+    "lectures": 9,
+    "items": [
+     {
+      "t": "Private vs Public vs Elastic IP",
+      "d": "04:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Private vs Public vs Elastic IP Hands On",
+      "d": "06:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Placement Groups",
+      "d": "06:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Placement Groups - Hands On",
+      "d": "01:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Network Interfaces (ENI) - Overview",
+      "d": "02:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Network Interfaces (ENI) - Hands On",
+      "d": "05:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ENI - Extra Reading",
+      "d": "00:21",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "EC2 Hibernate",
+      "d": "03:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Hibernate - Hands On",
+      "d": "04:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 SAA Level Quiz",
+      "d": "5 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 7,
+    "title": "EC2 Instance Storage",
+    "len": "59:18",
+    "lectures": 14,
+    "items": [
+     {
+      "t": "EBS Overview",
+      "d": "04:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Hands On",
+      "d": "05:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Snapshots",
+      "d": "02:08",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Snapshots - Hands On",
+      "d": "03:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AMI Overview",
+      "d": "02:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AMI Hands On",
+      "d": "04:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance Store",
+      "d": "02:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Volume Types",
+      "d": "05:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Multi-Attach",
+      "d": "01:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS Encryption",
+      "d": "03:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon EFS",
+      "d": "05:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon EFS - Hands On",
+      "d": "13:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EFS vs EBS",
+      "d": "02:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EBS & EFS - Section Cleanup",
+      "d": "01:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Data Management Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 8,
+    "title": "High Availability and Scalability: ELB & ASG",
+    "len": "01:33:59",
+    "lectures": 17,
+    "items": [
+     {
+      "t": "High Availability and Scalability",
+      "d": "05:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancing (ELB) Overview",
+      "d": "06:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Application Load Balancer (ALB)",
+      "d": "05:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Application Load Balancer (ALB) - Hands On - Part 1",
+      "d": "08:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Application Load Balancer (ALB) - Hands On - Part 2",
+      "d": "05:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Network Load Balancer (NLB)",
+      "d": "03:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Network Load Balancer (NLB) - Hands On",
+      "d": "06:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Gateway Load Balancer (GWLB)",
+      "d": "03:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancer - Sticky Sessions",
+      "d": "05:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancer - Cross Zone Load Balancing",
+      "d": "05:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancer - SSL Certificates",
+      "d": "06:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancer - SSL Certificates - Hands On",
+      "d": "01:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Load Balancer - Connection Draining",
+      "d": "02:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups (ASG) Overview",
+      "d": "04:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups Hands On",
+      "d": "08:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups - Scaling Policies",
+      "d": "04:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Auto Scaling Groups - Scaling Policies Hands On",
+      "d": "09:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "High Availability & Scalability Quiz",
+      "d": "21 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 9,
+    "title": "AWS Fundamentals: RDS + Aurora + ElastiCache",
+    "len": "01:09:44",
+    "lectures": 14,
+    "items": [
+     {
+      "t": "Amazon RDS Overview",
+      "d": "03:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS Read Replicas vs Multi AZ",
+      "d": "07:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon RDS Hands On",
+      "d": "08:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS Custom for Oracle and Microsoft SQL Server",
+      "d": "01:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Aurora",
+      "d": "06:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Aurora - Hands On",
+      "d": "08:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Aurora - Advanced Concepts",
+      "d": "07:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS & Aurora - Backup and Monitoring",
+      "d": "05:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS  Security",
+      "d": "02:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS Proxy",
+      "d": "04:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ElastiCache Overview",
+      "d": "04:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ElastiCache Hands On",
+      "d": "05:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ElastiCache for Solution Architects",
+      "d": "03:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "List of Ports to be familiar with",
+      "d": "00:29",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "RDS, Aurora, & ElastiCache Quiz",
+      "d": "24 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 10,
+    "title": "Route 53",
+    "len": "01:25:25",
+    "lectures": 20,
+    "items": [
+     {
+      "t": "What is a DNS ?",
+      "d": "06:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 Overview",
+      "d": "06:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - Registering a domain",
+      "d": "03:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - Creating our first records",
+      "d": "03:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - EC2 Setup",
+      "d": "05:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - TTL",
+      "d": "05:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 CNAME vs Alias",
+      "d": "07:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Simple",
+      "d": "04:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Weighted",
+      "d": "05:02",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Latency",
+      "d": "04:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - Health Checks",
+      "d": "04:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - Health Checks Hands On",
+      "d": "04:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Failover",
+      "d": "04:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Geolocation",
+      "d": "04:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Geoproximity",
+      "d": "03:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - IP-based",
+      "d": "01:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Routing Policy - Multi Value",
+      "d": "03:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "3rd Party Domains & Route 53",
+      "d": "02:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 Resolvers & Hybrid DNS",
+      "d": "02:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 - Section Cleanup",
+      "d": "01:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Route 53 Quiz",
+      "d": "7 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 11,
+    "title": "Classic Solutions Architecture Discussions",
+    "len": "43:04",
+    "lectures": 7,
+    "items": [
+     {
+      "t": "Solutions Architecture Discussions Overview",
+      "d": "01:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "WhatsTheTime.com",
+      "d": "11:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "MyClothes.com",
+      "d": "09:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "MyWordPress.com",
+      "d": "04:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Instantiating applications quickly",
+      "d": "02:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Beanstalk Overview",
+      "d": "05:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Beanstalk Hands On",
+      "d": "08:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Classic Solutions Architecture Discussions Quiz",
+      "d": "6 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 12,
+    "title": "Amazon S3 Introduction",
+    "len": "50:23",
+    "lectures": 14,
+    "items": [
+     {
+      "t": "S3 Overview",
+      "d": "05:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Hands On",
+      "d": "07:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Security: Bucket Policy",
+      "d": "05:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Security: Bucket Policy Hands On",
+      "d": "03:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Website Overview",
+      "d": "01:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Website Hands On",
+      "d": "01:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Versioning",
+      "d": "01:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Versioning - Hands On",
+      "d": "04:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Replication",
+      "d": "01:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Replication Notes",
+      "d": "00:57",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Replication - Hands On",
+      "d": "06:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Storage Classes Overview",
+      "d": "06:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Storage Classes Hands On",
+      "d": "03:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Express One Zone",
+      "d": "01:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon S3 Quiz",
+      "d": "7 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 13,
+    "title": "Advanced Amazon S3",
+    "len": "30:06",
+    "lectures": 8,
+    "items": [
+     {
+      "t": "S3 Lifecycle Rules (with S3 Analytics)",
+      "d": "04:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Lifecycle Rules - Hands On",
+      "d": "02:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Requester Pays",
+      "d": "01:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Event Notifications",
+      "d": "03:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Event Notifications - Hands On",
+      "d": "05:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Performance",
+      "d": "04:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Batch Operations",
+      "d": "02:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Storage Lens",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon S3 Advanced Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 14,
+    "title": "Amazon S3 Security",
+    "len": "53:31",
+    "lectures": 15,
+    "items": [
+     {
+      "t": "S3 Encryption",
+      "d": "08:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "About DSSE-KMS",
+      "d": "00:18",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "S3 Encryption - Hands On",
+      "d": "04:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Default Encryption",
+      "d": "01:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 CORS",
+      "d": "04:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 CORS Hands On",
+      "d": "07:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 MFA Delete",
+      "d": "01:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 MFA Delete Hands On",
+      "d": "06:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Access Logs",
+      "d": "01:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Access Logs - Hands On",
+      "d": "03:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Pre-signed URLs",
+      "d": "01:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Pre-signed URLs - Hands On",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Glacier Vault Lock & S3 Object Lock",
+      "d": "04:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Access Points",
+      "d": "03:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Object Lambda",
+      "d": "03:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon S3 Security Quiz",
+      "d": "12 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 15,
+    "title": "CloudFront & AWS Global Accelerator",
+    "len": "32:50",
+    "lectures": 7,
+    "items": [
+     {
+      "t": "CloudFront Overview",
+      "d": "05:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront with S3 - Hands On",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront - ALB/EC2 as an Origin",
+      "d": "02:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront - Geo Restriction",
+      "d": "01:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront - Cache Invalidation",
+      "d": "02:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Global Accelerator - Overview",
+      "d": "06:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Global Accelerator - Hands On",
+      "d": "08:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFront & AWS Global Accelerator Quiz",
+      "d": "5 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 16,
+    "title": "AWS Storage Extras",
+    "len": "37:26",
+    "lectures": 10,
+    "items": [
+     {
+      "t": "AWS Snow Family Overview",
+      "d": "02:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Snow Family Hands On",
+      "d": "02:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Architecture: Snowball into Glacier",
+      "d": "00:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon FSx",
+      "d": "08:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon FSx - Hands On",
+      "d": "02:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Storage Gateway Overview",
+      "d": "08:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Storage Gateway Hands On",
+      "d": "02:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Transfer Family",
+      "d": "02:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DataSync - Overview",
+      "d": "04:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "All AWS Storage Options Compared",
+      "d": "03:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Storage Extras Quiz",
+      "d": "17 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 17,
+    "title": "Decoupling applications: SQS, SNS, Kinesis, Active MQ",
+    "len": "01:20:49",
+    "lectures": 16,
+    "items": [
+     {
+      "t": "Introduction to Messaging",
+      "d": "02:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon SQS - Standard Queues Overview",
+      "d": "10:33",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS - Standard Queue Hands On",
+      "d": "06:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS - Message Visibility Timeout",
+      "d": "05:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS - Long Polling",
+      "d": "01:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS - FIFO Queues",
+      "d": "03:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS + Auto Scaling Group",
+      "d": "04:33",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Simple Notification Service (AWS SNS)",
+      "d": "04:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SNS and SQS -  Fan Out Pattern",
+      "d": "05:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SNS - Hands On",
+      "d": "04:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Kinesis Data Streams",
+      "d": "04:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Kinesis Data Streams - Hands On",
+      "d": "09:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Data Firehose",
+      "d": "04:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Data Firehose - Hands On",
+      "d": "07:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SQS vs SNS vs Kinesis",
+      "d": "03:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon MQ",
+      "d": "02:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Messaging & Integration Quiz",
+      "d": "12 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 18,
+    "title": "Containers on AWS: ECS, Fargate, ECR & EKS",
+    "len": "49:44",
+    "lectures": 10,
+    "items": [
+     {
+      "t": "Docker Introduction",
+      "d": "05:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon ECS",
+      "d": "07:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Creating ECS Cluster - Hands On",
+      "d": "05:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Creating ECS Service - Hands On",
+      "d": "09:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon ECS - Auto Scaling",
+      "d": "03:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon ECS - Solutions Architectures",
+      "d": "03:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon ECS - Clean Up - Hands On",
+      "d": "01:26",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon ECR",
+      "d": "01:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon EKS - Overview",
+      "d": "03:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon EKS - Hands On",
+      "d": "08:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Containers on AWS Quiz",
+      "d": "7 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 19,
+    "title": "Serverless Overviews from a Solution Architect Perspective",
+    "len": "01:23:17",
+    "lectures": 18,
+    "items": [
+     {
+      "t": "About the Serverless Section",
+      "d": "00:21",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "Serverless Introduction",
+      "d": "02:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Overview",
+      "d": "07:08",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Hands-On",
+      "d": "06:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Limits",
+      "d": "01:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Concurrency",
+      "d": "06:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda Concurrency - Hands On",
+      "d": "02:39",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda SnapStart",
+      "d": "01:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda@Edge & CloudFront Functions",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lambda in VPC",
+      "d": "03:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS - Invoking Lambda & Event Notifications",
+      "d": "02:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon DynamoDB",
+      "d": "05:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon DynamoDB - Hands-On",
+      "d": "04:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon DynamoDB - Advanced Features",
+      "d": "08:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "API Gateway Overview",
+      "d": "06:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "API Gateway Basics Hands-On",
+      "d": "10:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Step Functions",
+      "d": "01:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Cognito Overview",
+      "d": "06:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Serverless Overview Quiz",
+      "d": "17 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 20,
+    "title": "Serverless Solution Architecture Discussions",
+    "len": "16:23",
+    "lectures": 4,
+    "items": [
+     {
+      "t": "Mobile Application: MyTodoList",
+      "d": "04:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Serverless Website: MyBlog.com",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "MicroServices Architecture",
+      "d": "03:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Software updates distribution",
+      "d": "02:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Serverless Solutions Architecture Discussions Quiz",
+      "d": "8 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 21,
+    "title": "Databases in AWS",
+    "len": "24:55",
+    "lectures": 10,
+    "items": [
+     {
+      "t": "Choosing the right database",
+      "d": "03:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS",
+      "d": "02:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Aurora",
+      "d": "02:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "ElastiCache",
+      "d": "01:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DynamoDB",
+      "d": "03:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3",
+      "d": "02:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DocumentDB",
+      "d": "01:15",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Neptune",
+      "d": "02:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Keyspaces (for Apache Cassandra)",
+      "d": "01:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Timestream",
+      "d": "02:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Databases in AWS Quiz",
+      "d": "9 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 22,
+    "title": "Data & Analytics",
+    "len": "48:23",
+    "lectures": 12,
+    "items": [
+     {
+      "t": "Athena",
+      "d": "05:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Athena Hands On",
+      "d": "05:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Redshift",
+      "d": "06:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "OpenSearch (ex: ElasticSearch)",
+      "d": "03:51",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EMR",
+      "d": "02:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "QuickSight",
+      "d": "03:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Glue",
+      "d": "04:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lake Formation",
+      "d": "04:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Managed Service for Apache Flink",
+      "d": "01:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Managed Service for Apache Flink - Hands On",
+      "d": "02:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "MSK - Managed Streaming for Apache Kafka",
+      "d": "03:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Big Data Ingestion Pipeline",
+      "d": "04:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Data & Analytics Quiz",
+      "d": "14 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 23,
+    "title": "Machine Learning",
+    "len": "25:46",
+    "lectures": 12,
+    "items": [
+     {
+      "t": "Rekognition Overview",
+      "d": "03:46",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Transcribe Overview",
+      "d": "02:57",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Polly Overview",
+      "d": "04:12",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Translate Overview",
+      "d": "00:35",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Lex + Connect Overview",
+      "d": "01:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Comprehend Overview",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Comprehend Medical Overview",
+      "d": "02:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SageMaker AI Overview",
+      "d": "03:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Kendra Overview",
+      "d": "01:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Personalize Overview",
+      "d": "01:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Textract Overview",
+      "d": "00:56",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Machine Learning Summary",
+      "d": "01:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Machine Learning Quiz",
+      "d": "13 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 24,
+    "title": "AWS Monitoring & Audit: CloudWatch, CloudTrail & Config",
+    "len": "01:19:00",
+    "lectures": 18,
+    "items": [
+     {
+      "t": "AWS Monitoring - Section Introduction",
+      "d": "00:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Metrics",
+      "d": "04:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Logs",
+      "d": "06:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Logs - Hands On",
+      "d": "08:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Logs - Live Tail - Hands On",
+      "d": "02:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Agent & CloudWatch Logs Agent",
+      "d": "03:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Alarms",
+      "d": "04:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Alarms Hands On",
+      "d": "04:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Network Synthetic Monitor",
+      "d": "01:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EventBridge Overview (formerly CloudWatch Events)",
+      "d": "06:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon EventBridge - Hands On",
+      "d": "05:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudWatch Insights and Operational Visibility",
+      "d": "05:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudTrail Overview",
+      "d": "05:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudTrail Hands On",
+      "d": "01:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudTrail - EventBridge Integration",
+      "d": "01:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Config - Overview",
+      "d": "04:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Config - Hands On",
+      "d": "09:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudTrail vs CloudWatch vs Config",
+      "d": "02:29",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Monitoring & Auditing Quiz",
+      "d": "16 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 25,
+    "title": "Identity and Access Management (IAM) - Advanced",
+    "len": "49:28",
+    "lectures": 10,
+    "items": [
+     {
+      "t": "Organizations - Overview",
+      "d": "06:30",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Organizations - Hands On",
+      "d": "09:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Organizations - Tag Policies",
+      "d": "01:26",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM - Advanced Policies",
+      "d": "04:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM - Resource-based Policies vs IAM Roles",
+      "d": "03:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM - Policy Evaluation Logic",
+      "d": "06:50",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS IAM Identity Center",
+      "d": "06:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Directory Services",
+      "d": "05:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Directory Services - Hands On",
+      "d": "01:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Control Tower",
+      "d": "02:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IAM Advanced Quiz",
+      "d": "5 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 26,
+    "title": "AWS Security & Encryption: KMS, SSM Parameter Store, Shield, WAF",
+    "len": "01:26:26",
+    "lectures": 21,
+    "items": [
+     {
+      "t": "AWS Security - Section Introduction",
+      "d": "00:44",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Encryption 101",
+      "d": "03:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "KMS Overview",
+      "d": "07:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "KMS Hands On w/ CLI",
+      "d": "09:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "KMS - Multi-Region Keys",
+      "d": "06:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "S3 Replication with Encryption",
+      "d": "01:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Encrypted AMI Sharing Process",
+      "d": "01:33",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSM Parameter Store Overview",
+      "d": "04:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSM Parameter Store Hands On (CLI)",
+      "d": "06:55",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Secrets Manager - Overview",
+      "d": "02:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Secrets Manager - Hands On",
+      "d": "04:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Certificate Manager (ACM)",
+      "d": "07:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS CloudHSM",
+      "d": "04:46",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Web Application Firewall (WAF)",
+      "d": "03:01",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Shield - DDoS Protection",
+      "d": "02:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Firewall Manager",
+      "d": "02:42",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "WAF & Shield - Hands On",
+      "d": "05:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "DDoS Protection Best Practices",
+      "d": "05:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon GuardDuty",
+      "d": "02:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Inspector",
+      "d": "02:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Macie",
+      "d": "01:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Security & Encryption Quiz",
+      "d": "25 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 27,
+    "title": "Networking - VPC",
+    "len": "02:39:33",
+    "lectures": 38,
+    "items": [
+     {
+      "t": "Section Introduction",
+      "d": "01:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CIDR, Private vs Public IP",
+      "d": "06:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Default VPC Overview",
+      "d": "05:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Overview",
+      "d": "01:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Hands On",
+      "d": "02:08",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Subnet Overview",
+      "d": "01:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Subnet Hands On",
+      "d": "03:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Internet Gateways & Route Tables",
+      "d": "01:13",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Internet Gateways & Route Tables Hands On",
+      "d": "07:02",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Bastion Hosts",
+      "d": "02:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Bastion Hosts Hands On",
+      "d": "05:02",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "NAT Instances",
+      "d": "03:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "NAT Instances Hands On",
+      "d": "05:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "NAT Gateways",
+      "d": "03:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "NAT Gateways Hands On",
+      "d": "03:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Regional NAT Gateway",
+      "d": "01:26",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "NACL & Security Groups",
+      "d": "10:43",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "NACL & Security Groups Hands On",
+      "d": "06:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Peering",
+      "d": "02:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Peering Hands On",
+      "d": "05:47",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Endpoints",
+      "d": "05:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Endpoints Hands On",
+      "d": "06:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Flow Logs",
+      "d": "04:16",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Flow Logs Hands On + Athena",
+      "d": "10:11",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Site to Site VPN, Virtual Private Gateway & Customer Gateway",
+      "d": "03:58",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Site to Site VPN, Virtual Private Gateway & Customer Gateway Hands On",
+      "d": "01:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Direct Connect & Direct Connect Gateway",
+      "d": "06:27",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Direct Connect + Site to Site VPN",
+      "d": "01:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Transit Gateway",
+      "d": "05:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Traffic Mirroring",
+      "d": "02:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IPv6 for VPC",
+      "d": "03:19",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "IPv6 for VPC - Hands On",
+      "d": "03:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Egress Only Internet Gateway",
+      "d": "03:08",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Egress Only Internet Gateway Hands On",
+      "d": "01:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Section Cleanup",
+      "d": "02:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Section Summary",
+      "d": "05:06",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Networking Costs in AWS",
+      "d": "09:17",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Network Firewall",
+      "d": "03:00",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VPC Quiz",
+      "d": "23 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 28,
+    "title": "Disaster Recovery & Migrations",
+    "len": "44:02",
+    "lectures": 11,
+    "items": [
+     {
+      "t": "Disaster Recovery in AWS",
+      "d": "11:28",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Elastic Disaster Recovery (DRS)",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Database Migration Service (DMS)",
+      "d": "05:14",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Database Migration Service (DMS) - Hands On",
+      "d": "04:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "RDS & Aurora Migrations",
+      "d": "02:34",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "On-Premises Strategies with AWS",
+      "d": "03:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Backup",
+      "d": "03:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Backup - Hands On",
+      "d": "04:25",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Application Migration Service (MGN)",
+      "d": "03:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Transferring Large Datasets into AWS",
+      "d": "02:54",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "VMware Cloud on AWS",
+      "d": "01:48",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Disaster Recovery & Migration Quiz",
+      "d": "10 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 29,
+    "title": "More Solution Architectures",
+    "len": "27:22",
+    "lectures": 5,
+    "items": [
+     {
+      "t": "Event Processing in AWS",
+      "d": "05:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Caching Strategies in AWS",
+      "d": "03:03",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Blocking an IP Address in AWS",
+      "d": "05:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "High Performance Computing (HPC) on AWS",
+      "d": "06:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "EC2 Instance High Availability",
+      "d": "06:49",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "More Solution Architectures Quiz",
+      "d": "3 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 30,
+    "title": "Other Services",
+    "len": "47:33",
+    "lectures": 15,
+    "items": [
+     {
+      "t": "Other Services Section Introduction",
+      "d": "00:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFormation Intro",
+      "d": "03:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFormation - Hands On",
+      "d": "08:32",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "CloudFormation - Service Role",
+      "d": "03:21",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon SES",
+      "d": "01:20",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon Pinpoint",
+      "d": "01:52",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSM Session Manager",
+      "d": "05:45",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "SSM Other Services",
+      "d": "04:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Cost Explorer",
+      "d": "02:09",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Cost Anomaly Detection",
+      "d": "01:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Outposts",
+      "d": "02:38",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Batch",
+      "d": "03:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Amazon AppFlow",
+      "d": "01:23",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Amplify",
+      "d": "01:59",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Instance Scheduler on AWS",
+      "d": "05:41",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Other Services Quiz",
+      "d": "5 questions",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 31,
+    "title": "WhitePapers and Architectures - AWS Certified Solutions Architect Associate",
+    "len": "14:36",
+    "lectures": 4,
+    "items": [
+     {
+      "t": "WhitePaper Section Introduction",
+      "d": "00:53",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Well-Architected Framework & Well-Architected Tool",
+      "d": "06:07",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "AWS Trusted Advisor Overview + Hands-On",
+      "d": "03:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Examples of Architecture - AWS Certified Solutions Architect Associate",
+      "d": "04:18",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "WhitePapers & Architectures Quiz",
+      "d": "1 question",
+      "type": "udi udi-quiz"
+     }
+    ]
+   },
+   {
+    "i": 32,
+    "title": "Preparing for the Exam + Practice Exam - AWS Certified Solutions Architect Assoc",
+    "len": "16:59",
+    "lectures": 8,
+    "items": [
+     {
+      "t": "Exam Preparation - Section Introduction",
+      "d": "00:31",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "State of Learning Checkpoint - AWS Certified Solutions Architect Associate",
+      "d": "04:22",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Exam Tips - AWS Certified Solutions Architect Associate",
+      "d": "03:24",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Links to Whitepapers",
+      "d": "00:11",
+      "type": "udi udi-article"
+     },
+     {
+      "t": "Exam Walkthrough and Signup",
+      "d": "04:37",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Save 50% on your AWS Exam Cost!",
+      "d": "01:10",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Get an Extra 30 Minutes on your AWS Exam - Non Native English Speakers only",
+      "d": "01:04",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "How does the exam work?",
+      "d": "01:40",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Practice Exam - AWS Certified Solutions Architect Associate",
+      "d": "65 questions",
+      "type": "udi udi-practice-test"
+     }
+    ]
+   },
+   {
+    "i": 33,
+    "title": "Congratulations - AWS Certified Solutions Architect Associate",
+    "len": "08:54",
+    "lectures": 3,
+    "items": [
+     {
+      "t": "AWS Certification Paths",
+      "d": "06:05",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Congratulations",
+      "d": "01:36",
+      "type": "udi udi-video"
+     },
+     {
+      "t": "Bonus Lecture",
+      "d": "01:13",
+      "type": "udi udi-article"
+     }
+    ]
+   }
+  ]
+ }
+}

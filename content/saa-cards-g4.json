@@ -1,0 +1,114 @@
+[
+ {
+  "id": "saa-c-091",
+  "term": "Alias vs CNAME Record",
+  "definition": "CNAME points to any hostname but not at the zone apex. Alias points to AWS resources, works at the apex, has free queries, and cannot target an EC2 DNS name.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-092",
+  "term": "Route 53 TTL",
+  "definition": "How long resolvers cache a record. A high TTL means fewer queries and lower cost, but changes take longer to reach users. Remember: lower it before a migration.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-093",
+  "term": "Simple vs Multi-Value Routing",
+  "definition": "Simple returns every value in the record with no health checks, and the client picks one. Multi-value returns up to eight healthy records. Remember: neither replaces a load balancer.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-094",
+  "term": "Latency vs Geolocation Routing",
+  "definition": "Latency sends each user to the AWS Region with the lowest latency for them. Geolocation routes by user country or continent. Remember: add a default record for unmatched locations.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-095",
+  "term": "Geoproximity Routing Bias",
+  "definition": "Routes users to the nearest resource by distance. A positive bias from 1 to 99 grows the area served by a resource; a negative bias shrinks it.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-096",
+  "term": "Route 53 Health Checks",
+  "definition": "Probe HTTP, HTTPS, or TCP endpoints. Healthy when over 18 percent of checkers get a 200 or 300 range status. String matching reads only the first 5,120 bytes.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-097",
+  "term": "Private Endpoint Health Checks",
+  "definition": "Route 53 health checkers are on the public internet and cannot reach private resources. Create a CloudWatch metric and alarm, then a health check that monitors the alarm.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-098",
+  "term": "Route 53 Resolver Endpoints",
+  "definition": "Inbound endpoint: on-premises DNS servers forward queries to it to resolve private hosted zones. Outbound endpoint: VPC resources resolve on-premises names through forwarding rules. Remember: inbound flows into AWS.",
+  "category": "network",
+  "section": "saa-10"
+ },
+ {
+  "id": "saa-c-099",
+  "term": "Stateless Web Tier Sessions",
+  "definition": "Store session data in ElastiCache or DynamoDB, not on the instance, so any instance can serve any user. Sticky sessions work but lose sessions when instances terminate.",
+  "category": "database",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-c-100",
+  "term": "Golden AMI vs User Data",
+  "definition": "A golden AMI has software preinstalled, so instances boot ready fast. User data runs scripts at boot for dynamic settings. Restore RDS and EBS from snapshots to skip data loading.",
+  "category": "compute",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-c-101",
+  "term": "Beanstalk Web vs Worker Tier",
+  "definition": "Web server tier serves HTTP requests behind a load balancer. Worker tier pulls tasks from an SQS queue for long-running background jobs. Beanstalk is free; pay only for resources.",
+  "category": "compute",
+  "section": "saa-11"
+ },
+ {
+  "id": "saa-c-102",
+  "term": "CloudFront Origin Access Control",
+  "definition": "Lets only your CloudFront distribution read a private S3 bucket, granted through a bucket policy for the CloudFront service principal. Replaces legacy OAI and supports SSE-KMS encrypted objects.",
+  "category": "security",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-c-103",
+  "term": "CloudFront VPC Origins",
+  "definition": "Lets CloudFront reach an ALB, NLB, or EC2 instance in private subnets over a private connection, so CloudFront becomes the only public entry point to the application.",
+  "category": "network",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-c-104",
+  "term": "CloudFront Price Classes",
+  "definition": "Price Class All uses every edge location. Price Class 200 skips the most expensive regions. Price Class 100 uses only the cheapest: North America, Europe, and Israel.",
+  "category": "network",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-c-105",
+  "term": "Invalidation vs Versioned File Names",
+  "definition": "Invalidation removes cached files before their TTL expires; the first 1,000 paths a month are free, and a wildcard counts as one path. Versioned file names are cheaper and preferred.",
+  "category": "network",
+  "section": "saa-15"
+ },
+ {
+  "id": "saa-c-106",
+  "term": "Global Accelerator vs CloudFront",
+  "definition": "Global Accelerator gives two static anycast IPs and proxies TCP or UDP to endpoints without caching. CloudFront caches HTTP content at the edge. Choose Accelerator for gaming, IoT, or VoIP.",
+  "category": "network",
+  "section": "saa-15"
+ }
+]

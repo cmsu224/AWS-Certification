@@ -1,0 +1,758 @@
+[
+ {
+  "id": "clf-q-043",
+  "question": "A company runs a web application on Amazon EC2. Under the AWS Shared Responsibility Model, which task is the company's responsibility?",
+  "options": [
+   "Physical security of the data center facilities",
+   "Configuring the instance's security group rules",
+   "Patching the hypervisor that hosts the instance",
+   "Maintaining the underlying network hardware"
+  ],
+  "answer": 1,
+  "explanation": "Security groups are settings the customer controls, so their rules are the customer's job. Facilities, the hypervisor, and network hardware are security OF the cloud, which AWS owns. Remember: if you can configure it, you are responsible for it.",
+  "domain": "domain2",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-q-044",
+  "question": "An EC2 instance was terminated unexpectedly. The security team must find out which IAM identity made the TerminateInstances API call, and when. Which service should they check?",
+  "options": [
+   "Amazon CloudWatch",
+   "AWS CloudTrail",
+   "Amazon GuardDuty",
+   "AWS Config"
+  ],
+  "answer": 1,
+  "explanation": "CloudTrail records API calls in your account, including who made each call, when, and from which IP address. Think of it as a trail of footprints. CloudWatch tracks metrics and logs about performance, and AWS Config tracks how resource settings change rather than serving as the API audit log.",
+  "domain": "domain2",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-q-045",
+  "question": "A startup has just created a new AWS account. Which action should it take FIRST to secure the account?",
+  "options": [
+   "Create access keys for the root user",
+   "Create an S3 bucket for CloudTrail logs",
+   "Enable MFA on the root user",
+   "Enable Amazon GuardDuty in every Region"
+  ],
+  "answer": 2,
+  "explanation": "The root user has unrestricted access, so protecting it with multi-factor authentication comes first. Next, create an administrative identity for daily work. Root access keys should never be created, and logging or threat detection come after the root user is locked down.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-046",
+  "question": "A small company wants protection against common network and transport layer DDoS attacks without paying anything extra. Which AWS offering provides this automatically?",
+  "options": [
+   "Amazon GuardDuty",
+   "AWS WAF",
+   "AWS Shield Advanced",
+   "AWS Shield Standard"
+  ],
+  "answer": 3,
+  "explanation": "Shield Standard is included for every AWS customer at no extra cost and automatically defends against common layer 3 and layer 4 DDoS attacks. Shield Advanced adds more protection and a response team for a monthly fee, and WAF filters web requests and is billed by usage.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-047",
+  "question": "A new analyst only needs to read reports stored in one S3 bucket. The administrator grants read access to that bucket and nothing else. Which security principle is being applied?",
+  "options": [
+   "Least privilege",
+   "Defense in depth",
+   "Separation of duties",
+   "Shared responsibility"
+  ],
+  "answer": 0,
+  "explanation": "Least privilege means granting only the permissions a task requires and nothing more. Defense in depth is about stacking several layers of controls, and separation of duties splits critical tasks between different people. Remember: start with minimal permissions and add more only when needed.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-048",
+  "question": "A company must block all traffic from one malicious IP address to every instance in a subnet. Which feature can explicitly DENY traffic from that address?",
+  "options": [
+   "IAM policy",
+   "Security group",
+   "Route table",
+   "Network ACL"
+  ],
+  "answer": 3,
+  "explanation": "Network ACLs work at the subnet level and support both allow and deny rules, so they can block a specific IP address. Security groups only have allow rules and apply to individual instances. Remember: to deny an IP address, reach for the network ACL.",
+  "domain": "domain2",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-q-049",
+  "question": "An auditor asks a company for AWS's own SOC 2 and PCI DSS compliance reports. Where can the company download them on demand?",
+  "options": [
+   "AWS Artifact",
+   "AWS Trusted Advisor",
+   "AWS Config",
+   "AWS Audit Manager"
+  ],
+  "answer": 0,
+  "explanation": "AWS Artifact is the self-service portal for downloading AWS compliance reports, such as SOC and PCI reports, and for accepting agreements like the HIPAA Business Associate Addendum. Audit Manager collects evidence about your own resource usage, not AWS's third-party audit reports.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-050",
+  "question": "An application on an EC2 instance must upload files to an S3 bucket. What is the MOST secure way to give it permission?",
+  "options": [
+   "Store an IAM user's access keys on the instance",
+   "Save the root user's keys in a config file",
+   "Add the instance to an IAM group for S3",
+   "Attach an IAM role that allows S3 uploads"
+  ],
+  "answer": 3,
+  "explanation": "An IAM role attached to the instance supplies temporary credentials that AWS rotates automatically, so there are no keys to leak. Long-term access keys stored on disk can be stolen, root keys should never exist, and IAM groups can only contain users, not instances.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-051",
+  "question": "A company uses HTTPS so that data sent between customers' browsers and its website cannot be read if intercepted. What type of protection is this?",
+  "options": [
+   "Encryption at rest",
+   "Encryption in transit",
+   "Envelope encryption",
+   "Server-side encryption"
+  ],
+  "answer": 1,
+  "explanation": "HTTPS uses TLS to encrypt data while it moves across the network, which is encryption in transit. Encryption at rest protects stored data, such as S3 objects or EBS volumes. Server-side encryption also protects stored data, and envelope encryption is a key management technique, not the protection HTTPS provides.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-052",
+  "question": "A company runs Amazon Linux on its EC2 instances. Who is responsible for installing security patches on the instances' operating system?",
+  "options": [
+   "AWS, for all instances",
+   "AWS, if the instance uses an AWS-provided AMI",
+   "The customer, for every instance",
+   "AWS Support, for Enterprise Support customers"
+  ],
+  "answer": 2,
+  "explanation": "On EC2, the customer manages the guest operating system, including patches, even when the AMI comes from AWS. AWS is responsible for the physical hosts and the hypervisor. Systems Manager Patch Manager can automate patching, but running it is still the customer's job.",
+  "domain": "domain2",
+  "section": "clf-05"
+ },
+ {
+  "id": "clf-q-053",
+  "question": "Under the AWS Shared Responsibility Model, who controls physical access to the data centers that host a customer's EC2 instances?",
+  "options": [
+   "The customer",
+   "AWS",
+   "The customer and AWS jointly",
+   "The customer's compliance auditor"
+  ],
+  "answer": 1,
+  "explanation": "Physical security of facilities, including guards, access controls, and environmental systems, is security OF the cloud, which AWS owns. Customers never get physical access to AWS data centers. Independent auditors review these controls, and their reports are available in AWS Artifact.",
+  "domain": "domain2",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-q-054",
+  "question": "A company is moving its workloads from its own data center to AWS. Which task will AWS take over from the company's in-house team?",
+  "options": [
+   "Encrypting the company's application data",
+   "Managing IAM users and their permissions",
+   "Replacing failed servers and network hardware",
+   "Configuring security groups on instances"
+  ],
+  "answer": 2,
+  "explanation": "AWS is responsible for security OF the cloud: the hardware, networking, facilities, and virtualization layer. Encrypting data, managing IAM identities, and configuring security groups are security IN the cloud, so they remain the customer's tasks.",
+  "domain": "domain2",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-q-055",
+  "question": "A company migrates a self-managed MySQL database to Amazon RDS. Which task does AWS now handle for the company?",
+  "options": [
+   "Creating database users and their permissions",
+   "Patching the operating system of the database host",
+   "Setting security group rules for the database",
+   "Choosing whether the database is publicly accessible"
+  ],
+  "answer": 1,
+  "explanation": "RDS is a managed service, so AWS patches the host operating system, which customers cannot even log in to. The customer still controls database users, security group rules, public accessibility, and encryption settings.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-056",
+  "question": "A developer uploads a new object to Amazon S3 without specifying any encryption settings. What happens to the object?",
+  "options": [
+   "S3 encrypts it at rest with SSE-S3 by default",
+   "S3 stores it unencrypted until a policy is added",
+   "S3 rejects the upload with an access denied error",
+   "S3 encrypts it with a customer managed KMS key"
+  ],
+  "answer": 0,
+  "explanation": "Since 2023, S3 automatically encrypts every new object at rest with S3 managed keys, called SSE-S3, at no extra cost. Customers can choose SSE-KMS when they need more control and auditing, and choosing those settings remains the customer's responsibility.",
+  "domain": "domain2",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-q-057",
+  "question": "A company has one standalone AWS account that is not part of AWS Organizations. Its administrators are IAM users with full admin permissions. Which task still requires signing in as the root user?",
+  "options": [
+   "Creating a new IAM user for a contractor",
+   "Launching EC2 instances in a new Region",
+   "Turning on AWS CloudTrail logging",
+   "Closing the AWS account"
+  ],
+  "answer": 3,
+  "explanation": "A few tasks need the root user even when IAM administrators exist, such as closing a standalone account, changing the root email address or password, and restoring IAM permissions after a lockout. Everyday work like creating users or launching instances should use IAM identities.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-058",
+  "question": "Why does AWS recommend against using the root user for everyday administrative tasks?",
+  "options": [
+   "It has full access, so a compromise affects everything",
+   "It cannot be protected with multi-factor authentication",
+   "It cannot view the billing and cost management pages",
+   "Its API calls are billed at a higher rate than IAM calls"
+  ],
+  "answer": 0,
+  "explanation": "The root user has complete access to every service, resource, and billing setting, so a leaked root password could cost you the whole account. Use IAM identities with least privilege for daily work, and protect root with MFA, which it fully supports.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-059",
+  "question": "A company hires five developers who all need identical permissions. What is the MOST efficient way to manage their access while following best practices?",
+  "options": [
+   "Attach the same policy to each user separately",
+   "Create a separate IAM role for each developer",
+   "Add them to an IAM group that has the policy",
+   "Have all five share a single IAM user login"
+  ],
+  "answer": 2,
+  "explanation": "IAM groups let you attach a policy once and every member inherits it, so adding or removing a developer is one step. Attaching policies user by user becomes error-prone, and sharing one login breaks accountability because CloudTrail can no longer tell who did what.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-060",
+  "question": "An administrator wants to place the Developers IAM group inside an Engineering IAM group so permissions flow down. What will happen?",
+  "options": [
+   "It works, and permissions pass down to the inner group",
+   "It is not possible, because groups contain only users",
+   "It works only if both groups belong to AWS Organizations",
+   "It works only if both groups have the same policy attached"
+  ],
+  "answer": 1,
+  "explanation": "IAM groups cannot be nested: a group can contain only users, not other groups. A user can, however, belong to several groups at once and receives the combined permissions of all of them.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-061",
+  "question": "A security engineer is writing a custom IAM policy that allows read access to one S3 bucket. In which format is the policy document written?",
+  "options": [
+   "JSON",
+   "YAML",
+   "XML",
+   "CSV"
+  ],
+  "answer": 0,
+  "explanation": "IAM policies are JSON documents. Each statement has an Effect of Allow or Deny, a list of Actions, the Resources they apply to, and optional Conditions. YAML is common in CloudFormation templates, but IAM itself stores and evaluates policies as JSON.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-062",
+  "question": "An IAM user belongs to a group whose policy allows all Amazon S3 actions. A policy attached directly to the user explicitly denies deleting S3 objects. What happens when the user tries to delete an object?",
+  "options": [
+   "It succeeds, because group permissions take priority",
+   "It succeeds, because the allow was granted first",
+   "It succeeds only if the user signed in with MFA",
+   "It fails, because an explicit deny always wins"
+  ],
+  "answer": 3,
+  "explanation": "IAM combines every policy that applies to the user, and an explicit deny in any of them overrides any allow, wherever or whenever that allow was granted. Group permissions do not outrank user permissions, and nothing in this deny depends on MFA.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-063",
+  "question": "A company wants IAM users to prove their identity with a code from an authenticator app or a security key in addition to their password. Which feature should it enable?",
+  "options": [
+   "An account password policy",
+   "IAM Identity Center",
+   "Multi-factor authentication",
+   "IAM Access Analyzer"
+  ],
+  "answer": 2,
+  "explanation": "Multi-factor authentication combines something you know, your password, with something you have, such as an authenticator app, a passkey, or a hardware security key. A password policy only sets rules like length and expiration, so it cannot stop a stolen password from being used.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-064",
+  "question": "An administrator wants to remove permissions that an IAM user has not used in months. Which tool shows the services the user is allowed to access and when each was last used?",
+  "options": [
+   "IAM Access Advisor",
+   "AWS CloudTrail",
+   "IAM credentials report",
+   "AWS Trusted Advisor"
+  ],
+  "answer": 0,
+  "explanation": "IAM Access Advisor, the last accessed tab on a user, group, or role, lists the services its permissions allow and when each was last used, which makes trimming unused permissions easy. The credentials report is account-wide and covers passwords, access keys, and MFA status instead.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-065",
+  "question": "An auditor wants a single account-wide list of all IAM users showing whether each has MFA enabled and when their access keys were last rotated. Which tool provides this?",
+  "options": [
+   "AWS Config",
+   "IAM Access Advisor",
+   "IAM credentials report",
+   "AWS Security Hub"
+  ],
+  "answer": 2,
+  "explanation": "The IAM credentials report is a downloadable account-level file listing every user and the status of their passwords, access keys, and MFA devices. Access Advisor works per identity and shows service last-used data. Config and Security Hub can flag noncompliant users but do not produce this ready-made inventory.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-066",
+  "question": "A company wants a managed service that continuously analyzes CloudTrail events, VPC Flow Logs, and DNS logs to detect threats such as compromised instances. Which service should it enable?",
+  "options": [
+   "Amazon GuardDuty",
+   "Amazon Inspector",
+   "AWS Network Firewall",
+   "Amazon Macie"
+  ],
+  "answer": 0,
+  "explanation": "GuardDuty is intelligent threat detection. It applies machine learning, anomaly detection, and threat intelligence to CloudTrail events, VPC Flow Logs, and DNS logs, with no agents to install. Inspector scans for software vulnerabilities, and Macie finds sensitive data in S3, so neither watches for active threats.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-067",
+  "question": "A company wants automated, continuous scanning of its EC2 instances, container images in Amazon ECR, and Lambda functions for known software vulnerabilities. Which service should it use?",
+  "options": [
+   "Amazon GuardDuty",
+   "Amazon Macie",
+   "Amazon Inspector",
+   "AWS Config"
+  ],
+  "answer": 2,
+  "explanation": "Amazon Inspector continuously scans EC2 instances, ECR container images, and Lambda functions for known software vulnerabilities and unintended network exposure. GuardDuty detects active threats from log analysis, and Macie discovers sensitive data in S3, so neither assesses software vulnerabilities.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-068",
+  "question": "A company must find out whether any of its S3 buckets contain personally identifiable information, such as credit card numbers. Which service uses machine learning to discover this data?",
+  "options": [
+   "Amazon GuardDuty",
+   "Amazon Macie",
+   "Amazon Inspector",
+   "Amazon Detective"
+  ],
+  "answer": 1,
+  "explanation": "Macie uses machine learning and pattern matching to discover and report sensitive data, such as personally identifiable information, stored in Amazon S3. GuardDuty looks for threats and Inspector looks for vulnerabilities, but neither classifies the contents of your objects. Remember: Macie means sensitive data in S3.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-069",
+  "question": "A company needs public TLS certificates for its Application Load Balancer, at no extra cost and renewed automatically. Which service should it use?",
+  "options": [
+   "AWS Certificate Manager",
+   "AWS CloudHSM",
+   "AWS Key Management Service",
+   "AWS Secrets Manager"
+  ],
+  "answer": 0,
+  "explanation": "AWS Certificate Manager provisions public TLS certificates at no extra cost and renews them automatically for integrated services such as Elastic Load Balancing, CloudFront, and API Gateway. KMS manages encryption keys and Secrets Manager stores credentials, but neither issues certificates.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-070",
+  "question": "A company wants to store its Amazon RDS database password securely and have it rotated automatically every 30 days. Which service is the BEST fit?",
+  "options": [
+   "AWS Key Management Service",
+   "Systems Manager Parameter Store",
+   "AWS Identity and Access Management",
+   "AWS Secrets Manager"
+  ],
+  "answer": 3,
+  "explanation": "Secrets Manager stores secrets such as database passwords and can rotate them automatically on a schedule, with built-in support for Amazon RDS. Parameter Store can hold encrypted values but has no built-in automatic rotation, and KMS manages encryption keys, not the secrets themselves.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-071",
+  "question": "A company wants AWS to manage the encryption keys used for its EBS volumes and S3 objects, with every key use logged in CloudTrail and the LEAST operational overhead. Which service should it use?",
+  "options": [
+   "AWS CloudHSM",
+   "AWS Key Management Service",
+   "AWS Certificate Manager",
+   "AWS Secrets Manager"
+  ],
+  "answer": 1,
+  "explanation": "AWS KMS is the fully managed service for creating and controlling encryption keys. It integrates with most services, including EBS and S3, and every key use is logged in CloudTrail. CloudHSM gives you dedicated hardware that you manage yourself, which is more work than this company needs.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-072",
+  "question": "Security groups are stateful. What does this mean for traffic to an EC2 instance?",
+  "options": [
+   "Rules are evaluated in number order, lowest first",
+   "Responses to allowed traffic are automatically allowed",
+   "Rules can explicitly allow or deny traffic",
+   "Rules apply to every instance in the subnet"
+  ],
+  "answer": 1,
+  "explanation": "Stateful means the security group remembers allowed connections, so response traffic flows back without needing a matching rule. Numbered rule order, explicit deny rules, and subnet-wide scope are all traits of network ACLs, not security groups.",
+  "domain": "domain2",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-q-073",
+  "question": "A custom network ACL allows inbound HTTP on port 80 but has no outbound allow rules. The instance's security group allows HTTP. Why do users get no response?",
+  "options": [
+   "The security group lacks an outbound rule for responses",
+   "The stateless network ACL blocks the return traffic",
+   "The route table does not allow traffic on port 80",
+   "The instance lacks an IAM role for replying to users"
+  ],
+  "answer": 1,
+  "explanation": "Network ACLs are stateless, so return traffic is evaluated separately and needs its own outbound rule, typically for the ephemeral port range. Security groups are stateful and allow responses automatically, and route tables direct traffic by IP address, not by port.",
+  "domain": "domain2",
+  "section": "clf-15"
+ },
+ {
+  "id": "clf-q-074",
+  "question": "A security team uses GuardDuty, Inspector, and Macie across several AWS accounts and wants one place to view, correlate, and prioritize all of their findings. Which service should it use?",
+  "options": [
+   "AWS CloudTrail",
+   "Amazon Detective",
+   "AWS Security Hub",
+   "AWS Trusted Advisor"
+  ],
+  "answer": 2,
+  "explanation": "Security Hub aggregates, correlates, and prioritizes findings from GuardDuty, Inspector, Macie, and partner tools across accounts in a single view. Detective is for investigating the root cause of a specific finding, and Trusted Advisor gives general best practice recommendations rather than collecting security findings.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-075",
+  "question": "A company uses AWS Organizations and wants to stop every account in its Sandbox organizational unit from using services outside two approved Regions, even for account administrators. What should it use?",
+  "options": [
+   "An IAM identity-based policy",
+   "An IAM group policy",
+   "A security group rule",
+   "A service control policy"
+  ],
+  "answer": 3,
+  "explanation": "Service control policies in AWS Organizations set the maximum permissions for every account in an organizational unit, including each account's administrators and root user. They restrict but never grant access. IAM policies live inside one account, so a local administrator could simply change them.",
+  "domain": "domain2",
+  "section": "clf-18"
+ },
+ {
+  "id": "clf-q-076",
+  "question": "An online retailer stores and processes customers' credit card numbers on AWS. Which compliance standard applies to this data?",
+  "options": [
+   "PCI DSS",
+   "SOC 2",
+   "FedRAMP",
+   "HIPAA"
+  ],
+  "answer": 0,
+  "explanation": "PCI DSS, the Payment Card Industry Data Security Standard, applies to any organization that stores, processes, or transmits cardholder data. AWS is a PCI DSS Level 1 service provider, and its attestation is available in AWS Artifact. HIPAA covers health data, and FedRAMP covers US government workloads.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-077",
+  "question": "A US clinic plans to store patient health records on AWS. Which regulation governs how this protected health information must be handled?",
+  "options": [
+   "PCI DSS",
+   "HIPAA",
+   "GDPR",
+   "SOC 1"
+  ],
+  "answer": 1,
+  "explanation": "HIPAA, the Health Insurance Portability and Accountability Act, governs protected health information in the United States. Customers accept the AWS Business Associate Addendum in AWS Artifact and use HIPAA eligible services. PCI DSS covers payment card data, and GDPR covers personal data of people in the EU.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-078",
+  "question": "A company based in Canada collects personal data from customers living in France and Germany. Which regulation MOST directly governs the privacy of this data?",
+  "options": [
+   "HIPAA",
+   "PCI DSS",
+   "GDPR",
+   "FedRAMP"
+  ],
+  "answer": 2,
+  "explanation": "GDPR, the General Data Protection Regulation, protects the personal data of people in the European Union, no matter where the company processing it is located. HIPAA covers US health information, PCI DSS covers payment card data, and FedRAMP covers cloud services used by the US government.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-079",
+  "question": "A web application behind an Application Load Balancer is receiving SQL injection and cross-site scripting attempts. Which service can filter out these malicious requests?",
+  "options": [
+   "AWS Shield Standard",
+   "Amazon GuardDuty",
+   "Security groups",
+   "AWS WAF"
+  ],
+  "answer": 3,
+  "explanation": "AWS WAF is a layer 7 web application firewall. It inspects HTTP requests to CloudFront, Application Load Balancers, and API Gateway and blocks patterns like SQL injection and cross-site scripting. Shield protects against DDoS floods, and security groups filter only by IP address, protocol, and port.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-080",
+  "question": "A company's revenue depends on its public website. It wants round-the-clock access to the AWS Shield Response Team and protection from scaling charges caused by DDoS attacks. Which option meets these needs?",
+  "options": [
+   "AWS Shield Standard",
+   "AWS Shield Advanced",
+   "AWS WAF",
+   "AWS Firewall Manager"
+  ],
+  "answer": 1,
+  "explanation": "Shield Advanced is the paid tier. It adds round-the-clock access to the Shield Response Team, advanced attack detection, and cost protection against scaling charges caused by DDoS attacks. Shield Standard is free and automatic but has no response team or cost protection, and WAF alone only filters web requests.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-081",
+  "question": "An auditor asks how a security group's rules looked last month and whether it was compliant with company rules at that time. Which service keeps this configuration history?",
+  "options": [
+   "AWS CloudTrail",
+   "Amazon CloudWatch",
+   "Amazon Inspector",
+   "AWS Config"
+  ],
+  "answer": 3,
+  "explanation": "AWS Config records the configuration of your resources over time and evaluates them against rules, so you can see what a resource looked like on a past date and whether it was compliant. CloudTrail shows who made each API call, but not the resulting configuration or its compliance.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-082",
+  "question": "A contractor needs access to a production account for a few hours to troubleshoot an issue. What is the MOST secure approach?",
+  "options": [
+   "Share the root user's password and MFA code",
+   "Create an IAM user and delete it when finished",
+   "Allow them to assume a role for temporary access",
+   "Email them a new set of long-term access keys"
+  ],
+  "answer": 2,
+  "explanation": "Assuming an IAM role returns temporary credentials from the AWS Security Token Service, STS, which expire automatically. There are no long-term secrets to leak or forget to remove. A temporary IAM user still carries long-term credentials if the cleanup is missed.",
+  "domain": "domain2",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-q-083",
+  "question": "Which analogy BEST describes the AWS Shared Responsibility Model?",
+  "options": [
+   "A landlord maintains the building; tenants lock their own units",
+   "A teacher sets the exam; students grade their own answers",
+   "A factory line where each worker builds part of one product",
+   "A buyer owns and maintains everything after the purchase"
+  ],
+  "answer": 0,
+  "explanation": "AWS is like a landlord responsible for the building: facilities, hardware, and the virtualization layer, which is security OF the cloud. The customer is like a tenant responsible for what they control inside, such as data, access, and configuration, which is security IN the cloud.",
+  "domain": "domain2",
+  "section": "clf-03"
+ },
+ {
+  "id": "clf-q-084",
+  "question": "GuardDuty has flagged suspicious activity from an EC2 instance. The security team wants to investigate the root cause using linked, visualized log data over time. Which service should it use?",
+  "options": [
+   "AWS Security Hub",
+   "Amazon Inspector",
+   "AWS Config",
+   "Amazon Detective"
+  ],
+  "answer": 3,
+  "explanation": "Amazon Detective automatically collects log data and uses machine learning and graph visualizations to help you investigate the root cause of findings from GuardDuty and other services. Security Hub collects and prioritizes findings, but digging into what actually happened is the job of Detective.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-085",
+  "question": "A company requires every IAM user password to be at least 14 characters long and to expire every 90 days. Which feature enforces this?",
+  "options": [
+   "IAM password policy",
+   "IAM group policy",
+   "IAM Access Analyzer",
+   "Multi-factor authentication"
+  ],
+  "answer": 0,
+  "explanation": "The account password policy sets rules for IAM user passwords, such as minimum length, required character types, expiration, and preventing reuse. MFA adds a second factor at sign-in but does not control password rules, and group policies grant permissions rather than setting password requirements.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-086",
+  "question": "A developer wants to run AWS CLI commands from a laptop as an IAM user. Which credentials does the CLI use to sign those requests?",
+  "options": [
+   "An EC2 key pair's private key",
+   "An access key ID and secret access key",
+   "An ACM certificate and its private key",
+   "A KMS key ID and its key alias"
+  ],
+  "answer": 1,
+  "explanation": "The AWS CLI and SDKs sign every request with an access key ID and secret access key. Treat the secret key like a password and never share or commit it. EC2 key pairs are only for SSH logins to instances, and KMS keys encrypt data rather than authenticate you.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-087",
+  "question": "A company needs to review AWS API activity from eight months ago, but CloudTrail event history only shows the last 90 days. What should the company have set up in advance?",
+  "options": [
+   "CloudWatch detailed monitoring on all instances",
+   "VPC Flow Logs for every VPC",
+   "A CloudTrail trail delivering logs to Amazon S3",
+   "An upgrade to the Enterprise Support plan"
+  ],
+  "answer": 2,
+  "explanation": "CloudTrail event history keeps management events for 90 days at no charge. To keep API activity longer, create a trail that delivers log files to an S3 bucket, or use CloudTrail Lake. VPC Flow Logs capture network traffic, not API calls, and CloudWatch monitoring captures performance metrics.",
+  "domain": "domain2",
+  "section": "clf-14"
+ },
+ {
+  "id": "clf-q-088",
+  "question": "A security team wants every S3 bucket in the account continuously checked, and flagged as noncompliant if it allows public read access. Which service provides this with a managed rule?",
+  "options": [
+   "AWS CloudTrail",
+   "AWS Config",
+   "Amazon CloudWatch",
+   "Amazon Inspector"
+  ],
+  "answer": 1,
+  "explanation": "AWS Config continuously evaluates resource settings against rules and offers managed rules that flag S3 buckets allowing public read or write access. It can also notify you or trigger automatic remediation. CloudTrail records the API call that changed the bucket, but it does not judge compliance.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-089",
+  "question": "A company has 20 AWS accounts in AWS Organizations and wants employees to sign in once with their corporate credentials to reach any account they are assigned to. Which service should it use?",
+  "options": [
+   "Amazon Cognito",
+   "AWS Directory Service",
+   "AWS Security Token Service",
+   "AWS IAM Identity Center"
+  ],
+  "answer": 3,
+  "explanation": "IAM Identity Center, the successor to AWS Single Sign-On, gives workforce users one sign-in to multiple AWS accounts and business applications, and it can connect to an existing identity provider such as Active Directory or Okta. Cognito is for customers of your own web and mobile apps, not employees.",
+  "domain": "domain2",
+  "section": "clf-19"
+ },
+ {
+  "id": "clf-q-090",
+  "question": "A company stores sensitive documents in Amazon S3. Under the Shared Responsibility Model, which task belongs to the company?",
+  "options": [
+   "Replacing failed disks that store the objects",
+   "Patching the servers that run Amazon S3",
+   "Keeping the S3 service itself available",
+   "Setting bucket policies and encryption"
+  ],
+  "answer": 3,
+  "explanation": "For S3, AWS runs the storage hardware, the servers, and the availability of the service. The customer controls who can access the data through bucket policies and IAM, chooses encryption settings, and decides whether to enable features like versioning. Remember: AWS secures the service, you secure your data.",
+  "domain": "domain2",
+  "section": "clf-08"
+ },
+ {
+  "id": "clf-q-091",
+  "question": "A company wants to run a penetration test against its own Amazon EC2 instances and Amazon RDS databases to find weaknesses. What does AWS policy require?",
+  "options": [
+   "Submitting a request and waiting for AWS approval",
+   "Nothing extra, since it may proceed without approval",
+   "Opening a support case to book a test window",
+   "Subscribing to AWS Shield Advanced beforehand"
+  ],
+  "answer": 1,
+  "explanation": "Customers may penetration test a list of services, including EC2, RDS, Aurora, CloudFront, Lambda and API Gateway, without prior approval. Asking for approval is tempting because AWS once required it, but that rule was dropped. Denial of service and flooding tests remain prohibited under this policy.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-092",
+  "question": "What is a key difference between IAM users and IAM roles?",
+  "options": [
+   "Users have long-term credentials; roles give temporary ones",
+   "Users are meant for AWS services; roles are only for people",
+   "Users can be granted policies; roles cannot have policies",
+   "Users work in one Region; roles work in every Region"
+  ],
+  "answer": 0,
+  "explanation": "IAM users have long-term credentials like passwords and access keys. Roles have no permanent credentials: whoever assumes a role gets temporary credentials that expire. Roles are used by AWS services, federated users, and other accounts. Both users and roles are global, and both can have policies attached.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-093",
+  "question": "A developer accidentally pushed IAM access keys to a public code repository. What should be done FIRST?",
+  "options": [
+   "Wait for AWS to rotate the exposed keys",
+   "Make the repository private and keep the keys",
+   "Deactivate the exposed keys and issue new ones",
+   "Change the IAM user's console password"
+  ],
+  "answer": 2,
+  "explanation": "Exposed keys must be deactivated immediately, then deleted and replaced, because attackers scan public repositories for keys. Then review CloudTrail for unauthorized activity. Making the repository private does not revoke copies already taken, and changing the console password does not affect access keys.",
+  "domain": "domain2",
+  "section": "clf-04"
+ },
+ {
+  "id": "clf-q-094",
+  "question": "A financial company's regulator requires encryption keys to be stored in dedicated, single-tenant hardware security modules that only the company controls. Which service meets this requirement?",
+  "options": [
+   "AWS Key Management Service",
+   "AWS CloudHSM",
+   "AWS Secrets Manager",
+   "AWS Certificate Manager"
+  ],
+  "answer": 1,
+  "explanation": "CloudHSM provides dedicated, single-tenant hardware security modules in the AWS Cloud, and the customer alone manages the keys. KMS also protects keys in hardware security modules, but they are multi-tenant and managed by AWS, so KMS alone does not meet a dedicated hardware requirement.",
+  "domain": "domain2",
+  "section": "clf-16"
+ },
+ {
+  "id": "clf-q-095",
+  "question": "A company protects its application with IAM, security groups, network ACLs, AWS WAF, and encryption, so that if one control fails the others still protect it. Which security principle is this?",
+  "options": [
+   "Least privilege access",
+   "Traceability",
+   "Defense in depth",
+   "Separation of duties"
+  ],
+  "answer": 2,
+  "explanation": "Defense in depth means stacking several layers of security controls, such as identity, network, application, and data protection, so a single failure does not expose the workload. The Well-Architected security pillar calls this applying security at all layers. Traceability means logging and monitoring actions instead.",
+  "domain": "domain2",
+  "section": "clf-21"
+ },
+ {
+  "id": "clf-q-096",
+  "question": "A company moves a scheduled job from EC2 to AWS Lambda. Under the Shared Responsibility Model, which task does the company STILL own?",
+  "options": [
+   "Limiting the execution role to needed permissions",
+   "Patching the operating system that runs the code",
+   "Adding servers when many invocations arrive",
+   "Maintaining the physical hosts in the data center"
+  ],
+  "answer": 0,
+  "explanation": "With Lambda, AWS patches the operating system, scales the servers, and runs the data centers. The customer still owns its code, configuration, and access control, including keeping the execution role to least privilege. Patching is tempting because it was the company's job on EC2, but for Lambda it moves to AWS.",
+  "domain": "domain2",
+  "section": "clf-10"
+ }
+]

@@ -1,0 +1,1108 @@
+[
+  {
+    "id": "clf-q-097",
+    "question": "A company's production database runs on Amazon RDS. It must keep working, with automatic failover, if the Availability Zone hosting the database has an outage. What should the company enable?",
+    "options": [
+      "An RDS Multi-AZ deployment",
+      "An RDS read replica",
+      "Hourly manual snapshots",
+      "A larger instance class"
+    ],
+    "answer": 0,
+    "explanation": "Multi-AZ keeps a synchronized standby in another Availability Zone and fails over to it automatically, keeping the same endpoint. A read replica is tempting, but it exists to scale reads, and promoting it is a manual step. Snapshots restore data, not uptime.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-098",
+    "question": "Amazon S3 stores each file together with its metadata under a unique key, and applications reach it through an API over HTTPS. What type of storage is this?",
+    "options": [
+      "Block storage",
+      "Object storage",
+      "Relational database storage",
+      "File storage"
+    ],
+    "answer": 1,
+    "explanation": "S3 is object storage: each object is data plus metadata, found by its key inside a bucket, with virtually unlimited capacity. Block storage, like EBS, acts as a disk attached to one instance. File storage, like EFS, is a shared file system with folders that many servers mount.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-099",
+    "question": "A company runs a distributed NoSQL database that needs very high, low-latency reads and writes to large datasets on local disks. Which EC2 instance family is the BEST fit?",
+    "options": [
+      "Compute optimized, such as C instances",
+      "Memory optimized, such as R instances",
+      "Storage optimized, such as I instances",
+      "Accelerated computing, such as P instances"
+    ],
+    "answer": 2,
+    "explanation": "Storage optimized instances, like the I family, have fast local SSD storage built for heavy disk reads and writes, such as NoSQL databases, data warehouses, and distributed file systems. Memory optimized instances are tempting for databases, but they add RAM, not local disk throughput.",
+    "domain": "domain3",
+    "section": "clf-05"
+  },
+  {
+    "id": "clf-q-100",
+    "question": "A company wants to run a small piece of code each time an image is uploaded to an S3 bucket. It does not want to manage servers and wants to pay nothing while idle. Which service should it use?",
+    "options": [
+      "Amazon EC2",
+      "Amazon Lightsail",
+      "Amazon ECS",
+      "AWS Lambda"
+    ],
+    "answer": 3,
+    "explanation": "AWS Lambda runs code in response to events, such as an S3 upload, with no servers to manage. You pay per request and per millisecond of run time, so idle time costs nothing. EC2 and Lightsail keep servers running and billing while idle, and ECS runs long-lived containers rather than short event-driven functions.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-101",
+    "question": "A news website serves the same images and videos to readers around the world, and pages load slowly for readers far from the origin Region. Which service caches this content at edge locations close to users?",
+    "options": [
+      "Amazon CloudFront",
+      "AWS Global Accelerator",
+      "AWS Direct Connect",
+      "Amazon Route 53"
+    ],
+    "answer": 0,
+    "explanation": "CloudFront is the AWS content delivery network. It caches copies of content at hundreds of edge locations, so repeat requests are served near the user. Global Accelerator also uses the AWS edge network, but it caches nothing; it routes TCP and UDP traffic to your endpoints over the AWS backbone.",
+    "domain": "domain3",
+    "section": "clf-12"
+  },
+  {
+    "id": "clf-q-102",
+    "question": "A company wants a logically isolated network in AWS where it chooses its own IP address ranges, subnets, and route tables. What should it create?",
+    "options": [
+      "An AWS Direct Connect link",
+      "An Amazon VPC",
+      "An AWS Organizations account",
+      "An AWS Outposts rack"
+    ],
+    "answer": 1,
+    "explanation": "A Virtual Private Cloud, or VPC, is your own private, isolated network inside an AWS Region. You define its IP range, split it into subnets across Availability Zones, and control routing. Direct Connect is only a private link from your data center into AWS, not the network itself.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-103",
+    "question": "A startup wants to register a new domain name and manage its DNS records on AWS so the name points to its web servers. Which service should it use?",
+    "options": [
+      "Amazon CloudFront",
+      "AWS Direct Connect",
+      "Amazon Route 53",
+      "Amazon API Gateway"
+    ],
+    "answer": 2,
+    "explanation": "Route 53 is the AWS DNS service. It registers domain names and hosts the DNS records that translate names like example dot com into IP addresses or AWS resources. CloudFront can sit behind a domain name, but it is a content delivery network, not a DNS or domain registration service.",
+    "domain": "domain3",
+    "section": "clf-12"
+  },
+  {
+    "id": "clf-q-104",
+    "question": "A bank must keep old records for 10 years to meet regulations. The data is almost never read, and waiting up to 48 hours for a retrieval is acceptable. Which S3 storage class is MOST cost-effective?",
+    "options": [
+      "S3 Glacier Deep Archive",
+      "S3 Standard-Infrequent Access",
+      "S3 Intelligent-Tiering",
+      "S3 Glacier Instant Retrieval"
+    ],
+    "answer": 0,
+    "explanation": "Glacier Deep Archive is the lowest-cost S3 storage class, built for long-term archives read maybe once or twice a year. Standard retrievals finish within 12 hours and bulk retrievals within 48 hours. Glacier Instant Retrieval returns data in milliseconds, a speed you pay more for and do not need here.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-105",
+    "question": "A development team wants a fully managed service that compiles its source code, runs unit tests, and produces packages ready to deploy. It wants to pay only for build minutes, with no build servers to manage. Which service should it use?",
+    "options": [
+      "AWS CodePipeline",
+      "AWS CodeDeploy",
+      "AWS CodeArtifact",
+      "AWS CodeBuild"
+    ],
+    "answer": 3,
+    "explanation": "CodeBuild is a managed build service: it compiles code, runs tests, and produces artifacts, billed per build minute. CodePipeline is tempting, but it only orchestrates the stages of a release and hands the build step to a service like CodeBuild. CodeDeploy rolls out finished versions to servers.",
+    "domain": "domain3",
+    "section": "clf-11"
+  },
+  {
+    "id": "clf-q-106",
+    "question": "EC2 instances in a private subnet must read objects from Amazon S3. Security requires that this traffic never goes over the public internet. What is the MOST cost-effective solution?",
+    "options": [
+      "NAT gateway",
+      "Internet gateway",
+      "AWS Direct Connect",
+      "VPC gateway endpoint"
+    ],
+    "answer": 3,
+    "explanation": "A gateway VPC endpoint gives private subnets a private route to S3 or DynamoDB over the AWS network, with no internet path and no extra charge. A NAT gateway is tempting, but it routes through an internet gateway to public endpoints and charges per gigabyte. Direct Connect links on-premises sites, not a VPC to S3.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-107",
+    "question": "A company wants to lift and shift 200 on-premises virtual machines to Amazon EC2 with minimal downtime and without rewriting the applications. Which service should it use?",
+    "options": [
+      "AWS Database Migration Service",
+      "AWS Application Discovery Service",
+      "AWS Storage Gateway",
+      "AWS Application Migration Service"
+    ],
+    "answer": 3,
+    "explanation": "AWS Application Migration Service rehosts servers by continuously replicating their disks to AWS, then launching them as EC2 instances at cutover with minimal downtime. Application Discovery Service only collects inventory and dependency data to plan a migration; it moves nothing. Database Migration Service moves databases, not whole servers.",
+    "domain": "domain3",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-108",
+    "question": "An analyst wants to run standard SQL queries directly on CSV and Parquet log files stored in Amazon S3, with the LEAST setup and no database or servers to manage. Which service should the analyst use?",
+    "options": [
+      "Amazon Redshift",
+      "Amazon RDS",
+      "Amazon DynamoDB",
+      "Amazon Athena"
+    ],
+    "answer": 3,
+    "explanation": "Athena is a serverless query service. You point it at data in S3, write standard SQL, and pay for the amount of data scanned. Redshift can also run SQL on large data, but it is a data warehouse you set up and usually load data into, which is more work for quick ad hoc queries.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-109",
+    "question": "An EBS volume is attached to an EC2 instance in one Availability Zone. The team needs a point-in-time backup that can be restored as a new volume in a different Availability Zone. What should it use?",
+    "options": [
+      "An EBS snapshot",
+      "EBS Multi-Attach",
+      "An EC2 instance store volume",
+      "An S3 Lifecycle rule"
+    ],
+    "answer": 0,
+    "explanation": "An EBS volume is locked to one Availability Zone, but a snapshot is an incremental backup stored at the Region level. You can create a new volume from it in any Availability Zone, or copy it to another Region. Multi-Attach shares one volume with several instances in the same zone; it is not a backup.",
+    "domain": "domain3",
+    "section": "clf-06"
+  },
+  {
+    "id": "clf-q-110",
+    "question": "A company runs batch jobs for scientific modeling and video encoding that need high CPU performance but only modest memory. Which EC2 instance family is the BEST fit?",
+    "options": [
+      "Compute optimized, such as C instances",
+      "Memory optimized, such as R instances",
+      "General purpose, such as T instances",
+      "Storage optimized, such as I instances"
+    ],
+    "answer": 0,
+    "explanation": "Compute optimized instances, the C family, have high-performance processors for CPU-bound work like batch processing, media encoding, scientific modeling, and dedicated game servers. General purpose instances balance CPU and memory, and burstable T instances suit light workloads with occasional spikes, not sustained heavy CPU.",
+    "domain": "domain3",
+    "section": "clf-05"
+  },
+  {
+    "id": "clf-q-111",
+    "question": "A company needs EC2 instances for an in-memory database that keeps very large datasets in RAM for fast queries. Which EC2 instance family is the BEST fit?",
+    "options": [
+      "Memory optimized, such as R instances",
+      "Compute optimized, such as C instances",
+      "General purpose, such as T instances",
+      "Accelerated computing, such as P instances"
+    ],
+    "answer": 0,
+    "explanation": "Memory optimized instances, like the R family, provide a high ratio of RAM to CPU for workloads that process large datasets in memory, such as in-memory databases, caches, and real-time big data analytics. Compute optimized instances have more CPU per gigabyte of memory, so they suit CPU-bound work instead.",
+    "domain": "domain3",
+    "section": "clf-05"
+  },
+  {
+    "id": "clf-q-112",
+    "question": "A developer is deciding whether a nightly job can run on AWS Lambda. What is the maximum run time of a single Lambda invocation?",
+    "options": [
+      "5 minutes",
+      "15 minutes",
+      "60 minutes",
+      "No limit, it runs until finished"
+    ],
+    "answer": 1,
+    "explanation": "A single Lambda invocation can run for at most 15 minutes. Work that takes longer should be split into smaller steps coordinated by Step Functions, or run on AWS Batch, ECS with Fargate, or EC2. Remember: Lambda is for short, event-driven tasks, not long-running processes.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-113",
+    "question": "A small business owner with little AWS experience wants to launch a WordPress site on a virtual server for a predictable, low monthly price. Which service is the SIMPLEST choice?",
+    "options": [
+      "AWS Fargate",
+      "Amazon EC2",
+      "AWS Lambda",
+      "Amazon Lightsail"
+    ],
+    "answer": 3,
+    "explanation": "Lightsail bundles a virtual server, storage, and data transfer for a fixed monthly price, with ready-made blueprints like WordPress, and targets people with little cloud experience. EC2 can also host WordPress, but you configure the instance, storage, networking, and pricing yourself, which is more work than this owner needs.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-114",
+    "question": "A company already runs its containers with Kubernetes on premises and wants AWS to manage the Kubernetes control plane after moving to the cloud. Which service should it use?",
+    "options": [
+      "Amazon ECS",
+      "AWS Fargate",
+      "Amazon ECR",
+      "Amazon EKS"
+    ],
+    "answer": 3,
+    "explanation": "Amazon EKS is managed Kubernetes. AWS runs the Kubernetes control plane, and teams keep using standard Kubernetes tools and manifests. ECS is the AWS-native container orchestrator, so Kubernetes workloads would need reworking. Fargate is a serverless way to run containers for ECS or EKS, not an orchestrator on its own.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-115",
+    "question": "A development team builds Docker images and needs a private, managed place on AWS to store and version them so that Amazon ECS can pull them. Which service should it use?",
+    "options": [
+      "Amazon ECR",
+      "AWS CodeArtifact",
+      "AWS CodeBuild",
+      "Amazon EFS"
+    ],
+    "answer": 0,
+    "explanation": "Amazon Elastic Container Registry stores, versions, and scans container images, and ECS, EKS, and Fargate pull images from it. CodeArtifact is a repository for software packages such as npm or Maven libraries, not container images. CodeBuild can build the image, but it does not store it.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-116",
+    "question": "A team runs its web API as containers on Amazon ECS and wants to stop provisioning, patching, and scaling the EC2 instances in the cluster. What should it use?",
+    "options": [
+      "Amazon EC2 Auto Scaling",
+      "Amazon ECR",
+      "AWS Fargate",
+      "AWS Batch"
+    ],
+    "answer": 2,
+    "explanation": "Fargate is serverless compute for containers. You set CPU and memory per task, and AWS runs it with no EC2 instances for you to manage. It works with both ECS and EKS. EC2 Auto Scaling would add and remove instances automatically, but the team would still patch and manage those servers.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-117",
+    "question": "A web application runs on several EC2 instances across two Availability Zones. The company wants one endpoint that spreads incoming requests across the healthy instances. Which service should it use?",
+    "options": [
+      "Elastic Load Balancing",
+      "Amazon EC2 Auto Scaling",
+      "Amazon CloudFront",
+      "AWS Transit Gateway"
+    ],
+    "answer": 0,
+    "explanation": "Elastic Load Balancing gives one endpoint that distributes traffic across targets in multiple Availability Zones and stops sending requests to instances that fail health checks. Auto Scaling is often paired with it, but it changes how many instances run rather than distributing requests. Remember: the load balancer spreads traffic, Auto Scaling adjusts capacity.",
+    "domain": "domain3",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-118",
+    "question": "An application must send requests for the /api path to one group of EC2 instances and requests for the /images path to another group. Which type of load balancer supports this?",
+    "options": [
+      "Network Load Balancer",
+      "Gateway Load Balancer",
+      "Application Load Balancer",
+      "Classic Load Balancer"
+    ],
+    "answer": 2,
+    "explanation": "The Application Load Balancer works at layer 7, HTTP and HTTPS, so it can route by URL path, host name, or headers. The Network Load Balancer works at layer 4 for TCP and UDP with ultra-low latency, but cannot read URL paths. The Classic Load Balancer is a legacy option without path-based routing.",
+    "domain": "domain3",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-119",
+    "question": "An online store's traffic doubles every evening and drops overnight. The company wants EC2 capacity to grow and shrink automatically to match demand. Which feature should it use?",
+    "options": [
+      "Elastic Load Balancing",
+      "Amazon EC2 Auto Scaling",
+      "Amazon CloudWatch",
+      "AWS Lambda"
+    ],
+    "answer": 1,
+    "explanation": "An EC2 Auto Scaling group adds instances when demand rises and removes them when it falls, using rules like a target CPU level or a schedule, and it replaces unhealthy instances. This is elasticity. CloudWatch supplies the metrics and alarms that can trigger scaling, but it does not launch or terminate instances itself.",
+    "domain": "domain3",
+    "section": "clf-07"
+  },
+  {
+    "id": "clf-q-120",
+    "question": "A marketing team needs to host a static website made only of HTML, CSS, JavaScript, and image files. It wants the lowest cost and no servers to manage. Which service should it use?",
+    "options": [
+      "Amazon S3",
+      "Amazon EC2",
+      "Amazon EFS",
+      "Amazon Lightsail"
+    ],
+    "answer": 0,
+    "explanation": "S3 can host a static website straight from a bucket, with no servers and pay-per-use pricing, and CloudFront can be added in front for speed and HTTPS. EC2 and Lightsail would work, but they mean running and patching a web server. EFS is a file system for instances, not a website host.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-121",
+    "question": "A research lab wants to store very large single files, such as 8 TB genome datasets, as individual objects in Amazon S3. What is the maximum size of one S3 object today?",
+    "options": [
+      "5 GB",
+      "5 TB",
+      "50 TB",
+      "There is no limit"
+    ],
+    "answer": 2,
+    "explanation": "Since December 2025, one S3 object can be up to 50 terabytes, ten times the old 5 terabyte limit that many courses still mention. A single PUT upload is capped at 5 gigabytes, so large files use multipart upload. Total bucket storage is unlimited, but each object has a maximum size.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-122",
+    "question": "A company stores data in S3 but cannot predict how often each object will be accessed, and the patterns change over time. It wants objects moved to cheaper tiers automatically, with no retrieval fees. Which option fits BEST?",
+    "options": [
+      "S3 Intelligent-Tiering",
+      "S3 Versioning",
+      "S3 Lifecycle rules",
+      "S3 Replication"
+    ],
+    "answer": 0,
+    "explanation": "S3 Intelligent-Tiering watches each object's access and moves it between access tiers automatically, for a small monitoring fee and no retrieval fees. Lifecycle rules also move objects, but on a fixed, age-based schedule you define, so they suit known access patterns, not unknown or changing ones.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-123",
+    "question": "Employees sometimes overwrite or delete important files in an S3 bucket by mistake. The company wants to be able to recover the earlier copies. Which S3 feature should it enable?",
+    "options": [
+      "S3 Transfer Acceleration",
+      "S3 Replication",
+      "S3 Versioning",
+      "S3 Intelligent-Tiering"
+    ],
+    "answer": 2,
+    "explanation": "S3 Versioning keeps every version of an object in the same bucket. An overwrite creates a new version, and a delete only adds a delete marker, so older versions can be restored. Replication copies objects to another bucket, but it is not an undo feature, and it requires versioning to be turned on first.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-124",
+    "question": "A manager asks how likely it is that data stored in S3 Standard will be lost. What durability is S3 Standard designed for?",
+    "options": [
+      "Three nines, 99.9%",
+      "Four nines, 99.99%",
+      "Five nines, 99.999%",
+      "Eleven nines, 99.999999999%"
+    ],
+    "answer": 3,
+    "explanation": "S3 Standard is designed for eleven nines of durability, because objects are stored redundantly across at least three Availability Zones. Four nines is the tempting trap: that is the designed availability of S3 Standard, meaning how often you can reach the data, not how safe it is from loss.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-125",
+    "question": "An application needs the highest possible disk speed for temporary scratch data and caches, and it is fine if the data disappears when the instance stops. Which EC2 storage option is the BEST fit?",
+    "options": [
+      "An Amazon EBS gp3 volume",
+      "EC2 instance store",
+      "Amazon EFS",
+      "Amazon S3"
+    ],
+    "answer": 1,
+    "explanation": "Instance store is physical disk on the host server, giving very high input and output performance at no extra cost. It is ephemeral: data is lost if the instance stops, hibernates, or terminates, so it suits caches, buffers, and scratch data. EBS volumes persist independently of the instance, but they are network-attached.",
+    "domain": "domain3",
+    "section": "clf-06"
+  },
+  {
+    "id": "clf-q-126",
+    "question": "Ten Linux EC2 instances spread across several Availability Zones must read and write the same files at the same time. Which storage service should they use?",
+    "options": [
+      "Amazon S3",
+      "Amazon EFS",
+      "Amazon EBS",
+      "EC2 instance store"
+    ],
+    "answer": 1,
+    "explanation": "Amazon EFS is a managed NFS file system that many Linux instances can mount at once, across Availability Zones, and it grows automatically. An EBS volume normally attaches to one instance in one zone, and Multi-Attach is limited to a few instances in the same zone. S3 is object storage, not a shared file system.",
+    "domain": "domain3",
+    "section": "clf-06"
+  },
+  {
+    "id": "clf-q-127",
+    "question": "A company wants a cloud-native relational database that is compatible with MySQL and PostgreSQL, performs better than the standard engines, and grows its storage automatically. Which service should it choose?",
+    "options": [
+      "Amazon DynamoDB",
+      "Amazon Aurora",
+      "Amazon Redshift",
+      "Amazon Neptune"
+    ],
+    "answer": 1,
+    "explanation": "Aurora is the AWS-built relational engine, compatible with MySQL and PostgreSQL. AWS cites up to five times the throughput of standard MySQL and three times that of PostgreSQL, and storage grows automatically with six copies across three Availability Zones. DynamoDB is NoSQL, and Redshift is an analytics data warehouse.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-128",
+    "question": "A mobile game needs a serverless key-value database that responds in single-digit milliseconds whether it has 100 players or 100 million. Which service fits BEST?",
+    "options": [
+      "Amazon RDS",
+      "Amazon Redshift",
+      "Amazon DynamoDB",
+      "Amazon Neptune"
+    ],
+    "answer": 2,
+    "explanation": "DynamoDB is a fully managed, serverless NoSQL key-value and document database built for consistent single-digit millisecond performance at any scale. RDS is relational and scales mainly by resizing instances and adding read replicas, so it is not the best fit for massive, unpredictable key-value traffic.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-129",
+    "question": "A retailer wants to run complex analytical SQL queries across several years of sales data, many terabytes in size, to build business reports. Which service is designed for this?",
+    "options": [
+      "Amazon RDS for MySQL",
+      "Amazon Redshift",
+      "Amazon ElastiCache",
+      "Amazon DynamoDB"
+    ],
+    "answer": 1,
+    "explanation": "Redshift is a data warehouse built for analytics. It stores data in columns and runs complex SQL queries across terabytes to petabytes. RDS is built for day-to-day transactional workloads and slows down on huge analytical scans. Remember: analytics or data warehouse points to Redshift.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-130",
+    "question": "A social media startup needs to store users, their friends, and friends of friends, and quickly suggest people a user might know. Which database fits BEST?",
+    "options": [
+      "Amazon Neptune",
+      "Amazon RDS",
+      "Amazon DynamoDB",
+      "Amazon Redshift"
+    ],
+    "answer": 0,
+    "explanation": "Neptune is a managed graph database for highly connected data, such as social networks, recommendation engines, and fraud detection, where relationships matter as much as the records. Relational or key-value databases can store relationships, but querying many levels of connections is slow and complex. Remember: relationships and connections point to Neptune.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-131",
+    "question": "An application's Amazon RDS database is overloaded by the same read queries repeated thousands of times per minute. Which service can cache the results in memory to cut latency and database load?",
+    "options": [
+      "Amazon CloudFront",
+      "Amazon DynamoDB",
+      "Amazon EBS",
+      "Amazon ElastiCache"
+    ],
+    "answer": 3,
+    "explanation": "ElastiCache is a managed in-memory cache running Valkey, Redis OSS, or Memcached. The app stores frequent query results there and reads them back in microseconds, taking load off the database. CloudFront caches web content at edge locations for end users, not database query results inside your application.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-132",
+    "question": "A company wants to migrate its on-premises Oracle database to Amazon Aurora PostgreSQL while the source database stays online during the move. Which service should it use?",
+    "options": [
+      "AWS DataSync",
+      "AWS Application Migration Service",
+      "AWS Database Migration Service",
+      "AWS Backup"
+    ],
+    "answer": 2,
+    "explanation": "AWS Database Migration Service moves data into AWS databases while the source keeps running, and can replicate ongoing changes until cutover. For a different engine, like Oracle to PostgreSQL, the Schema Conversion Tool or DMS Schema Conversion converts the schema first. Application Migration Service rehosts whole servers and does not convert database engines.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-133",
+    "question": "An EC2 web server in a public subnet must be reachable from the internet. Which component must be attached to the VPC and added to the subnet's route table?",
+    "options": [
+      "NAT gateway",
+      "Internet gateway",
+      "Virtual private gateway",
+      "VPC peering connection"
+    ],
+    "answer": 1,
+    "explanation": "An internet gateway attaches to a VPC and lets resources with public IP addresses send and receive internet traffic. A subnet is public because its route table sends internet-bound traffic to that gateway. A NAT gateway only lets private resources connect out; the internet cannot start connections to them.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-134",
+    "question": "EC2 instances in a private subnet need to download software updates from the internet, but must not accept connections started from the internet. What should be added?",
+    "options": [
+      "An internet gateway route in the private subnet",
+      "A security group allowing all inbound traffic",
+      "A NAT gateway in a public subnet",
+      "A virtual private gateway on the VPC"
+    ],
+    "answer": 2,
+    "explanation": "A NAT gateway sits in a public subnet and lets instances in private subnets start outbound connections to the internet, while connections started from outside are not allowed in. Routing the private subnet straight to an internet gateway would turn it into a public subnet, which breaks the requirement.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-135",
+    "question": "A company moves large amounts of data between its data center and AWS every day and needs consistent performance over a private, dedicated connection that avoids the public internet. Which service should it use?",
+    "options": [
+      "AWS Direct Connect",
+      "Amazon CloudFront",
+      "AWS Site-to-Site VPN",
+      "AWS Global Accelerator"
+    ],
+    "answer": 0,
+    "explanation": "Direct Connect is a dedicated private network link from your premises to AWS, giving consistent bandwidth and latency without using the public internet, though it can take weeks to set up. Site-to-Site VPN is quicker and encrypted, but it runs over the public internet, so performance can vary.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-136",
+    "question": "A team is building a serverless back end with AWS Lambda and needs a managed front door to create, publish, secure, and throttle REST APIs for its mobile app. Which service should it use?",
+    "options": [
+      "Amazon Route 53",
+      "AWS Step Functions",
+      "Amazon CloudFront",
+      "Amazon API Gateway"
+    ],
+    "answer": 3,
+    "explanation": "API Gateway is a fully managed service to create, publish, secure, and monitor REST, HTTP, and WebSocket APIs. It adds throttling, API keys, and authorization, and invokes Lambda or other back ends. Step Functions coordinates workflows between services, but it is not a public API front door for clients.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-137",
+    "question": "A company runs its application in two AWS Regions. It wants DNS to answer each user with the Region that gives that user the lowest latency. Which service provides this?",
+    "options": [
+      "Amazon Route 53",
+      "AWS Global Accelerator",
+      "Amazon CloudFront",
+      "Elastic Load Balancing"
+    ],
+    "answer": 0,
+    "explanation": "Route 53 offers routing policies such as latency-based, geolocation, weighted, and failover, and can use health checks to skip unhealthy endpoints. Global Accelerator also sends users to a nearby healthy Region, but it does this with static anycast IP addresses on the AWS network, not with DNS answers.",
+    "domain": "domain3",
+    "section": "clf-12"
+  },
+  {
+    "id": "clf-q-138",
+    "question": "An operations team wants to be notified when the CPU utilization of an EC2 instance stays above 80 percent for 10 minutes. Which service should it use?",
+    "options": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch",
+      "AWS Config",
+      "AWS Trusted Advisor"
+    ],
+    "answer": 1,
+    "explanation": "CloudWatch collects metrics such as CPU utilization, and a CloudWatch alarm watches a metric and can notify through Amazon SNS or trigger Auto Scaling when a threshold is crossed. CloudTrail records who made which API calls, and Config tracks configuration changes; neither watches performance metrics.",
+    "domain": "domain3",
+    "section": "clf-14"
+  },
+  {
+    "id": "clf-q-139",
+    "question": "A new engineer keeps mixing up Amazon CloudWatch and AWS CloudTrail. Which statement correctly describes them?",
+    "options": [
+      "Both services record every API call made in the account",
+      "CloudWatch records API calls; CloudTrail tracks configuration history",
+      "CloudWatch monitors metrics and logs; CloudTrail records API activity",
+      "CloudTrail monitors metrics and logs; CloudWatch records API activity"
+    ],
+    "answer": 2,
+    "explanation": "CloudWatch is for performance and operations: metrics, logs, alarms, and dashboards. CloudTrail is the audit trail: it records API calls, including who made them, when, and from where. Configuration history is AWS Config. Memory trick: CloudTrail leaves a trail of who did what, and CloudWatch watches how things are running.",
+    "domain": "domain3",
+    "section": "clf-14"
+  },
+  {
+    "id": "clf-q-140",
+    "question": "A microservices application is slow, and developers need to trace each request as it passes through API Gateway, Lambda, and DynamoDB to find the bottleneck. Which service should they use?",
+    "options": [
+      "AWS X-Ray",
+      "AWS CloudTrail",
+      "AWS Config",
+      "Amazon Inspector"
+    ],
+    "answer": 0,
+    "explanation": "AWS X-Ray traces requests end to end across distributed applications and draws a service map showing where time is spent and where errors happen. CloudTrail records API calls for auditing, not application performance. Remember: tracing, debugging, and finding bottlenecks in microservices point to X-Ray.",
+    "domain": "domain3",
+    "section": "clf-14"
+  },
+  {
+    "id": "clf-q-141",
+    "question": "A retail company wants to set up a cloud-based customer contact center that handles phone calls and chats, without buying any telephony hardware. Which service should it use?",
+    "options": [
+      "Amazon Lex",
+      "Amazon SNS",
+      "Amazon Polly",
+      "Amazon Connect"
+    ],
+    "answer": 3,
+    "explanation": "Amazon Connect is a cloud contact center: you set up phone numbers, call flows, and agent workspaces in minutes and pay per use. Lex is tempting because it builds chatbots and voice bots, and it often plugs into Connect, but Lex on its own is not a contact center.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-142",
+    "question": "A company must patch operating systems and run commands on hundreds of EC2 instances and on-premises servers from one place, without opening SSH ports. Which service should it use?",
+    "options": [
+      "AWS Config",
+      "Amazon Inspector",
+      "AWS Systems Manager",
+      "AWS CloudFormation"
+    ],
+    "answer": 2,
+    "explanation": "Systems Manager manages fleets of EC2 and on-premises servers. Patch Manager automates patching, Run Command runs scripts at scale, and Session Manager gives secure shell access without open SSH ports or keys. Inspector finds missing patches and vulnerabilities, but it does not install the fixes.",
+    "domain": "domain3",
+    "section": "clf-11"
+  },
+  {
+    "id": "clf-q-143",
+    "question": "A photo-sharing app wants to automatically detect objects, scenes, faces, and inappropriate content in uploaded images and videos. Which service should it use?",
+    "options": [
+      "Amazon Rekognition",
+      "Amazon Polly",
+      "Amazon Textract",
+      "Amazon Comprehend"
+    ],
+    "answer": 0,
+    "explanation": "Amazon Rekognition is the computer vision service for images and video. It finds objects, scenes, faces, celebrities, text in photos, and unsafe content. Textract also reads images, but it is built to pull text, forms, and tables out of documents, not to understand what a photo shows.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-144",
+    "question": "A company wants to build a chatbot that understands typed and spoken customer questions and can book appointments through a conversation. Which service should it use?",
+    "options": [
+      "Amazon Polly",
+      "Amazon Rekognition",
+      "Amazon Comprehend",
+      "Amazon Lex"
+    ],
+    "answer": 3,
+    "explanation": "Amazon Lex builds conversational interfaces, both chatbots and voice bots, using speech recognition and language understanding, the same technology behind Alexa. Comprehend analyzes text for sentiment and key phrases, but it does not hold a conversation. Polly only speaks text aloud.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-145",
+    "question": "An e-learning company wants to turn its written lessons into natural-sounding audio narration in several languages. Which service should it use?",
+    "options": [
+      "Amazon Transcribe",
+      "Amazon Polly",
+      "Amazon Comprehend",
+      "Amazon Lex"
+    ],
+    "answer": 1,
+    "explanation": "Amazon Polly converts text into lifelike speech in many languages and voices. Transcribe does the opposite, turning speech into text, which makes it the classic trap. Memory trick: Polly is a parrot, so it talks. Transcribe writes down what it hears.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-146",
+    "question": "A company records its customer support calls and wants to automatically convert the recordings into searchable text. Which service should it use?",
+    "options": [
+      "Amazon Polly",
+      "Amazon Comprehend",
+      "Amazon Translate",
+      "Amazon Transcribe"
+    ],
+    "answer": 3,
+    "explanation": "Amazon Transcribe is automatic speech recognition: it converts speech in audio and video into text, useful for call transcripts, captions, and subtitles. Polly goes the other way, from text to speech. Comprehend could then analyze the transcript, but it cannot listen to audio.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-147",
+    "question": "An online store wants to analyze thousands of written product reviews to learn whether customers feel positive or negative and which products they mention. Which service should it use?",
+    "options": [
+      "Amazon Rekognition",
+      "Amazon Comprehend",
+      "Amazon Lex",
+      "Amazon Kendra"
+    ],
+    "answer": 1,
+    "explanation": "Amazon Comprehend uses natural language processing to find sentiment, entities, key phrases, language, and topics in text. Kendra also works with text, but it is an enterprise search service that answers questions from documents rather than analyzing sentiment. Rekognition analyzes images and video, not written reviews.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-148",
+    "question": "A team of data scientists wants to build, train, and deploy its own custom machine learning models on fully managed infrastructure. Which service should it use?",
+    "options": [
+      "Amazon Lex",
+      "Amazon Comprehend",
+      "Amazon Rekognition",
+      "Amazon SageMaker AI"
+    ],
+    "answer": 3,
+    "explanation": "Amazon SageMaker AI, formerly just SageMaker, is the managed platform for the whole machine learning workflow: preparing data, building, training, tuning, and deploying custom models. Lex, Comprehend, and Rekognition are pre-trained AI services you call through an API when you do not want to build your own model.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-149",
+    "question": "An insurance company receives thousands of scanned claim forms and wants to automatically extract the printed text, handwriting, and table data from them. Which service should it use?",
+    "options": [
+      "Amazon Textract",
+      "Amazon Rekognition",
+      "Amazon Macie",
+      "Amazon Comprehend"
+    ],
+    "answer": 0,
+    "explanation": "Amazon Textract extracts text, handwriting, forms, and tables from scanned documents and PDFs, keeping structure such as field names and values. Rekognition can spot text in photos, like street signs, but it is not built to read forms. Macie finds sensitive data in S3, and Comprehend analyzes text that is already extracted.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-150",
+    "question": "A company wants one central place to set backup schedules and retention for its EBS volumes, RDS databases, DynamoDB tables, and EFS file systems, including copies to another Region. Which service should it use?",
+    "options": [
+      "AWS Storage Gateway",
+      "AWS Elastic Disaster Recovery",
+      "AWS Backup",
+      "AWS Config"
+    ],
+    "answer": 2,
+    "explanation": "AWS Backup centrally manages and automates backups across many AWS services using backup plans, with schedules, retention rules, and cross-Region or cross-account copies. Elastic Disaster Recovery continuously replicates servers so they can be recovered quickly after an outage; it is not a policy-based backup tool for databases and file systems.",
+    "domain": "domain3",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-151",
+    "question": "A company needs to give 300 remote employees secure, managed Windows desktops that they can use from their own laptops, without shipping any hardware. Which service should it use?",
+    "options": [
+      "Amazon WorkSpaces",
+      "Amazon WorkSpaces Applications",
+      "Amazon Lightsail",
+      "AWS Outposts"
+    ],
+    "answer": 0,
+    "explanation": "Amazon WorkSpaces provides managed virtual desktops, Windows or Linux, that users reach from almost any device, known as desktop as a service. WorkSpaces Applications, formerly AppStream 2.0, is the tempting choice, but it streams individual applications rather than giving each user a full desktop.",
+    "domain": "domain3",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-152",
+    "question": "A developer wants a Python application to upload files to Amazon S3 by calling AWS APIs directly from its own code. What should the developer use?",
+    "options": [
+      "The AWS Management Console",
+      "The AWS CLI",
+      "An AWS SDK",
+      "AWS CloudFormation"
+    ],
+    "answer": 2,
+    "explanation": "AWS SDKs are libraries for programming languages, such as Boto3 for Python, that let an application call AWS APIs from its own code. The CLI is for typing or scripting commands in a terminal, and the Management Console is the web interface for people. All three use the same underlying AWS APIs.",
+    "domain": "domain3",
+    "section": "clf-04"
+  },
+  {
+    "id": "clf-q-153",
+    "question": "A developer wants to upload a Java web application and have AWS handle capacity provisioning, load balancing, auto scaling, and health monitoring, while keeping access to the underlying EC2 instances. Which service fits BEST?",
+    "options": [
+      "Amazon ECS",
+      "AWS Elastic Beanstalk",
+      "AWS CloudFormation",
+      "Amazon Lightsail"
+    ],
+    "answer": 1,
+    "explanation": "Elastic Beanstalk is a platform as a service: you upload code, and it deploys and manages the load balancer, Auto Scaling group, and EC2 instances for you, with no charge beyond those resources. CloudFormation can build the same resources, but you must define every one of them yourself in templates.",
+    "domain": "domain3",
+    "section": "clf-11"
+  },
+  {
+    "id": "clf-q-154",
+    "question": "A company wants to load streaming application log data into Amazon S3 and Amazon Redshift in near real time, with no consumer code to write and no capacity to manage. Which service should it use?",
+    "options": [
+      "Amazon SQS",
+      "Amazon Kinesis Data Streams",
+      "Amazon SNS",
+      "Amazon Data Firehose"
+    ],
+    "answer": 3,
+    "explanation": "Amazon Data Firehose, formerly Kinesis Data Firehose, is fully managed: it batches incoming streaming data and delivers it to destinations such as S3, Redshift, and OpenSearch, scaling automatically. Kinesis Data Streams is tempting, but you must write consumer applications to read and deliver the data.",
+    "domain": "domain3",
+    "section": "clf-13"
+  },
+  {
+    "id": "clf-q-155",
+    "question": "When a new order is placed, a company wants one message delivered at the same time to an email address, a Lambda function, and two SQS queues. Which service should it use?",
+    "options": [
+      "Amazon SNS",
+      "Amazon SQS",
+      "Amazon SES",
+      "Amazon Kinesis Data Streams"
+    ],
+    "answer": 0,
+    "explanation": "Amazon SNS is publish and subscribe messaging. A message published to one topic is pushed to every subscriber at once, including email, SMS, Lambda functions, SQS queues, and HTTP endpoints. This is called fan-out. SQS is a queue that workers pull from, so on its own it does not push to many destinations.",
+    "domain": "domain3",
+    "section": "clf-13"
+  },
+  {
+    "id": "clf-q-156",
+    "question": "A company wants to send order confirmations and monthly marketing newsletters by email to millions of customers from its own domain. Which service is designed for this?",
+    "options": [
+      "Amazon SNS",
+      "Amazon SES",
+      "Amazon Connect",
+      "Amazon SQS"
+    ],
+    "answer": 1,
+    "explanation": "Amazon Simple Email Service, or SES, is built for sending transactional and marketing email at scale, with your own domain, templates, and delivery tracking. SNS can send simple email notifications to people who subscribe to a topic, but it is not meant for branded newsletters or bulk customer email.",
+    "domain": "domain3",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-157",
+    "question": "A company wants to collect website clickstream data and IoT sensor readings and process them in real time as they arrive. Which service should it use?",
+    "options": [
+      "Amazon SQS standard queues",
+      "AWS Batch job queues",
+      "Amazon Kinesis Data Streams",
+      "Amazon Redshift Serverless"
+    ],
+    "answer": 2,
+    "explanation": "Amazon Kinesis collects and processes streaming data in real time, such as clickstreams, logs, and IoT telemetry, and lets several applications read the same stream. AWS Batch runs jobs on data that has already been gathered, not on a live stream. Remember: real-time streaming data points to Kinesis.",
+    "domain": "domain3",
+    "section": "clf-13"
+  },
+  {
+    "id": "clf-q-158",
+    "question": "A data team needs a serverless service that crawls data in Amazon S3 to discover its schema, stores that metadata in a central catalog, and runs extract, transform, and load jobs. Which service should it use?",
+    "options": [
+      "Amazon Athena",
+      "Amazon Quick Sight",
+      "AWS Glue",
+      "Amazon Kinesis Data Streams"
+    ],
+    "answer": 2,
+    "explanation": "AWS Glue is a serverless data integration service. Crawlers discover the schema of your data, the Glue Data Catalog stores that metadata, and Glue jobs extract, transform, and load it. Athena is tempting because it queries S3 with SQL, but it does not crawl or transform data; it reads table definitions from the Glue Data Catalog.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-159",
+    "question": "A company wants its on-premises applications to keep using local file shares, while the data is actually stored in Amazon S3 and recently used files are cached locally for fast access. Which service should it use?",
+    "options": [
+      "AWS Storage Gateway",
+      "AWS Direct Connect",
+      "AWS DataSync",
+      "Amazon EFS"
+    ],
+    "answer": 0,
+    "explanation": "AWS Storage Gateway is hybrid cloud storage. It gives on-premises applications local file, volume, or tape interfaces while storing the data in AWS, and caches frequently used data on site. DataSync copies data into AWS as a transfer job, but it does not give on-premises apps an ongoing local share backed by the cloud.",
+    "domain": "domain3",
+    "section": "clf-08"
+  },
+  {
+    "id": "clf-q-160",
+    "question": "A company wants to trigger a Lambda function every night at 2 AM, and also whenever an EC2 instance changes to the stopped state. Which service should it use?",
+    "options": [
+      "AWS Step Functions",
+      "Amazon SQS",
+      "AWS Config",
+      "Amazon EventBridge"
+    ],
+    "answer": 3,
+    "explanation": "Amazon EventBridge, formerly CloudWatch Events, is a serverless event bus. Rules match events from AWS services, SaaS apps, or your own apps, or run on a schedule, and send them to targets like Lambda. Step Functions coordinates the steps inside a workflow, but it does not watch for events or run schedules by itself.",
+    "domain": "domain3",
+    "section": "clf-14"
+  },
+  {
+    "id": "clf-q-161",
+    "question": "A company wants to run an order process in which several Lambda functions execute in a set order, with retries, error handling, and a wait for human approval. Which service should it use?",
+    "options": [
+      "Amazon EventBridge",
+      "AWS Step Functions",
+      "Amazon SQS",
+      "AWS CloudFormation"
+    ],
+    "answer": 1,
+    "explanation": "AWS Step Functions builds visual workflows, called state machines, that coordinate Lambda functions and other services in order, with built-in retries, branching, error handling, and waits for approval. EventBridge routes individual events to targets, but it does not track the state of a long, multi-step process.",
+    "domain": "domain3",
+    "section": "clf-20"
+  },
+  {
+    "id": "clf-q-162",
+    "question": "A factory needs to run AWS services on premises for very low latency to local machines and to keep data on site, using the same AWS APIs and tools. Which service should it use?",
+    "options": [
+      "AWS Local Zones",
+      "AWS Outposts",
+      "AWS Wavelength",
+      "AWS Direct Connect"
+    ],
+    "answer": 1,
+    "explanation": "AWS Outposts delivers AWS-managed racks and servers into your own data center, so you run EC2, EBS, and other services on site with the same APIs and console. Local Zones place AWS infrastructure near large cities, but in AWS facilities, not inside your building. Wavelength sits inside telecom 5G networks.",
+    "domain": "domain3",
+    "section": "clf-12"
+  },
+  {
+    "id": "clf-q-163",
+    "question": "A team wants every code change pushed to its repository to be automatically built, tested, and deployed through a series of stages. Which service orchestrates this release process?",
+    "options": [
+      "AWS CodeBuild",
+      "AWS CloudFormation",
+      "AWS CodePipeline",
+      "AWS Systems Manager"
+    ],
+    "answer": 2,
+    "explanation": "AWS CodePipeline is a continuous delivery service that orchestrates release stages, such as source, build, test, and deploy, every time code changes. CodeBuild is the tempting answer, but it only compiles code and runs tests as one step inside the pipeline. Remember: pipeline means the whole automated flow.",
+    "domain": "domain3",
+    "section": "clf-11"
+  },
+  {
+    "id": "clf-q-164",
+    "question": "A company has two VPCs, one for its application and one for shared tools, and wants instances in each to talk to each other using private IP addresses. What is the SIMPLEST solution?",
+    "options": [
+      "An internet gateway in each VPC",
+      "A VPC peering connection",
+      "A NAT gateway in each VPC",
+      "An AWS Direct Connect link"
+    ],
+    "answer": 1,
+    "explanation": "VPC peering privately connects two VPCs, even across accounts or Regions, so instances talk using private IP addresses over the AWS network. Peering is not transitive, so linking many VPCs needs many connections, which is where Transit Gateway helps. Internet and NAT gateways send traffic toward the internet, not between private networks.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-165",
+    "question": "A company has 60 VPCs and several on-premises data centers, and wants to connect all of them through one central hub instead of managing many separate connections. Which service should it use?",
+    "options": [
+      "VPC peering",
+      "AWS PrivateLink",
+      "AWS Transit Gateway",
+      "NAT gateway"
+    ],
+    "answer": 2,
+    "explanation": "AWS Transit Gateway is a regional hub that connects thousands of VPCs and on-premises networks, through VPN or Direct Connect, in a hub-and-spoke design. VPC peering is not transitive, so 60 VPCs would need a huge mesh of connections. PrivateLink exposes a single service privately rather than joining whole networks.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-166",
+    "question": "A company needs to process petabytes of log data using open-source big data frameworks such as Apache Spark and Hadoop, without building the clusters by hand. Which service should it use?",
+    "options": [
+      "Amazon RDS",
+      "Amazon DynamoDB",
+      "Amazon Redshift",
+      "Amazon EMR"
+    ],
+    "answer": 3,
+    "explanation": "Amazon EMR runs managed big data clusters with open-source frameworks such as Apache Spark, Hadoop, and Hive, and handles provisioning and scaling of the cluster. Redshift is tempting for large-scale analytics, but it is a SQL data warehouse, not a platform for running Spark or Hadoop jobs.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-167",
+    "question": "A research team needs to run thousands of containerized jobs that each take several hours. It wants AWS to queue the jobs and provision the right amount of compute automatically. Which service fits BEST?",
+    "options": [
+      "AWS Batch",
+      "AWS Lambda",
+      "Amazon Lightsail",
+      "Amazon Kinesis Data Streams"
+    ],
+    "answer": 0,
+    "explanation": "AWS Batch queues and schedules batch jobs packaged as containers, and provisions EC2, Spot, or Fargate capacity sized to the work, so you pay only for the resources used. Lambda is tempting because it is serverless, but one invocation is limited to 15 minutes, so multi-hour jobs do not fit.",
+    "domain": "domain3",
+    "section": "clf-10"
+  },
+  {
+    "id": "clf-q-168",
+    "question": "Business managers want interactive dashboards and charts built from data in Amazon Redshift and Amazon S3, without managing any BI servers. Which service should they use?",
+    "options": [
+      "AWS Glue",
+      "Amazon Athena",
+      "Amazon SageMaker AI",
+      "Amazon Quick Sight"
+    ],
+    "answer": 3,
+    "explanation": "Amazon Quick Sight, formerly QuickSight and now part of Amazon Quick, is the serverless business intelligence service for interactive dashboards, charts, and reports. Athena is tempting because it queries S3 data with SQL, but it returns query results, not shareable visual dashboards. Remember: dashboards and visualization point to Quick Sight.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-169",
+    "question": "Employees waste time hunting through thousands of internal documents, wikis, and manuals. The company wants them to ask questions in plain language and get precise answers from that content. Which service fits BEST?",
+    "options": [
+      "Amazon Textract",
+      "Amazon Kendra",
+      "Amazon Athena",
+      "Amazon Comprehend"
+    ],
+    "answer": 1,
+    "explanation": "Amazon Kendra is an intelligent enterprise search service that uses machine learning to find answers inside documents from many sources, such as SharePoint, S3, and wikis. Comprehend analyzes text for sentiment and entities but does not search it. Textract pulls text from scans, and Athena runs SQL queries on data.",
+    "domain": "domain3",
+    "section": "clf-17"
+  },
+  {
+    "id": "clf-q-170",
+    "question": "A company needs to connect its on-premises network to a VPC within a day, with encrypted traffic, at low cost. Sending the traffic over the public internet is acceptable. Which option should it choose?",
+    "options": [
+      "AWS Direct Connect",
+      "AWS Site-to-Site VPN",
+      "AWS Client VPN",
+      "VPC peering"
+    ],
+    "answer": 1,
+    "explanation": "AWS Site-to-Site VPN creates encrypted IPsec tunnels between your on-premises network and a VPC over the public internet, and can be ready in minutes to hours. Direct Connect avoids the internet but takes weeks to provision. Client VPN connects individual users' devices, not a whole office network.",
+    "domain": "domain3",
+    "section": "clf-15"
+  },
+  {
+    "id": "clf-q-171",
+    "question": "A company is moving Windows-based applications that rely on SMB file shares and Microsoft Active Directory permissions to AWS. Which fully managed storage service fits BEST?",
+    "options": [
+      "Amazon EFS One Zone file system",
+      "Amazon FSx for Lustre",
+      "Amazon FSx for Windows File Server",
+      "Amazon EBS Multi-Attach volumes"
+    ],
+    "answer": 2,
+    "explanation": "Amazon FSx for Windows File Server is a fully managed native Windows file system that uses the SMB protocol and integrates with Microsoft Active Directory. FSx for Lustre is built for high-performance Linux computing, and EFS is an NFS file system for Linux. Remember: Windows file shares point to FSx for Windows.",
+    "domain": "domain3",
+    "section": "clf-06"
+  },
+  {
+    "id": "clf-q-172",
+    "question": "A multiplayer game uses UDP and serves players worldwide. The company wants two static IP addresses, player traffic entering the AWS network at the nearest edge location, and fast failover between Regions. Which service fits BEST?",
+    "options": [
+      "Amazon CloudFront",
+      "AWS Global Accelerator",
+      "Amazon Route 53",
+      "S3 Transfer Acceleration"
+    ],
+    "answer": 1,
+    "explanation": "AWS Global Accelerator gives you static anycast IP addresses and carries TCP and UDP traffic onto the AWS global network at the nearest edge location, then to the best healthy endpoint, with fast failover. CloudFront also uses edge locations, but it caches HTTP content and does not provide fixed IP addresses for UDP game traffic.",
+    "domain": "domain3",
+    "section": "clf-12"
+  },
+  {
+    "id": "clf-q-173",
+    "question": "A company must install a custom operating system configuration and specialized drivers, and needs full administrator control over the server. Which compute service should it use?",
+    "options": [
+      "AWS Lambda",
+      "AWS Fargate",
+      "AWS Elastic Beanstalk",
+      "Amazon EC2"
+    ],
+    "answer": 3,
+    "explanation": "Amazon EC2 is infrastructure as a service. You choose the operating system, instance type, storage, and networking, and you have full root or administrator access. Elastic Beanstalk runs on EC2 but manages the platform for you, while Lambda and Fargate hide the operating system completely. More control also means more patching work.",
+    "domain": "domain3",
+    "section": "clf-05"
+  },
+  {
+    "id": "clf-q-174",
+    "question": "A company runs a MongoDB application on premises and wants a fully managed AWS database that is MongoDB compatible, with the LEAST changes to its code. Which service should it choose?",
+    "options": [
+      "Amazon Neptune",
+      "Amazon DynamoDB",
+      "Amazon DocumentDB",
+      "Amazon Keyspaces"
+    ],
+    "answer": 2,
+    "explanation": "Amazon DocumentDB is a managed document database that is compatible with MongoDB APIs, so existing MongoDB code and tools keep working. DynamoDB also stores JSON-like items, but it has its own API, so the application would need rewriting. Keyspaces is for Apache Cassandra, and Neptune is a graph database.",
+    "domain": "domain3",
+    "section": "clf-09"
+  },
+  {
+    "id": "clf-q-175",
+    "question": "An online store wants to automatically translate its product descriptions and customer reviews into Spanish, French, and Japanese. Which service should it use?",
+    "options": [
+      "Amazon Comprehend",
+      "Amazon Transcribe",
+      "Amazon Translate",
+      "Amazon Polly"
+    ],
+    "answer": 2,
+    "explanation": "Amazon Translate is neural machine translation that converts text from one language to another quickly and at scale. Comprehend can detect which language a text is written in, but it does not translate it. Transcribe turns speech into text, and Polly turns text into speech.",
+    "domain": "domain3",
+    "section": "clf-17"
+  }
+]

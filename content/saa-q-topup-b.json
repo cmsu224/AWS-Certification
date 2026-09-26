@@ -1,0 +1,296 @@
+[
+ {
+  "id": "saa-q-206",
+  "question": "A web API runs as an Amazon ECS service on AWS Fargate behind an Application Load Balancer. Traffic rises and falls throughout the day, and the number of running tasks must follow the load automatically. Which solution meets this requirement?",
+  "options": [
+   "Configure ECS Service Auto Scaling with target tracking on service CPU utilization",
+   "Attach a target tracking policy to an EC2 Auto Scaling group that backs the ECS cluster",
+   "Increase the CPU and memory values in the task definition to handle the peak traffic",
+   "Schedule an AWS Lambda function to update the service desired count every hour"
+  ],
+  "answer": 0,
+  "explanation": "ECS Service Auto Scaling adjusts the task count using target tracking on CPU, memory, or load balancer requests per target. With Fargate there are no EC2 instances, so an EC2 Auto Scaling group policy does not apply. Bigger tasks or hourly updates do not track real demand.",
+  "domain": "saa3",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-207",
+  "question": "A company runs an Amazon ECS service on the EC2 launch type. Service Auto Scaling adds tasks during peaks, but new tasks stay in the pending state because the cluster has no free CPU or memory. Which solution fixes this with the LEAST operational overhead?",
+  "options": [
+   "Add a scheduled action that grows the Auto Scaling group before expected peaks",
+   "Create a CloudWatch alarm on instance CPU that triggers a Lambda function to add instances",
+   "Use an Auto Scaling group capacity provider with managed scaling enabled for the cluster",
+   "Switch the service to host networking mode so that more tasks fit on each instance"
+  ],
+  "answer": 2,
+  "explanation": "A capacity provider with managed scaling watches task placement and launches EC2 instances when tasks cannot be placed, then scales in when idle. Scheduled actions miss unexpected peaks, and a custom alarm plus Lambda adds code to maintain. Host networking does not create more CPU or memory.",
+  "domain": "saa2",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-208",
+  "question": "A company runs its applications on a self-managed Kubernetes cluster on premises and wants to move them to AWS. It wants to keep its existing Kubernetes manifests and tooling, and it does not want to provision, patch, or scale worker nodes. Which solution meets these requirements?",
+  "options": [
+   "Amazon ECS with the AWS Fargate launch type",
+   "Kubernetes installed on Amazon EC2 instances in an Auto Scaling group",
+   "Amazon EKS with self-managed nodes in an Auto Scaling group",
+   "Amazon EKS with pods running on AWS Fargate"
+  ],
+  "answer": 3,
+  "explanation": "Amazon EKS runs standard Kubernetes, and running pods on Fargate removes all worker node management. Amazon ECS on Fargate is also serverless, but it would mean rewriting the Kubernetes manifests into ECS task definitions. Self-managed nodes and a do-it-yourself cluster still require patching and scaling servers.",
+  "domain": "saa2",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-209",
+  "question": "A development team pushes a new container image to a private Amazon ECR repository on every build. Storage costs keep rising. The team wants to keep only the 20 most recent tagged images and delete untagged images older than 7 days, with no custom code. What should a solutions architect do?",
+  "options": [
+   "Enable enhanced scanning on the repository to remove outdated images",
+   "Create Amazon ECR lifecycle policy rules on the repository",
+   "Add an S3 Lifecycle rule to the bucket that stores the ECR images",
+   "Run a scheduled Lambda function that deletes images with the AWS SDK"
+  ],
+  "answer": 1,
+  "explanation": "ECR lifecycle policies expire images automatically by count or age, for tagged or untagged images. ECR stores images in Amazon S3 behind the scenes, but that bucket is not visible to customers, so S3 Lifecycle rules cannot be applied. A Lambda function works but is custom code.",
+  "domain": "saa4",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-210",
+  "question": "A company receives large video files in an Amazon S3 bucket. Each file must be processed by a containerized job that runs for up to 45 minutes. The company does not want any tasks or servers running while no files arrive. Which solution meets these requirements?",
+  "options": [
+   "Configure S3 Event Notifications to invoke an AWS Lambda function that processes each file",
+   "Run an Amazon ECS service with one Fargate task that polls the bucket for new objects",
+   "Create an Amazon EventBridge rule for new S3 objects that runs an Amazon ECS task on Fargate",
+   "Configure S3 Event Notifications to start an Amazon ECS service on an EC2 cluster directly"
+  ],
+  "answer": 2,
+  "explanation": "An EventBridge rule can react to S3 object created events and run an ECS task on Fargate, so compute exists only while a file is processed. Lambda is tempting but stops at 15 minutes. A polling service runs all the time, and S3 Event Notifications cannot target ECS directly.",
+  "domain": "saa3",
+  "section": "saa-18"
+ },
+ {
+  "id": "saa-q-211",
+  "question": "A serverless video course site stores its lessons in a private Amazon S3 bucket that is served only through Amazon CloudFront with origin access control. Only paying subscribers may watch, and each subscriber must stream many lesson files without the site changing its URLs. Which solution meets these requirements?",
+  "options": [
+   "Have a Lambda function check the subscription and then issue CloudFront signed cookies to the subscriber",
+   "Have a Lambda function generate an S3 presigned URL for each lesson and send users to the bucket",
+   "Attach an AWS WAF rule to the distribution that allows only the IP addresses of known subscribers",
+   "Configure CloudFront geographic restrictions so that only countries with subscribers can reach the site"
+  ],
+  "answer": 0,
+  "explanation": "CloudFront signed cookies grant access to many restricted files without changing their URLs, and a Lambda function can issue them after checking the subscription. S3 presigned URLs are tempting, but they bypass CloudFront while the bucket only accepts CloudFront requests. IP lists and geographic restrictions cannot identify paying subscribers.",
+  "domain": "saa1",
+  "section": "saa-20"
+ },
+ {
+  "id": "saa-q-212",
+  "question": "A serverless blog stores photos that users upload to an Amazon S3 bucket. Each photo needs a thumbnail created automatically soon after upload, and the solution must scale with traffic without managing servers. Which solution meets these requirements?",
+  "options": [
+   "Run a cron job on an Amazon EC2 instance that lists the bucket every minute and resizes new photos",
+   "Configure an S3 event notification that invokes an AWS Lambda function to create each thumbnail",
+   "Use CloudFront Functions to resize each photo when a viewer first requests it from the edge",
+   "Schedule an AWS Glue job every hour that converts the new photos into thumbnails"
+  ],
+  "answer": 1,
+  "explanation": "An S3 event notification invokes Lambda for every new object, which scales automatically and needs no servers. CloudFront Functions are tempting, but they are lightweight and cannot read or transform the image body. An EC2 cron job needs a server, and an hourly Glue job is slow and meant for data processing.",
+  "domain": "saa2",
+  "section": "saa-20"
+ },
+ {
+  "id": "saa-q-213",
+  "question": "A company splits its application into microservices. Mobile clients need one public HTTPS entry point that sends requests for the users path to an AWS Lambda function and requests for the orders path to an Amazon ECS service. Each client must get its own request quota enforced with an API key. Which solution meets these requirements?",
+  "options": [
+   "An Application Load Balancer with path-based rules for the Lambda function and the ECS service",
+   "An Amazon CloudFront distribution with a separate cache behavior for each path",
+   "Amazon Route 53 weighted records that point to each microservice endpoint",
+   "An Amazon API Gateway REST API with usage plans, routing each path to its backend"
+  ],
+  "answer": 3,
+  "explanation": "API Gateway REST APIs route each resource path to a backend and enforce per-client throttling and quotas through usage plans and API keys. An Application Load Balancer can route paths to Lambda and ECS, but it has no API keys or per-client quotas. CloudFront and Route 53 do not provide per-client quotas either.",
+  "domain": "saa3",
+  "section": "saa-20"
+ },
+ {
+  "id": "saa-q-214",
+  "question": "A company runs a self-managed MongoDB replica set on Amazon EC2. The team spends too much time on patching, backups, and replacing failed nodes. It wants a managed, highly available database with minimal application code changes. Which AWS service should it use?",
+  "options": [
+   "Amazon DynamoDB with on-demand capacity",
+   "Amazon Keyspaces for Apache Cassandra",
+   "Amazon Neptune with read replicas",
+   "Amazon DocumentDB with MongoDB compatibility"
+  ],
+  "answer": 3,
+  "explanation": "Amazon DocumentDB is a managed document database compatible with MongoDB drivers and APIs, with storage replicated across three Availability Zones. DynamoDB also stores JSON-like items, but moving to it means rewriting data access code. Keyspaces is for Cassandra and Neptune is for graphs.",
+  "domain": "saa2",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-q-215",
+  "question": "A company runs Apache Cassandra on Amazon EC2 for an IoT workload. It wants to stop managing Cassandra nodes and keep using its existing Cassandra Query Language code, while paying only for the reads and writes it uses. Which solution meets these requirements?",
+  "options": [
+   "Amazon Keyspaces with on-demand capacity mode",
+   "Amazon DynamoDB with on-demand capacity mode",
+   "Amazon Timestream for InfluxDB with a single instance",
+   "Amazon Aurora Serverless v2 with PostgreSQL compatibility"
+  ],
+  "answer": 0,
+  "explanation": "Amazon Keyspaces is a serverless, Cassandra-compatible service that accepts existing Cassandra Query Language code, and on-demand mode bills per request. DynamoDB is also serverless and pay per request, but it would require rewriting the data access layer. Timestream and Aurora are different database engines.",
+  "domain": "saa2",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-q-216",
+  "question": "An online game must show a global leaderboard that ranks millions of players by score. Scores update constantly, and the top 100 must be returned in under a millisecond. Which solution is the BEST fit?",
+  "options": [
+   "An Amazon RDS for MySQL table with an index on the score column",
+   "Amazon ElastiCache for Valkey using sorted sets keyed by player",
+   "An Amazon Redshift table sorted by score and queried on demand",
+   "An Amazon DynamoDB table with a global secondary index on score"
+  ],
+  "answer": 1,
+  "explanation": "Valkey and Redis OSS sorted sets keep members ordered by score in memory, so ranking queries return in microseconds even with constant updates. DynamoDB is fast but is not built to rank a whole table by score, and RDS and Redshift cannot reliably deliver sub-millisecond rankings under constant writes.",
+  "domain": "saa3",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-q-217",
+  "question": "A media application stores video files of up to 5 gigabytes each. Users must quickly search the videos by uploader and upload date. Which design is the MOST suitable and scalable?",
+  "options": [
+   "Store each video and its metadata together as a single item in Amazon DynamoDB",
+   "Store each video as a binary large object in an Amazon RDS for PostgreSQL table",
+   "Store the videos in Amazon S3 and index their metadata in Amazon DynamoDB",
+   "Store the videos on Amazon EFS and encode the metadata in each file name"
+  ],
+  "answer": 2,
+  "explanation": "Amazon S3 is built for large objects, and a DynamoDB table holding each object key with its uploader and date gives fast, scalable lookups. DynamoDB items are limited to 400 kilobytes, so videos cannot be stored there. Large binary objects in RDS are costly and slow, and file names are not a searchable index.",
+  "domain": "saa3",
+  "section": "saa-21"
+ },
+ {
+  "id": "saa-q-218",
+  "question": "A clinic wants callers to its phone line to book appointments by speaking naturally with a virtual agent, which understands their intent and asks follow-up questions. The clinic wants a cloud contact center without building machine learning models. Which combination of services meets these requirements?",
+  "options": [
+   "Amazon Polly with Amazon Transcribe",
+   "Amazon Comprehend with Amazon SNS",
+   "Amazon Translate with Amazon Pinpoint",
+   "Amazon Lex with Amazon Connect"
+  ],
+  "answer": 3,
+  "explanation": "Amazon Lex builds conversational bots that recognize intent and prompt for missing details, and Amazon Connect is the cloud contact center that routes calls to the bot. Transcribe and Polly convert speech and text but do not manage a conversation or a phone line.",
+  "domain": "saa3",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-q-219",
+  "question": "An accounts payable team receives thousands of scanned supplier invoices as PDF files each week. It needs the vendor name, invoice total, and line item tables extracted automatically into a database, without training a model. Which AWS service should it use?",
+  "options": [
+   "Amazon Textract",
+   "Amazon Rekognition",
+   "Amazon Comprehend",
+   "Amazon Kendra"
+  ],
+  "answer": 0,
+  "explanation": "Amazon Textract extracts printed and handwritten text, form fields, and tables from scanned documents, and has a specialized feature for invoices and receipts. Rekognition finds objects and faces in images rather than document structure, and Comprehend analyzes text that has already been extracted.",
+  "domain": "saa3",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-q-220",
+  "question": "A real estate company has ten years of its own sales data and wants its data scientists to build, train, and deploy a custom model that predicts house prices, using a fully managed platform that handles the training and hosting infrastructure. Which AWS service should it use?",
+  "options": [
+   "Amazon Personalize",
+   "Amazon SageMaker AI",
+   "Amazon Comprehend",
+   "Amazon Forecast"
+  ],
+  "answer": 1,
+  "explanation": "Amazon SageMaker AI is the managed platform to label data, build, train, tune, and deploy custom machine learning models. Personalize only builds recommendation models, Comprehend analyzes text, and Forecast is for time series predictions and is closed to new customers.",
+  "domain": "saa3",
+  "section": "saa-23"
+ },
+ {
+  "id": "saa-q-221",
+  "question": "S3 event notifications invoke an AWS Lambda function asynchronously to process each uploaded file. A few invocations still fail after the built-in retries, and those events are lost. The team must keep every failed event with its error details for later reprocessing, without changing the function code. Which solution meets these requirements?",
+  "options": [
+   "Increase the function timeout and memory so that the invocations stop failing",
+   "Enable S3 Versioning on the bucket so that failed files can be processed again",
+   "Set reserved concurrency on the function so that failed events wait for a retry",
+   "Configure an on-failure destination that sends failed events to an SQS queue"
+  ],
+  "answer": 3,
+  "explanation": "For asynchronous invocations, Lambda retries twice, and an on-failure destination then sends the event with its error details to an SQS queue for reprocessing. Versioning is tempting, but it keeps old object copies, not failed events. More memory or time does not fix every failure, and reserved concurrency does not store events.",
+  "domain": "saa2",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-q-222",
+  "question": "A legacy application must run on exactly one Amazon EC2 instance, and clients connect to it through an Elastic IP address. The application must recover automatically even if its Availability Zone fails. Which solution meets these requirements?",
+  "options": [
+   "Use a one-instance Auto Scaling group across two Availability Zones that reattaches the Elastic IP address",
+   "Create a CloudWatch alarm with the EC2 recover action on the instance, keeping the same Elastic IP address",
+   "Place the instance in a spread placement group so that it runs on distinct hardware in the Availability Zone",
+   "Take hourly EBS snapshots and restore the instance manually in another Availability Zone if a failure occurs"
+  ],
+  "answer": 0,
+  "explanation": "An Auto Scaling group with minimum, maximum, and desired of one spanning two zones replaces a failed instance in the healthy zone, and user data with an instance role reattaches the Elastic IP address. The recover action is tempting, but it only recovers within the same zone. Manual restores are not automatic.",
+  "domain": "saa2",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-q-223",
+  "question": "A research team runs an on-premises high performance computing cluster that schedules jobs with Slurm. It wants to move to AWS, keep its existing Slurm job scripts, define the cluster in a configuration file, and have compute nodes scale up for queued jobs and down to zero when idle. Which solution meets these requirements?",
+  "options": [
+   "Run the jobs with AWS Batch using a managed compute environment",
+   "Deploy the cluster with AWS ParallelCluster using the Slurm scheduler",
+   "Launch the nodes with an Auto Scaling group in a cluster placement group",
+   "Process the jobs on an Amazon EMR cluster with instance fleets and Spot"
+  ],
+  "answer": 1,
+  "explanation": "AWS ParallelCluster builds HPC clusters from a configuration file, supports the Slurm scheduler, and scales compute nodes with the job queue, down to zero. AWS Batch is tempting because it also scales with queued jobs, but it uses its own job definitions instead of Slurm scripts. An Auto Scaling group has no scheduler, and EMR is for big data frameworks.",
+  "domain": "saa3",
+  "section": "saa-29"
+ },
+ {
+  "id": "saa-q-224",
+  "question": "A company wants an automated dashboard that continuously checks its AWS account and flags idle EC2 instances, unassociated Elastic IP addresses, security groups with unrestricted ports, and services close to their quotas. Which AWS service provides these checks?",
+  "options": [
+   "AWS Well-Architected Tool",
+   "AWS Compute Optimizer",
+   "AWS Trusted Advisor",
+   "Amazon Inspector"
+  ],
+  "answer": 2,
+  "explanation": "Trusted Advisor runs automated best practice checks across cost optimization, security, fault tolerance, performance, service limits, and operational excellence. The Well-Architected Tool is tempting, but it is a guided questionnaire. Compute Optimizer covers right-sizing and idle resources only, not open ports or quotas, and Inspector scans for software vulnerabilities.",
+  "domain": "saa4",
+  "section": "saa-31"
+ },
+ {
+  "id": "saa-q-225",
+  "question": "During a Well-Architected review, a team decides to move workloads to AWS Graviton instances, delete data nobody uses, and maximize utilization, with the main goal of minimizing the environmental impact of its cloud workloads. Which pillar of the AWS Well-Architected Framework does this goal belong to?",
+  "options": [
+   "Cost Optimization",
+   "Performance Efficiency",
+   "Operational Excellence",
+   "Sustainability"
+  ],
+  "answer": 3,
+  "explanation": "The Sustainability pillar focuses on reducing the environmental impact of workloads, including maximizing utilization, using efficient hardware such as Graviton, and removing unneeded data. These actions also save money, which makes Cost Optimization tempting, but the stated goal is environmental impact.",
+  "domain": "saa4",
+  "section": "saa-31"
+ },
+ {
+  "id": "saa-q-226",
+  "question": "A company replaces one very large EC2 instance with several smaller instances behind a load balancer, so that a single instance failure affects only a small part of the traffic. It also regularly tests how the system recovers from failures. Which Well-Architected pillar do these design principles mainly support?",
+  "options": [
+   "Security",
+   "Performance Efficiency",
+   "Reliability",
+   "Cost Optimization"
+  ],
+  "answer": 2,
+  "explanation": "Scaling horizontally to reduce the impact of a single failure and testing recovery procedures are design principles of the Reliability pillar. Performance Efficiency is tempting because more instances can add capacity, but it focuses on selecting and using resources efficiently, not on limiting failure impact.",
+  "domain": "saa2",
+  "section": "saa-31"
+ }
+]
