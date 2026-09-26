@@ -3,9 +3,9 @@
 ## Current Session State
 | | |
 |---|---|
-| **Last working on** | Polish pass done (app, content, audio/CI, icons, study plan, docs) |
+| **Last working on** | Deployed: live at https://cmsu224.github.io/AWS-Certification/ (PWA installable, audio packs CLF 14 / SAA 22) |
 | **Last file edited** | README.md, CLAUDE.md, AGENT.md |
-| **Next step** | User runs `gh auth login` → push `main` (commit 2f2c742+) → set default branch to main → enable Pages (build_type workflow) → verify install on phone (Android + iPhone Safari). Repo is already public. |
+| **Next step** | Verify install on phone (Android + iPhone Safari). Done 2026-09-26: `main` pushed + default branch, Pages enabled (source: GitHub Actions). Git auth uses `gh auth setup-git` (wincredman store is broken on this PC). |
 | **Pending** | Real-iPhone check of speech voices/wake lock. |
 
 ## Goal
