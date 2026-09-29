@@ -3,8 +3,8 @@
 ## Current Session State
 | | |
 |---|---|
-| **Last working on** | Deployed: live at https://cmsu224.github.io/AWS-Certification/ (PWA installable, audio packs CLF 14 / SAA 22) |
-| **Last file edited** | README.md, CLAUDE.md, AGENT.md |
+| **Last working on** | "Open Udemy" opens the Udemy app: Android intent: URL (package com.udemy.android, web fallback); iOS long-press tip (no public URL scheme). SW cache 2026-09-29a |
+| **Last file edited** | webapp/js/today.js, webapp/sw.js |
 | **Next step** | Verify install on phone (Android + iPhone Safari). Done 2026-09-26: `main` pushed + default branch, Pages enabled (source: GitHub Actions). Git auth uses `gh auth setup-git` (wincredman store is broken on this PC). |
 | **Pending** | Real-iPhone check of speech voices/wake lock. |
 

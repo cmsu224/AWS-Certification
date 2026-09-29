@@ -121,9 +121,23 @@ function renderLectureCard(t) {
     fmtMin(b.eff) + ' @' + speed + '×' + paceBadge(b.sec.pace) + '</div>' + flags +
     (unlockN ? '<div class="flag good">🔓 Finishing this unlocks ' + plural(unlockN, 'card/question', 'cards/questions') + '</div>' : '') +
     '<details class="lec-details"><summary>Show lectures</summary>' + list + '</details>' +
-    '<div class="btn-row nowrap"><a class="btn big' + (opened ? '' : ' primary') + '" href="' + esc(course.url || '#') + '" target="_blank" rel="noopener" data-act="open-course" data-key="' + esc(blockKey) + '">Open Udemy ↗</a>' +
+    '<div class="btn-row nowrap"><a class="btn big' + (opened ? '' : ' primary') + '" href="' + esc(udemyHref(course.url)) + '"' +
+    (IS_ANDROID ? '' : ' target="_blank" rel="noopener"') + ' data-act="open-course" data-key="' + esc(blockKey) + '">Open Udemy ↗</a>' +
     '<button type="button" class="btn big' + (opened ? ' primary' : '') + '" data-act="lec-done" data-sec="' + b.sec.id + '" data-to="' + b.to + '">✓ Done</button></div>' +
-    '<div class="card-note">Watch in the Udemy app at ' + speed + '× speed, then tap Done.</div></div>';
+    '<div class="card-note">Watch in the Udemy app at ' + speed + '× speed, then tap Done.' +
+    (IS_IOS ? ' Tip: long-press “Open Udemy” → Open in “Udemy” to jump straight into the app.' : '') + '</div></div>';
+}
+
+// Android: an intent: URL hands the course link straight to the Udemy app (web page if it isn't installed).
+// iOS has no public Udemy URL scheme; the https link is a universal link (long-press → Open in "Udemy").
+const IS_ANDROID = /Android/i.test(navigator.userAgent);
+const IS_IOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+function udemyHref(url) {
+  if (!url) return '#';
+  if (!IS_ANDROID) return url;
+  const u = new URL(url);
+  return 'intent://' + u.host + u.pathname + u.search + '#Intent;scheme=https;package=com.udemy.android;' +
+    'S.browser_fallback_url=' + encodeURIComponent(url) + ';end';
 }
 
 /** Pace badge only when it changes how to watch (skim / deep), not for the usual "normal". */
