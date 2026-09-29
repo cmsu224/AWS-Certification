@@ -5,7 +5,7 @@
 //  icons: cache-first · audio: 'aws-audio' cache (Range → 206) else network
 //  Bump CACHE_NAME whenever shell assets change.
 // ============================================================
-const CACHE_NAME = 'aws-study-v2-2026-09-29a';
+const CACHE_NAME = 'aws-study-v2-2026-09-29b';
 const NET_TIMEOUT_MS = 3000; // weak signal: fall back to the cached copy after this
 const AUDIO_CACHE = 'aws-audio';
 const SHELL = [

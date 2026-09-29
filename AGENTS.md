@@ -62,7 +62,7 @@ AWS-Certification/
 - Mobile-first (390×844, ≥44px targets, safe areas), dark theme tokens in `style.css`. No `alert/confirm/prompt` — inline panels/toasts.
 - Module map: `util.js` (dates incl. `aws-study-fake-today`, storage wrappers, toast, `ACTIONS`) · `model.js` (progress v2, migration, SRS, course pace, readiness) · `session.js` (review/quiz/exam sessions, results) · `speech.js` (hands-free, wake lock, Media Session) · `listen.js` (audio packs, Cache `aws-audio`) · `today.js` (Today + exam-prep) · `views.js` (Course/Review/Quiz/More) · `app.js` (router, events, timer, SW registration/update).
 - **Progress**: localStorage `aws-study-progress`, `version: 2` (shape in the spec). v1 is migrated (backup `aws-study-progress-v1-backup`); corrupt data backed up to `aws-study-progress-corrupt-backup`. Every storage access in try/catch.
-- **Service worker**: bump `CACHE_NAME` in `webapp/sw.js` (currently `aws-study-v2-2026-09-29a`) whenever any shell file (html/css/js/manifest/icons) changes. Must keep a `fetch` handler; the manifest + 192/512 icons keep it installable.
+- **Service worker**: bump `CACHE_NAME` in `webapp/sw.js` (currently `aws-study-v2-2026-09-29b`) whenever any shell file (html/css/js/manifest/icons) changes. Must keep a `fetch` handler; the manifest + 192/512 icons keep it installable.
 - **Audio packs** are built by `tools/make-audio.py` in the Pages workflow (cached by data/course hash) — never commit `webapp/audio/`. Local: `python tools/make-audio.py --sections clf-06,saa-20` (needs `pip install edge-tts`, ffmpeg).
 
 ## Testing
