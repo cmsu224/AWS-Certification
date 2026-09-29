@@ -6,7 +6,7 @@
 | **Last working on** | "Open Udemy" uses the app deep link udemy://discover?courseId=<id> (CLF 3142166 / SAA 2196488); Android wraps it in intent: with web fallback; "Open in browser instead" link. udemy.com universal links only cover /checkout-result, so https links never open the iOS app. SW 2026-09-29b |
 | **Last file edited** | webapp/js/today.js, webapp/sw.js |
 | **Next step** | Verify install on phone (Android + iPhone Safari). Done 2026-09-26: `main` pushed + default branch, Pages enabled (source: GitHub Actions). Git auth uses `gh auth setup-git` (wincredman store is broken on this PC). |
-| **Pending** | User to confirm Open Udemy launches the app on their phone. Real-iPhone check of speech voices/wake lock. |
+| **Pending** | OnePlus 15 test: "Open Udemy" still opened the browser (maybe stale cached JS). User to try webapp/udemy-test.html (5 variants) and report which opens the app. Udemy Android (decompiled): accepts udemy://* and verified https://www.udemy.com/deeplink; DeeplinkHelper reads ?courseId= (+ optional lectureId=, opens a lecture). Remove udemy-test.html once settled. Real-iPhone speech/wake-lock check. |
 
 ## Goal
 Parent with a young kid studies ~45–60 min/day in 2–20 min phone pockets. Owns Maarek's Udemy CLF-C02 + SAA-C03 courses. Start Mon 2026-09-28 → CLF exam Fri 2026-10-23 → SAA exam Fri 2027-01-08 (50% voucher). The installable PWA at `https://cmsu224.github.io/AWS-Certification/` says exactly what to do next.

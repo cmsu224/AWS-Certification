@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Udemy link test</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 16px; background: #0f1419; color: #e6edf3; font: 16px/1.4 system-ui, sans-serif; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p { color: #9aa7b3; margin: 0 0 16px; }
+  a { display: block; margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: #1c2630; color: #e6edf3; text-decoration: none; }
+  a b { display: block; font-size: 18px; }
+  a small { color: #9aa7b3; word-break: break-all; }
+</style>
+</head>
+<body>
+<h1>Udemy link test</h1>
+<p>Tap each button. Note which ones open the <b>Udemy app</b> on the CLF course, then come back here.</p>
+<div id="links"></div>
+<script>
+  // Test page for "Open Udemy" deep links (CLF course 3142166). Not part of the app shell.
+  const id = 3142166;
+  const web = 'https://www.udemy.com/course/aws-certified-cloud-practitioner-new/';
+  const links = [
+    ['1', 'udemy://discover?courseId=' + id],
+    ['2', 'intent://discover?courseId=' + id + '#Intent;scheme=udemy;package=com.udemy.android;end'],
+    ['3', 'intent://www.udemy.com/deeplink?courseId=' + id + '#Intent;scheme=https;package=com.udemy.android;end'],
+    ['4', 'https://www.udemy.com/deeplink?courseId=' + id],
+    ['5', 'intent:#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.udemy.android;end'],
+    ['web', web],
+  ];
+  document.getElementById('links').innerHTML = links.map(([n, href]) =>
+    '<a href="' + href.replace(/"/g, '&quot;') + '"><b>' + (n === 'web' ? 'Web page (control)' : 'Test ' + n) +
+    '</b><small>' + href.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</small></a>').join('');
+</script>
+</body>
+</html>
